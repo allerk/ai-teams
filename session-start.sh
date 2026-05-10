@@ -59,7 +59,7 @@ if [ -z "${GITHUB_TOKEN:-}" ]; then
     exit 1
 fi
 export GITHUB_TOKEN
-export REPO_URL="${REPO_URL:-https://github.com/mitselek/ai-teams.git}"
+export REPO_URL="${REPO_URL:-https://github.com/allerk/ai-teams.git}"
 
 # Determine which claude-home volume this team uses
 case "$TEAM" in
