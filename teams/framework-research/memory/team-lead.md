@@ -1,5 +1,81 @@
 # Team-Lead Scratchpad (*FR:team-lead*)
 
+## SESSION 31 WRAP — 2026-05-12 (RFC #66 substrate gate cleared cross-host; architecture decision + reference implementation shipped; PO reframe on Windows-substrate findings)
+
+**Goal (PO-set 13:48):** Evaluate RFC #66 (Ghost-Member Pattern, posted 2026-05-09 by PO) against existing FR artifacts. Mid-session pivoted to verify-on-substrate-before-design via cross-host PoC.
+
+**Outcome:** RFC #66 substrate gate cleared empirically (Windows-local-dev ↔ apex-research-on-Linux). Architecture decision settled (Reading 1: per-team Callimachi stay; messenger-ghost mechanism; new central library team as future design surface). PoC reference implementation shipped to FR repo. Wiki 86 → 89. RFC #66 discussion commented with empirical results. 7-item Cal Protocol A queue parked at Brunel's side for next session dispatch.
+
+### Outcomes shipped
+
+| Artifact | Δ | Owner | Path |
+|---|---|---|---|
+| `wiki/references/inbox-file-write-as-wake-mechanism.md` | NEW (86→87, architectural-fact) | Cal | substrate property RFC #66 Finding 2 articulates |
+| `wiki/patterns/service-team-topology.md` | NEW (87→88) | Cal | library-as-service-team architectural pattern (per #47 OQ-fold) |
+| `wiki/patterns/ghost-member-as-universal-integration-surface.md` | NEW (88→89) | Cal | ghost-member as universal integration seam |
+| Amendments to `substrate-invariant-mismatch`, `worktree-spawn-asymmetry`, `inbox-drained-on-spawn-clear`, `wiki/index.md` | +N | Cal | cross-link maintenance |
+| `teams/framework-research/poc/ghost-member-cli/{ghost-chat.py, ghost-chat.ps1.deprecated, README.md}` | NEW | user impl. / Brunel coord. / coding-subagent QoL | sketch-grade reference implementation |
+| Commit `4f48973` + RFC #66 discussion comment | shipped | Aen | https://github.com/mitselek/ai-teams/discussions/66#discussioncomment-16893428 |
+| Brunel scratchpad +102 lines (S31 + provenance corrections) | +102 | Brunel | `memory/brunel.md` |
+| Cal scratchpad +46 lines (S31 block) | +46 | Cal | `memory/callimachus.md` |
+
+### Architecture decision settled
+
+[DECISION — session 31] **Reading 1 (per-team Callimachi stay) + messenger-ghost mechanism + new central library team as design surface.** PO direction 14:50: *"Per-team librarian stays, every team librarian has personal 'messenger ghost representative' at central library. We will design a specific library team for central library curation."* Library-as-service-team topology per Cal's new wiki entries — answers #47 OQ1/OQ2/OQ3/OQ5/OQ7/OQ8 with named structural moves. OQ4 (wiki/scratchpad boundary at within-team layer) and OQ6 (token cost tiering) remain open from #47.
+
+### Substrate gate cleared — F1/F2/F3 + 4 sub-findings
+
+Verified cross-host on Windows-local-dev ↔ apex-research-on-Linux-container via SSH (Cloudflare Tunnel). Two independent implementations (PowerShell sketch → Python rewrite) both confirm the substrate-properties. Outbound ssh-write latency 657-854ms; end-to-end dominated by recipient compose-time, not substrate cost. Substrate-property reference filed at `wiki/references/inbox-file-write-as-wake-mechanism.md`.
+
+**Sub-findings** (beyond RFC's empirical claims):
+- **SF-1:** Inbox-slot acceptance is decoupled from `members[]` validation (one-sided-ACL property)
+- **SF-2:** `agentType` vs `backendType` separation is a richer registration shape than RFC's `agentType: ghost` example
+- **SF-3:** Per-message `color` field overrides registered-member color (apex display contract)
+- **SF-4:** Single-ssh + python + `fcntl.flock` is a clean cross-host atomic-write primitive
+
+**External-CLI substrate contract** worth making explicit: external members must replicate harness-side `read: true` marking after processing inbox entries; otherwise BACKLOG-loops on every launch. Closed by-design in Python via `fetch-and-mark-read` primitive (single ssh round-trip that under flock fetches `read:false` entries AND flips their flag).
+
+### LEARNED — session 31
+
+- **Verify-on-substrate-before-design discipline validated empirically.** The PO-directed pivot at 15:05 ("verify RFC #66 substrate via cross-host PoC before designing library team") caught issues paper-design would have missed (SF-1 inbox/members[] asymmetry, SF-3 color-override, Windows-substrate quirks). Reusable: for any architecture decision resting on an empirical substrate claim, run a PoC first.
+- **Cross-implementation verification strengthens substrate-claim generalization.** PowerShell + Python independently confirming SF-1 through SF-4 moves the finding from "single-client-shows-X" to "substrate-property-of-deployment-harness-is-X." Reusable discipline: when one PoC validates a remote-substrate claim, port to a second language to confirm.
+- **Ship-substrate-research-outcome-before-debug-churn structural move** (Brunel's S31 16:48 [LEARNED]): substrate-research outcome locks in regardless of artifact-polish; ship report immediately, decouple from rewrite churn. Without it, polish-bug-debugging buries the substrate finding behind cycles of CLI iteration.
+- **Team-lead Stage-1-fold-without-primary-artifact drift, n=2 same session.** Aen attempted "n=3 spawn-drain" then "mid-session SendMessage drain" framings without disk-check; Brunel retracted both correctly. Relay-to-primary-artifact-fidelity-discipline Stage-1 anti-pattern applies to team-lead too. n=4 in this session counting Brunel's parallel instance. Parked in Brunel's Cal queue (item 6).
+- **PO directive on Windows-substrate framing (16:42):** Don't characterize Claude Code messaging/inbox failures observed on Windows as framework findings — Windows file-semantics aren't the deployment substrate; Linux/Ubuntu is. Saved to project auto-memory at `feedback_no_windows_substrate_findings.md`. Applied retroactively to drop several would-be Cal-queue items from S31.
+- **User-implements-while-agent-coordinates pattern.** User shipped both PowerShell PoC artifact AND Python rewrite directly. Brunel's role-of-record corrected mid-session: containerization-substrate-coordinator + verification-discipline-keeper, NOT implementer. Pattern: when user wants code shipped fast, agents coordinate/diagnose/curate.
+- **Coding subagent delegation pattern.** Iteration-2 QoL feature delegated to one-shot general-purpose coding subagent (non-team): ~108s for feature, ~35s for bug fix. Pattern: substrate-validation team work uses FR specialists; artifact-implementation polish uses one-shot coding agents.
+
+### NEXT-SESSION BOOT (re-orient instructions for S32)
+
+1. Read `startup.md` first (always). Steps 1-5 (Sync → Reset team state → Restore inboxes → Spawn — wait for PO direction).
+2. **Pull `mitselek-ai-teams` repo** for any external scratchpad updates.
+3. **Don't pre-spawn any agent at session start.** Wait for PO direction.
+4. **If PO surfaces library-team architecture design** (central library team is the downstream-of-PoC work surface, this is the major next move): start with **Cal** (master-librarian role + Protocol A/B/C generalization across ghost-pair + library's own internal wiki sovereignty); then parallel **Herald** (ghost-pair envelope shapes + transport-plugin contract; T03 §Protocol 4 reframe candidate) + **Monte** (service-team one-sided ACL + authority structure across N consumers). **Brunel** and **Volta** are downstream of envelope-shape settlement; do NOT pre-spawn them.
+5. **If PO surfaces Brunel-respawn:** he carries a **7-item Cal Protocol A queue** ready to dispatch immediately (SF-1, SF-2, SF-3, SF-4, read-flag-replication external-CLI discipline, TaskGet-before-classify-as-noise procedural pattern, decorative-polling-interval anti-pattern). First operational item: dispatch queue to Cal. Also: Brunel-spawn now ALWAYS triggers Q "analyst/coordinator or implementer?" — default coordinator/analyst unless PO explicitly asks for code.
+6. **If PO surfaces continued ghost-chat PoC iteration** (QoL features, MCP escalation per RFC #66 Step 2, or bug iteration): delegate to **coding subagent (general-purpose, non-team)**, NOT Brunel. Path established this session.
+7. **If PO surfaces apex-research follow-up:** Schliemann (apex team-lead) is engaged via the ghost-chat channel; user has direct comm. Eratosthenes (apex's librarian) was idle this session — not yet contacted with the PoC story. Cross-team wiki cite-and-fold may surface if apex files their own version (Schliemann asked user 15:39 whether to file as apex wiki pattern; user-deferred).
+8. **If PO surfaces RFC #66 discussion engagement:** comment posted (discussioncomment-16893428). If RFC author replies, action depends on shape — substrate findings reception, design feedback, or v2 invitation. Surface for routing.
+9. **If PO surfaces n=4-in-one-session relay-fidelity observation:** parked in Brunel's Cal queue (item 6) — lands naturally via Brunel's dispatch; no separate action needed at session start.
+10. **First operational item if Cal-spawning:** her S31 close is clean. Surface-grade work would be: (a) receiving Brunel's queued items if Brunel is spawned same window; (b) library-team master-librarian role drafting if PO surfaces architecture work.
+
+### Standing watch items going into session 32
+
+- **Library-team architecture design** — major downstream work surface from this session's substrate validation. Touches 4-5 specialists (Cal-led; Herald, Monte for protocols/governance; Brunel, Volta downstream).
+- **Brunel's 7-item Cal Protocol A queue dispatch** — parked at Brunel's side; lands on his next spawn.
+- **RFC #66 discussion author response** — comment posted; watch for engagement. PO has the live channel.
+- **apex-research Eratosthenes contact** — apex's librarian dormant from FR's view; may surface when Schliemann decides on apex-side filing.
+- **TPS-583 (apex-research)** — when PO signals Ruth has progressed, action Stage-2 standard moves
+- **`repo-as-durable-store-teamdelete-as-release-primitive.md` n=2 watch** (Volta-filed S28) — cross-platform generalization confirmation point
+- **`cross-document-prose-procedure-drift.md` n=2 watch** — second incident triggers Volta's Protocol C consideration
+- **Companion-Pair Submission n=3+ FR-instance watch** — third FR instance prompts Protocol C consideration
+- **Aalto/uikit-dev cross-team debt** — only on uikit-dev contact event
+- **esl-suvekool feedback loop** — when PO returns from Tobi sessions
+- **apex-research federation invocation** — per S30 re-characterization: convention re-test point shifts to first non-FR-non-apex team adopting federation-bootstrap-template
+
+(*FR:Aen*)
+
+---
+
 ## SESSION 30 WRAP — 2026-05-07 (Monte FLAG resolution + Cal AMENDMENT processing + apex-research Protocol C cross-pollination + n=2 substrate gotcha activation)
 
 **Goal (PO-set):** Resume Monte FLAG resolution per S29 NEXT-SESSION-BOOT step 4; glance at apex-research progress per S29 standing watch on n=2 federation invocation.

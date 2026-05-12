@@ -354,3 +354,31 @@ Both new sub-sections mirror existing Cross-Team Audit Authority structure (audi
 [DEFERRED] Provider outage emergency protocol — actionable consensus item from all 6 participants. Awaiting task assignment to draft T04 amendment.
 
 (*FR:Montesquieu*)
+
+## Session 31 — 2026-05-07 20:14 (VEO-4 single-pass consultation)
+
+[CONTEXT] One-shot governance lens on real-world EVR org issue (not framework-internal). VEO-4 = Stage-1 tracking issue for "EVR sisene konteinerite standard" org-adoption. Assignee Ruth Türk. PO blocked: apex-team substrate-violating, multiple teams on hold, inter-team comms design gated.
+
+[DECISION] PO's "single-path champion" framing sharpened to **serially-coupled-cross-domain-handoff, no-fallback-declared**. Champion-frame implies authority; messenger-frame is more accurate when alleged authority is soft-power-only across handoff seam. Closest T04-corpus pattern: single-provider correlated-failure (R20). Same structural shape, human-org substrate.
+
+[PATTERN] **5 structural risks surfaced**: (1) ITOps decline-by-silence (most likely; AC has no time-box), (2) Roland routes back to V2 ("you wrote it"), (3) post-v1.0 amendment authority undefined, (4) RACI Sysops/Infra TBD repeats single-path one level down, (5) "review" vs "ratification" conflation in AC step 1.
+
+[DECISION] **5 ranked alternative paths** delivered. Rank 1 = Roland-direct with Ruth CC'd (high likelihood, low political cost, respects authorship without chokepoint). Rank 5 = status quo (already failure mode). Recommendation: spawn Brunel or Volta for prose-craft of escalation note (not Monte's domain — governance-lens delivered, drafting is theirs).
+
+[LEARNED] **`[speculative]` flag density signals draft-state to receivers in cross-team artifacts.** Brunel's standard has high `[speculative]` density precisely because Stage-1 expects ITOps ratification — but receiver-side reading is "V2 hasn't done the work yet." Pre-submission flag-reduction (commit what you can defend, leave only true opens flagged) is a load-bearing structural move for cross-domain handoffs. Sibling to relay-fidelity discipline: producer-side annotations carry semantics consumers may read inversely. Tentative title: `speculative-flag-density-signals-draft-state.md` if pattern repeats.
+
+[QUEUED-FOR-S32]
+1. Compound-signals v1.1 typed `kind: "CompoundDriftSignal"` fold + Herald [COORDINATION] (carried from S30)
+2. Potential B.1 FLAG-resolution if Cal filed `single-channel-saturation-via-mode-partition` under Stage 1 relay-fold-only (carried from S30)
+3. Brunel async items (carried from S30, his cadence)
+4. **NEW:** if PO surfaces feedback on VEO-4 analysis (recipient-side fold), surface to Aen — analysis was one-shot but findings may feed back into T04 §Cross-Team Audit Authority human-org-substrate annex if pattern crystallizes
+
+[DISPATCH-POLICY-FOR-S32] Same as S31. Cal-bound submissions direct first; relay-fallback per Aen 13:30 codification.
+
+[STANDING-FRAMING-PRESERVED]
+- "Admission needs to commit, observation needs to caution" (Brunel S27 10:54)
+- "Asymmetries should live above the substrate, not in the substrate" (Herald S26)
+- "Author-scratchpad notes at framing-fold and dispatch moments are load-bearing for substrate-loss recovery" (Monte S30 17:37)
+- **NEW (Monte S31 20:14):** "Speculative-flag density signals draft-state to receivers in cross-team artifacts — pre-submission flag-reduction is a load-bearing structural move for cross-domain handoffs"
+
+(*FR:Montesquieu*)

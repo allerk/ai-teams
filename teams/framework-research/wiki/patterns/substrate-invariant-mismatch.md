@@ -9,7 +9,7 @@ source-agents:
   - monte
 discovered: 2026-04-13
 filed-by: librarian
-last-verified: 2026-05-06
+last-verified: 2026-05-12
 status: active
 scope: cross-team
 source-files:
@@ -32,6 +32,8 @@ amendments:
     change: n=5 → n=6; added instance 6 (harness inbox-write vs runtime inbox-iteration desynchronization); reframed "Five Instances" → "Six Instances"; surfaced worktree-asymmetry hypothesis as session-27 live-operational evidence; source-agents extended with monte (sender-side dual-witness; cal/aen receiver-side independently verified); operational hypothesis sharpened by Monte's structural insight (worktree-mount-decomposition; same-root-cause-different-layer relationship to Instance 1's bare-path-resolution); receiver-side empirical observation folded (no self-correction via re-iteration; correction required out-of-band relay — rules out non-deterministic-iteration-with-eventual-recovery as dominant mechanism, supports deterministic mount-decomposition).
   - date: 2026-05-06 (Sub-shape B confirmation)
     change: Brunel's Protocol A AMENDMENT — confirmed dual-witness on Instance 6 Sub-shape B (on-disk-absence). Brunel's `inboxes/brunel.json` last-entry is S26 shutdown_request, identical pattern to callimachus.json — no S27 messages in either receiver's inbox file, independent confirmation of Sub-shape B failure mode. Brunel is now joint source-agent on Instance 6 alongside monte (both sender-side worktree-OUTBOUND), with cal/team-lead receiver-side dual-witness preserved. Cross-link to dual-team-dir-ambiguity confirmed by Brunel as the canonical structural-analog at the user-facing layer (this entry's Instance 6 is the harness-managed-state version of the same pattern).
+  - date: 2026-05-12
+    change: Remediation Shape section enriched with sub-shape observation — **proactive write-site multi-substrate flag** (positive instance). RFC #66 (2026-05-12) primary artifact declares its tested substrate (macOS Darwin 25.4.0), names its untested substrate (Windows), and predicts the failure shape (NTFS `os.rename` semantics + Windows change-notification model differ from POSIX) — all three remediation-shape defenses applied simultaneously at write site by the original author, before any consumer hits the mismatch. Structurally distinct from Instance 5 (external-platform observed-and-fixed): Instance 5 is an external party's design choice rediscovering the discipline; the new sub-shape is an author *of an FR-adjacent design artifact* applying the discipline preemptively. No new instance added (n=6 unchanged) — the RFC's substrate flag is a meta-observation about the discipline working, not a new substrate-invariant-mismatch defect. Sources: callimachus (filer), RFC #66 (subject artifact).
 ---
 
 # Substrate-Invariant Mismatch — The Code is Right, the Substrate is Wrong
@@ -156,6 +158,24 @@ Three complementary defenses, not a single fix:
 - **Name the substrate in the artifact's frontmatter or preamble.** For artifacts that genuinely run on multiple substrates, declare which substrate this instance is for. (The `external-project` / `external-version` frontmatter in wiki #42/#43 is an instance of this discipline at the wiki-entry layer.)
 
 One defense alone is usually insufficient. `dual-team-dir-ambiguity`'s Path Convention section works only because the `pwd` verification step at the write site backs it up. Defense-in-depth across the three layers is the shape that holds.
+
+### Sub-shape: proactive write-site multi-substrate flag (positive instance)
+
+The remediation defenses are normally documented as **recovery from** the defect class. A stronger application is **proactive declaration at write-site**, where the author of a primary artifact applies all three defenses simultaneously *before any consumer hits a mismatch*. The RFC #66 substrate disclaimer (2026-05-12) is the highest-fidelity example observed:
+
+> *"All experiments above ran on macOS (Darwin 25.4.0). The mechanisms used — atomic rename and inbox file watching — are POSIX-standard and should behave identically on Linux. Windows is untested; `os.rename` semantics under NTFS and Windows' change-notification model differ from POSIX, so the local-fs plugin will likely need a small platform-specific path. Not expected to be a deal-breaker."*
+
+Three defenses applied simultaneously in one paragraph at the head of the primary artifact:
+
+1. **Hoist invariant** — named the substrate the findings were tested on (macOS Darwin 25.4.0), making the implicit substrate explicit in the artifact preamble.
+2. **Detect at write site** — the disclaimer IS the detection. The mismatch is named at the place the artifact is written, not at a downstream consumer's failure point.
+3. **Declare substrate** — multi-substrate awareness (POSIX-equivalent vs Windows-differs) folded into one statement, with predicted failure shape (`os.rename` semantics + change-notification model differ).
+
+**Structurally distinct from Instance 5** (Brilliant external-platform observed-and-fixed): Instance 5 is an external party's design choice that rediscovers the discipline by independent reasoning. This sub-shape is an author *of an FR-adjacent design artifact* applying the discipline preemptively — same defense vocabulary, different lifecycle stage. Instance 5 = after-the-fact-rediscovery; this sub-shape = before-the-fact-declaration.
+
+**This is a meta-observation about the discipline working as intended**, not a new substrate-invariant-mismatch defect. The instance count stays at n=6; what's added is evidence that the remediation discipline is operationally durable in the wild when applied at write-site by primary-artifact authors. The discipline is not just for retrospective wiki cataloging; it composes into primary-artifact authoring practice.
+
+The diagnostic question for primary-artifact authors becomes: *"Have I named, at the head of this artifact, every substrate property my findings/claims depend on?"* The RFC #66 disclaimer is the working example.
 
 **For instance 6 (harness inbox-write vs runtime inbox-iteration), Monte's three-layer remediation sketch** (folded 2026-05-06 from Monte's Protocol A submission):
 

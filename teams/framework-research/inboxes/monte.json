@@ -1,8 +1,1 @@
-[
-  {
-    "from": "team-lead",
-    "text": "{\"type\":\"shutdown_request\",\"requestId\":\"shutdown-1778166662810@monte\",\"from\":\"team-lead\",\"reason\":\"S30 session-end. FLAG resolution complete; Instance 5 candidacy promoted to confirmed via Cal fold. Per common-prompt shutdown protocol: write [LEARNED]/[DEFERRED]/[WARNING]/[UNADDRESSED] to scratchpad, send closing report, then approve.\",\"timestamp\":\"2026-05-07T15:11:02.810Z\"}",
-    "timestamp": "2026-05-07T15:11:02.810Z",
-    "read": true
-  }
-]
+[]

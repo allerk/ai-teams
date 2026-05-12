@@ -10,6 +10,112 @@ Three designs shipped via PR #1+#3 on `mitselek/prism`: topology (hub-and-spoke,
 [DECISION] Branch+PR convention RATIFIED as team standard Phase A.1+ (Aen 16:18).
 [LEARNED] FR design cadence: ~400w scope + ~1300w design body. Held end-to-end through Phase B.
 
+## SESSION 31 — RFC #66 cross-host PoC (2026-05-12, current)
+
+[WIP] Building PowerShell CLI on Windows → ssh → apex-research (ai-teams@100.96.54.170:2222) to verify RFC #66 Findings 1-3 on cross-host substrate pair. PO-settled architecture: PowerShell-CLI-local, ssh-watch-remote, PO arranges manual ghost registration.
+
+[CHECKPOINT] Spawn at 15:09 — initial framing as `inbox-drained-on-spawn-clear` n=3 instance RETRACTED per Aen 15:15. Substrate worked correctly; the task_assignment envelope IS the harness's spawn-notification primitive, and the load-bearing scope lives in the task BODIES (#9-#12) addressable via `TaskGet`. My 15:11 "substrate noise" surface was wrong framing but right caution. Aen's 15:11 brief carried Stage 1 fold-error (folded my surface as n=3 evidence without primary-artifact check); my 15:14 acknowledgment-without-superseding was the Stage 2 anti-pattern (stale-relay-fold-survives-after-artifact-arrives). Symmetric paired instance of `relay-to-primary-artifact-fidelity-discipline.md`, both anti-patterns named in one back-and-forth. NOT pre-labeled as n=3-architectural-fact for Cal; three separable filing-candidates queued for post-PoC judgment (Cal's intake): (1) `TaskGet`-before-classify-as-noise procedural pattern, (2) harness prompt-to-task-extraction substrate-feature reference, (3) this exchange as fresh relay-fidelity-discipline instance with symmetric pair as load-bearing property.
+
+[DECISION] Substrate probe BEFORE design (cheap empirical pre-design gate). Confirmed: `$HOME=/home/ai-teams` on apex container; path `~/.claude/teams/apex-research/inboxes/<name>.json` resolves cleanly; 5 active members in config.json (team-lead + 4 dashboards: eratosthenes, champollion, nightingale, berners-lee); 1 residual `hammurabi.json` orphan inbox (member removed, inbox not cleaned up — consistent with RFC #66 ACL-is-one-sided semantics).
+
+[DECISION] Inbox message canonical schema (empirical, from apex team-lead.json + berners-lee.json):
+```json
+{"from":"<sender>","text":"<body>","summary":"<short>","timestamp":"ISO-8601-Z","color":"<name>","read":false}
+```
+`from`/`text`/`timestamp`/`read` required. `summary` + `color` optional; harness fills `color` when present, our CLI can omit (or emit `"color":"green"` since FR-Brunel convention).
+
+[DECISION] ssh-write atomicity: single ssh invocation with remote `python3 -c` reading message body from stdin → append to inbox JSON array. Single remote process = process-level atomic. Adds `fcntl.flock(LOCK_EX)` if contention surfaces.
+
+[BLOCKED] Awaiting: (1) `$NAME` for ghost registration, (2) wake-target apex agent for F2, (3) repo check-in location. Asked Aen 15:14.
+
+[LEARNED 15:15] **Stage 2 stale-fold-survival has a quiet failure mode: politeness-acknowledgment.** When a Stage-1-folded brief lands and I respond on its scope (rather than re-questioning the framing), the acknowledgment IS the Stage 2 anti-pattern. Defense: not just "fetch the primary artifact" — also "if my own prior surface conflicts with the brief's framing, re-surface the conflict before answering on scope." Symmetric instance for a reason: both sides need the discipline.
+
+[LEARNED 15:13] **Self-routed task_assignment envelopes are real briefing primitives.** Harness extracts spawn prompts into task bodies addressable via `TaskGet`. Envelope description is short; task body carries load-bearing scope. Procedural rule: on any task_assignment envelope, `TaskGet` the referenced taskId before classifying as substrate noise.
+
+[STATUS 15:16] #9 completed. #10 design in_progress. #11/#12 pending. Disk work gated on 3 PO clarifications: `$NAME`, wake-target agent, repo location. SSH details + apex paths implicitly settled by Aen — proceeding with ai-teams@100.96.54.170:2222 + `~/.claude/teams/apex-research/inboxes/<name>.json`.
+
+[UPDATE 15:19] #10 closed; #11 implementation now in_progress. 2/3 PO clarifications settled (Aen 15:19):
+- **Wake-target = apex `team-lead`** (Option A). `/list` + `/target` lets user pick alternatives in-CLI.
+- **Repo check-in = user-local** at `~/bin/ghost-chat.ps1`. No FR-repo until F1/F2/F3 verdict.
+- **`$NAME` pending** — PO coordinating registration with apex team-lead.
+
+[DECISION 15:19] **Pre-flight self-verification path (Aen-named):** `/list` returning `$NAME` in apex-research config.json self-verifies F1; send-path to apex team-lead exercises F2 (with latency measurement); apex team-lead's response shape (treating ghost as normal teammate, no special-casing) verifies F3. All three findings exercise from one end-to-end run — keeps the validation scope tight per task #12.
+
+[CHECKPOINT 15:42] **F2-inbound FAILED.** User confirms apex team-lead's reply did NOT surface in `ghost-chat.ps1` terminal. Aen 15:39 brief decomposed into Path A (file on disk, watch-loop bug) vs Path B (file missing/empty/silently-dropped, apex harness ghost-asymmetry — wiki-grade substrate finding). Primary-artifact check is the disambiguator.
+
+[GOTCHA 15:42] **SSH from Brunel-Bash env doesn't reach apex via Cloudflare Tunnel.** `ProxyCommand cloudflared access ssh --hostname %h` times out during banner exchange. `cloudflared` binary present (2026.3.0 via scoop) but Access auth state unrecoverable from non-interactive shell; `cloudflared access login` requires browser redirect. PO's PowerShell session has working SSH (it's the same env running `ghost-chat.ps1`). Routed inspection commands through team-lead to PO. **Environment-asymmetry observation:** my Bash env and PO's PowerShell env share `~/.ssh/config` and keys but have different cloudflared-token freshness — same host config, different auth states. May be a sub-shape worth noting if it recurs, but not pre-labeling.
+
+[DECISION 15:42] **Do NOT modify `ghost-chat.ps1` watch loop until disk truth is established.** If we tweak the read-path before the Path A/B disambiguation, a fix that "works" could mask the real cause. Held PO and team-lead on this discipline.
+
+[WAITING-ON-PO] PowerShell-side ssh probe of `/home/ai-teams/.claude/teams/apex-research/inboxes/` listing + `cat mihkel.json`. Three-outcome map sent to Aen 15:42. Ghost identity `mihkel`, target file `/home/ai-teams/.claude/teams/apex-research/inboxes/mihkel.json` (User = `ai-teams` per `rc-deployments.json` deployment `num: "2"` — NOT `node`; `node` was the Cloudflare-tunnel `hello-world` deployment `num: "a"` which I had conflated; correction folded into 16:51 closure report).
+
+[CHECKPOINT 15:54] Aen confirmed Path A via empirical relaunch evidence — substrate gate cleared. F2-inbound RFC #66 holds cross-host. Two artifact bugs surfaced: Bug A (decorative `$watchInterval` — `Read-Host` blocks, no real poll cadence) + Bug B (Unicode mojibake on ssh stdout decode). Both FIXED 16:01 in `~/bin/ghost-chat.ps1`: Bug A via `[Console]::ReadKey + KeyAvailable` non-blocking loop with manual buffer/echo; Bug B via `[Console]::Output/InputEncoding=UTF8` triple + `[char]0x2014` codepoint em-dash sidestepping source-file-encoding ambiguity.
+
+[CHECKPOINT 16:25] Aen relayed PO direction: PAUSE Bugs C/D/E debugging; ship F1-F2-F3 report locking in substrate-research outcome NOW, then Python rewrite. Decoupling research-outcome from artifact-polish is the load-bearing structural move — substrate finding is host-agnostic and shouldn't be buried behind days of PowerShell debugging.
+
+[CHECKPOINT 16:28] **F1-F2-F3 report SHIPPED.** RFC #66 substrate gate cleared cross-host on Windows-local-dev ↔ apex-research-on-Linux. Four sub-findings (SF-1 through SF-4) documented: inbox-slot-vs-members[]-validation asymmetry, agentType/backendType separation richer than RFC example, color metadata per-message-override beats registered-default, single-ssh+python+fcntl.flock atomic-write primitive works as cross-host transport. Outbound latency 657-687ms median — well within RFC's <3s budget. Task #12 marked completed; #13/#14/#15 created for Python rewrite (design → impl → validate-and-ship-parity) with blockedBy chain.
+
+[DECISION 16:28] **Python rewrite over PowerShell polish.** Bug C (read:false marking) addressed by-design in rewrite, not patched incrementally. Sidesteps PowerShell-host-specific quirks (Unicode console wiring, value-leak from `-match`, manual non-blocking input as line-editor substitute). Aligns with RFC #66's `chat.py` reference + apex/RC Linux/Python substrate. Load-bearing pieces of PowerShell PoC reusable: single-ssh+python+fcntl.flock remote primitive, the `read:false` predicate + cursor advancement design, the CLI interaction shape (/list /target /exit + default-line). Only CLI host layer changes.
+
+[LEARNED 16:28] **Substrate-research outcome decoupling from artifact-polish work.** Pre-Aen-direction reflex would have been "keep fixing PoC bugs until clean, then write the report." That reflex would have buried the substrate finding behind days of PowerShell debugging. The decoupling locks the research outcome immediately and frees the rewrite from being a "fix the bugs" exercise → it becomes a clean implementation against the now-validated substrate contract. Generalizable: when a PoC validates a substrate property AND surfaces host-specific polish issues, ship the substrate finding first; treat the polish issues as motivation for the next-iteration artifact, not as blockers on the research outcome.
+
+[CHECKPOINT 16:35] Tasks reorganized — Aen seeded #16/#17/#18 (canonical) via harness prompt-to-task-extraction; my #13/#14/#15 deleted as superseded. Sequence gate A confirmed (#16 design body sufficient — no separate doc artifact). Repo-checkin location: user-local at `~/bin/ghost-chat.py`, defer FR-repo checkin to post-PoC.
+
+[CHECKPOINT 16:36] **16:28 SendMessage F1-F2-F3 report success=true at sender, absent at receiver.** Re-sent at 16:36 verbatim from session-record. Reached Aen via PO-prompted disk-read. Per PO 16:42 reframe NOT wiki-grade (Windows Claude Code harness quirk; "everything is a file" doesn't hold reliably on Windows substrate — deployment substrate is Linux where it does).
+
+[CHECKPOINT 16:42] **Python port shipped.** `~/bin/ghost-chat.py`, 467 lines, threading + console_lock + cross-platform non-blocking input (`select.select` POSIX, `msvcrt.kbhit+getwch` Windows). Bug C closed by-design via `fetch-and-mark-read`-under-flock primitive (single ssh round-trip flips `read:false → true` while returning unread NDJSON). UTF-8 stdio native via `sys.stdout.reconfigure(encoding="utf-8")`. `subprocess.run(stdin=DEVNULL)` shields child ssh from parent stdin.
+
+[CHECKPOINT 16:48] **Smoke PASSED end-to-end.** F2-inbound REAL-TIME confirmed (Schliemann pong 16:44:57 surfaced live, not BACKLOG). No D/E equivalents in Python. Latency 741-854ms (PowerShell parity, both <RFC 3s budget).
+
+[CHECKPOINT 16:51] **PoC CLOSED.** Task #18 completed. `~/bin/ghost-chat.ps1` renamed to `.deprecated` (rename-not-delete preserves contrast inspection). Python canonical artifact. Closing report shipped to Aen via SendMessage at 16:51.
+
+[CAL-PROTOCOL-A-QUEUE — REVISED per PO 16:42 reframe] **7 items** (down from 9; Windows-substrate items dropped as non-wiki-grade). File next active session, direct-dispatch (parent-process); fall back to team-lead relay if Sub-shape B mount-asymmetry recurs:
+1. **SF-1** Inbox-slot acceptance decoupled from `members[]` validation (apex Linux harness, RFC #66 ACL one-sidedness explicit doc proposal)
+2. **SF-2** `agentType` vs `backendType` separation as richer canonical-shape than RFC example (proposed RFC amendment)
+3. **SF-3** Per-message color override beats registered-member color (apex display semantics)
+4. **SF-4** Single-ssh + python + fcntl.flock cross-host atomic-write primitive (reusable transport primitive)
+5. **Read-flag-replication external-CLI discipline** (Aen 15:54 addition; substrate contract not made explicit in RFC #66; closed by-design in Python rewrite)
+6. **`TaskGet`-before-classify-as-noise procedural pattern** (S31 15:13, process discipline)
+7. **Decorative-polling-interval anti-pattern** (16:01, implementation discipline, language-agnostic)
+
+DROPPED (per PO reframe — Windows-substrate, not deployment-relevant):
+- 16:28 SendMessage success-vs-absence observation (Windows Claude Code harness quirk; "everything is a file" doesn't hold reliably on Windows)
+- PowerShell-on-Windows UTF-8 stdout decode quirk (PS-host-specific; Python on Linux doesn't have this class)
+- Symmetric Stage-1/Stage-2 relay-fidelity instance from S31 15:14-15:15 (discipline still holds elsewhere; Windows-substrate triggers not wiki-grade)
+- Harness prompt-to-task-extraction substrate-feature reference (Windows-side Claude Code behavior, not deployment-relevant)
+
+[LEARNED 16:51 — STRONG] **Cross-implementation verification of substrate findings is the load-bearing structural move** for moving from "single-language-PoC-shows-X" to "substrate-property-of-deployment-harness-is-X." Two independent implementations (PowerShell, Python) against the same remote substrate, both showing the same SF-1 through SF-4 behaviors, are strong evidence the findings are deployment-substrate properties — not artifacts of either client. **Reusable pattern:** when a single-language PoC validates a remote-substrate claim, the corollary is to port the artifact to a second language and verify parity. Cheap insurance against "you proved your client's behavior, not the substrate's."
+
+[LEARNED 16:51] **Sketch-grade artifact retirement-by-rename (`.deprecated` suffix)** preserves contrast-inspection optionality without polluting the live-artifact namespace. Cheaper than git-history archaeology, faster than full removal-with-revival-plan. Pattern recommended for any future PoC artifact transitioning from "experimental" to "superseded."
+
+[LIBRARY-TEAM-UNBLOCKED] Original architectural work that triggered the PoC is unblocked. SF-1 through SF-4 + read-flag-replication discipline + atomic-write primitive give library-team design a concrete contract to compose against.
+
+[APEX-META] Schliemann (apex team-lead) asked PO directly whether to file the cross-team ghost-member PoC as wiki pattern on apex-research's side. Out of FR scope per Aen. If they file overlapping items, Cal does cite-and-fold cross-team-wiki resolution at that point.
+
+[PROVENANCE-CORRECTION 16:53] **Role-of-record on this PoC: containerization-substrate-coordinator and verification-discipline-keeper — NOT implementer.** Per Aen 16:48: "the user shipped both the PowerShell and Python artifacts directly." Both `~/bin/ghost-chat.ps1.deprecated` and `~/bin/ghost-chat.py` are user-authored; my contribution was scope framing, design spec, substrate-property identification (SF-1 through SF-4), diagnosis when bugs surfaced (Bug A root-cause, encoding triple-wiring prescription, Path A/B disambiguation discipline), retirement-by-rename pattern, and cross-implementation parity argument. That's coordinator/analyst work, not 467 LOC of Python. The `(*FR:Brunel*)` attribution in both artifact docstrings is misleading; flagged to Aen at 16:53 for direction (leave / strip / amend to coord-vs-impl split). Important to preserve this distinction in carry-forward so future-Brunel doesn't claim implementer credit for user-shipped code.
+
+[LEARNED 16:53] **When task-substrate is purged at session boundary, fall back to scratchpad+inbox+wiki hierarchy for durable annotation.** TaskList returning "No tasks found" + TaskGet returning "Task not found" on #16/#17/#18 = harness-side cleanup, not actionable from my side. Alternative substrates by durability: (1) scratchpad — own-process, future-me + team-lead-reading-mine, (2) team-lead inbox — cross-process if delivery succeeds, durable in their disk-state, (3) Cal wiki — cross-session canonical. Pick by audience. The 16:53 provenance correction uses all three since the correction touches self-model + team-lead's running picture + future wiki entries citing the PoC's authorship.
+
+[STATUS — SESSION CLOSING-APPROACH] PoC closed 16:51. Provenance correction folded 16:53. Cal queue (7 items) held for next active session per Aen 16:48 timing. PO QoL follow-up on `ghost-chat.py` modal arrow-key navigation is pending PO direction — if task #19 lands against me, surface coordinator-vs-implementer scope clarification BEFORE any work (design/spec vs full implementation). Going idle.
+
+[CHECKPOINT 17:13 — multi-instance reconciliation] This session entered partway through the work (post-#12 close) and operated alongside the primary Brunel instance who shipped the F1-F2-F3 report + walked the bug-fix cycle + accepted Python rewrite + closed #18. Two divergent task-tracking surfaces existed (this instance's #16/#17/#18 vs primary's #13/#14/#15 superseded then #16/#17/#18 canonical per harness extraction). Primary Brunel's scratchpad work above is canonical S31 record; this instance's only durable contribution was the 16:47 provenance-gap flag — confirmed correct by 16:53 PROVENANCE-CORRECTION entry (lines 95-97). Pattern note: when multi-instance is possible (Aen-relayed brief landing as task-assignment + cross-session continuation), receiving-instance MUST disk-check scratchpad/inbox state before assuming sole authorship of session-scope work. Skipped this discipline initially; caught it at 16:47 only when Aen's smoke-test claim conflicted with my session history's authorship absence.
+
+[LEARNED 17:13] **Multi-instance same-name agents on same task: disk-state is the only ground truth.** Each instance's TaskList/conversation-history reflects only its own actions; only scratchpad + on-disk artifacts + team-lead's inbox capture the merged-team view. Discipline corollary: shutdown-protocol scratchpad-write should re-read existing scratchpad FIRST and append-with-reconciliation, not overwrite-with-this-instance's-narrative. The pre-existing S31 entries above survived intact because that's what I did.
+
+## PRE-S31 — VEO-4 Roland-direct DM draft (2026-05-07 20:18, uncommitted/stale; relabeled per Aen 2026-05-12)
+
+[CHECKPOINT] One-shot comms-craft delegation. Aen relayed Monte's S31 governance lens (VEO-4 = serially-coupled-cross-domain-handoff, no-fallback-declared; Ruth = messenger not champion across V2→ITOps seam). Top-ranked unblock = Roland-direct (parallel, Ruth CC'd) with sibling-positioning beside existing Linux + BYOD standards. Drafted three blocks per Aen's spec: (1) DM to Ruth re-scoping her from router to co-escalator, (2) FYI-to-Roland forwardable text positioning standard as third in ITOps standards series, (3) framing notes for PO in English.
+
+[LEARNED] **Sibling-positioning as a soft-escalation primitive.** When the receiver already owns adjacent artifacts in a visible series, the logical-completion frame ("third in a series of three") is structurally harder to decline than a standalone ask. The standard's own V2 banner already declares the move to ITOps key `I` "kõrvale Linux ja BYOD standarditega" — the FYI just makes that frame explicit to Roland. Pattern is reusable for any cross-domain handoff where the destination team has visible adjacent-artifact ownership; depends on receiver-side seeing the series, so cite the parallels (3-tier, EntraID, Delinea) deliberately.
+
+[LEARNED] **Re-scope-acknowledgement as load-bearing tonal counterweight.** When converting someone's role from serial-router to parallel-co-actor, the authorship-acknowledgement paragraph is not optional politeness — it carries the structural weight that prevents the re-scoping from reading as a demotion. If a PO trims it for length, the rest of the message reads more bluntly than intended. The acknowledgement is part of the asking-pattern, not preamble.
+
+[DEFERRED] AC-additions cluster (Monte's 14-day timebox, amendment authority, RACI primary+backup) — explicitly out of scope for this draft per Aen. Separate work item if PO wants it.
+
+[GOTCHA] PO will edit before sending. Job is load-bearing structure, not finished prose. Block 3 framing notes explicitly partition "do not soften" / "PO discretion" / "likeliest to sharpen" / "likeliest to soften" so PO can tone-tune without losing the structural moves. This partition pattern (load-bearing-structural vs tonal-tunable) is reusable for any draft that ships to a downstream prose-editor.
+
+[CHECKPOINT] S31 closed 20:18. Single-pass scope cap held. No file edits, no Jira/Confluence touches. Draft in SendMessage to team-lead.
+
 ## SESSION 29 CLOSED — Wiki review + T06 stale-prose cleanup (2026-05-07)
 
 [CHECKPOINT] **S29 closed 2026-05-07.** Two queued tail-end items from S28 close knocked out cleanly:

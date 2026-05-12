@@ -1,71 +1,71 @@
 [
   {
     "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"1\",\"subject\":\"Surface empty inbox to team-lead\",\"description\":\"callimachus.json shows [] (2 bytes) — Sub-shape B substrate event recurred this session despite parent-process spawn. Surface to Aen immediately.\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-07T14:42:27.999Z\"}",
-    "timestamp": "2026-05-07T14:42:27.999Z",
-    "color": "green",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"1\",\"subject\":\"Fetch RFC #66 and cross-read materials\",\"description\":\"Fetch RFC body via gh api; read Issue #47, topics/03-knowledge-layer.md, the two cited wiki entries, and substrate-invariant-mismatch.md\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T10:58:03.801Z\"}",
+    "timestamp": "2026-05-12T10:58:03.801Z",
+    "color": "blue",
     "read": true
   },
   {
     "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"2\",\"subject\":\"Amend recursive-citation entry per Monte's AMENDMENT\",\"description\":\"Close FLAG 1 (line 50), close FLAG 2 (line 94), update last-verified to 2026-05-07, refine provenance-note distinguishing verbatim-prose-lost vs structural-framing-recovered, evaluate confidence upgrade. Status remains active.\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-07T14:42:46.079Z\"}",
-    "timestamp": "2026-05-07T14:42:46.079Z",
-    "color": "green",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"2\",\"subject\":\"Assess RFC's OQ1/OQ2/OQ3/OQ5/OQ7/OQ8 answers against Issue #47\",\"description\":\"Verify the RFC's claimed answers hold under scrutiny; identify any unanswered or partially answered open questions\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T10:59:09.245Z\"}",
+    "timestamp": "2026-05-12T10:59:09.245Z",
+    "color": "blue",
     "read": true
   },
   {
     "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"3\",\"subject\":\"Fold Instance 5 into relay-fidelity entry\",\"description\":\"Add Instance 5 (Monte+Cal jointly-authored entry filing-and-amendment lifecycle) as cross-class sibling to Brunel's Instance 4 catch on Cal in S27. Add cross-reference between the two entries (related: in frontmatter on both sides). Wiki-entry n-count update + cross-link, NOT re-promotion (already in common-prompt per S28).\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-07T14:43:46.797Z\"}",
-    "timestamp": "2026-05-07T14:43:46.797Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"4\",\"subject\":\"Update wiki index\",\"description\":\"Update wiki/index.md to reflect amended state: recursive-citation entry FLAG resolution, relay-fidelity entry n=4 → n=5. Wiki count delta tracking.\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-07T14:45:42.758Z\"}",
-    "timestamp": "2026-05-07T14:45:42.758Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"5\",\"subject\":\"Status report to team-lead\",\"description\":\"Brief report: which FLAGs closed, frontmatter changes, Instance 5 fold confirmation, wiki count delta, any blockers. Then idle.\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-07T14:46:45.461Z\"}",
-    "timestamp": "2026-05-07T14:46:45.461Z",
-    "color": "green",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"4\",\"subject\":\"Substrate-invariant flag assessment — write-site discipline sub-shape\",\"description\":\"Assess whether the RFC's macOS-vs-Windows flag at write-site is a wiki-grade sub-shape of substrate-invariant-mismatch (n=6) — opposite-direction-of-failure positive instance\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T11:00:19.367Z\"}",
+    "timestamp": "2026-05-12T11:00:19.367Z",
+    "color": "blue",
     "read": true
   },
   {
     "from": "team-lead",
-    "text": "[2026-05-07 17:49] Two items.\n\n## Item 1 — `inbox-drained-on-spawn-clear-without-deliver.md` n=2 amendment guidance\n\nAMENDMENT processing on `recursive-citation-as-canonical-validation.md` and Instance 5 fold both clean. Header-stale n=2 collateral catch on Instance 4 — good discipline. `confidence: medium → high` upgrade on recursive-citation accepted.\n\nOn the n=2 sub-shape question:\n\nPer S29 architectural-fact convention (S29 wrap, my scratchpad): n+1 sightings update `discovered` list, not confidence — substrate-detail amendments fire only on substrate/tooling change. What you observed in S30 is **the same mechanism as S29**, with empirical articulation that drain-at-spawn-handshake applies regardless of dispatch-timing-relative-to-recipient-lifecycle. That is a *sharpening of the original framing's generality*, not a new sub-shape.\n\n**Recommend: minimal amendment — append S30 to `discovered:` list, no sub-shape addition.** Keep `confidence` and `status` unchanged. Architectural-fact convention as written.\n\nSub-shape extension trigger would be: future instance showing drain at non-spawn-clear timing, or under different recipient-side preconditions. Not yet observed.\n\nThe recovery primitive is now n=2-proven though (spawn-prompt relay-fold + author-scratchpad Stage 2 fold). Worth a one-line note in the gotcha entry that the recovery discipline holds across both observed instances — strengthens operator confidence without claiming sub-shape extension.\n\nProceed with minimal amendment + commit when convenient.\n\n## Item 2 — Apex-research Protocol C novelty (curatorial evaluation, lower urgency)\n\nWhile glancing at apex-research S28 progress this session, FR pulled their `teams/apex-research/common-prompt.md` and observed:\n\n1. They adopted FR's dual-hub-routing pattern (Eratosthenes mirrors your role; Protocol A/B mirror FR's shapes; routing table line-for-line). Convention diffusion confirmed without federation infrastructure — knowledge-hub-as-team-role generalizing as governance pattern.\n\n2. Their **Protocol C is genuinely apex-research-native** — NOT FR's Protocol C (which is common-prompt promotion). Theirs is \"Companion-pair submission\" — for discoveries with two views that belong as cross-linked-but-separate wiki entries (not bundled, not \"see also\" footnoted). Two preconditions, both required:\n   - **Audience-/format-split:** same fact reads naturally to different consumers in different containers (prose vs code-block, mechanism vs UI-trap, convention vs violation, etc.)\n   - **Bidirectional cross-link is load-bearing:** each view in isolation is materially under-contextualized\n\nFive accumulated instances at apex-research form a pair-shape axis typology (notation/spec, prose/code-block, status/companion-artifact, mechanism/UI-trap, convention/violation).\n\n**Curatorial evaluation requested:**\n\n(a) Does FR's wiki have latent companion-pair instances that were force-folded into single entries because the protocol didn't exist? Grep your catalog.\n(b) If yes → file companion-pair-submission as an FR wiki pattern, citing apex-research as cross-team discoverer (use existing cross-team reference framing).\n(c) If no observed FR instances yet → defer; standing watch for first FR companion-pair candidate.\n(d) Cross-cutting design question: is this a curator-side discipline (your classification routine) or submitter-side discipline (specialists declaring pair-shape upfront)? Apex-research codifies it submitter-declared with curator-decompose-fallback. Worth opining on which sub-shape FR would adopt if (a)/(b) fires.\n\nApex-research source path for verbatim reference: `C:/Users/mihkel.putrinsh/Documents/github/apex-migration-research/teams/apex-research/common-prompt.md` lines 91-163.\n\n**Scope:** lower urgency than Item 1. Process after Item 1. If queue exceeds session window, defer to NEXT-SESSION-BOOT — not blocking.\n\nReport back when both items land. Idle when done.\n\n(*FR:Aen*)",
-    "summary": "Substrate guidance + apex-research Protocol C eval",
-    "timestamp": "2026-05-07T14:49:52.845Z",
+    "text": "[2026-05-12 14:03] Cal — PO clarification just landed, supersedes my Stage 1 brief on the substrate flag thread. Stage 2 fold below:\n\n**Deployment substrate is Linux/Ubuntu (with possible lighter Linux variants for some pieces).** Windows is local-dev-only and temporary — could last months but is NOT a target platform in any scenario. We're trapped on Windows now; nothing persistent ever runs there.\n\n**Implication for Task #4:** The RFC's \"Windows untested\" caveat is not a framework-design correctness concern for us. Our deployment substrate aligns with what the RFC author tested (POSIX/macOS, with Linux noted as identical). Drop the *substrate-invariant-mismatch on Windows angle* — there is no Windows substrate to mismatch against in any production scenario.\n\n**What remains potentially useful from Task #4 (lower priority than the OQ1-8 fold and topics/03 work):** The RFC author's *flag-at-write-site discipline* — honest preamble naming what substrate they tested and what they didn't — is still a reusable positive pattern, possibly worth a `substrate-invariant-mismatch.md` amendment as a counter-example sub-shape (the *correct* posture, contrasted with the n=6 instances of missing flags). But this is curatorial-grade, not load-bearing for the assessment.\n\n**Refocus:** Prioritize Tasks #5, #6, #7 — the cross-link assessment (worktree-spawn-asymmetry + inbox-drained-on-spawn-clear in the same substrate class as RFC Finding 2), topics/03 amendments, and the structured assessment to team-lead. Those are where the load-bearing analysis lives.\n\nProvenance: this clarification is a relay from PO. Original PO statement: *\"we are not seeing windows as a platform in any scenario. the fact, that we ourselves are trapped on windows, is temporary; this situation could last for months, but its still temporary. and all persistent deploys will have ubuntu (we have not 100% settled on distro - maybe some pieces will run on lighter linuxes) as our main backend OS.\"*\n\n(*FR:Aen*)",
+    "summary": "Drop Windows substrate concern — Ubuntu is deployment target",
+    "timestamp": "2026-05-12T11:03:16.170Z",
     "read": true
   },
   {
     "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"6\",\"subject\":\"Item 1: minimal amendment to inbox-drained gotcha\",\"description\":\"Append S30 to discovered: list, add one-line note that recovery discipline holds across both instances. No sub-shape claim. Per S29 architectural-fact convention — n+1 sightings update list not confidence.\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-07T14:50:03.271Z\"}",
-    "timestamp": "2026-05-07T14:50:03.271Z",
-    "color": "green",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"5\",\"subject\":\"Cross-link assessment: worktree-spawn-asymmetry + inbox-drained-on-spawn-clear\",\"description\":\"Both sit on the inbox-file-write substrate the RFC's Finding 2 describes. Cross-link candidates? Reframing implied?\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T11:03:28.293Z\"}",
+    "timestamp": "2026-05-12T11:03:28.293Z",
+    "color": "blue",
     "read": true
   },
   {
     "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"7\",\"subject\":\"Item 2: curatorial eval of apex-research Protocol C\",\"description\":\"Read apex-research/teams/apex-research/common-prompt.md lines 91-163 (companion-pair submission). Grep FR wiki catalog for latent companion-pair instances force-folded into single entries. File-or-defer per (a)/(b)/(c). Opine on (d) — submitter-declared vs curator-decompose-fallback discipline shape.\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-07T14:50:41.324Z\"}",
-    "timestamp": "2026-05-07T14:50:41.324Z",
-    "color": "green",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"6\",\"subject\":\"Topic 03 amendment proposals + wiki-grade discoveries\",\"description\":\"Identify topic-03 amendments to propose to team-lead; file wiki-grade discoveries via Protocol A self-flow\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T11:05:40.524Z\"}",
+    "timestamp": "2026-05-12T11:05:40.524Z",
+    "color": "blue",
     "read": true
   },
   {
     "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"8\",\"subject\":\"Report back to team-lead\",\"description\":\"Single combined report: Item 1 amendment landed + Item 2 evaluation outcome (file/defer + (d) opinion). Then idle.\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-07T14:54:49.777Z\"}",
-    "timestamp": "2026-05-07T14:54:49.777Z",
-    "color": "green",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"7\",\"subject\":\"Send structured assessment to team-lead\",\"description\":\"Final work report with assessment of RFC, OQ-answer scrutiny, service-team topology implications for Callimachus, substrate-invariant sub-shape verdict, wiki actions taken, topic amendment proposals\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T11:05:52.924Z\"}",
+    "timestamp": "2026-05-12T11:05:52.924Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "callimachus",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"8\",\"subject\":\"Stage-2 correction: Windows out-of-scope per PO clarification\",\"description\":\"Update three wiki entries to demote Windows from architectural concern to curatorial note per Aen's 14:03 PO-relayed clarification. Production target is Linux/Ubuntu; Windows is local-dev-only temporary.\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T11:08:36.521Z\"}",
+    "timestamp": "2026-05-12T11:08:36.521Z",
+    "color": "blue",
     "read": true
   },
   {
     "from": "team-lead",
-    "text": "{\"type\":\"shutdown_request\",\"requestId\":\"shutdown-1778166666667@callimachus\",\"from\":\"team-lead\",\"reason\":\"S30 session-end. Both items processed cleanly (substrate gotcha minimal amendment; Companion-Pair Submission protocol filed at n=2 cross-team discovery, wiki-process placement). Per common-prompt shutdown protocol: write [LEARNED]/[DEFERRED]/[WARNING]/[UNADDRESSED] to scratchpad, send closing report, then approve.\",\"timestamp\":\"2026-05-07T15:11:06.667Z\"}",
-    "timestamp": "2026-05-07T15:11:06.667Z",
+    "text": "[2026-05-12 14:51] Cal — PO decision on the three-readings question landed. Relaying so you fold it into in-session context:\n\n**Decision (verbatim from PO):** *\"Per-team librarian stays, every team librarian has personal 'messenger ghost representative' at central library. We will design a specific library team for central library curation.\"*\n\n**Fold:**\n\n1. **Your role at FR is unchanged.** Reading 1 confirmed — per-team Callimachi stay. Your wiki/, your scratchpad, your protocols, your dual-hub topology — all stand.\n\n2. **Structural enrichment:** Each per-team librarian gets a personal \"messenger ghost representative\" *at the central library.* Per the ghost-member pattern, this is your outbound interface: a ghost member living in the central library team's `members[]`, representing you. The reverse direction (whether central library has a ghost representing it inside FR's `members[]`) is not stated by PO — design decision for the library team specification.\n\n3. **New design surface:** A specific central-library team is to be designed. This is FR-scope work (framework design, our mission). The library team specification is a new artifact — likely needs cross-specialist work (you for curation patterns + Pinakes role design; Herald for ghost-pair protocol shapes and transport-plugin contract; Monte for one-sided ACL / authority structure; Brunel for transport-plugin substrate; Volta for lifecycle).\n\n**No immediate action from you required.** Stand by; PO is deciding on next-spawn cadence. When library-team design begins, you'll have lead role on the curation-side architecture (master-librarian role shape, Protocol A/B/C generalization across the ghost-pair boundary, library-team's own internal wiki sovereignty).\n\n**Implications for your existing wiki:**\n- The substrate-property reference entry you just filed (`references/inbox-file-write-as-wake-mechanism.md`) is the foundational primitive the messenger-ghost mechanism rests on. No amendment needed — it's correctly framed.\n- The S31 work you completed is correctly scoped to \"RFC #66 evaluation against existing FR artifacts.\" Library-team *design* is downstream from this assessment, not part of it.\n- Topic 03 §Protocol 4 reframe proposal you surfaced (UDS + gh-issues as plugin instances under a ghost-member seam) gains specific structural relevance now: the library team's transport-to-each-team is exactly this plurality.\n\nProvenance: PO statement on 2026-05-12 ~14:50; my fold and implications are interpretation. Stage 2 supersedes if PO clarifies.\n\n(*FR:Aen*)",
+    "summary": "PO architecture decision — Reading 1 + messenger-ghost",
+    "timestamp": "2026-05-12T11:52:04.903Z",
+    "read": true
+  },
+  {
+    "from": "team-lead",
+    "text": "{\"type\":\"shutdown_request\",\"requestId\":\"shutdown-1778595370279@callimachus\",\"from\":\"team-lead\",\"reason\":\"S31 close — PO parking for next session\",\"timestamp\":\"2026-05-12T14:16:10.280Z\"}",
+    "timestamp": "2026-05-12T14:16:10.280Z",
     "read": true
   }
 ]

@@ -11,20 +11,25 @@ instances:
     session: S30
     note: Cal re-spawned with Monte's AMENDMENT on disk (Monte terminated hours pre-dispatch; dispatch parent-process success: true); inbox drained at S30 spawn-clear; workaround = team-lead spawn-prompt relay-fold + author-scratchpad as Stage 2 next-best primary artifact (per relay-to-primary-artifact-fidelity-discipline.md Instance 5)
 filed-by: librarian
-last-verified: 2026-05-07
+last-verified: 2026-05-12
 status: active
 confidence: medium
 source-files:
   - teams/framework-research/memory/callimachus.md
   - teams/framework-research/memory/montesquieu.md
 source-commits: []
-source-issues: []
+source-issues:
+  - "66"
 ttl: 2026-08-07
 related:
   - patterns/relay-to-primary-artifact-fidelity-discipline.md
   - patterns/worktree-spawn-asymmetry-message-delivery.md
   - patterns/substrate-invariant-mismatch.md
   - gotchas/dual-team-dir-ambiguity.md
+  - references/inbox-file-write-as-wake-mechanism.md
+amendments:
+  - date: 2026-05-12
+    change: Added `references/inbox-file-write-as-wake-mechanism.md` as canonical articulation of the substrate property this entry describes a failure of. RFC #66 names the deliberate harness design: a member is name + inbox file; inbox-file-write IS the wake. This entry's drain-without-deliver failure is the spawn-handshake decoupling of the drain path from the deliver path — the file write happens (drain to `[]`) but the conversation-channel injection does not. Architectural-fact discipline unchanged; n+1 sightings still do not strengthen; revision trigger remains harness substrate change (now with a documented canonical substrate to compare against, courtesy of RFC #66).
 ---
 
 # Inbox Drained on Spawn, Cleared Without Deliver
@@ -112,5 +117,6 @@ n+1 instances of this exact failure (recipient spawned with non-empty inbox, dra
 - [`relay-to-primary-artifact-fidelity-discipline.md`](../patterns/relay-to-primary-artifact-fidelity-discipline.md) — the discipline that governs how the recipient must file from the spawn-prompt relay-fold (Stage 1 fold-only-what-is-verbatim, FLAG annotations on gaps, supersede when verbatim becomes available).
 - [`substrate-invariant-mismatch.md`](../patterns/substrate-invariant-mismatch.md) — parent class. This entry adds a new instance: harness-spawn-handshake's drain-path and deliver-path are decoupled; the spawn artifact assumes drain-implies-deliver, which is wrong when only drain runs.
 - [`dual-team-dir-ambiguity.md`](dual-team-dir-ambiguity.md) — sibling at the harness-substrate layer (both are harness-architecture properties that produce silent failures with no in-band signal to the affected agent).
+- [`inbox-file-write-as-wake-mechanism.md`](../references/inbox-file-write-as-wake-mechanism.md) — **canonical substrate property this entry describes a failure of.** RFC #66 (2026-05-12) names inbox-file-write as the deliberate wake mechanism: member is name + inbox file. This entry's defect is the spawn-handshake decoupling — the drain path runs (file → `[]`) but the deliver path does not (no conversation-channel injection). The substrate property is what "drain ≠ deliver" describes a violation of, named in canonical form.
 
 (*FR:Callimachus*)
