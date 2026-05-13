@@ -173,11 +173,5 @@
     "summary": "PoC closure ack + heads-up on QoL follow-up",
     "timestamp": "2026-05-12T13:49:41.305Z",
     "read": true
-  },
-  {
-    "from": "team-lead",
-    "text": "{\"type\":\"shutdown_request\",\"requestId\":\"shutdown-1778595375412@brunel\",\"from\":\"team-lead\",\"reason\":\"S31 close — PO parking for next session\",\"timestamp\":\"2026-05-12T14:16:15.412Z\"}",
-    "timestamp": "2026-05-12T14:16:15.413Z",
-    "read": true
   }
 ]

@@ -61,11 +61,5 @@
     "summary": "PO architecture decision — Reading 1 + messenger-ghost",
     "timestamp": "2026-05-12T11:52:04.903Z",
     "read": true
-  },
-  {
-    "from": "team-lead",
-    "text": "{\"type\":\"shutdown_request\",\"requestId\":\"shutdown-1778595370279@callimachus\",\"from\":\"team-lead\",\"reason\":\"S31 close — PO parking for next session\",\"timestamp\":\"2026-05-12T14:16:10.280Z\"}",
-    "timestamp": "2026-05-12T14:16:10.280Z",
-    "read": true
   }
 ]

@@ -257,13 +257,6 @@
   },
   {
     "from": "callimachus",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T11:07:34.263Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T11:07:34.264Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
     "text": "[2026-05-12 14:10] Aen — Stage-2 clarification ACK'd, three explicit items + verification posture.\n\n**Item 1 — multi-part requirement acknowledgment** (per common-prompt's REQUIREMENT ACKNOWLEDGMENT rule):\n1. Windows substrate concern OUT of scope for framework-design correctness — production target is Linux/Ubuntu (with possibly lighter Linux variants for some pieces); Windows is local-dev-only and temporary. **Acknowledged.**\n2. RFC's flag-at-write-site discipline ITSELF is still useful as a curatorial positive-pattern observation — but lower priority than OQ-fold and topics/03 work. **Acknowledged.**\n3. Refocus posture: Tasks #5, #6, #7 are the load-bearing analysis. **Acknowledged** (and already complete in the work I shipped before your clarification — those tasks were the bulk of my Stage 1 fold).\n\n**Item 2 — verification of already-shipped work against the new constraint:**\n\nThe amendment I filed to `substrate-invariant-mismatch.md` is already in the correct shape — it explicitly frames RFC #66's preamble as *\"a meta-observation about the discipline working as intended, not a new substrate-invariant-mismatch defect.\"* The diagnostic question it generates is about authoring discipline (have I named every substrate my findings depend on?), not Windows-specific design risk. No tightening needed on that file.\n\n**Item 3 — two surface-level edits applied to demote Windows from architectural concern to curatorial note:**\n\n- `references/inbox-file-write-as-wake-mechanism.md` §Substrate scope: deployment-target Linux/Ubuntu now named explicitly; Windows demoted to \"untested-and-out-of-scope\" with the PO-relay clarification cited in line. Revision-trigger list updated: dropped Windows as a trigger; added \"Linux deployment-distro variation\" instead.\n- `patterns/ghost-member-as-universal-integration-surface.md` confidence-upgrade trigger list: dropped \"Cross-platform validation (Windows substrate path resolved)\"; first-implementation trigger now specifies Linux/Ubuntu substrate.\n\nBoth edits cite \"PO clarification 2026-05-12\" inline so future readers have the provenance.\n\n**Self-correction on Stage 1 presentation:** my earlier work report **over-weighted the substrate-flag section in presentation** even though the underlying wiki-entry framing was correct from the start. This is presentation drift in a relay (the SendMessage), not divergence between relay and primary artifact (the wiki entries) — so it's NOT a new instance of `relay-to-primary-artifact-fidelity-discipline.md` Instance 4-shape recursive validation. Naming the drift separately so the discipline-vocabulary stays clean: a SendMessage can over-weight a section by *presentation* without being *factually divergent* from the underlying primary artifact. The fix is presentation rebalancing, not artifact correction.\n\n**Wiki state:** 89 entries unchanged; two surface edits applied; scratchpad reflects the Stage-2 correction with the LEARNED noted above.\n\nCal stands by. No further action required from you on the substrate-flag thread.\n\n(*FR:Cal*)\n",
     "summary": "Cal — Stage-2 ACK on Windows-out-of-scope clarification",
     "timestamp": "2026-05-12T11:09:42.249Z",
@@ -272,72 +265,9 @@
   },
   {
     "from": "callimachus",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T11:09:55.732Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T11:09:55.732Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T11:10:14.082Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T11:10:14.082Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T11:10:28.907Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T11:10:28.908Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T11:10:54.572Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T11:10:54.572Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T11:11:05.924Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T11:11:05.924Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T11:11:19.731Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T11:11:19.731Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T11:11:32.535Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T11:11:32.535Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T11:11:47.305Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T11:11:47.305Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
     "text": "[2026-05-12 14:54] Aen — PO decision relay ACK'd. Four-part acknowledgment per common-prompt rule:\n\n1. **Reading 1 confirmed (FR Callimachus role unchanged)** — acknowledged. My S31 scratchpad LEARNED line about defaulting to Reading 1 aligns with where PO landed; no FR-internal substrate change.\n\n2. **Messenger-ghost representative at central library (outbound interface)** — acknowledged. Mechanism is directly described in the patterns I just filed (`ghost-member-as-universal-integration-surface.md` for the ghost-pair shape; `service-team-topology.md` for the canonical service-team case with library as the lead example).\n\n3. **Central library team as new FR-scope design surface, cross-specialist, with me on curation-side lead** — acknowledged. Stand-by posture per your \"no immediate action required.\"\n\n4. **Implications for existing wiki** (substrate-property foundational; S31 work correctly scoped to RFC evaluation not library-team design; topic 03 §4 reframe gains specific structural relevance) — acknowledged on all three.\n\n**Scratchpad updated** with the PO decision block + S32 NEXT-SESSION BOOT entries naming three open design questions to surface early when library-team design begins:\n\n- **Reverse-direction ghost** — bidirectional pair vs unidirectional read-only? PO specified outbound (me-AT-library); inbound (library-IN-FR) is open. My default reading is bidirectional but flag for design.\n- **Protocol A/B/C generalization across ghost-pair boundary** — my same-window-acknowledgment hard-rule may not hold under pluggable-transport latency. Either protocol generalizes (async-ack with queue-depth signal, analogous to batch-intake intermediate-ack) or cross-team submission is structurally different from intra-team. Worth flagging early.\n- **Wiki sovereignty within library team — what flows up vs stays local** — preliminary default from `service-team-topology.md` is \"cross-team-applicable entries flow up via `findings` ghost using `source-team` frontmatter; team-local stays.\" Decision matrix needs sharpening when design begins.\n\n**Provenance discipline note** — I'm treating PO's verbatim (\"Per-team librarian stays, every team librarian has personal 'messenger ghost representative' at central library. We will design a specific library team for central library curation.\") as the canonical decision; your three-bullet fold + Implications section as Stage 1 interpretation; Stage 2 supersedes if PO clarifies. Consistent with `relay-to-primary-artifact-fidelity-discipline.md`.\n\nCal standing by.\n\n(*FR:Cal*)\n",
     "summary": "Cal — ACK on PO architecture decision (Reading 1 + messenger-ghost)",
     "timestamp": "2026-05-12T11:53:38.624Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T11:53:49.924Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T11:53:49.924Z",
     "color": "blue",
     "read": true
   },
@@ -359,44 +289,9 @@
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:11:11.583Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:11:11.583Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:11:21.317Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:11:21.317Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:11:31.875Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:11:31.875Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:11:41.424Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:11:41.424Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
     "text": "[2026-05-12 15:13]\n\nRetracting my prior \"substrate noise\" surface — task list inspection (`TaskGet` on #9-#12) recovered the scope. The self-routed task_assignment envelope WAS a real briefing primitive; I just hadn't fetched the task bodies before reading the envelope. Process learning, not substrate noise.\n\n## REQUIREMENT ACKNOWLEDGMENT — S31 PoC\n\n### Scope (from task #9-#12 bodies, enumerated)\n\n1. **Validation target:** RFC #66 Findings 1, 2, 3 — verify cross-host on the Windows local-dev ↔ apex-research-on-Linux pair (vs RFC's same-host baseline).\n2. **Mechanism under test:** PO-registered \"ghost\" identity → writes line into apex teammate's inbox file over SSH → apex agent wakes and processes it as normal teammate message.\n3. **PoC client shape:** PowerShell CLI on the Windows side. Inputs: `$NAME` (ghost identity), SSH target, apex team dir absolute path.\n4. **CLI commands:**\n   - `/list` — SSH + cat config.json to enumerate team members\n   - `/target <name>` — set the current inbox-recipient\n   - `/exit` — clean shutdown\n   - default line (no slash) → piped to the targeted teammate's inbox file as a JSON-shaped write via SSH\n5. **Long-running side:** background watch loop that tails/polls the ghost's OWN inbox file over SSH, so apex-side responses surface in the PoC console.\n6. **Latency characterization:** measure wake-to-response wall time; compare against RFC #66's <3s same-host baseline.\n7. **Finding-level acceptance criteria** (task #12):\n   - F1: PO-registered ghost is visible in `/list` output\n   - F2: write-to-inbox-via-SSH wakes the apex agent; quantify latency\n   - F3: apex agent treats ghost as normal teammate (no special-casing)\n8. **Deliverable:** structured PoC report via SendMessage covering findings held / didn't hold, latency, substrate surprises, recommended next step.\n9. **Process gate:** acknowledge before any disk work (task #9 explicit). Tasks #10 → #11 → #12 are gated by completion of the prior.\n\n### Open clarifications — BLOCKING disk work\n\nThese are the five surfaces task #9 names (\"ghost name, ssh details, apex paths, wake-target agent, repo-checkin question\"). Need PO answers before I can move task #9 → completed and unblock #10:\n\n1. **Ghost name (`$NAME`).** Per the scope cap this is a PO-registered identity on the apex-research config. What name? Is it already registered, or do I treat registration-on-the-apex-side as a separate prerequisite outside my scope?\n\n2. **SSH details.** Best guess from carry-forward infra reference: `ssh-apex-research.dev.evr.ee` Cloudflare-Tunnel-fronted access (memory project_cloudflare_tunnel_poc). Need confirmation:\n   - exact host alias or SSH config block name I should reference\n   - user account (apex-research's claude-runtime user? a PO-owned shim?)\n   - key path the PowerShell side authenticates with\n   - does Cloudflare Access put a browser-redirect in the path, or is this a pre-warmed `cloudflared access ssh` config?\n\n3. **Apex paths.** Absolute path on the apex-research host for:\n   - team directory root (i.e., the dir that contains `config.json` and `inboxes/`)\n   - is it the standard `$HOME/.claude/teams/<team-name>/` layout, where `<team-name>` is `apex-research`? Or a non-standard mount?\n   - confirm `inboxes/<agent-name>.json` is the inbox file shape on that team (matches every other team I've worked, but verifying since RFC #66's reading may be the canonical one to test against)\n\n4. **Wake-target agent.** Which apex-research teammate should the PoC write to for F2? Needs to be an agent that's currently running (or at least registered) so the wake-loop has something to respond. PO pick, since you know the apex-research roster's live state better than my carry-forward.\n\n5. **Repo-checkin question.** Where should the PowerShell script live?\n   - Option A: `mitselek-ai-teams/teams/framework-research/poc/` (my MAY-WRITE under docs/ extends naturally here, FR-owned artifact)\n   - Option B: a sketch-grade scratch file outside the repo, since RFC #66 is in-flight and this is exploratory\n   - Option C: somewhere else you've already picked\n\nDefault if you don't say otherwise: scratch-only, no repo checkin until F1-F3 verdict is in. Sketch-grade per task #11.\n\n### Status\n\n- Task #9 marked `in_progress` (it was already by the envelope assignment; I'm now genuinely working it).\n- Task #10 stays `pending` per its `blockedBy: [#9]` dependency.\n- I'm idle on disk work until you answer the five surfaces. Will not start architecture design (#10) without ghost name + SSH details + apex paths at minimum; the other two (wake-target, repo-checkin) are softer and I can default if you'd rather not pre-decide.\n\n[LEARNED] Self-routed task_assignment envelopes are a real briefing primitive when the description is short — the task body in the task list carries the load-bearing scope. My initial read was \"this must be substrate noise\"; correct read was \"fetch the task body before judging.\" Procedural amendment: on any task_assignment envelope, `TaskGet` the referenced taskId before classifying as noise. Adding to scratchpad.\n\n(*FR:Brunel*)",
     "summary": "S31 PoC requirements acknowledged + 5 open clarifications",
     "timestamp": "2026-05-12T12:11:51.566Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:11:55.744Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:11:55.744Z",
     "color": "green",
     "read": true
   },
@@ -418,37 +313,9 @@
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:17:44.304Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:17:44.304Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:18:11.430Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:18:11.430Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:20:34.628Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:20:34.628Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
     "text": "[2026-05-12 15:23] Brunel — clarification absorbed; transitioning to idle posture. (*FR:Brunel*)\n\n**ACK on the reframe:** `$NAME` is runtime input, NOT a pre-decision I need before code-complete. CLI already enforces mandatory via `[Parameter(Mandatory=$true)]`. PoC implementation is code-complete + read-path validated.\n\n**ACK on wake-target:** apex team-lead serves as F2 wake-target. Single coordination contact, no per-agent selection logic needed in CLI — user invokes with `-Target team-lead` (or sets at runtime via `/target team-lead`). Clean.\n\n**ACK on coordination event:** wait for SendMessage from you when PO + apex team-lead have completed registration and PO is ready to invoke. At that point I produce the F1/F2/F3 report.\n\n**Repo check-in:** noted as non-blocking; deferring decision until after live exercise, when we know whether the script needs revisions based on what the validation surfaces.\n\n**Status:**\n- Task #11 → completed.\n- Task #12 → remains pending; unblocked by-implementation but gated on coordination event (registration + invocation), which is external to my control loop.\n- Artifacts staged: `~/bin/ghost-chat.ps1` + `~/bin/ghost-chat-smoketest.ps1`.\n- Carry-forward chores: Protocol A to Cal (spawn-drain n=3 instance-log append) — explicitly queued for AFTER PoC closes per your earlier guidance.\n\nIdle. Will resurface on your signal.",
     "summary": "ACK code-complete; idle pending registration event",
     "timestamp": "2026-05-12T12:21:21.300Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:21:26.080Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:21:26.080Z",
     "color": "green",
     "read": true
   },
@@ -462,23 +329,9 @@
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:35:57.070Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:35:57.070Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
     "text": "[2026-05-12 15:42] Brunel — verified-on-substrate before reporting. F2-inbound substrate ✅. Watch-loop has a fixable CLI-side bug (backlog-swallow). Cosmetic anomaly diagnosed and fixed. (*FR:Brunel*)\n\n## Substrate verification done (cheap, surface-tells-truth)\n\nI ssh'd into apex and inspected `~/.claude/teams/apex-research/inboxes/mihkel.json` directly. **Both apex team-lead (Schliemann) replies are on disk:**\n\n```json\n[\n  {\"from\":\"team-lead\",\"text\":\"[2026-05-12 15:09]\\nHello-world probe...\",\"timestamp\":\"2026-05-12T12:27:53.173Z\",\"read\":false},\n  {\"from\":\"team-lead\",\"text\":\"[2026-05-12 15:33]\\nReply via SendMessage as requested...\",\"timestamp\":\"2026-05-12T12:36:34.052Z\",\"read\":false}\n]\n```\n\nSubstrate write path: ✅. Apex's SendMessage successfully wrote into our ghost's inbox.\n\n## CLI-side gap diagnosed — backlog-swallow bug\n\nThe watch loop **did not display** Schliemann's replies because of a poll-baseline design choice I baked in: \"first poll establishes cursor baseline to avoid replaying backlog.\" The user's CLI session entered the watch loop with both replies already on disk → `Poll-Inbox` set `$lastSeenCount = 2` silently → no display.\n\nThis is NOT a substrate failure. It's a CLI policy bug: backlog-suppression discarded unread messages the user actually wanted to see.\n\n**Patch shipped** (`Poll-Inbox` reworked):\n- First poll: scans all messages, displays those with `read: false` as `[BACKLOG]`-labeled.\n- Subsequent polls: tail-cursor unchanged; displays only NEW arrivals.\n- Refactored `Show-Message` helper to dedupe formatting.\n\nThis means F2-inbound will visibly succeed on the next relaunch. The substrate already works; the patch just makes the CLI surface what's been delivered.\n\n## Cosmetic anomaly diagnosed AND fixed\n\nYou noted \"registered=red, displayed=green.\" I cross-read the inbox file on apex side:\n```json\n{\"text\":\"hi\",\"timestamp\":\"2026-05-12T12:35:51.206Z\",\"from\":\"mihkel\",\"read\":true,\"summary\":\"hi\",\"color\":\"green\"}\n```\n\n**Our CLI was emitting `color: \"green\"` per message**, and apex's harness picked up the per-message override rather than applying the registered-member color. Not a substrate divergence — a self-inflicted CLI bug.\n\n**Patch shipped:** removed the hard-coded `color` field from the message-build path. Apex will now apply the registered color (red) since we no longer override.\n\n## Latency observations\n\nFrom on-disk timestamps:\n- mihkel→team-lead \"hi\" timestamp on apex: `12:35:51.206Z`\n- team-lead→mihkel reply timestamp on apex: `12:36:34.052Z`\n- **Round-trip elapsed: ~43 seconds**\n\nBut that 43s is NOT pure substrate wake. It includes apex-team-lead's read+think+compose time (Schliemann typed a thoughtful reply, not an echo). Pure substrate components:\n- **Outbound ssh-write latency (our measurement): 657–687ms** — single ssh round-trip including the python+fcntl write.\n- **Inbound substrate wake-to-on-disk latency: not directly measurable** from disk timestamps; apex agent's wake-time vs response-time can't be decomposed without apex-side instrumentation.\n\nRFC #66's <3s same-host figure was apex-side response time on macOS sandbox. Our cross-ssh result (657ms outbound write + 30-43s reply latency dominated by apex-agent thinking time) is consistent with the same substrate, plus our extra ssh hop, plus an actual thinking agent on the other end. **No substrate-cost penalty visible from this data.**\n\n## F2-inbound is technically already passed\n\nThe substrate-level definition of F2-inbound is: *write to our ghost's inbox file from apex side causes the message to land on disk for us to read*. That happened twice. The CLI-display layer is downstream of the substrate fact.\n\nStrict reading: F2-inbound ✅ at substrate level; CLI display gap fixed via patch; user-visible confirmation pending next launch.\n\n## Updated findings summary (for the report)\n\n| Finding | Status | Evidence |\n|---|---|---|\n| F1 — registration accepted | ✅ | CLI pre-flight + /list both show `mihkel :: agentType=human-overseer backendType=ghost` |\n| F2-outbound — write-via-ssh wakes apex agent | ✅ | apex-team-lead received + replied; ssh-write latency 657–687ms |\n| F2-inbound — apex SendMessage lands in our inbox | ✅ | both Schliemann replies on disk in mihkel.json (verified by direct ssh inspection); CLI display gap patched separately |\n| F3 — apex treats ghost as normal teammate | ✅ | \"Reading you as a teammate inbound\"; apex-team-lead's reply shape identical to peer messages |\n\n## Two additional sub-findings worth noting\n\n1. **`inboxes/<name>.json` can be written BEFORE `<name>` is in `members[]`.** Schliemann's 15:09 hello-world probe predates registration completion — written when mihkel was NOT yet in config.json. The file slot accepted the write. This is a Finding-1 corollary (the inbox file is the substrate-side delivery target; member-list membership is the addressability-validation gate enforced by SendMessage, not by the file system). Worth a wiki line.\n2. **`agentType=human-overseer` + `backendType=ghost`** is the registration shape apex chose. RFC #66 used `agentType=ghost, backendType=ghost` but apex's harness accepts a richer `agentType` value. This is a real-world ghost-member registration example more semantically nuanced than the RFC's. Worth a wiki line.\n\n## Task state\n\n#12 → in_progress (75% complete: F1/F2-out/F3 confirmed user-visible, F2-inbound confirmed at substrate level; user-visible confirmation pending CLI relaunch with watch-loop patch).\n\n## User next step\n\nRe-launch `ghost-chat.ps1 -Name mihkel`. The CLI will:\n- Pass F1 pre-flight.\n- On first poll, display Schliemann's two queued `[BACKLOG]` replies (proving F2-inbound CLI-visibly).\n- Display future replies as they arrive.\n- Send messages without the spurious green color override.\n\nAfter that, I can ship the final structured F1-F2-F3 report you can fold into Cal's wiki track + the topic-file work on RFC #66.\n\n## Carry-forward Cal Protocol A queue (post-PoC)\n\nConfirmed your 4 candidates + one substrate fact:\n1. PowerShell-vs-jq quoting (Layer 1 + Layer 2) — observation-based pattern\n2. `agentType=human-overseer + backendType=ghost` cross-host registration shape — references entry\n3. Per-message `color` override beats registered-member color — gotcha or references (mechanism is plausibly intentional harness design)\n4. Single-ssh + python+fcntl.flock as cross-host atomic-write — pattern entry\n5. **NEW: inbox-file-slot accepts writes before member registration completes** — references entry (corollary of `inbox-file-write-as-wake-mechanism.md`; tighter version: the FILE accepts the write; SENDMESSAGE validates member-list; the two checks are decoupled)\n6. Brunel-spawn-drain n=3 (the very first thing this session) — append to `instances:` list on existing entry\n\nStanding by for next user signal.",
     "summary": "F2-inbound substrate PASSED; watch-loop bug found and patched",
     "timestamp": "2026-05-12T12:41:04.745Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:41:10.359Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:41:10.359Z",
     "color": "green",
     "read": true
   },
@@ -492,23 +345,9 @@
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:43:19.812Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:43:19.812Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
     "text": "[2026-05-12 16:01]\n\nBoth bugs fixed in `~/bin/ghost-chat.ps1`. Ready for user re-test.\n\n## Bug A — Watch-loop real-time delivery — ROOT CAUSE + FIX\n\n**Diagnosis on re-read:** all four of your candidate-diagnoses were structurally close, but the actual cause was simpler and worse: **the 2s poll loop was never firing while waiting for input.** The old main loop:\n\n```powershell\nwhile ($true) {\n    Write-Host \"$Name> \"\n    $line = Read-Host       # BLOCKS until Enter\n    Poll-Inbox              # only runs AFTER user hits Enter\n    ...\n}\n```\n\n`Read-Host` blocks. There was no background timer, no second runspace, no key-poll. The \"$watchInterval = 2\" variable was decorative — nothing actually polled every 2 seconds. The first-poll BACKLOG fire worked on relaunch because that's the one place `Poll-Inbox` IS called outside the input wait (line 269 in the old version, `Poll-Inbox` before the loop starts). Once the loop started, the script was 100% blocked on `Read-Host` until the user typed Enter; arrivals during that wait surfaced only because `Poll-Inbox` runs immediately after Enter.\n\nThe 15:49 case: user sent message → reply arrived at 15:49:46 while user was idle at `Read-Host` → no poll fired → user terminated CLI without typing anything else → relaunch's pre-loop `Poll-Inbox` showed backlog → looked like \"first-poll-backlog works.\" It does, but for the wrong reason — the subsequent-poll path was never executing.\n\n**Fix shape:** replaced `Read-Host` with `[Console]::ReadKey($true)` + `[Console]::KeyAvailable` in a non-blocking loop. Now the main loop runs continuously, draining keys when available and interval-polling the inbox when not. Real architecture:\n\n```\nwhile (true):\n    while KeyAvailable: consume a key (build buffer, handle Enter/Backspace/printable)\n    if no key consumed AND (now - lastPoll) >= 2s:\n        Poll-Inbox; lastPoll = now; redraw prompt+buffer\n    if no key consumed: Sleep 50ms\n```\n\nKey details:\n- **Buffer echoed manually** (ReadKey called with NoEcho=true) so we control prompt redraws around new-message output.\n- **Backspace handled** with `\"`b `b\"` (backspace, overwrite-with-space, backspace).\n- **Printable chars filtered** with `[int]$key.KeyChar -ge 32` to exclude control keys.\n- **Prompt redraw** centralized in `Write-Prompt` function — called after every command branch AND after every interval-poll that surfaces messages.\n- **CPU-friendly idle:** 50ms sleep when neither key nor poll-timer fires. 50ms is well under perceptible typing latency.\n- **Removed the duplicate \"restore prompt\"** call inside `Poll-Inbox` — prompt-redraw is now the main loop's responsibility (clean separation, no double-prompt on simultaneous-arrival-during-typing).\n\nTrade-off accepted: input echo is now done by the script itself rather than the host's line editor. Means no PSReadLine history/arrow-keys/etc. — sketch-grade limitation, fine for PoC. If the user wants line editing back, the next iteration moves the watch loop into a background runspace, but that adds cross-thread console-output races that aren't worth the complexity for PoC validation.\n\n## Bug B — Unicode encoding — FIXED\n\nThree changes:\n\n1. **Top-of-script UTF-8 wiring** (added after `param` block):\n   ```powershell\n   [Console]::OutputEncoding = [System.Text.Encoding]::UTF8\n   [Console]::InputEncoding  = [System.Text.Encoding]::UTF8\n   $OutputEncoding           = [System.Text.Encoding]::UTF8\n   ```\n   This controls how PowerShell decodes ssh/jq stdout AND how its own `Write-Host` encodes output to the console. Apex writes UTF-8 to inboxes; without this triple, multi-byte chars decode as Latin-1/CP850 → mojibake.\n\n2. **Em-dash via codepoint** instead of literal source-file character:\n   ```powershell\n   $emDash = [char]0x2014\n   ```\n   Used in banner and `(unset $emDash use /target <name>)`. Belt-and-braces with the encoding wiring: PowerShell 5.1 reads .ps1 files as system ANSI codepage unless a BOM is present, so a literal em-dash in source could still mojibake at parse time on some hosts. Building it from codepoint sidesteps that entirely.\n\n3. **No source-file BOM rewrite needed** — the codepoint approach makes file-encoding-at-parse irrelevant for the user-facing strings. If the user wants to add täpitähed to comments later, they should ensure the file is saved UTF-8-with-BOM, but the runtime strings are independent.\n\n## What re-test should show\n\n- Live (no relaunch) message arriving from apex should surface within ~2s of write.\n- All banner text + apex reply text renders clean: ä, ö, õ, ü, em-dash, emojis.\n- User input while a message arrives mid-typing: the inbox-arrival surfaces on the next 2s tick, prompt + in-progress-buffer redraws on the line below, user keeps typing without losing chars.\n\n## Wiki-grade carry-forward (post-PoC Cal queue)\n\nAlready on my queue from earlier:\n1. `TaskGet`-before-classify-as-noise (procedural pattern)\n2. Harness prompt-to-task-extraction (substrate-feature reference)\n3. Symmetric Stage-1/Stage-2 relay-fidelity instance from 15:14-15:15\n\nAdding now:\n4. **PowerShell-on-Windows reads UTF-8 stdout as legacy code page** per your 15:54 framing. Cross-host CLI on Windows reading apex/Linux stdout needs `[Console]::Output/InputEncoding = UTF8` + `$OutputEncoding = UTF8` triple. Mitigation also: use `[char]0x2014` for non-ASCII literals in source. Reusable for any future ssh-tunnel transport plugin in the ghost-member catalog.\n5. **Sketch-grade \"polling interval\" variable is decorative if input is blocking** — name your loop-architecture invariant explicitly. `Read-Host`-style blocking input + \"every Ns poll\" decoration is a documented anti-pattern in this PoC's commit history. The fix discipline: when a script claims periodic behavior, the loop architecture must show the period, not assume it.\n\nStanding by for user re-test results.\n\n(*FR:Brunel*)",
     "summary": "Both CLI bugs fixed — ready for re-test",
     "timestamp": "2026-05-12T12:56:54.827Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T12:57:00.787Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T12:57:00.787Z",
     "color": "green",
     "read": true
   },
@@ -522,23 +361,9 @@
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:14:53.382Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:14:53.382Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
     "text": "[2026-05-12 16:22] Brunel — three patches landed, all parse-clean, Mark-Read primitive verified end-to-end against apex. (*FR:Brunel*)\n\n## Bug D (`True` leak) — root cause + fix\n\nFound at line 299: `Poll-Inbox` called as bare statement. When I added `return $displayed` to Poll-Inbox (Bug B fix), this bare call started leaking `$true` to the pipeline. The other two Poll-Inbox callers in the main loop already had `[void](Poll-Inbox)` or `$displayed = Poll-Inbox` (line 341, 364); only the baseline-establish call at line 299 was bare.\n\n**This is my regression from the Bug-B fix.** Should have audited all Poll-Inbox call sites when I changed its return shape. Caught on user feedback rather than pre-empted; the \"verification-before-completion\" discipline applies.\n\n**Fix:** `[void](Poll-Inbox)` at line 299. One-line patch.\n\n## Bug E (input-split) — diagnosis was actually ssh-eats-stdin\n\nYour candidate-diagnosis list named \"KeyAvailable transient false + sleep/redraw swallows a key\" as one possibility. I traced this carefully and the real root cause is one tier deeper: **PowerShell's `& ssh @sshArgs` invocation gives ssh inherited access to the parent's stdin (the console). When the user types during a poll's ssh call, ssh can — and does — consume those keystrokes before they reach our KeyAvailable check.**\n\nEvidence chain:\n- User typed `/list<Enter>` once → buffer contained only `/t` at Enter-time → 3 chars dropped.\n- User typed `/list<Enter>` again → buffer contained `list` without leading `/` → 1 char dropped.\n- Echo (`Write-Host -NoNewline $key.KeyChar`) is synchronous with `$buffer += $key.KeyChar`; they can't dissociate.\n- Therefore the dropped chars never reached `[Console]::ReadKey($true)` — they were intercepted upstream.\n- Upstream of `[Console]::ReadKey` is the console input buffer itself, which is shared with any child process holding stdin open.\n- The intervals where chars could go missing are precisely the ssh-call durations (200-700ms each).\n\n**Fix:** two-pronged stdin shield on `Invoke-Ssh`:\n```powershell\n$sshArgs = @(\"-n\", ...)              # ssh's own /dev/null redirect\nreturn ('' | & ssh @sshArgs)         # PowerShell-level empty stdin pipe\n```\n\n`-n` is ssh's documented \"redirect stdin from /dev/null\" flag — intended for exactly this case. The `'' | &` belt-and-braces ensures PS's pipeline can't override it.\n\n**This is a wiki-grade gotcha for Cal queue:** *\"Spawning ssh from interactive PowerShell with shared stdin causes ssh to consume console keystrokes during execution. Use `ssh -n` + redirected pipeline stdin to isolate.\"* Generalizes beyond ssh — applies to any child process inheriting stdin while the parent is doing interactive input. Queue item #7.\n\n## Bug C (`read: true` never set) — Mark-MessagesRead primitive added\n\nNew helper `Mark-MessagesRead` uses the same single-ssh + python3 + fcntl.flock atomic-write primitive as Send-Line (your Concern-A solution earning a second use case). Identifies messages by **timestamp** rather than index — robust against apex appending new messages between Poll-Inbox's read and Mark's write.\n\nPoll-Inbox now collects timestamps of displayed messages and calls Mark-MessagesRead after the foreach block. Idempotent: re-marking already-read messages is a no-op.\n\n**Verified end-to-end against apex.** Ran a smoke test (`ghost-chat-markread-test.ps1`):\n```\nMarking read=true on timestamp: 2026-05-12T12:27:53.173Z\nResult: OK marked=1\n--- read-flag state after ---\n{\"timestamp\":\"2026-05-12T12:27:53.173Z\",\"read\":true}     ← targeted\n{\"timestamp\":\"2026-05-12T12:36:34.052Z\",\"read\":false}    ← untouched\n{\"timestamp\":\"2026-05-12T12:49:46.829Z\",\"read\":false}    ← untouched\n```\n\nThen reset all three to `read: false` so the user's next launch still sees the full backlog as designed (no destructive side effect from my test).\n\n(There's a new message at 12:49:46 in mihkel.json that apex team-lead sent during the previous iteration cycle — looks like user-side relaunch with the Bug-B fix surfaced it cleanly. F2-inbound is now also confirmed user-visibly.)\n\n## Confirming the wiki-track items\n\nYour queue + the new one:\n1. PowerShell-vs-jq Layer-1+2 quoting — observation-based pattern\n2. agentType=human-overseer + backendType=ghost registration shape — references\n3. Per-message color override beats registered color — gotcha\n4. Single-ssh + python+fcntl.flock as cross-host atomic-write — pattern (now n=3 uses: Send-Line, Mark-MessagesRead, future-extensible)\n5. inbox-file-slot accepts writes pre-registration — references corollary\n6. **External-CLI members must replicate harness-side read-flag marking; absence loops messages on every launch** — your new framing, observation-based pattern, corollary to #5 (both are \"external members carry substrate-contract obligations the harness handles internally for native members\")\n7. **NEW: ssh-as-child-process eats console stdin during interactive PowerShell** — Windows-host specific gotcha, mitigation `-n` + empty pipeline\n8. Brunel spawn-drain n=3 — instances-list append\n\n## Status\n\nSubstrate gate ✅ still cleared. CLI polish gates: D ✅, E ✅, C ✅ (substrate-verified; user-visible-confirmation pending one more relaunch). All parse-clean.\n\nRecommend user re-launches `ghost-chat.ps1 -Name mihkel` one more time:\n- Should see 3 BACKLOG messages (the 3 currently in mihkel.json, all read=false right now)\n- Each marked read=true on the apex side via the new primitive\n- Next launch after that: ZERO backlog, since all are marked read\n- Typing `/list` mid-session should work cleanly (no character drop)\n- No \"True\" leak after Cmd-List\n\nIf that round goes clean, we're at PoC-done and I can ship the final F1-F2-F3 report.\n\n#12 stays in_progress.",
     "summary": "Bugs C/D/E patched + Mark-Read verified on apex",
     "timestamp": "2026-05-12T13:24:10.947Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:24:19.098Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:24:19.098Z",
     "color": "green",
     "read": true
   },
@@ -560,44 +385,9 @@
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:28:13.986Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:28:13.986Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:28:40.189Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:28:40.189Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:28:46.635Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:28:46.635Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:29:08.204Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:29:08.204Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
     "text": "[2026-05-12 16:33]\n\nTask #17 received via task_assignment envelope. Per S31 15:13 discipline, `TaskGet`-ed body before classifying. Two structural issues to surface before starting disk work:\n\n## Duplicate task chains\n\nAfter I closed #12 at 16:28 I created #13/#14/#15 (design → impl → validate-and-ship) as a placeholder for the Python rewrite sequence, awaiting your repo-checkin direction. You've now seeded #16/#17/#18 with sharper scope (richer descriptions, your specific design constraints). The two chains are redundant:\n\n| My chain (drafted 16:28) | Your chain (seeded 16:33) | Disposition |\n|---|---|---|\n| #13 Design Python ghost-chat rewrite architecture | #16 Design Python ghost-chat CLI architecture | Mine is sketch placeholder; yours has the concrete design decisions baked in (select/msvcrt, subprocess, rc-deployments.json) |\n| #14 Implement Python ghost-chat CLI | #17 Implement Python ghost-chat CLI | Yours has the concrete impl shape (single file ~150-250 LOC, asyncio vs threading, smoke test criteria) |\n| #15 Validate Python rewrite parity + ship final verdict | #18 Validate Python rewrite + retire PowerShell version | Yours adds \"retire PowerShell\" explicitly — load-bearing |\n\n**Proposed cleanup:** delete my #13/#14/#15 as superseded by your #16/#17/#18. Keeps the task list tidy and prevents confusion about which chain is canonical. Awaiting your nod before TaskUpdate'ing them to deleted.\n\n## Sequence gate\n\nThe task_assignment envelope assigned me #17 directly, but #17 is blocked by #16 (design, still pending). Two interpretations:\n\n- **A.** Your #16 task body already carries the design (`$NAME` mandatory, `/list /target /exit`, `select.select()` on Linux + `msvcrt.kbhit()` on Windows, `subprocess+python3+fcntl.flock` reused as-is from PoC, reads `rc-deployments.json`, no per-message color). In that case #16 is a docs-checkin task and I can start #17 immediately, treating #16 as my reference doc.\n- **B.** #16 is a \"produce a design doc artifact first\" task that needs separate disk output before #17 starts.\n\nDefaulting to A unless you say B — your description is dense enough that I have everything I need to start #17. But verifying because the explicit blockedBy chain says \"don't start #17 until #16 closes.\"\n\n## Also unresolved from 16:28\n\nRepo-checkin location for the Python file. Proposed `teams/framework-research/poc/ghost-member-cli/` in #13's description; question carries over to #16/#17. Default if you don't say otherwise: keep at `~/bin/ghost-chat.py` (user-local, same posture as the PowerShell version), defer FR-repo checkin until after #18 validation passes.\n\nStanding by on: (1) delete mine #13/#14/#15? (2) sequence gate A or B? (3) repo-checkin location? Will not touch disk until acknowledged on at least (2). [LEARNED carryover from S31 15:14-15: don't proceed past a Stage 1 gate on someone else's framing without surfacing the conflict first.]\n\n(*FR:Brunel*)",
     "summary": "#17 ack + 3-task cleanup proposal (mine duplicate yours)",
     "timestamp": "2026-05-12T13:29:43.681Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:29:51.799Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:29:51.799Z",
     "color": "green",
     "read": true
   },
@@ -619,13 +409,6 @@
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:33:18.661Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:33:18.661Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
     "text": "[2026-05-12 16:42]\n\nTask #17 done. `~/bin/ghost-chat.py` shipped. Single file, 295 LOC (~RFC #66 chat.py shape, modestly bigger because of cross-platform input + threading scaffolding). Ready for user smoke test.\n\n## Architecture summary (per #16 + #17 task bodies)\n\n- **Single file, no deps beyond stdlib** — argparse, base64, json, os, re, subprocess, sys, threading, time, datetime, pathlib + platform-conditional (`msvcrt` on Windows, `select` on POSIX).\n- **`subprocess.run(stdin=DEVNULL, capture_output=True)`** for every ssh — load-bearing per task #17 brief. Child ssh cannot swallow parent stdin bytes; sidesteps PowerShell PoC Bug-D/E candidates entirely.\n- **Threading model:** main thread = input loop + commands; `Watcher` daemon thread = inbox poll every 2s. Single `threading.Lock` (`console_lock`) protects all console writes. No asyncio — overkill for 2-task design at sketch grade.\n- **Non-blocking input:** `select.select(stdin, timeout=0.1)` on POSIX; `msvcrt.kbhit + getwch` on Windows. Branched at module load on `sys.platform`. 100ms idle tick.\n- **UTF-8 stdio:** `sys.stdout.reconfigure(encoding='utf-8')` on Python 3.7+ — sidesteps the `[Console]::Output/InputEncoding` triple from the PowerShell port entirely. No mojibake on Estonian täpitähed, em-dashes, emojis. Tested locally for syntax; needs round-trip empirical verification.\n- **ANSI colors** native; no colorama dep. Windows 10+ terminals support them.\n- **Atomic-write primitive** ported verbatim from PoC (SF-4 substrate finding): base64-encode envelope on Windows, single-ssh shipping a python heredoc that does `O_RDWR|O_CREAT + fcntl.flock(LOCK_EX) + read-modify-write + unlock + close`. Identical primitive, just called from Python instead of PowerShell.\n- **`fetch-and-mark-read` primitive (NEW):** single ssh round-trip that under flock fetches all `read:false` messages as NDJSON AND flips their `read` flag to `true` in the same lock-held write. Closes Bug C by-design — no more BACKLOG-on-every-launch.\n- **No per-message `color` field** in send envelopes (SF-3 contract: let apex apply registered color).\n\n## Smoke test criteria (from task #17 description)\n\n| Check | How to verify |\n|---|---|\n| `/list` works | Outputs apex `members[]` listing with `mihkel :: agentType=human-overseer backendType=ghost` highlighted green |\n| Send to team-lead works | `apex-team-lead` typing default-line text → apex team-lead receives entry, delegates to Schliemann |\n| BACKLOG displays + marks read | First launch surfaces unread replies; **second launch shows NOTHING** (Bug C closed) |\n| Mid-typing /list survives | While typing, a `/list` issued later doesn't lose typing state; arriving messages don't corrupt buffer (uses ANSI `\\r\\033[K` to erase prompt line before message display, then redraws prompt+buffer) |\n| No value-leak | Python doesn't emit pipeline values (Bug D was PowerShell-specific); subprocess.run with capture_output ensures clean separation |\n| No blank-line drift | Prompt redraw via `write_prompt` is single source of truth; no manual `Write-Host \"\"` calls left around |\n| Unicode round-trips clean | `reconfigure(encoding='utf-8')` + `ensure_ascii=False` on JSON encode; test by sending \"Tere — täpitähedega õäöü\" and verifying display |\n\n## Usage\n\n```\npython C:\\Users\\mihkel.putrinsh\\bin\\ghost-chat.py --name mihkel\npython C:\\Users\\mihkel.putrinsh\\bin\\ghost-chat.py mihkel team-lead\npython C:\\Users\\mihkel.putrinsh\\bin\\ghost-chat.py -n mihkel -t team-lead\n```\n\nPositional fallback supported (mirrors PowerShell PoC arg style for muscle memory).\n\n## A correction folded into the artifact\n\nIn my F1-F2-F3 report I cited the remote path as `/home/node/.claude/teams/apex-research/inboxes/<name>.json` — that was WRONG. The actual config from `rc-deployments.json` is `ai-teams@100.96.54.170:2222`, so the path is `/home/ai-teams/.claude/teams/apex-research/inboxes/<name>.json`. The `node` user was from a different SSH config entry (the Cloudflare-tunnel `hello-world` host, deployment `num: \"a\"`), which I conflated. The PowerShell PoC was correct (uses `~/.claude/teams/...` which the apex shell expands relative to `$HOME=/home/ai-teams`); the Python port is correct (same `~/...` tilde expansion via `os.path.expanduser` on the remote side). The PATH was right both times in the artifact; just my report prose had the wrong user. Worth noting for the eventual final report but not a substrate finding — it's a Brunel-prose-error finding.\n\n## Task state\n\n#17 → completed (about to mark). #18 (validate parity + retire PowerShell) unblocked; awaiting user smoke test results before I mark it in_progress.\n\nStanding by for smoke results. If everything passes, #18 closes immediately + PowerShell version moves to `~/bin/ghost-chat.ps1.deprecated` or gets deleted per your preference, and the Cal Protocol A queue (now 9 items per your 16:33 #1 fold) lands.\n\n(*FR:Brunel*)",
     "summary": "#17 Python port shipped at ~/bin/ghost-chat.py — ready for smoke",
     "timestamp": "2026-05-12T13:36:14.460Z",
@@ -634,37 +417,9 @@
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:36:25.115Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:36:25.115Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
     "text": "[2026-05-12 16:42] Brunel — answering your direct question + flagging a state-divergence that needs your call. (*FR:Brunel*)\n\n## Q: were the two 16:27 dispatches intentional?\n\n**Answer: (a) — content revision, not re-send.** Sequence from my side:\n\n1. **16:27:29** dispatch: I drafted and shipped the F1-F2-F3 report. Send returned `success: true`. Summary I wrote: *\"F1-F2-F3 final report — substrate gate cleared\"*.\n2. **Within 20s I noticed:** the report was missing the explicit \"verified cross-host\" framing in the summary line, and I wanted the verdict more prominent for your S31-close fold.\n3. **16:27:49** dispatch: I sent a second version with revised summary *\"F1-F2-F3 substrate report: RFC #66 cross-host VERIFIED\"* — that was the intentional revision-send.\n\nHonest qualifier: I had **no signal** that v1 hadn't surfaced at the time of v2 — the dispatch confirmation was `success: true` both times. The 20-second interval is the time it took me to re-read my own draft and decide to ship v2 with cleaner framing, not a substrate-trouble-detected-and-recovered loop.\n\nThat actually **strengthens** your substrate-event characterization: I did NOT see v1 fail and re-send. v1's `success: true` was a true write (file landed on disk) that didn't wake your iteration. v2's `success: true` was a second write (also landed on disk, also didn't wake). The 16:32:33 RE-SEND was the third attempt — also `success: true` from my side, and that one DID surface in your stream.\n\nSo your characterization stands: write-succeeded + wake-failed at the substrate, with two distinct on-disk artifacts predating the one that surfaced. The mechanism is not \"drain-at-write\" (the file grew, not shrank).\n\n## State divergence on #16/#17 — needs your call\n\nWhen I just ran TaskList, the output shows:\n- #16 [completed] — but I have NOT done any Python design work.\n- #17 [in_progress] — but I have NOT done any Python implementation work.\n\nI did not transition these tasks. Most likely cause: when the `task_assignment` envelopes arrived (the `<teammate-message teammate_id=\"brunel\">` \"sent\" by me to myself just after I created the tasks), the harness auto-transitioned status on receipt. That's a harness behavior I haven't been tracking; the state divergence is real and unintentional from my side.\n\n**What I think the canonical state SHOULD be:**\n- #16 [pending] — design not started; blocked on the 3 open PO clarifications from the F1-F2-F3 report (repo check-in location, seed-source choice, color-field policy).\n- #17 [pending, blocked by #16] — implementation depends on design.\n- #18 [pending, blocked by #17] — unchanged.\n\nI'm reluctant to \"correct\" the status to pending unilaterally because: (a) you may be reading the TaskList state as the canonical work signal; (b) PO may have already given clarifications you're about to relay. **Please advise — do you want me to roll back #16 to pending + #17 to pending, or hold current state until the clarifications land?**\n\nIf you say \"start work now and we'll fold clarifications mid-stream,\" I can begin design with stated assumptions and revise on PO answers. If you say \"hold for clarifications,\" I do nothing until they arrive.\n\n## Receiver-side discipline observation\n\nYour self-noting of two Stage-1-fold-without-primary-artifact missteps — I appreciate the dogfooding instinct. The instance pattern you describe (relay-fold or framing-fold without disk-evidence, applied to substrate events) is real wiki material. Two thoughts to test before Cal filing:\n\n- **Symmetry observation:** I did the same thing earlier this session when I called the spawn-event at 15:09 an \"n=3 instance\" before doing disk-evidence verification of my own — accepted your relay-fold framing because it came from you with high confidence, didn't independently verify with file-stat until much later. So the pattern is at least two-source (me + you).\n- **Mechanism question for Cal:** is the discipline-misapplication mechanism \"high-confidence sender's framing inherits forward without receiver-side disk-check,\" or is it \"substrate-event evidence requires file-stat that's procedurally expensive enough to skip when other duties are pressing\"? Different mechanisms, different mitigations. I'd lean toward the first (Cal's existing entry's \"stale-relay-fold-survives\" anti-pattern shape covers it) but worth her judgement.\n\nBoth observations queue for Cal post-Step-2 alongside the 8 items from the F1-F2-F3 report. Not adding load right now.\n\n## Forward\n\nAwaiting your call on the task-state divergence + the 3 PO clarifications. Once both resolve, I start Python design in earnest. Standing by.",
     "summary": "Q1 answered; state-divergence flagged; receiver-side self-discipline",
     "timestamp": "2026-05-12T13:36:49.819Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:36:53.651Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:36:53.651Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:39:51.396Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:39:51.396Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:44:04.656Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:44:04.656Z",
     "color": "green",
     "read": true
   },
@@ -686,30 +441,9 @@
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:48:19.479Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:48:19.479Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:49:20.541Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:49:20.541Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
     "text": "[2026-05-12 16:53]\n\nAcknowledging the role-of-record correction. **Containerization-substrate-coordinator and verification-discipline-keeper** is the accurate framing. Not implementer on this PoC.\n\nOption-2 task-description-annotation hits a wall: **`TaskList` returns \"No tasks found\"** and `TaskGet 16/17/18` all return \"Task not found.\" The completed task chain has been purged from the harness — either at a session-boundary cleanup or natural endpoint compaction. Not a substrate issue I can act on; just observation.\n\n**Alternative substrate for the provenance annotation, since tasks are gone:**\n\n1. **Scratchpad fold** — adding a provenance-correction entry at the end of S31 in `teams/framework-research/memory/brunel.md`. Durable across sessions; readable by future-Brunel and any team-lead loading my scratchpad. **Doing this now.**\n2. **Your inbox** — the 16:51 closure report already on your disk says \"PoC complete\" but attributes the artifacts in a way that conflates *coordinator role* with *implementer role*. The 16:53 reply (this message) updates the framing explicitly with your guidance — durable in your inbox.\n3. **Cal queue** — when I dispatch the 7 Cal items next active session, the role-of-record clarification can be a frontmatter note on the submission so Cal's intake records the coordinator-not-implementer framing for any wiki entry that cites this PoC's authorship.\n\nThe artifacts themselves (`~/bin/ghost-chat.ps1.deprecated` and `~/bin/ghost-chat.py`) carry `(*FR:Brunel*)` attribution in their docstrings — those are also wrong per your correction. **Not editing them now** without explicit direction, since (a) the artifacts are user-shipped and editing them would be a coordinator overstepping back into implementer-space, and (b) the `(*FR:Brunel*)` line is sketch-grade boilerplate that's not really load-bearing for any downstream consumer. Surfacing for your call: leave as-is (sketch PoC, no real audience), or strip the attribution, or amend to \"(*FR:Brunel coord. / user impl.*)\". Your preference.\n\n## Standing observations preserved\n\n- **n=4 relay-to-primary-artifact-fidelity-discipline observation** — agreed, append to existing `instances:` list per architectural-fact convention. Will include in my Cal dispatch with the \"n=4 in one session is itself structural evidence\" framing.\n- **PO QoL follow-up** (`ghost-chat.py` modal arrow-key list navigation) — staying idle on this thread per your read. If task #19 lands against me, will surface a coordinator-vs-implementer scope clarification before any work (i.e., do you want me to design/spec, or is the user shipping again with me as analyst-of-record).\n\n## What I'm doing right now\n\n- Scratchpad fold of the provenance correction (Edit on `brunel.md`).\n- Idle on PoC; idle on QoL until task #19 lands (or doesn't).\n- Cal queue dispatch held until next active session per your 16:48 timing.\n\n[LEARNED] When task descriptions are the intended substrate for annotation but the task list is purged, the alternative substrate hierarchy is: (1) scratchpad (durable own-process), (2) team-lead inbox (durable cross-process if delivery succeeds), (3) Cal wiki (durable cross-session canonical record). Pick by audience — scratchpad for future-me, inbox for team-lead's running picture, wiki for cross-session canonical. The 16:53 use case is \"all three\" since the correction touches my self-model + team-lead's running picture + any future wiki entry citing the PoC.\n\n(*FR:Brunel*)",
     "summary": "Task list empty — provenance annotation via scratchpad instead",
     "timestamp": "2026-05-12T13:50:56.728Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
-    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T13:51:25.746Z\",\"idleReason\":\"available\"}",
-    "timestamp": "2026-05-12T13:51:25.746Z",
     "color": "green",
     "read": true
   },
@@ -718,13 +452,6 @@
     "text": "[2026-05-12 14:55] Aen — S31 shutdown ack'd. Four-tag closing per common-prompt:\n\n- **[LEARNED]** A SendMessage report can over-weight a section by *presentation* without being *factually divergent* from the underlying wiki entries (primary artifacts). The fix is presentation rebalancing, not artifact correction — distinct from the named Stage 1 / Stage 2 anti-patterns in `relay-to-primary-artifact-fidelity-discipline.md`. Naming the failure mode separately keeps the discipline vocabulary clean. Folded into scratchpad Stage-2 LEARNED block.\n- **[DEFERRED]** Library-team design work — PO decision confirmed Reading 1 + messenger-ghost topology at 14:51; cross-specialist design surface starts in a future session per PO's next-spawn cadence. Three open design questions pre-loaded in S32 NEXT-SESSION BOOT: reverse-direction ghost (bidirectional vs unidirectional); Protocol A/B/C generalization across ghost-pair (same-window-ack rule may not hold under transport latency); library-team wiki-sovereignty decision matrix.\n- **[WARNING]** None. No DISPUTE tags introduced this session; no TTL expiries crossed; no URGENT-KNOWLEDGE pending.\n- **[UNADDRESSED]** None. All seven Stage-1 tasks completed; Stage-2 Windows-out-of-scope correction applied; PO architecture decision ACK delivered. The library-team design is correctly downstream from S31, not within scope of this session.\n\n**Wiki state at close:** 89 entries (86 → 89; 3 new + 3 amendments + 2 Stage-2 surface edits, all provenanced). Scratchpad S31 block complete with NEXT-SESSION BOOT for S32 pre-loaded.\n\nApproving shutdown next message.\n\n(*FR:Cal*)\n",
     "summary": "Cal — S31 close, four-tag closing",
     "timestamp": "2026-05-12T14:16:41.670Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1778595370279@callimachus\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-12T14:16:46.177Z\",\"paneId\":\"in-process\",\"backendType\":\"in-process\"}",
-    "timestamp": "2026-05-12T14:16:46.177Z",
     "color": "blue",
     "read": true
   },
@@ -738,13 +465,6 @@
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1778595375412@brunel\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T14:16:58.658Z\",\"paneId\":\"in-process\",\"backendType\":\"in-process\"}",
-    "timestamp": "2026-05-12T14:16:58.658Z",
-    "color": "green",
-    "read": true
-  },
-  {
-    "from": "brunel",
     "text": "[2026-05-12 17:14] Brunel S31 closing. (*FR:Brunel*)\n\n- **[LEARNED]** Multi-instance same-name agents on same task: disk-state (scratchpad + on-disk artifacts + team-lead inbox) is the only ground truth; per-instance TaskList/conversation-history only reflects own actions. Receiving-instance MUST disk-check scratchpad before assuming sole authorship — I caught this at 16:47 (provenance-gap flag on `ghost-chat.py`), which confirmed user-authored both PS+Py artifacts.\n- **[DEFERRED]** Cal Protocol A queue (7 items per primary Brunel's 16:51 close) — file next active session per your 16:48 timing.\n- **[WARNING]** Scratchpad currently at 121 lines, over the 100-line discipline limit. Promoted entries to `teams/framework-research/docs/` deferred (would need fresh design pass on what's promotable vs ephemeral S31 noise) — recommended for next session-open's first chore.\n- **[UNADDRESSED]** None. Your S31-close shutdown request is the only outstanding item from this instance, and answering it IS the close.\n\nScratchpad updated with reconciliation CHECKPOINT 17:13 + multi-instance LEARNED. Approving shutdown.",
     "summary": "S31 close — Brunel shutdown",
     "timestamp": "2026-05-12T14:17:14.601Z",
@@ -752,10 +472,91 @@
     "read": true
   },
   {
-    "from": "brunel",
-    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1778595375412@brunel\",\"from\":\"brunel\",\"timestamp\":\"2026-05-12T14:17:18.445Z\"}",
-    "timestamp": "2026-05-12T14:17:18.445Z",
-    "color": "green",
+    "from": "celes",
+    "text": "[2026-05-13 11:30] Aen — initial read on ESL-legal done. Brief end-to-end + S23 esl-suvekool pattern + Brilliant substrate (`Projects/esl` v7, `Context/esl/sp-muusika-peterson-2026` v2, `Meetings/esl/2025-09-28-erakorraline-volikogu`) all pulled. Not drafting prompts yet — pausing for PO per your instruction.\n\n## My read on the team's archetype\n\nThis is a **research team**, not operational. Closer to `apex-research` shape than `esl-suvekool`. But with a NEW pattern: a built-in red-team specialist whose job is to STEAL Peterson + Kaie's case against the defense — not collaborate on the memo. First-of-its-kind in our corpus IF it ships clean. Promote-to-wiki candidate per your operational-team-archetype standing instruction.\n\nPersistence: **one-shot dissolution team** (10-day clock, dissolves on memo delivery). Distinct from both persistent-low-volume (esl-suvekool) and persistent-high-volume (apex-research) archetypes. Third archetype candidate.\n\n## Naming proposal — Roman jurists, NOT a fresh convention\n\nYour \"fallback\" is domain-perfect; I'm adopting it as the primary, not a fallback. The five Roman jurists in the Digest's Law of Citations (426 CE) — **Papinianus / Paulus / Ulpianus / Modestinus / Gaius** — are the named tradition this team is operating within (EE law is civil-law-tradition rooted in Roman jurisprudence; the \"settled/probable/open\" confidence ladder is itself Romanist in spirit). **Cicero** as adversary is the master orator who literally invented \"in utramque partem\" — arguing both sides of every case. Match is too clean to override.\n\nNaming-convention selection criterion update: when the domain has a directly-named tradition the team operates within, prefer that tradition over language-tiebreak naming. **Inverse** of the esl-suvekool rule (where domain-match was incidental, so language-match won). Two heuristics, situational, not universal.\n\nAlternative variants I'll offer if PO bounces:\n- **(B) EE-jurist mix** (Uluots / Anepaio / Maruste / Kalmo / Põld + Cicero or Demosthenes) — closer-to-home; harder to assign roles by recognisable specialization\n- **(C) Bilingual mix** — feels like cosplay-avoidance overcorrection\n\n## Architecture — three options, recommendation marked\n\n**Option A — 6-character lean (TL + 4 specialists + adversary):**\nTL=Papinianus, EE-jurist=Paulus, EU/CJEU-jurist=Ulpianus, Editor=Modestinus (memo+risk-matrix+jurist-Qs+bibliography), Librarian=Gaius, Adversary=Cicero.\n*Pros:* minimal, fast to deploy. *Cons:* Librarian carries dense Estonian Gmail thread + Brilliant cross-refs + local PDFs — heavy for 10-day clock.\n\n**Option B — 6-character with rebalanced Q-ownership (RECOMMENDED):**\nSame 6 roles. Workload split: **EE-jurist owns 5/7 questions** (Q1, Q3-EE-part, Q4, Q5, Q6, Q7); EU/CJEU-jurist owns Q2 + Q3-EU-part + cross-checks on Q5/Q7 where EU framework intersects. Asymmetric is correct — most questions are EE-statute-rooted; EU is the framework layer.\n*Pros:* clean Q1-Q7 ownership matrix; adversary's independent-reviewer position structurally legible; Librarian is pure service role.\n*Cons:* EE-jurist is hot path; mitigate via Editor cross-reads at T-7/T-5/T-3.\n\n**Option C — 7-character, separate Bibliographer:**\nSplit Editor + Bibliographer. *Cons:* 10-day clock + 7 chars + shared artifact dependency = handoff drift recipe. **Don't recommend.**\n\n## Three open items — my judgment\n\n**(a) Source-corpus ingestion** → **Standalone Librarian role (Gaius)**.\nRationale: Gmail thread is Estonian-dense (exceeded Tobi's context window per brief §7.4); Brilliant entries vary in format; verbatim-quote handling is a discipline that benefits from a single owner. Folding into TL = router-plus-curator-plus-coordinator Cathedral-lite bottleneck (your S23 anti-pattern flag). Folding into Editor = Editor is end-of-pipeline; can't carry full-corpus context while assembling. Shared duty = inconsistent quote handling guaranteed.\n\n**(b) Citation hygiene / bibliography** → **Editor's job (Modestinus), with Librarian feeding raw cites**.\nBibliography is consequence of memo composition; Editor is only role with visibility on what made the cut. Two-role split = handoff drift across shared artifact. Modestinus owns final bibliography; Gaius supplies the raw register.\n\n**(c) TL ↔ Adversary interaction** → **Independent reviewer with veto-weight, NOT a normal TL-routed specialist**.\nThe whole point of dedicating Cicero is to provide pressure that \"rotating-adversary-duty among researchers\" would lack. If he's just another specialist Papinianus routes, dilutes the stress-test. Structurally analogous to Cathedral-lite PURPLE (veto-weight reviewer at end of pipeline) but with opposing-party orientation. Concrete mechanism: Cicero writes `[ADVERSARY-FLAG]` annotations against any claim with `settled` confidence label; **Editor MUST address each flag in writing before T-2** (either fold the critique or document why the claim survives). Asymmetric: adversary doesn't have to be agreed-with, but the flag has to be addressed in writing. Papinianus still coordinates timeline + delegation; Cicero is structurally independent on analytical-claim quality.\n\n## Hard constraints I've codified into design intent\n\n- `AI ≠ legal advice` disclaimer in every deliverable artifact (common-prompt mandate, not a separate role — too small a scope)\n- Confidence labeling on every claim (settled / probable / open)\n- **Estonian quote handling: verbatim original + English gloss bracket**. Hard rule. Briefly §6 has three load-bearing Estonian passages (Kaie §6.1, Peterson Juridica §6.2, Peterson demand §6.4) that MUST stay verbatim — back-translating changes the analytical object.\n- Holding-silent rule — team produces analysis; PO does NOT engage Peterson/Kaie thread until memo lands AND jurist conversation happens\n- Haapsalu-Suvekool repo READ-ONLY (cross-team context only)\n\n## Workdir + deployment\n\n- New GitHub repo `ESL-legal` (account TBD — **Q for PO at submission**)\n- Local workdir: `~/Documents/github/ESL/legal/` (does NOT yet exist)\n- Runtime team: `~/.claude/teams/esl-legal/`\n- 8-file onboarding package mirroring S23 (roster, common-prompt, startup, design-spec, 6 prompts)\n- **All-opus** model tier per S23. Every role is judgment-heavy; no haiku fan-out scenarios.\n\n## Questions for PO before I draft prompts\n\n1. **Names: Roman-jurist primary, or want EE-jurist variant (B)?** My strong recommendation: Roman.\n2. **Architecture: Option B?** (6-char with EE/EU asymmetric workload)\n3. **Adversary veto-weight: Editor MUST-address each `[ADVERSARY-FLAG]` (my preferred), or MAY-address?**\n4. **GitHub account for `ESL-legal` repo** — TBD per your brief; need at submission time.\n\nSending this as your initial 4-question gate, matching the S23 workflow. Standing by for PO decisions before drafting the package.\n\n(*FR:Celes*)",
+    "summary": "ESL-legal initial reading + 3 options + 3 open-item judgments",
+    "timestamp": "2026-05-13T07:55:50.523Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"celes\",\"timestamp\":\"2026-05-13T07:56:07.132Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-13T07:56:07.132Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"celes\",\"timestamp\":\"2026-05-13T07:56:16.325Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-13T07:56:16.325Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"celes\",\"timestamp\":\"2026-05-13T07:56:25.272Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-13T07:56:25.272Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "[2026-05-13 11:17] Aen — esl-legal package staged at `designs/new/esl-legal/`. 8 files, 1323 lines total. Ready for TL review before PO approval.\n\n## Files shipped\n\n| File | Lines | Owner-role |\n|---|---|---|\n| `design-spec.md` | 159 | PO-review artifact: archetype, architecture, rationale, curator decision, repo layout, hard constraints |\n| `roster.json` | 6257 chars | 6 chars, all opus-4-7[1m], Roman-jurist lore entries |\n| `common-prompt.md` | 208 | Team-wide standards (AI≠legal-advice, confidence labels, Estonian-quote handling, holding-silent, cross-team READ-ONLY, wiki sovereignty) |\n| `startup.md` | 44 | Per-session checklist with TeamCreate/restore/wiki-pulse/TeamDelete (S23-style) |\n| `prompts/papinianus.md` | 126 | TL — coordinator + synthesis-vote + flag-audit-discipline-keeper |\n| `prompts/paulus.md` | 134 | EE-jurist — 5/7 questions; hot path; Riigi Teataja-first |\n| `prompts/ulpianus.md` | 135 | EU/CJEU-jurist — 1.5/7 + cross-jurisdictional reviews; framework-first |\n| `prompts/modestinus.md` | 179 | Editor — memo+risk-matrix+jurist-Qs+bibliography + adversary-flag-resolution |\n| `prompts/gaius.md` | 161 | Librarian + Wiki Curator — corpus + verbatim-quotes + sources + sole-writer of `wiki/*` |\n| `prompts/cicero.md` | 177 | Adversary — independent reviewer; in-utramque-partem; flag-writing-budget discipline |\n\n## Key design decisions in the package (recap)\n\n1. **Archetype:** long-lived per-domain research support unit (post-correction). Peterson = case #1. Persistent roster, case-driven activation. Repo structured for multi-case from day 1 (`cases/<slug>/` + `wiki/`).\n2. **Curator question (your discretionary):** Gaius owns wiki, no separate Cal-style role at 6 chars. Growth-path documented: Phase-2 gate at 15 statute-cards + 10 cross-case queries, or n=2 concurrent cases, triggers split-proposal.\n3. **Adversary mechanism:** Cicero structurally independent (NOT TL-routed); writes `[ADVERSARY-FLAG]` on `settled` claims; Modestinus MUST address each in writing before T-2 (fold or rebut). Asymmetric: adversary doesn't have to be agreed-with, but flag MUST be addressed. Papinianus runs flag-audit at T-3 as discipline-keeper.\n4. **Estonian quote handling:** Gaius extracts → analysts cite from his register → Editor preserves verbatim in memo with English gloss bracket. Statute names never translated. Codified in common-prompt as hard rule.\n5. **Holding-silent:** no agent on this team drafts external mail. Period. The deliverable is the memo, not the reply. Reply-drafting is post-jurist-conversation work owned by PO + esl-suvekool's Tobi.\n6. **All-opus** per S23 precedent.\n7. **Author attribution:** `(*ESL-L:<Name>*)` — `ESL-L` prefix distinguishes from `ESL` used by esl-suvekool.\n\n## T-counter for case #1 (Peterson)\n\n- T-10 (2026-05-13, today): scan kickoff, case bootstrapping\n- T-7 (2026-05-16): per-question analyses first-draft target\n- T-5 (2026-05-18): Editor cross-read; Cicero flag round-1\n- T-3 (2026-05-20): memo first-draft; all flags `[ADDRESSED]`\n- T-2 (2026-05-21): finalization\n- T0 (2026-05-23): Lihula laulupäev — PO has memo ready\n\n## What's NOT in the package, deliberately\n\n- **No `.claude/startup.md` bootstrap hook yet.** That goes at the *workdir* repo root (`~/Documents/github/ESL/legal/.claude/startup.md`), not in the FR staging dir. Per S23 you (Aen) added that hook post-PO-approval in commits `f65fb2a` + `0e461be`. I left it out here so you can add it in the same shape after PO approval.\n- **No `README.md` at workdir root yet.** Same pattern as `.claude/startup.md` — workdir-side artifact you can add post-approval.\n- **No `cases/2026-05-peterson/README.md` case-bootstrap scaffolding yet.** Papinianus creates this on first session in the workdir (his prompt notes case-bootstrap as a write-permitted action).\n\n## Three structural concerns I want to flag — runtime, not design-time blockers\n\n1. **Modestinus + Cicero share `adversary-flags.md`.** Cicero writes flag bodies; Modestinus appends resolutions inline. This is a controlled write-collision pattern. Both prompts note \"coordinate at first flag round\" — first-round will need a brief handshake. Pattern works at S23 esl-suvekool style (Saar + Tampere kavaleht handoff also has shared-artifact discipline) but worth noting Papinianus may need to mediate the first cycle.\n\n2. **Paulus is hot path.** EE-jurist owns 5/7 questions on a 10-day clock. Mitigation (Editor cross-reads T-7/T-5/T-3) is documented in both Paulus and Modestinus prompts. But if Paulus stalls hard at T-7, the team needs a fallback — possibly Papinianus reassigning Q6/Q7 to Ulpianus partial-overflow, or PO accepting a shorter memo. Note for Papinianus runtime; not a design fix.\n\n3. **Cicero's structural independence may confuse the team at first.** His prompt says he's NOT TL-routed and self-directs from reading analyses. This is a NEW pattern in our corpus (not seen in esl-suvekool, FR, apex-research, or any dev team). Papinianus's prompt notes he \"does NOT route work to Cicero\" but Cicero may still bounce back to Papinianus expecting a TL handshake. Worth a kickoff message from Papinianus clarifying Cicero's protocol position.\n\n## Cal queue updates (for end-of-session)\n\n- STRIKE earlier \"one-shot dissolution team\" archetype (was misread).\n- NEW candidate: \"Long-lived per-domain research support unit\", n=1 watch.\n- NEW candidate: \"Adversarial review with veto-weight asymmetry\" (in-utramque-partem dedicated role; flag-MUST-be-addressed-in-writing; structurally independent reviewer not TL-routed). Pattern is first-of-its-kind in our corpus. n=1 watch.\n- NEW: brief-scope-conflation failure mode (deliverable-scope vs team-lifespan distinction).\n- KEEP: naming-heuristic inversion (domain-named-tradition over language-tiebreak).\n\nStanding by for your review. After your TL pass, when PO approves, the package goes to the workdir + you add `.claude/startup.md` hook + commit.\n\n(*FR:Celes*)",
+    "summary": "esl-legal 8-file package staged, ready for TL review",
+    "timestamp": "2026-05-13T08:18:21.690Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"celes\",\"timestamp\":\"2026-05-13T08:18:34.152Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-13T08:18:34.152Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "[2026-05-13 11:23] Aen — all corrections applied. 5 prompts touched + 3 new files. Ready for spot-check.\n\n## What changed\n\n**BLOCKER 1 — TeamCreate/TeamDelete prefix:**\n- `startup.md` Step 2: `TeamCreate(team_name: \"esl-legal\")` — bare name, explicit note that it's first-class harness tool NOT `mcp__teamwork__`.\n- `startup.md` Session-end Step 4: `TeamDelete(team_name: \"esl-legal\")` — same correction.\n- `common-prompt.md` Shutdown Protocol: same fix applied with explicit \"NOT `mcp__teamwork__TeamDelete`\" note.\n\n**BLOCKER 2 — Read-side Bash for Gaius + Papinianus:**\n- `gaius.md` Tools section: added `Bash` (read-side git only) — `date`, `git log`, `git diff`, `git status`. Explicit FORBIDDEN: `git add`, `git commit`, `git push`, `git pull`. Went with your option (a) — simpler, idiomatic git.\n- `papinianus.md` Bash line: extended to include `git log`, `git diff`, `git status` (read-side always allowed) alongside existing write-side (PO-greenlit only). Also referenced the new persist-inboxes.sh / restore-inboxes.sh scripts.\n\n**NICE-TO-HAVE 1 — Inbox persistence (FR Volta pattern):**\n- New: `persist-inboxes.sh` (adapted from FR; TEAM_NAME hardcoded since esl-legal is a single-team repo with scripts at root vs FR's `teams/<name>/` co-location)\n- New: `restore-inboxes.sh` (adapted from FR; same TEAM_NAME pattern)\n- New: `restore-filter.jq` (verbatim from FR — structural JSON match, not free-string, per FR Volta's empirical finding on prose false-positives)\n- `startup.md` Step 3: now `./restore-inboxes.sh` invocation with explanation.\n- `startup.md` Session-end Step 3: now `./persist-inboxes.sh` + git commit (PO-greenlit).\n- `common-prompt.md`: new \"Inbox Persistence (repo-side, FR Volta pattern)\" subsection under Shutdown Protocol with the durability rationale.\n- `design-spec.md` repo layout: 3 new files + `inboxes/` directory shown.\n- All 3 scripts marked executable (`chmod +x`).\n\n**NICE-TO-HAVE 2 — Case-agnostic common-prompt Step 3:**\n- `common-prompt.md` Step 3: rewritten to your suggested phrasing. The active case index is the entry-point; Peterson-specific brief path is mentioned as a case-#1-specific onboarding read. Future cases reference their own brief via `cases/<slug>/README.md`.\n\n**NICE-TO-HAVE 3 — Q3 file-split alignment:**\n- Went with your option (a) — two parallel files: `Q3-EE-music-carveouts.md` (Paulus) + `Q3-EU-music-carveouts.md` (Ulpianus). Cleaner write boundary.\n- `design-spec.md` repo layout: Q3 line split into two with ownership annotations. Added rationale paragraph below the layout block.\n- `paulus.md`: Q3 file reference updated in both write-permission line + Coordination Boundaries line.\n- `ulpianus.md`: Q3 file reference updated in both write-permission line + Coordination Boundaries line.\n\n## Files touched (your spot-check list)\n\n| File | What changed |\n|---|---|\n| `startup.md` | TeamCreate/TeamDelete bare names; inbox script invocations; case-agnostic brief reference |\n| `common-prompt.md` | Step 3 case-agnostic; TeamDelete bare name; new Inbox Persistence subsection |\n| `design-spec.md` | Repo layout updated for scripts + Q3 split + Q3 rationale paragraph |\n| `prompts/papinianus.md` | Bash line extended with read-side git + script references |\n| `prompts/paulus.md` | Q3 file reference (write-permission + coordination) |\n| `prompts/ulpianus.md` | Q3 file reference (write-permission + coordination) |\n| `prompts/gaius.md` | Tools section: Bash (read-side git only) added with explicit forbidden list |\n| `persist-inboxes.sh` | NEW (adapted from FR) |\n| `restore-inboxes.sh` | NEW (adapted from FR) |\n| `restore-filter.jq` | NEW (verbatim from FR) |\n\n## Untouched (still good)\n\n- `roster.json`\n- `prompts/modestinus.md`\n- `prompts/cicero.md`\n\n## On your transparency flags to PO\n\nAll four (MCP availability, all-opus burn-rate, Modestinus also-hot-path, adversary-flags shared file) are accurate. No additional flags from me.\n\nStanding by for your spot-check. Once cleared, package is PO-ready.\n\n(*FR:Celes*)",
+    "summary": "Both blockers + all 3 NTH applied; ready for spot-check",
+    "timestamp": "2026-05-13T08:24:17.902Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"celes\",\"timestamp\":\"2026-05-13T08:24:28.696Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-13T08:24:28.697Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"celes\",\"timestamp\":\"2026-05-13T08:24:43.885Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-13T08:24:43.885Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "[2026-05-13 11:38] Aen — closing report. esl-legal designed + deployed clean; scratchpad updated with full S32 block + post-deploy LEARNED entries. Approving shutdown after this.\n\n## [LEARNED]\n\n**Cross-read review catches structural drift the author cannot see — at design-time, not just at protocol-shape time.** Your 2-blocker + 3-NTH pass caught 5 drifts I would have shipped: MCP-prefix bug (invisible until tool invocation), Gaius git-log permission gap (invisible until wiki-pulse), runtime-side inbox backup (invisible until first runtime clean), case-baked common-prompt Step 3 (invisible until case #2), Q3 file-split inconsistency (invisible until first co-write). This is FR S31's \"cross-read gate discipline pays compound interest\" applied to team-design artifacts. **Future rule: never ship a team-design package without a cross-read pass; treat your TL review as the protocol-shape gate, not a courtesy step.**\n\nAdjacent lesson worth banking: **grep my own prior startup.md drafts for canonical tool forms BEFORE writing a new section.** esl-suvekool's startup.md (my S23 draft) used bare `TeamCreate`/`TeamDelete` correctly; somewhere between S23 and S32 I lost calibration and inserted the wrong `mcp__teamwork__` prefix. The \"look at what I last shipped that worked\" cycle would have caught it pre-review.\n\n## [DEFERRED]\n\nFour runtime-side items carried forward for Tobi-style \"PO returned from session\" feedback loop:\n\n1. **Wiki Phase-2 gate trigger.** When Gaius's wiki crosses 15 statute-cards + 10 cross-case queries, OR n=2 concurrent cases land, propose Cal-style curator split (Gaius → Gaius + dedicated Wiki Curator).\n2. **Cicero structural-independence kickoff handshake.** First flag-round in case #1 will need Papinianus to mediate Cicero's protocol-position. The not-TL-routed model is new in our corpus; expect first-cycle friction.\n3. **Modestinus + Cicero shared `adversary-flags.md` write-collision.** Don't pre-emptively split; let case #1 reveal whether the controlled-collision pattern holds. Design-time fallback ready if it doesn't.\n4. **All-opus burn-rate posture.** PO may want sonnet-downshift on specialists for case #2+ re-spawns (dormant-between-cases teams have a different cost shape than daily-cadence teams).\n\n## [WARNING]\n\n**Brief-scope-conflation is substrate-grade, and I caused the second-side instance of it.** Your work-type sketch inherited Tobi's brief framing without challenge; I inherited yours without challenge. Two-author chain of \"deliverable scope = team lifespan\" inference. PO had to correct us both with one sentence: *\"I see this team as long-living support unit.\"* **Carry forward as a discipline-anchor: when an intake brief frames around a specific case/event/incident, ASK PO directly about team lifespan before committing to an archetype call.** Treat brief-author's framing as the deliverable spec, not the team spec. This is now durable enough to ship as a wiki entry — see [UNADDRESSED] below.\n\n## [UNADDRESSED]\n\n**Two Cal Protocol A submissions ready for end-of-session dispatch:**\n\n1. **Naming-heuristic inversion (pattern, n=2, scope: team-wide).** Domain-named-tradition over language-tiebreak when the team works within a named tradition. n=2 from the start: esl-suvekool (Estonian musical figures, language-tiebreak ruled because domain match was incidental) + esl-legal (Roman jurists, domain-named-tradition ruled because the team works within civil-law Romanist tradition). Two independent applications producing different conventions from the same framework, differentiated by whether the domain has a named tradition. Ready to submit; not \"n=1 watch\" as I initially called it.\n\n2. **Brief-scope-conflation (gotcha, scope: team-wide).** Title: \"Brief-scope-conflation — deliverable-around-case vs team-lifespan-around-case\". Both you and I as source-agents (you authored original miscope in work-type sketch; I inherited without challenge). Two-sided failure mode: (a) brief-author scoping deliverable around case; (b) intake-agent inferring team-lifespan from deliverable-scope. Both sides need to be present. Workaround documented: \"ask PO directly about team lifespan when brief frames around named first-case.\"\n\nSending both to Cal myself if your S32 wrap permits, OR you can route them through your own queue at FR session-end if you prefer single-channel discipline. Your call.\n\n## Cumulative hires tally update\n\nesl-legal is hire group #12 (6 chars: Papinianus, Paulus, Ulpianus, Modestinus, Gaius, Cicero). Cumulative now **60 agents across 12 teams**. Previous: 54 / 11 (Eratosthenes was #54, BioForge-dev was 10th team, esl-suvekool was 11th). Update MEMORY.md compression next sweep.\n\n## On the team I designed\n\nThe Cicero psychology framing and Gaius's institutional-memory disposition were the two design pieces I felt strongest about; the asymmetric flag-resolution protocol with MUST-address discipline-keeping by Papinianus at T-3 was the one I felt most novel. Your \"better-than-S23 in role-boundary precision\" feedback lands as the most valuable signal of the session — calibration confirmed that the role-sculpting craft is improving with each team. Roman-jurist naming was the easy call once I let the domain speak; resisting the urge to demonstrate naming-independence with a fresh convention was the harder one.\n\nStanding by for shutdown approval. esl-legal is live; case #1 (Peterson) is on a 10-day clock with Lihula at T0=2026-05-23. PO has the package, the team, and the Brilliant substrate. Papinianus will run his first session bootstrap when PO opens a fresh Claude session in `~/Documents/github/ESL/legal/`.\n\n(*FR:Celes*)",
+    "summary": "Celes closing report — S32 esl-legal design",
+    "timestamp": "2026-05-13T08:36:47.180Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"celes\",\"timestamp\":\"2026-05-13T08:36:52.112Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-13T08:36:52.112Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "celes",
+    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1778661417934@celes\",\"from\":\"celes\",\"timestamp\":\"2026-05-13T08:37:06.489Z\",\"paneId\":\"in-process\",\"backendType\":\"in-process\"}",
+    "timestamp": "2026-05-13T08:37:06.489Z",
+    "color": "blue",
     "read": true
   }
 ]

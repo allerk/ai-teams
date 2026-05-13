@@ -1,5 +1,108 @@
 # Team-Lead Scratchpad (*FR:team-lead*)
 
+## SESSION 32 WRAP — 2026-05-13 (esl-legal team designed + deployed; Roman-jurist roster; long-lived per-domain archetype confirmed; brief-scope-conflation failure mode surfaced)
+
+**Goal (PO-set 10:18):** Wake the team for "another exciting teambuilding effort" — design a new team to support ESL through an active EE/EU copyright dispute (Peterson / SP Muusikaprojekt, Lihula T0 = 2026-05-23). PO scope clarification at 11:04: *"I see this team as long-living support unit and Peterson is just the case nr.1"* — corrected initial misread of brief as 10-day one-shot.
+
+**Outcome:** Team designed, reviewed, corrected, deployed. Commit `06b7699` to `mitselek/esl-legal` (private) — 16 files / 1761 insertions including `.claude/startup.md` bootstrap hook + workdir `README.md` + case-1 seed. PO can activate by opening Claude at `~/Documents/github/ESL/legal/`.
+
+### Outcomes shipped
+
+| Artifact | Δ | Owner | Path |
+|---|---|---|---|
+| `mitselek/esl-legal` initial deploy | NEW (commit `06b7699`, 16 files / 1761 ins) | Aen | https://github.com/mitselek/esl-legal |
+| 11-file team package (8 design + 3 scripts) | NEW | Celes | `designs/deployed/esl-legal/` (moved from `designs/new/` post-deploy) |
+| `.claude/startup.md` bootstrap hook + workdir `README.md` + case-1 README seed | NEW | Aen | `~/Documents/github/ESL/legal/` |
+| Inbox-persistence scripts adopted from FR (`persist-inboxes.sh` / `restore-inboxes.sh` / `restore-filter.jq`) | NEW | Celes (adapted from Volta) | `esl-legal/` repo root |
+
+### Architecture decision
+
+[DECISION — session 32] **esl-legal team architecture: 6-character Roman-jurist roster, Option B asymmetric workload, MUST-address adversary-flag protocol.**
+
+- **Papinianus** ("Papi") — TL, coordinator + synthesis vote + flag-audit discipline-keeper
+- **Paulus** — EE-jurist, hot path, 5/7 questions (Q1, Q3-EE, Q4, Q5, Q6, Q7)
+- **Ulpianus** — EU/CJEU-jurist (Q2 + Q3-EU + cross-checks on Q5/Q7)
+- **Modestinus** — Editor (memo + risk-matrix + jurist-Qs + bibliography + adversary-flag resolution)
+- **Gaius** — Librarian + cross-case wiki sole writer
+- **Cicero** — Adversary (independent reviewer, veto-weight, NOT TL-routed)
+
+All `claude-opus-4-7[1m]`. Naming source: *Lex Citationis* of 426 CE for the five named jurists + Cicero (in-utramque-partem method) for adversary.
+
+### Workflow shape (reusable, n=2 with S23)
+
+PO intent → Aen brainstorm work-types → spawn Celes for opinion → Celes Brilliant query for substrate → architecture options + naming + PO 4 decisions → Celes drafts package staged at FR repo root (`designs/new/<team>/`) → Aen TL review → corrections → spot-check → PO approval → Aen deploys → mv to `designs/deployed/`.
+
+This session's review surface: 2 blockers + 3 nice-to-haves (mcp__teamwork__ tool-prefix → bare tool names; Gaius's wiki-pulse needed Bash for git log; runtime-side inbox backup → FR Volta repo-side pattern; common-prompt case-bound brief path → case-agnostic; Q3 file-split alignment across design-spec + both prompts). Celes applied all 5 in one pass; spot-check confirmed.
+
+### Mid-session correction — substrate-grade
+
+[LEARNED — substrate, promotion-grade] **Brief-scope-conflation failure mode.** Initial reading of Tobi's brief framed the team as a 10-day one-shot dissolution archetype (memo delivery = team end). PO corrected at 11:04: *"long-living support unit, Peterson is just case nr.1."* Source of misread: brief §1+§3+§9 scope the *deliverable* around Peterson; my first-pass work-type sketch ("TL + 4 specialists + adversary for Q1-Q7 scan + memo") inherited that scoping and biased Celes's archetype call. **Lesson:** when a brief is task-scoped, distinguish "this case's scope spec" from "this team's scope spec" *before* assigning archetype. The deliverable's lifetime is not the team's lifetime.
+
+Cal-queue candidate (n=1 watch).
+
+### Substantive design innovations (first-of-its-kind in our corpus)
+
+[LEARNED — substrate, promotion-grade] **Long-lived per-domain research support unit** — third archetype confirmed in our corpus. Differentiators: (a) NOT event-driven like operational (esl-suvekool); (b) NOT ongoing-build like methodology-research (FR/apex-research); (c) case-driven activation with domain-specific knowledge accumulation across cases. Repo structure with `cases/<slug>/` + `wiki/<category>/` from day 1. n=1 watch. Promotion trigger: a second similar team requesting same shape.
+
+[LEARNED — substrate, promotion-grade] **Dedicated adversary role with veto-weight asymmetry** — first-of-its-kind. Cicero is structurally independent (NOT TL-routed); writes `[ADVERSARY-FLAG]` on settled-confidence claims; Modestinus MUST address each in writing before T-2 (fold or rebut, never silently dismiss). Papinianus runs flag audit at T-3 as discipline-keeper. Modestinus + Cicero share `adversary-flags.md` (controlled write-collision; Papi mediates first round). Cicero psychology framing in his prompt: *"You are NOT a member of the prosecution; you are the team's voice for what the prosecution would say if it had Cicero arguing for it."* n=1 watch.
+
+[LEARNED — substrate] **Naming-heuristic inversion** (Celes's framing). When the team's domain has a directly-named tradition the team operates within (legal-research → Roman jurists), prefer that tradition over language-tiebreak naming. Inverse of esl-suvekool's "language-of-operational-context" rule. Two situational heuristics, not one universal.
+
+[LEARNED — substrate] **Roman-jurist roster as structurally-legible naming choice.** *Lex Citationis* assigned each named jurist a distinguishable disposition: Papinianus = synthesis vote (deciding vote when others disagreed), Paulus = doctrinal trenches (most-cited in the Digest), Ulpianus = framework architecture (Edict commentary), Modestinus = distilled digest (*Pandectae*/*Regulae*), Gaius = institutional structure (*Institutiones*). The historical role-dispositions map onto team-role specializations almost 1:1. Naming with a structurally-named tradition compounds.
+
+### Process learnings
+
+[LEARNED — process] **2-blocker + 3-NTH TL review pattern is the right calibration.** Surfaced 2 critical bugs that would have broken first session (mcp__teamwork__ prefix; Gaius missing Bash for git log) AND 3 structural improvements (repo-side inbox persistence; common-prompt case-bound brief path; Q3 file-split alignment). Same shape as S23 review on esl-suvekool. Promotable as TL-review-pattern.
+
+[LEARNED — process] **PO's "let Celes propose first" instruction on naming was correct.** Aen had a Roman-jurist fallback but PO wanted Celes's first cut. Celes converged on the same convention with deeper rationale (Lex Citationis structural fit, in-utramque-partem for adversary). When PO defers to a specialist for first-cut judgment, the specialist often improves on the fallback. Hold fallbacks in reserve; don't impose them preemptively.
+
+[LEARNED — process] **Workflow pattern S23 → S32 holds verbatim** (esl-suvekool + esl-legal). n=2. Promotable as the team-design pattern.
+
+### Cal queue additions from session 32 (5 new + 7 carried from S31)
+
+Session 32 new (all n=1 watch):
+1. **Long-lived per-domain research support unit** archetype
+2. **Dedicated adversary role with veto-weight asymmetry** (in-utramque-partem dedicated specialist, MUST-address-in-writing protocol, structurally independent reviewer NOT TL-routed)
+3. **Naming-heuristic inversion** — domain-named-tradition over language-tiebreak when domain has one
+4. **Brief-scope-conflation failure mode** — deliverable-scope vs team-lifespan distinction
+5. **Roman-jurist roster as structurally-legible naming choice** — historical role-disposition maps 1:1 onto team-role specialization
+6. **Team-design workflow pattern S23→S32** — promotable at n=2 (sixth candidate, also from this session)
+
+Carried from S31 (Brunel's parked queue, 7 items): SF-1, SF-2, SF-3, SF-4 (RFC #66 sub-findings), read-flag-replication external-CLI discipline, TaskGet-before-classify-as-noise procedural pattern, decorative-polling-interval anti-pattern.
+
+### Standing watch items going into session 33
+
+- **esl-legal session 1 outcomes** — did Papinianus bootstrap cleanly via `.claude/startup.md`? Did inbox-persist scripts work? Did Cicero's structural independence work in practice? Did Modestinus+Cicero shared-file first-round avoid write-collision? PO will tell us; do not poll.
+- **MCP availability at esl-legal session start** — Gmail MCP + Brilliant MCP must be configured for the fresh Claude session at `~/Documents/github/ESL/legal/`. Gaius hard-fails without both. PO should confirm before Papi spawns Gaius.
+- **Wiki growth-path watch** — Phase-2 gate at 15 statute-cards + 10 cross-case queries OR n=2 concurrent cases triggers Cal-style curator split proposal.
+- **TPS-583 (apex-research)** — when PO signals Ruth has progressed, action Stage-2 standard moves
+- **Brunel's 7-item Cal Protocol A queue dispatch** (carried from S31) — parked at Brunel's side; lands on his next spawn
+- **RFC #66 discussion author response** (carried from S31) — comment posted; watch for engagement
+- **apex-research Eratosthenes contact** (carried from S31) — dormant from FR's view
+- **`repo-as-durable-store-teamdelete-as-release-primitive.md` n=2 watch** (carried from S28)
+- **`cross-document-prose-procedure-drift.md` n=2 watch** (carried)
+- **Companion-Pair Submission n=3+ FR-instance watch** (carried from S30)
+- **Aalto/uikit-dev cross-team debt** — only on uikit-dev contact event
+- **esl-suvekool feedback loop** — when PO returns from Tobi sessions
+- **apex-research federation invocation** — first non-FR-non-apex team adopting federation-bootstrap-template
+- **Library-team architecture design** (carried from S31) — major downstream surface from RFC #66 substrate validation; touches Cal + Herald + Monte; Brunel + Volta downstream
+
+### NEXT-SESSION BOOT (re-orient instructions for S33)
+
+1. Read `startup.md` first (always). Steps 1-5 (Sync → Reset team state → Restore inboxes → Spawn — wait for PO direction).
+2. **Pull `mitselek/ai-teams` repo** for any external scratchpad updates.
+3. **Consider also pulling `mitselek/esl-legal`** if PO references session-1 work from there.
+4. **Don't pre-spawn any agent at session start.** Wait for PO direction.
+5. **If PO surfaces esl-legal session-1 feedback loop:** absorb any Papinianus-side [LEARNED] worth promoting upstream (similar to esl-suvekool S23→S26 fold). Possibly spawn Celes to revise prompts if a structural issue surfaced.
+6. **If PO surfaces library-team architecture design** (carried from S31 NEXT-SESSION BOOT §4): start with Cal first (master-librarian role + Protocol A/B/C generalization), then parallel Herald (envelope shapes) + Monte (service-team one-sided ACL + authority). Brunel/Volta downstream.
+7. **If PO surfaces Brunel-respawn:** 7-item Cal Protocol A queue parked at Brunel's side (carried from S31).
+8. **If PO surfaces apex-research follow-up:** Schliemann engaged via ghost-chat channel; user has direct comm.
+9. **First operational item if Cal-spawning:** route the 6 new wiki candidates from S32 via Protocol A, alongside any Brunel-queue items if he's spawned same window.
+
+(*FR:Aen*)
+
+---
+
 ## SESSION 31 WRAP — 2026-05-12 (RFC #66 substrate gate cleared cross-host; architecture decision + reference implementation shipped; PO reframe on Windows-substrate findings)
 
 **Goal (PO-set 13:48):** Evaluate RFC #66 (Ghost-Member Pattern, posted 2026-05-09 by PO) against existing FR artifacts. Mid-session pivoted to verify-on-substrate-before-design via cross-host PoC.
