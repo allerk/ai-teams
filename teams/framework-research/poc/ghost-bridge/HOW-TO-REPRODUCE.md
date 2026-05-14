@@ -21,18 +21,117 @@ Each side registers ONE ghost-member entry for the other team's lead in its rost
 
 ## Prerequisites — verify these BEFORE starting
 
-1. **You have cloned `mitselek/ai-teams`** and are running a Claude Code session in that repo (this is the framework-research team's repo).
-2. **`~/bin/rc-deployments.json` exists** with an `apex-research` deployment entry (the same registry used by the S31 `ghost-chat.py` PoC). It contains the SSH host/port/user/key for apex.
-3. **Python 3.7+ is on PATH.** Check with `python --version` (or `python3 --version`).
-4. **SSH key + auth to apex are pre-configured.** The path in `rc-deployments.json` must resolve.
-5. **Apex-side has already registered `fr-lead-ghost`** in their roster + runtime members[]. If you are doing a fresh apex bring-up too, you'll need to coordinate with apex's team-lead (Schliemann) to mirror these steps from his side. For this guide we assume apex is already set up.
-6. **The `apex-lead-ghost` entry is already in `teams/framework-research/roster.json`** (committed during S33). Verify with `git log --oneline -- teams/framework-research/roster.json | head -3`.
+Each prerequisite below carries a concrete verification command. Run them top to bottom; do not proceed if any fails. The daemon will fail at runtime in subtle ways if you skip a check.
 
-If any of (1)–(5) fails, stop and resolve before proceeding — the daemon will not be able to authenticate to apex otherwise.
+### P1 — Local clone of `mitselek/ai-teams`, with Claude Code rooted in it
+
+The repo is **private**. You need either GitHub CLI authentication (`gh auth login`) completed or an SSH key registered with your GitHub account that has org access.
+
+```bash
+# Verify GitHub access
+gh repo view mitselek/ai-teams 2>&1 | head -2
+# Should print the repo header. If you see "GraphQL: Could not resolve to a
+# Repository", request access from the org owner before continuing.
+
+# Clone if not already cloned
+mkdir -p ~/Documents/github
+cd ~/Documents/github
+git clone https://github.com/mitselek/ai-teams.git mitselek-ai-teams
+cd mitselek-ai-teams
+git pull   # if already cloned, ensure latest
+
+# Start (or restart) your Claude Code session with primary working directory
+# = the repo root: ~/Documents/github/mitselek-ai-teams
+# The framework-research startup skill is keyed off this path; starting Claude
+# anywhere else will not trigger the correct startup procedure.
+```
+
+### P2 — `~/bin/rc-deployments.json` with an `apex-research` entry
+
+This file is a per-machine SSH registry. It is **not in the repo** (it can hold machine-specific paths). You must create it on each new workstation. Concrete example with apex's real values (current as of S33):
+
+```bash
+mkdir -p ~/bin
+cat > ~/bin/rc-deployments.json <<'EOF'
+{
+  "hosts": {
+    "apex-tunnel": "100.96.54.170"
+  },
+  "deployments": [
+    {
+      "name": "apex-research",
+      "hostAlias": "apex-tunnel",
+      "port": 2222,
+      "user": "ai-teams",
+      "key": "~/.ssh/id_ed25519_apex"
+    }
+  ]
+}
+EOF
+```
+
+If apex's host / port / user / key path differs on your workstation, edit accordingly. The `key` path is tilde-expanded by Python; the file must exist at that location with `chmod 600` perms.
+
+### P3 — Python 3.7+ on PATH
+
+```bash
+python --version || python3 --version
+# Need 3.7 or higher. On Windows with Scoop: `scoop install python`.
+# On Ubuntu: `apt install python3` (typically already present).
+```
+
+### P4 — SSH key exists and reaches apex
+
+The private key file you specified in P2's `key` field must exist locally, and its public counterpart must be in apex's `~/.ssh/authorized_keys` for the configured `user`.
+
+```bash
+# Confirm the private key file
+ls -l ~/.ssh/id_ed25519_apex    # adjust to your P2 path
+# If missing: ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_apex
+# Then arrange (out of band) for the .pub to be added to apex authorized_keys.
+
+# End-to-end SSH check — this MUST succeed before proceeding
+ssh -i ~/.ssh/id_ed25519_apex -p 2222 -o StrictHostKeyChecking=accept-new \
+    ai-teams@100.96.54.170 'echo apex reachable'
+# Expected: "apex reachable" prints. Any timeout, permission error, or
+# "Permission denied (publickey)" means STOP — fix SSH first.
+```
+
+### P5 — Apex side has `fr-lead-ghost` registered
+
+For the original reproduction case (same human, multiple workstations), apex is already set up: Schliemann (apex's team-lead) registered `fr-lead-ghost` in apex's roster and runtime `members[]` on 2026-05-14. Verify:
+
+```bash
+ssh -i ~/.ssh/id_ed25519_apex -p 2222 ai-teams@100.96.54.170 \
+    'jq ".members[] | select(.name==\"fr-lead-ghost\")" ~/.claude/teams/apex-research/config.json'
+# Expected: a non-empty JSON object. If empty, coordinate with apex's
+# team-lead to add it before proceeding.
+```
+
+### P6 — `apex-lead-ghost` already in FR roster.json (committed S33)
+
+```bash
+# Run from the repo root
+jq '.members[] | select(.name=="apex-lead-ghost")' teams/framework-research/roster.json
+# Expected: a JSON object with agentType=ghost, backendType=ssh-bridge.
+# If empty, your clone is out of date — `git pull`.
+```
+
+### P7 — Framework-research startup completed in your current Claude session
+
+The cold-start path below assumes you have run the standard FR startup procedure (`teams/framework-research/startup.md` Steps 1–3): git pull, TeamDelete + TeamCreate, restore-inboxes. If you spawned the team-lead via the `framework-research-startup` skill, this is automatic.
+
+```bash
+# Confirm runtime team config exists
+ls -l ~/.claude/teams/framework-research/config.json
+# Expected: file exists and is non-empty.
+```
+
+If any of P1–P7 fails, stop and resolve before continuing.
 
 ## Cold-start path (recommended for a fresh session)
 
-This is the cleanest reproduction shape. If you have just spawned a new framework-research session and have run the standard startup procedure (`startup.md` Steps 1–3), proceed:
+With P1–P7 all verified, proceed:
 
 ```bash
 # Step 1: confirm apex-lead-ghost made it into runtime members[]
