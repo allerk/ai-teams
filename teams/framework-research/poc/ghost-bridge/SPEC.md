@@ -93,6 +93,7 @@ Both sides' harnesses create `inboxes/<ghost-name>.json` files naturally on next
 
 ```json
 {
+  "local_team": "framework-research",
   "watch_interval_s": 2.0,
   "pid_file": "ghost-bridge.pid",
   "log_file": "ghost-bridge.log",
@@ -115,8 +116,9 @@ Both sides' harnesses create `inboxes/<ghost-name>.json` files naturally on next
 }
 ```
 
+- **`local_team`** names the local Claude Code team. Drives all `$HOME/.claude/teams/<local_team>/inboxes/...` path resolution on the local side. Default if absent: `framework-research` (backward-compat for FR-deployed daemons).
 - **Deployment alias** resolves SSH host/port/user/key via `~/bin/rc-deployments.json` (existing PoC convention).
-- **Path resolution:** all `*_inbox` and `*_outbox_inbox` names map to `$HOME/.claude/teams/<team>/inboxes/<name>.json` on the respective side. `<team>` on the local side is `framework-research`; on the remote side is given by the deployment registry.
+- **Path resolution:** all `*_inbox` and `*_outbox_inbox` names map to `$HOME/.claude/teams/<team>/inboxes/<name>.json` on the respective side. `<team>` on the local side is `local_team` from this config; on the remote side is given by the deployment registry.
 - **`rewrite_from_to`** is the value the daemon writes into the `from` field on forward. See § Sender-identity rewrite.
 
 ---

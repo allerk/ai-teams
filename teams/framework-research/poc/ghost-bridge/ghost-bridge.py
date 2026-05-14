@@ -184,6 +184,9 @@ PYEOF
 
 
 # === Path helpers ===
+#
+# LOCAL_TEAM is overridden from config at Daemon init. Default kept for
+# backward-compat with configs that pre-date the local_team field.
 
 LOCAL_TEAM = "framework-research"
 
@@ -382,6 +385,11 @@ class Daemon:
         self.config = json.loads(config_path.read_text(encoding="utf-8"))
         self.watch_interval = float(self.config.get("watch_interval_s", DEFAULT_WATCH_INTERVAL_S))
 
+        # Override module-level LOCAL_TEAM from config (team-agnostic deployment).
+        # Backward-compat: missing field keeps the default "framework-research".
+        global LOCAL_TEAM
+        LOCAL_TEAM = self.config.get("local_team", LOCAL_TEAM)
+
         pid_file_str = self.config.get("pid_file", "ghost-bridge.pid")
         log_file_str = self.config.get("log_file", "ghost-bridge.log")
         # Resolve relative paths against the config file's directory (script-adjacent).
@@ -432,6 +440,7 @@ class Daemon:
     def run(self) -> int:
         self.log.info(
             f"ghost-bridge starting "
+            f"local_team={LOCAL_TEAM} "
             f"pair={self.pair['pair_name']} "
             f"remote={self.ssh_cfg['user']}@{self.ssh_cfg['host']}:{self.ssh_cfg['port']} "
             f"interval={self.watch_interval}s "

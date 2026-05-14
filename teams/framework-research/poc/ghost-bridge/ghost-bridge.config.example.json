@@ -1,5 +1,6 @@
 {
-  "_comment": "(*FR:Aen via coding-subagent*) — copy to ghost-bridge.config.json and edit. Paths in pid_file/log_file are resolved relative to this file's directory if not absolute.",
+  "_comment": "Copy to ghost-bridge.config.json and edit. local_team is the name of YOUR team (the one ~/.claude/teams/<local_team>/inboxes/ resolves to). Paths in pid_file/log_file are resolved relative to this file's directory if not absolute.",
+  "local_team": "framework-research",
   "watch_interval_s": 2.0,
   "pid_file": "ghost-bridge.pid",
   "log_file": "ghost-bridge.log",

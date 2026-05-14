@@ -1,260 +1,229 @@
-# Ghost-bridge MVP: reproduction guide
+# Ghost-bridge MVP: reproduction guide (any Claude Code team ↔ apex-research)
 
-**Audience:** a team-lead AI agent on a fresh Claude Code instance being prompted to reproduce the FR↔apex-research team-lead-to-team-lead comms bridge. Follow this from top to bottom; do not skip steps.
+**Audience:** a team-lead AI agent on a fresh Claude Code workstation, being prompted to bring up a ghost-bridge to apex-research. Your local team can be anything — `framework-research`, `your-team`, whatever. Follow top to bottom; do not skip steps.
 
-**Session of record:** S33 / 2026-05-14. Validated cross-host on Windows-Git-Bash (FR side) + Linux/Docker (apex side).
+**Session of record:** 2026-05-14. Validated cross-host on Windows-Git-Bash (FR side, n=1) + Linux/Docker (apex side, n=1).
 
 ## What this gives you
 
-After completing the steps below, you (the team-lead) will be able to:
+After completing the steps below:
 
-- Send messages to apex-research's team-lead (`Schliemann`) via your native `SendMessage` tool. Target name: `apex-lead-ghost`.
-- Receive replies as `<teammate-message teammate_id="apex-lead-ghost">` events in your conversation — indistinguishable from any other native FR teammate inbound.
-- End-to-end latency ~2–3 seconds (one poll cycle of the bridge daemon).
-- Permanent channel for the duration of your Claude session.
+- You can `SendMessage` natively to a name that represents apex's team-lead. The target name is whatever YOU and apex have agreed on (placeholder: `<APEX_GHOST>`).
+- Apex's team-lead can `SendMessage` natively to a name that represents YOU. The target name (from apex's side) is whatever you agreed on (placeholder: `<MY_GHOST>`).
+- Messages surface in your conversation as native `<teammate-message>` events.
+- ~2–3 second end-to-end latency per direction.
+- Channel lasts as long as your daemon process runs.
 
-No reverse SSH server. No central message hub. Sketch-grade artifact (`teams/framework-research/poc/ghost-bridge/`), substrate-validated.
+No reverse SSH server. No central message hub. Sketch-grade artifact, substrate-validated.
+
+## What you coordinate with apex first
+
+These two items are **out of band** — they require human or AI-team coordination with apex's team-lead before this guide is useful:
+
+1. **SSH access to apex.** A keypair with the public half in apex's `~/.ssh/authorized_keys`, and the private half on this workstation. The article assumes you already have this.
+2. **Ghost-name agreement.** Pick two names, agreed between you and apex's team-lead:
+   - `<APEX_GHOST>` — what YOU call apex's lead in YOUR roster + as your SendMessage target.
+   - `<MY_GHOST>` — what apex calls YOU in their roster + as their SendMessage target.
+   These are arbitrary strings; they don't need to be symmetric or descriptive. Example pair: `apex-lead-ghost` (locally) ↔ `fr-lead-ghost` (on apex side).
+
+Once both are settled, proceed.
 
 ## Architecture in one paragraph
 
-Each side registers ONE ghost-member entry for the other team's lead in its roster (apex-lead-ghost on FR; fr-lead-ghost on apex). A single daemon (`ghost-bridge.py`) runs on **your** host and does both directions: it watches your local `apex-lead-ghost.json` outbox for `SendMessage` writes and SSH-forwards them to apex's real `team-lead` inbox; in the reverse direction it SSH-polls apex's `fr-lead-ghost.json` outbox and writes inbound messages to your local `team-lead.json` inbox. Sender-identity is rewritten on forward so each side sees the other's local ghost label as the sender. Substrate property: the Claude Code harness watches inbox JSON files; any write triggers wake on the recipient.
+Each side registers ONE ghost-member entry in its own runtime `config.json` `members[]` representing the other team's lead. A single daemon (`ghost-bridge.py`) runs on YOUR host and does both directions: watches your local `<APEX_GHOST>.json` outbox for `SendMessage` writes, SSH-forwards them to apex's real `team-lead` inbox; in reverse, SSH-polls apex's `<MY_GHOST>.json` outbox and writes inbound messages to your local `team-lead.json` inbox. Sender-identity is rewritten on forward so each side sees the other side's local ghost label as the sender. Substrate property: the Claude Code harness watches inbox JSON files; any write triggers wake on the recipient.
 
-## Prerequisites — verify these BEFORE starting
+## Prerequisites (bare minimum)
 
-Each prerequisite below carries a concrete verification command. Run them top to bottom; do not proceed if any fails. The daemon will fail at runtime in subtle ways if you skip a check.
-
-### P1 — Local clone of `mitselek/ai-teams`, with Claude Code rooted in it
-
-The repo is **private**. You need either GitHub CLI authentication (`gh auth login`) completed or an SSH key registered with your GitHub account that has org access.
+### P1 — Python 3.7+ on PATH
 
 ```bash
-# Verify GitHub access
-gh repo view mitselek/ai-teams 2>&1 | head -2
-# Should print the repo header. If you see "GraphQL: Could not resolve to a
-# Repository", request access from the org owner before continuing.
-
-# Clone if not already cloned
-mkdir -p ~/Documents/github
-cd ~/Documents/github
-git clone https://github.com/mitselek/ai-teams.git mitselek-ai-teams
-cd mitselek-ai-teams
-git pull   # if already cloned, ensure latest
-
-# Start (or restart) your Claude Code session with primary working directory
-# = the repo root: ~/Documents/github/mitselek-ai-teams
-# The framework-research startup skill is keyed off this path; starting Claude
-# anywhere else will not trigger the correct startup procedure.
+python --version || python3 --version
+# Need 3.7 or higher.
 ```
 
-### P2 — `~/bin/rc-deployments.json` with an `apex-research` entry
+### P2 — SSH key file exists and reaches apex
 
-This file is a per-machine SSH registry. It is **not in the repo** (it can hold machine-specific paths). You must create it on each new workstation. Concrete example with apex's real values (current as of S33):
+The private key file you'll point to in P4 must exist locally with `chmod 600`. End-to-end check:
+
+```bash
+# Replace path / host / port / user with your actual values
+ssh -i ~/.ssh/<your_apex_key> -p <port> -o StrictHostKeyChecking=accept-new \
+    <user>@<apex-host> 'echo apex reachable'
+# Expected: "apex reachable" prints. Any timeout, permission error, or
+# "Permission denied (publickey)" means STOP — fix SSH before proceeding.
+```
+
+### P3 — `~/bin/rc-deployments.json` registry with an apex deployment entry
+
+The daemon resolves apex's SSH details via this registry. Create the file with the values you used in P2:
 
 ```bash
 mkdir -p ~/bin
 cat > ~/bin/rc-deployments.json <<'EOF'
 {
   "hosts": {
-    "apex-tunnel": "100.96.54.170"
+    "apex-tunnel": "<apex-host>"
   },
   "deployments": [
     {
       "name": "apex-research",
       "hostAlias": "apex-tunnel",
-      "port": 2222,
-      "user": "ai-teams",
-      "key": "~/.ssh/id_ed25519_apex"
+      "port": <port>,
+      "user": "<user>",
+      "key": "~/.ssh/<your_apex_key>"
     }
   ]
 }
 EOF
 ```
 
-If apex's host / port / user / key path differs on your workstation, edit accordingly. The `key` path is tilde-expanded by Python; the file must exist at that location with `chmod 600` perms.
+If you already have other deployments in this file, add to the `deployments` array rather than overwriting.
 
-### P3 — Python 3.7+ on PATH
+### P4 — Your Claude Code team exists and is running
 
-```bash
-python --version || python3 --version
-# Need 3.7 or higher. On Windows with Scoop: `scoop install python`.
-# On Ubuntu: `apt install python3` (typically already present).
-```
-
-### P4 — SSH key exists and reaches apex
-
-The private key file you specified in P2's `key` field must exist locally, and its public counterpart must be in apex's `~/.ssh/authorized_keys` for the configured `user`.
+You have an active Claude Code team (any name — placeholder: `<YOUR_TEAM>`). `TeamCreate` has run; runtime files exist:
 
 ```bash
-# Confirm the private key file
-ls -l ~/.ssh/id_ed25519_apex    # adjust to your P2 path
-# If missing: ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_apex
-# Then arrange (out of band) for the .pub to be added to apex authorized_keys.
-
-# End-to-end SSH check — this MUST succeed before proceeding
-ssh -i ~/.ssh/id_ed25519_apex -p 2222 -o StrictHostKeyChecking=accept-new \
-    ai-teams@100.96.54.170 'echo apex reachable'
-# Expected: "apex reachable" prints. Any timeout, permission error, or
-# "Permission denied (publickey)" means STOP — fix SSH first.
+ls -l ~/.claude/teams/<YOUR_TEAM>/config.json
+ls -d ~/.claude/teams/<YOUR_TEAM>/inboxes/
+# Both must exist and be non-empty.
 ```
 
-### P5 — Apex side has `fr-lead-ghost` registered
+### P5 — The daemon's four files on your local disk
 
-For the original reproduction case (same human, multiple workstations), apex is already set up: Schliemann (apex's team-lead) registered `fr-lead-ghost` in apex's roster and runtime `members[]` on 2026-05-14. Verify:
+The daemon's source lives in the `mitselek/ai-teams` repo (private). Acquire the four files. Simplest: clone the repo, copy what you need.
 
 ```bash
-ssh -i ~/.ssh/id_ed25519_apex -p 2222 ai-teams@100.96.54.170 \
-    'jq ".members[] | select(.name==\"fr-lead-ghost\")" ~/.claude/teams/apex-research/config.json'
-# Expected: a non-empty JSON object. If empty, coordinate with apex's
-# team-lead to add it before proceeding.
+# Clone somewhere (anywhere — the daemon doesn't care)
+gh repo clone mitselek/ai-teams /tmp/ai-teams
+# Or if not gh-authenticated yet:
+#   gh auth login
+# Then clone.
+
+# Choose your own working dir for the daemon — pick anything writable
+mkdir -p ~/ghost-bridge
+cp /tmp/ai-teams/teams/framework-research/poc/ghost-bridge/ghost-bridge.py     ~/ghost-bridge/
+cp /tmp/ai-teams/teams/framework-research/poc/ghost-bridge/start-ghost-bridge.sh ~/ghost-bridge/
+cp /tmp/ai-teams/teams/framework-research/poc/ghost-bridge/stop-ghost-bridge.sh  ~/ghost-bridge/
+cp /tmp/ai-teams/teams/framework-research/poc/ghost-bridge/ghost-bridge.config.example.json ~/ghost-bridge/
+chmod +x ~/ghost-bridge/*.sh
 ```
 
-### P6 — `apex-lead-ghost` already in FR roster.json (committed S33)
+## Step 1 — Register `<APEX_GHOST>` in your team's runtime members[]
 
-```bash
-# Run from the repo root
-jq '.members[] | select(.name=="apex-lead-ghost")' teams/framework-research/roster.json
-# Expected: a JSON object with agentType=ghost, backendType=ssh-bridge.
-# If empty, your clone is out of date — `git pull`.
-```
-
-### P7 — Framework-research startup completed in your current Claude session
-
-The cold-start path below assumes you have run the standard FR startup procedure (`teams/framework-research/startup.md` Steps 1–3): git pull, TeamDelete + TeamCreate, restore-inboxes. If you spawned the team-lead via the `framework-research-startup` skill, this is automatic.
-
-```bash
-# Confirm runtime team config exists
-ls -l ~/.claude/teams/framework-research/config.json
-# Expected: file exists and is non-empty.
-```
-
-If any of P1–P7 fails, stop and resolve before continuing.
-
-## Cold-start path (recommended for a fresh session)
-
-With P1–P7 all verified, proceed:
-
-```bash
-# Step 1: confirm apex-lead-ghost made it into runtime members[]
-jq '.members[] | select(.name=="apex-lead-ghost")' ~/.claude/teams/framework-research/config.json
-# Expected: a JSON object. If empty, TeamCreate didn't see your roster update;
-# fall through to the mid-session-add path below.
-
-# Step 2: stage the live daemon config
-cd teams/framework-research/poc/ghost-bridge
-cp ghost-bridge.config.example.json ghost-bridge.config.json
-# Inspect — defaults assume pair_name=fr-apex / deployment=apex-research /
-# both ghosts named *-lead-ghost. Edit only if your setup differs.
-
-# Step 3: launch the daemon
-./start-ghost-bridge.sh
-# Expected: "ghost-bridge started (PID nnn). Log: .../ghost-bridge.log"
-
-# Step 4: confirm idle health
-sleep 3
-tail -5 ghost-bridge.log
-# Expected: one INFO line about startup. Possibly one WARN about
-# "local outbox file not yet present" — harmless; the harness will
-# create it on your first SendMessage.
-
-# Step 5: send your first message via native SendMessage
-# (This is a tool call, not a shell command. Use your SendMessage tool with:)
-#   to: apex-lead-ghost
-#   summary: hello-world from reproduction guide
-#   message: "Hello Schliemann — this is <your-host-id> reproducing the bridge."
-
-# Step 6: confirm forward
-sleep 3
-tail -3 ghost-bridge.log
-# Expected: a new INFO line "outbound: forwarded -> apex-research:team-lead"
-
-# Step 7: wait for return
-# Schliemann's reply (if he sends one) will surface in your conversation as
-# <teammate-message teammate_id="apex-lead-ghost">. Daemon log will show an
-# "inbound: received <- apex-research:fr-lead-ghost" line just before.
-```
-
-If all seven steps pass, the bridge is operational. Stop here for the happy path.
-
-## Mid-session-add path (advanced, for sessions where TeamCreate already ran without apex-lead-ghost)
-
-If Step 1 above returned empty — i.e., your TeamCreate ran before `apex-lead-ghost` was in roster.json, so the runtime `config.json` doesn't have it in `members[]` — you have two options:
-
-**Option A — restart the team session** (cleanest, ~30s cost):
-
-```bash
-# Inside your Claude conversation, invoke:
-#   TeamDelete()
-#   TeamCreate(team_name="framework-research")
-# Then re-run restore-inboxes.sh. Then return to "Cold-start path" Step 2 above.
-```
-
-**Option B — runtime members[] edit** (substrate property, no restart):
-
-This is the substrate finding canonicalized in S33: the harness honors plain JSON file edits to runtime `config.json`'s `members[]` array on demand, without restart or special API. To add `apex-lead-ghost` live:
-
-```bash
-# Make a backup, then edit ~/.claude/teams/framework-research/config.json to
-# append this entry to the members[] array:
-```
+Edit `~/.claude/teams/<YOUR_TEAM>/config.json` to append this entry to the `members[]` array (substitute your actual `<APEX_GHOST>` name):
 
 ```json
 {
-  "agentId": "apex-lead-ghost@framework-research",
-  "name": "apex-lead-ghost",
+  "agentId": "<APEX_GHOST>@<YOUR_TEAM>",
+  "name": "<APEX_GHOST>",
   "agentType": "ghost",
   "backendType": "ssh-bridge",
   "color": "white",
   "isActive": false,
-  "joinedAt": 1778675075758,
+  "joinedAt": 0,
   "tmuxPaneId": "",
   "cwd": "",
   "subscriptions": []
 }
 ```
 
-Adjust `joinedAt` to a sensible epoch-ms (any value works; the harness doesn't validate). Save the file. Your next `SendMessage(to="apex-lead-ghost", ...)` call will succeed — the harness re-reads `members[]` on demand.
+The harness honors this edit on the next `SendMessage` call — no restart needed. (Substrate property: plain JSON file edits to runtime `config.json` `members[]` are read on demand.)
 
-Then proceed to "Cold-start path" Step 2.
-
-## Required apex-side prep (for completeness — usually already done)
-
-If apex doesn't already have `fr-lead-ghost` registered:
-
-1. Apex must add an `fr-lead-ghost` entry to `roster.json` (apex-research repo). Minimal shape:
-   ```json
-   { "name": "fr-lead-ghost", "agentType": "ghost", "backendType": "ssh-bridge" }
-   ```
-2. Apex must run TeamCreate (or use the mid-session-add pattern above on their side) so `fr-lead-ghost` lands in their runtime `members[]`.
-3. No daemon on apex side — your daemon does both directions via SSH from your host.
-
-Coordinate with apex's team-lead via existing channels (the previous PoC's `ghost-chat.py` is one option; alternatively any user-mediated relay).
-
-## Validation tests
-
-Run these in sequence after Step 7 above completes:
-
-### Test 1 — outbound (you → apex)
-
-Send a message via `SendMessage(to="apex-lead-ghost", message="test outbound", summary="outbound smoke")`. Within ~3 seconds:
-
-- Daemon log gains an `outbound: forwarded -> apex-research:team-lead` line.
-- Local `~/.claude/teams/framework-research/inboxes/apex-lead-ghost.json` shows the entry with `read: true`.
-- (Optional independent verification) SSH to apex and `tail -c 800 ~/.claude/teams/apex-research/inboxes/team-lead.json` — the entry should be there with `from: fr-lead-ghost`.
-
-### Test 2 — inbound (apex → you)
-
-Ask Schliemann (apex's team-lead) to send you a ping via his `SendMessage(to="fr-lead-ghost", ...)`. Within ~3 seconds:
-
-- Daemon log gains an `inbound: received <- apex-research:fr-lead-ghost` line.
-- The message surfaces in your Claude conversation as `<teammate-message teammate_id="apex-lead-ghost">`. The `from` field has been rewritten to `apex-lead-ghost` (your local label for apex's lead).
-
-### Test 3 — clean shutdown
+Verify:
 
 ```bash
-cd teams/framework-research/poc/ghost-bridge
+jq '.members[] | select(.name=="<APEX_GHOST>")' ~/.claude/teams/<YOUR_TEAM>/config.json
+# Expected: non-empty JSON object.
+```
+
+## Step 2 — Configure the daemon
+
+```bash
+cd ~/ghost-bridge
+cp ghost-bridge.config.example.json ghost-bridge.config.json
+```
+
+Edit `ghost-bridge.config.json`. Replace `local_team` with `<YOUR_TEAM>`. Replace the ghost names in the single `pairs[0]` block with your `<APEX_GHOST>` and `<MY_GHOST>`. The block ends up looking like:
+
+```json
+{
+  "local_team": "<YOUR_TEAM>",
+  "watch_interval_s": 2.0,
+  "pid_file": "ghost-bridge.pid",
+  "log_file": "ghost-bridge.log",
+  "pairs": [
+    {
+      "pair_name": "me-apex",
+      "remote_deployment_alias": "apex-research",
+      "local_to_remote": {
+        "local_outbox_inbox": "<APEX_GHOST>",
+        "remote_inbox": "team-lead",
+        "rewrite_from_to": "<MY_GHOST>"
+      },
+      "remote_to_local": {
+        "remote_outbox_inbox": "<MY_GHOST>",
+        "local_inbox": "team-lead",
+        "rewrite_from_to": "<APEX_GHOST>"
+      }
+    }
+  ]
+}
+```
+
+- `remote_inbox: "team-lead"` assumes apex's team-lead is registered under the conventional name `team-lead`. If apex uses a different name for their lead, ask Schliemann and substitute.
+- `local_inbox: "team-lead"` similarly assumes YOUR team-lead is at `~/.claude/teams/<YOUR_TEAM>/inboxes/team-lead.json`. If your team-lead's roster name differs, substitute.
+
+## Step 3 — Apex side: ensure `<MY_GHOST>` is registered there
+
+This step is performed by apex's team-lead, not you. Confirm it has been done before proceeding:
+
+```bash
+ssh -i ~/.ssh/<your_apex_key> -p <port> <user>@<apex-host> \
+    "jq '.members[] | select(.name==\"<MY_GHOST>\")' ~/.claude/teams/apex-research/config.json"
+# Expected: non-empty JSON object.
+```
+
+If the result is empty, ping apex's team-lead and ask them to add it (any minimal shape works — apex chooses their own fields).
+
+## Step 4 — Start the daemon
+
+```bash
+cd ~/ghost-bridge
+./start-ghost-bridge.sh
+# Expected: "ghost-bridge started (PID nnn). Log: .../ghost-bridge.log"
+
+sleep 3
+tail -10 ghost-bridge.log
+# Expected: INFO line "ghost-bridge starting local_team=<YOUR_TEAM> pair=me-apex ..."
+# Possibly one WARN about "local outbox file not yet present" — harmless; the
+# harness creates it on your first SendMessage.
+```
+
+## Step 5 — Test outbound (you → apex)
+
+Use your `SendMessage` tool:
+
+- `to: <APEX_GHOST>`
+- `summary: hello world from <YOUR_TEAM>`
+- `message: "Hello apex — <YOUR_TEAM> reproducing the bridge."`
+
+Within ~3 seconds, daemon log should add an `outbound: forwarded -> apex-research:team-lead` line, and the local entry in `~/.claude/teams/<YOUR_TEAM>/inboxes/<APEX_GHOST>.json` should flip to `read: true`.
+
+## Step 6 — Test inbound (apex → you)
+
+Ask apex's team-lead to send you a ping: `SendMessage(to="<MY_GHOST>", ...)`. Within ~3 seconds:
+
+- Daemon log gains an `inbound: received <- apex-research:<MY_GHOST>` line.
+- The message surfaces in your Claude conversation as `<teammate-message teammate_id="<APEX_GHOST>">`. The `from` field has been rewritten to `<APEX_GHOST>` (your local label for apex's lead).
+
+## Step 7 — Clean shutdown (when done)
+
+```bash
+cd ~/ghost-bridge
 ./stop-ghost-bridge.sh
 # Expected on Linux: "ghost-bridge stopped cleanly." + PID file removed.
-# Expected on Windows-Git-Bash: see caveats section below.
+# Windows-Git-Bash users: see caveats below.
 ```
 
 ## Caveats
@@ -268,14 +237,14 @@ cd teams/framework-research/poc/ghost-bridge
 
 2. **SIGTERM via MSYS doesn't run Python's `finally`.** Process IS terminated; the graceful-shutdown log line is missing. Cosmetic only — data plane unaffected.
 
-Both are absent on Linux/Ubuntu (the framework's target deploy substrate). See `README.md § Windows local-dev caveats` for details.
+Both are absent on Linux/Ubuntu.
 
-### Acknowledged design limitations (v1, by design)
+### Design limitations (v1, by design)
 
 - No supervisor — daemon dies → all comms stop until restart.
-- Race on FR-local read-flag flip (no fcntl on FR side). Rare in practice.
+- Race on local read-flag flip (no fcntl on local side). Rare in practice.
 - Polling latency: up to 2s reply-arrival.
-- Sender-rewrite drops original sender — `from` is always rewritten to the local-side ghost label.
+- Sender-rewrite drops original sender — `from` is always rewritten to the local-side ghost label, never preserves the underlying apex-side agent name.
 - Single-pair coded — config supports a list; v1 implementation only uses `pairs[0]`.
 
 Full list in `SPEC.md § Known limitations`.
@@ -284,18 +253,18 @@ Full list in `SPEC.md § Known limitations`.
 
 Two empirical properties of the Claude Code harness that this MVP is built on:
 
-1. **Inbox-file-write as wake mechanism** — writing to a JSON inbox file the harness watches wakes the recipient agent. Validated S31 cross-host PoC.
-2. **Inbox-file-write as registration mechanism** — plain JSON edits to runtime `config.json`'s `members[]` array are honored by the harness on demand, without restart or special API. Validated S33, n=2 (FR-Windows + apex-Linux).
+1. **Inbox-file-write as wake mechanism** — writing to a JSON inbox file the harness watches wakes the recipient agent. (`wiki/references/inbox-file-write-as-wake-mechanism.md`.)
+2. **Inbox-file-write as registration mechanism** — plain JSON edits to runtime `config.json`'s `members[]` array are honored by the harness on demand, without restart or special API. n=2 cross-substrate. (`wiki/references/members-array-edit-honored-mid-session.md`.)
 
 Both reduce to: *the right JSON file edit, in the right place, is the substrate primitive that does the work.*
 
-## Citations
+## Citations (in `mitselek/ai-teams` repo)
 
 - `teams/framework-research/poc/ghost-bridge/SPEC.md` — full design spec
 - `teams/framework-research/poc/ghost-bridge/README.md` — operational + caveats
 - `teams/framework-research/poc/ghost-member-cli/ghost-chat.py` — S31 PoC, source of substrate primitives (APPEND_INBOX_SCRIPT, FETCH_AND_MARK_READ_SCRIPT)
-- `teams/framework-research/wiki/references/inbox-file-write-as-wake-mechanism.md` — wake-substrate property reference
-- (Forthcoming) `teams/framework-research/wiki/references/inbox-file-write-as-registration-mechanism.md` — registration-substrate property reference, canonicalized by Cal during S33
+- `teams/framework-research/wiki/references/inbox-file-write-as-wake-mechanism.md`
+- `teams/framework-research/wiki/references/members-array-edit-honored-mid-session.md`
 
 ---
 
