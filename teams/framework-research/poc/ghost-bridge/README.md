@@ -154,6 +154,19 @@ grep "received <-"  ghost-bridge.log   # inbound deliveries
 grep -E "ERROR|WARN" ghost-bridge.log  # all anomalies
 ```
 
+## Windows local-dev caveats
+
+Validated end-to-end on 2026-05-14 with FR on Windows-Git-Bash + apex on Linux container. The daemon's data plane works correctly; the control plane (start/stop scripts) has two substrate frictions on this combination. These are **local-dev only**, not framework findings — Linux deploy substrate behaves as designed.
+
+1. **Win32 vs POSIX PID mismatch.** Python's `os.getpid()` returns the Win32 PID; MSYS `kill -0` / `ps -ef` operate on POSIX PIDs. The daemon writes its Win32 PID to `ghost-bridge.pid`; `stop-ghost-bridge.sh` checks via MSYS → "not alive" → removes the PID file as stale → daemon keeps running. **Workaround:**
+   ```bash
+   ps -ef | grep '[g]host-bridge.py' | awk '{print $2}' | xargs -r kill -TERM
+   ```
+
+2. **SIGTERM via MSYS doesn't run Python's `finally`.** The graceful-shutdown log line (`ghost-bridge stopping — cycles=N forwarded=N received=N`) doesn't get written. The process IS terminated; just no closing log. Last line of `ghost-bridge.log` will be the most recent message event, not a shutdown summary.
+
+Both behave correctly on Linux/Ubuntu substrate (the framework's target deploy environment).
+
 ## Known limitations (v1)
 
 Inherited from `SPEC.md § Known limitations`:
