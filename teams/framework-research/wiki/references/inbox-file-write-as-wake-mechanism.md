@@ -4,7 +4,7 @@ source-agents:
 source-team: comms-dev
 discovered: 2026-05-12
 filed-by: librarian
-last-verified: 2026-05-12
+last-verified: 2026-05-14
 status: active
 confidence: high
 source-files: []
@@ -13,9 +13,15 @@ source-issues:
   - "66"
 ttl: 2026-11-12
 related:
+  - references/members-array-edit-honored-mid-session.md
   - patterns/worktree-spawn-asymmetry-message-delivery.md
   - gotchas/inbox-drained-on-spawn-clear-without-deliver.md
   - patterns/substrate-invariant-mismatch.md
+  - patterns/ghost-member-as-universal-integration-surface.md
+  - patterns/service-team-topology.md
+amendments:
+  - date: 2026-05-14
+    note: "Companion-pair sibling filed (`references/members-array-edit-honored-mid-session.md`); substrate scope strengthened by parallel n=2 verification on Linux/Docker (apex-research) confirming POSIX-equivalence in practice, not just by extrapolation."
 ---
 
 # Inbox-File-Write IS the Wake Mechanism
@@ -43,9 +49,11 @@ Reference artifacts (RFC #66):
 
 ## Substrate scope
 
-**Tested on:** macOS Darwin 25.4.0.
+**Tested on:** macOS Darwin 25.4.0 (RFC #66 sandbox); Linux/Docker (apex-research 2026-05-14); Windows-Git-Bash (framework-research 2026-05-14).
 
 **Expected to behave identically on:** Linux (POSIX-standard `atomic rename` + fsnotify-style watching). This is the deployment-target family — production substrate is Linux/Ubuntu (with possibly lighter Linux variants for some components, per PO clarification 2026-05-12). The harness runs in Linux containers; agent-observed substrate semantics are POSIX.
+
+**Linux substrate verified 2026-05-14**: parallel cross-substrate verification with [`members-array-edit-honored-mid-session.md`](members-array-edit-honored-mid-session.md) (n=2 cross-substrate) included observing wake-on-file-write on Linux/Docker in apex-research (ghost-bridge daemon side picked up an inbox-write and forwarded to FR). Wake mechanism on Linux is now empirically verified, not just POSIX-extrapolated.
 
 **Untested-and-out-of-scope:** Windows. The RFC author flagged a gap at write-site (`os.rename` under NTFS + Windows change-notification model differ from POSIX), but Windows is NOT a deployment target in any production scenario — only a local-dev environment that may persist for months but is temporary. The flag is curatorial-grade information about the RFC author's testing scope, not a framework-design correctness concern for FR.
 
@@ -84,6 +92,7 @@ This is an **architectural-fact entry** (per FR's `architectural-fact entries: c
 
 ## Related
 
+- [`references/members-array-edit-honored-mid-session.md`](members-array-edit-honored-mid-session.md) — **companion-pair sibling.** Names the dispatch-validation stage substrate property (mid-session edits to `members[]` honored on the next `SendMessage` call). This entry names the recipient-wake stage. Both together cover the substrate dependencies a ghost-pair carries. Bidirectional cross-link load-bearing: registration without wake is a dead-letter address; wake without registration has no addressable target.
 - [`patterns/ghost-member-as-universal-integration-surface.md`](../patterns/ghost-member-as-universal-integration-surface.md) — the abstraction this substrate enables: a teammate is name + inbox file, so anything that writes/reads those files can be a teammate.
 - [`patterns/service-team-topology.md`](../patterns/service-team-topology.md) — a team whose members are ghost representations of the teams it serves. Builds on this substrate property + the ghost-member abstraction.
 - [`patterns/worktree-spawn-asymmetry-message-delivery.md`](../patterns/worktree-spawn-asymmetry-message-delivery.md) — failure mode where the file-write invariant breaks under worktree-mount-decomposition.

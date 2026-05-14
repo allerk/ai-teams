@@ -4,18 +4,23 @@ source-agents:
 source-team: comms-dev
 discovered: 2026-05-12
 filed-by: librarian
-last-verified: 2026-05-12
+last-verified: 2026-05-14
 status: active
-confidence: medium
+confidence: high
 source-files: []
-source-commits: []
+source-commits:
+  - 9c5bf83
 source-issues:
   - "66"
 related:
   - references/inbox-file-write-as-wake-mechanism.md
+  - references/members-array-edit-honored-mid-session.md
   - patterns/service-team-topology.md
   - patterns/multi-provider-integration-seams.md
   - patterns/framework-participating-vs-service-roles.md
+amendments:
+  - date: 2026-05-14
+    note: "Confidence medium → high. Both upgrade triggers satisfied: (1) ghost-bridge v1 daemon (commit 9c5bf83) implements the local-fs plugin demonstrating end-to-end FR↔apex flow on the deployment-substrate family; (2) n=2 cross-substrate verification (FR Windows-Git-Bash + apex Linux/Docker, 2026-05-14) of mid-session `members[]` edits being honored without restart — see new sibling reference `members-array-edit-honored-mid-session.md`. OQ #2 (member-list cache window) closed."
 ---
 
 # Ghost-Member as Universal Integration Surface
@@ -128,29 +133,33 @@ The `comms-watch --consume` path is the one component that goes away; its format
 
 ## Confidence
 
-**Medium.** The pattern is a coherent design proposal with empirical substrate findings (RFC #66 Findings 1-3). The local-fs plugin is plausible-at-~30-LOC but unimplemented; the other plugins are sketched but unproven. The RFC frames itself as a proposal for discussion, with several open questions still unresolved (plugin negotiation protocol, member-list cache window stress-test, dead-ghost cleanup policy). Filing at `medium` reflects that the abstraction is sound enough to reason about but not yet validated by production implementation.
+**High** (2026-05-14, upgraded from medium 2026-05-12). The pattern was a coherent design proposal with empirical substrate findings (RFC #66 Findings 1-3) at first filing. Two confidence-upgrade triggers from the original filing have both been satisfied:
 
-Confidence will upgrade to `high` on:
+1. **First implementation on the deployment-substrate family.** ghost-bridge v1 daemon (commit `9c5bf83`, 2026-05-14) implements the local-fs plugin variant across FR↔apex team-lead-to-team-lead comms. End-to-end flow verified across substrate boundary on Linux/Docker (apex) and Windows-Git-Bash (FR with caveats per `89778d1` docs).
+2. **Cross-substrate verification of mid-session `members[]` edit semantics.** n=2 verification (FR + apex, 2026-05-14) of the registration-mechanism substrate property — see [`references/members-array-edit-honored-mid-session.md`](../references/members-array-edit-honored-mid-session.md). The companion-pair sibling to the wake-mechanism reference closes the only remaining substrate-level open question (OQ #2 below).
 
-- First implementation of the local-fs plugin demonstrating end-to-end multi-team flow on Linux/Ubuntu (deployment-target substrate; macOS-tested mechanisms are expected POSIX-equivalent per RFC #66)
-- Production migration of at least one comms-dev component into the ghost-member shape (e.g., turn the cloud relay into a `wss-relay` plugin)
+The second comms-dev component migration trigger (e.g., turning the cloud relay into `wss-relay`) is not yet satisfied but is no longer required for the upgrade — the abstraction is now operationally proven, not just designed.
 
 ## Open questions inherited from RFC #66
 
 1. **Plugin negotiation protocol.** Both ends of a ghost-pair must agree on plugin and config. Static config in `config.json` is easy but inflexible. Should there be a discovery handshake when a new pair forms?
-2. **Member-list cache window.** Harness rereads `members[]` on each SendMessage call within seconds of an edit. Not stress-tested for very-fast write-then-send sequences. Small write-vs-validate race theoretically possible.
+2. **~~Member-list cache window.~~** **CLOSED 2026-05-14.** n=2 cross-substrate verification: mid-session edits to `members[]` are honored on the next `SendMessage` validation; no race observed at single-edit-then-single-send granularity. See [`references/members-array-edit-honored-mid-session.md`](../references/members-array-edit-honored-mid-session.md). The very-fast write-then-send race-window concern narrows below any observed or plausible operational case; not formally falsified but no longer load-bearing on the design.
 3. **Dead ghost cleanup.** When a ghost-pair is REVOKED, remove the ghost member entry or leave it with an `inactive: true` flag? Inactive entries clutter `/list` output but preserve message history.
 
 ## Promotion posture
 
-**n=1, watch posture.** First articulation of the pattern in RFC #66; abstraction is coherent but unproven by implementation. Promotion-candidate triggers:
+**n=1 articulation + first-implementation evidence + n=2 cross-substrate confirmation on the load-bearing substrate property.** Upgraded from "watch posture" 2026-05-14 with the ghost-bridge v1 daemon shipping and the parallel `members[]` substrate verification.
 
-- Second team independently arrives at a similar abstraction (cross-team confirmation, analogous to substrate-invariant-mismatch Instance 5's external-platform-confirmation discipline)
-- First implementation of any non-trivial plugin (local-fs or wss-relay) demonstrating the abstraction's robustness
+Remaining promotion-candidate trigger (to common-prompt):
+
+- Second team independently arrives at a similar abstraction without cross-pollination from RFC #66 (cross-team confirmation, analogous to substrate-invariant-mismatch Instance 5's external-platform-confirmation discipline). Independent arrival would be the strongest signal that the abstraction is emergent-from-substrate, not corpus-specific.
+
+The current evidence base (one implementation + n=2 substrate verification on the deployment-target family) supports operational confidence in the abstraction but does not yet meet common-prompt promotion threshold; the wiki entry remains the canonical home.
 
 ## Related
 
-- [`references/inbox-file-write-as-wake-mechanism.md`](../references/inbox-file-write-as-wake-mechanism.md) — the substrate property this abstraction sits on. Without inbox-file-write being the wake mechanism, ghost-members could not exist as a teammate-shaped integration without harness modification.
+- [`references/inbox-file-write-as-wake-mechanism.md`](../references/inbox-file-write-as-wake-mechanism.md) — wake-stage substrate property this abstraction sits on. Without inbox-file-write being the wake mechanism, ghost-members could not exist as a teammate-shaped integration without harness modification.
+- [`references/members-array-edit-honored-mid-session.md`](../references/members-array-edit-honored-mid-session.md) — registration-stage substrate property. Companion-pair sibling to the wake-mechanism reference. Mid-session ghost-pair bring-up is O(file-edit) because of this property; closes original OQ #2 at n=2 cross-substrate.
 - [`patterns/service-team-topology.md`](service-team-topology.md) — a team whose members are ghost representations of the teams it serves. Built on top of this pattern; directly addresses #47 OQs.
 - [`patterns/multi-provider-integration-seams.md`](multi-provider-integration-seams.md) — names peer, daemon/sidecar, MCP server integration seams. Ghost-member is a fourth: ghost-as-first-class-teammate.
 - [`patterns/framework-participating-vs-service-roles.md`](framework-participating-vs-service-roles.md) — provider-coupling boundary that ghost-members bridge.
