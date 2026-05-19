@@ -2,6 +2,32 @@
 
 # Volta scratchpad
 
+## Step 2b — ghost-member re-registration discipline (2026-05-19, S33+)
+
+[CHECKPOINT 2026-05-19] Shipped FR-side mirror of apex's commit 9b949c8 (2026-05-15). New lifecycle script + startup.md section.
+
+**Files shipped:**
+- NEW: `teams/framework-research/restore-ghost-members.sh` — reads `roster.json`, filters `agentType == "ghost"`, appends missing entries to runtime `config.json` `members[]` with shape matching the current S33-hand-edited apex-lead-ghost entry (`agentId`, `name`, `agentType`, `backendType`, `color`, `isActive: false`, `joinedAt`, `tmuxPaneId: ""`, `cwd: ""`, `subscriptions: []`). Ensures `inboxes/<ghost>.json` exists as `[]` if missing. Idempotent.
+- MODIFIED: `teams/framework-research/startup.md` — added "Step 2c: Re-register ghost members from roster" between Step 2b (Operational gate) and Step 3 (Restore inboxes). Lifecycle-scripts table row extended.
+
+**Naming choice:** New step is **2c**, not "2b" as the brief suggested. Existing 2b (Operational gate) is well-established and load-bearing per R4-3; renaming it would have rippled into Volta's earlier 2b reference and risked confusion. Subordinate to Step 2 (Reset team state), ordered after 2b (Operational gate) per dependency: ghost re-registration depends on a verified-operational team (the gate must clear first). Apex's "Step 2b" naming is internal to apex's startup procedure; not a typed contract.
+
+**Test outcomes:**
+- Run #1 (current S33 runtime, apex-lead-ghost already hand-registered): no-op, "All ghost members already registered." ✓
+- Synthetic cold-start (stripped ghost from runtime, moved inbox aside): "Re-registered 1 ghost member(s)." Entry shape exactly matches canonical (agentId/name/agentType/backendType/color all present; null fields stripped). Empty inbox `[]` created. ✓
+- Runs #2, #3 against synthetic added state: idempotent no-op. ✓
+- Original session state restored intact after test: 13769-byte live inbox preserved, 1 ghost in members[]. ✓
+
+[DECISION 2026-05-19] **Filter only on `agentType == "ghost"`, not on `backendType`.** FR currently has one ghost vocabulary (`ghost`); apex uses three (`human-overseer`, `human-collaborator`, `cross-team-bridge`) per Schliemann's framing. FR's simpler vocabulary is per-spec — no new agentTypes introduced. If FR later adds more ghost shapes, this filter widens trivially.
+
+[DECISION 2026-05-19] **Copy `backendType` and `color` from roster, strip nulls.** The canonical S33 hand-edited entry has both fields. Roster-driven copy keeps the script substrate-agnostic — if a future ghost has a different `backendType` (e.g., MCP transport per SPEC.md Phase 4), the script picks it up without modification.
+
+[LEARNED 2026-05-19] **`with_entries(select(.value != null))` is the right jq idiom for "include optional fields if present."** Alternative — conditional jq object construction with `+ if $src.color then {color: $src.color} else {} end` — is more verbose and order-dependent. The null-strip approach is single-pass and order-independent.
+
+[STANDING-WATCH 2026-05-19] **Companion-pair-with-apex n=2 process pattern.** Volta-mirror-of-apex on lifecycle scripts is now n=2 (S28 startup collapse mirroring apex #62 → this Step 2c mirroring apex 9b949c8). Both times: apex ships → user surfaces to FR → Volta mirrors with adaptations for FR conventions. Watch for n=3; if it lands, candidate for Cal Protocol A as a cross-team lifecycle-discipline-replication pattern.
+
+[DEFERRED 2026-05-19] If FR ever adds a non-ghost backendType-special member (e.g., `agentType: "external-tool"`), the same TeamCreate-doesn't-spawn-it problem applies. The script could be generalized via a roster-side `requiresReRegistration: true` flag rather than hard-coded on `agentType == "ghost"`. Not needed at n=1; revisit when n=2 surfaces.
+
 ## All three S28 tasks closed end-to-end (2026-05-07)
 
 [CHECKPOINT 2026-05-07] Per Aen's 11:22 message — all three NEXT-SESSION-CHOREs closed via PO-greenlit team-lead override:
