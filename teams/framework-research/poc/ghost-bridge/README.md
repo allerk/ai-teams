@@ -156,16 +156,26 @@ grep -E "ERROR|WARN" ghost-bridge.log  # all anomalies
 
 ## Windows local-dev caveats
 
-Validated end-to-end on 2026-05-14 with FR on Windows-Git-Bash + apex on Linux container. The daemon's data plane works correctly; the control plane (start/stop scripts) has two substrate frictions on this combination. These are **local-dev only**, not framework findings — Linux deploy substrate behaves as designed.
+Validated end-to-end on 2026-05-14 with FR on Windows-Git-Bash + apex on Linux container. The daemon's data plane works correctly; setup + control plane each have known substrate frictions on this combination. These are **local-dev only**, not framework findings — Linux deploy substrate behaves as designed.
 
-1. **Win32 vs POSIX PID mismatch.** Python's `os.getpid()` returns the Win32 PID; MSYS `kill -0` / `ps -ef` operate on POSIX PIDs. The daemon writes its Win32 PID to `ghost-bridge.pid`; `stop-ghost-bridge.sh` checks via MSYS → "not alive" → removes the PID file as stale → daemon keeps running. **Workaround:**
+### SSH-key setup gotchas (setup-time)
+
+Both surface as `Permission denied (publickey)` despite the key apparently being correct. Discovered by Aleksandr Lerko (apex-side peer) during his 2026-05-15 Win11 bring-up.
+
+1. **PowerShell empty-passphrase trap.** `ssh-keygen -N '""'` (the natural-looking PowerShell quoting) creates a passphrase-protected key with literal `""` as the passphrase, not an empty-passphrase key. Use `ssh-keygen -N ''` instead. Diagnostic via `ssh -vv`: `Server accepts key` immediately followed by `Permission denied (publickey)` fingerprints this (privkey-load-failed, distinct from key-not-in-authorized_keys). Recovery: `ssh-keygen -p -P '""' -N '' -f <keyfile>`.
+
+2. **CRLF in `.pub` file.** Windows `ssh-keygen` writes `\r\n` line endings; sshd's `authorized_keys` parser does not tolerate trailing `\r`. If the pubkey is copy-pasted via Notepad / PowerShell / a gist / etc., `Permission denied (publickey)` results — and the fingerprint matches, making this counter-intuitive. Recovery on the remote side: `sed -i 's/\r$//' ~/.ssh/authorized_keys`.
+
+### Daemon-runtime frictions (Git-Bash-specific)
+
+3. **Win32 vs POSIX PID mismatch.** Python's `os.getpid()` returns the Win32 PID; MSYS `kill -0` / `ps -ef` operate on POSIX PIDs. The daemon writes its Win32 PID to `ghost-bridge.pid`; `stop-ghost-bridge.sh` checks via MSYS → "not alive" → removes the PID file as stale → daemon keeps running. **Workaround:**
    ```bash
    ps -ef | grep '[g]host-bridge.py' | awk '{print $2}' | xargs -r kill -TERM
    ```
 
-2. **SIGTERM via MSYS doesn't run Python's `finally`.** The graceful-shutdown log line (`ghost-bridge stopping — cycles=N forwarded=N received=N`) doesn't get written. The process IS terminated; just no closing log. Last line of `ghost-bridge.log` will be the most recent message event, not a shutdown summary.
+4. **SIGTERM via MSYS doesn't run Python's `finally`.** The graceful-shutdown log line (`ghost-bridge stopping — cycles=N forwarded=N received=N`) doesn't get written. The process IS terminated; just no closing log. Last line of `ghost-bridge.log` will be the most recent message event, not a shutdown summary.
 
-Both behave correctly on Linux/Ubuntu substrate (the framework's target deploy environment).
+All four behave correctly on Linux/Ubuntu substrate (the framework's target deploy environment).
 
 ## Known limitations (v1)
 

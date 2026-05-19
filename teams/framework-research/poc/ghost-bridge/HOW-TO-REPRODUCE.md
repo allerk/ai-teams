@@ -53,6 +53,8 @@ ssh -i ~/.ssh/<your_apex_key> -p <port> -o StrictHostKeyChecking=accept-new \
 # "Permission denied (publickey)" means STOP — fix SSH before proceeding.
 ```
 
+**Windows users:** if you get `Permission denied (publickey)` despite the key fingerprint matching, see Caveats § Windows SSH-key setup gotchas — two Win-specific traps (PowerShell empty-passphrase, CRLF in .pub) produce this exact symptom.
+
 ### P3 — `~/bin/rc-deployments.json` registry with an apex deployment entry
 
 The daemon resolves apex's SSH details via this registry. Create the file with the values you used in P2:
@@ -228,16 +230,35 @@ cd ~/ghost-bridge
 
 ## Caveats
 
-### Windows-Git-Bash local-dev frictions (control plane only, data plane is correct)
+### Windows SSH-key setup gotchas (setup-time, before P2 succeeds)
 
-1. **Win32 vs POSIX PID mismatch.** Python's `os.getpid()` returns Win32 PID; MSYS `kill -0` uses POSIX PID. The daemon writes its Win32 PID to `ghost-bridge.pid`; `stop-ghost-bridge.sh` checks via MSYS → "not alive" → removes PID file as stale → daemon keeps running. **Workaround:**
+Both produce `Permission denied (publickey)` symptoms that look like classic auth failures but have Win-only root causes. Surfaced by Aleksandr Lerko (apex-side ghost peer) during his 2026-05-15 Win11 bring-up; relayed via Schliemann.
+
+1. **PowerShell empty-passphrase trap.**
+   ```powershell
+   ssh-keygen -N '""'   # WRONG — creates passphrase-protected key with LITERAL passphrase  ""
+   ssh-keygen -N ''     # RIGHT — empty passphrase
+   # Recovery on already-generated key:
+   ssh-keygen -p -P '""' -N '' -f <keyfile>
+   ```
+   Diagnostic via `ssh -vv`: a `Server accepts key` line *immediately* followed by `Permission denied (publickey)`. That two-line pair fingerprints **"key recognised, signature production failed"** (privkey-load-failed sub-class) — distinct from the more common "key not in authorized_keys / wrong file perms" symptom which is a bare `Permission denied (publickey)` with no `Server accepts key` precursor.
+
+2. **CRLF in `.pub` file.** Windows `ssh-keygen` writes `.pub` files with `\r\n` line endings. `ssh-keygen -lf` tolerates the trailing `\r`; sshd's `authorized_keys` parser does not. If the pubkey is transported by copy-paste through anything Windows (Notepad, PowerShell, GitHub gist, etc.), `Permission denied (publickey)` results — and the fingerprint will *actually match* the offered key, which makes this counter-intuitive. Recovery on the remote side:
+   ```bash
+   sed -i 's/\r$//' ~/.ssh/authorized_keys
+   ```
+   Mostly a footgun for the human transporting the key, not the agents.
+
+### Windows-Git-Bash daemon-runtime frictions (control plane only, data plane is correct)
+
+3. **Win32 vs POSIX PID mismatch.** Python's `os.getpid()` returns Win32 PID; MSYS `kill -0` uses POSIX PID. The daemon writes its Win32 PID to `ghost-bridge.pid`; `stop-ghost-bridge.sh` checks via MSYS → "not alive" → removes PID file as stale → daemon keeps running. **Workaround:**
    ```bash
    ps -ef | grep '[g]host-bridge.py' | awk '{print $2}' | xargs -r kill -TERM
    ```
 
-2. **SIGTERM via MSYS doesn't run Python's `finally`.** Process IS terminated; the graceful-shutdown log line is missing. Cosmetic only — data plane unaffected.
+4. **SIGTERM via MSYS doesn't run Python's `finally`.** Process IS terminated; the graceful-shutdown log line is missing. Cosmetic only — data plane unaffected.
 
-Both are absent on Linux/Ubuntu.
+Gotchas 1–2 affect any Windows host running an SSH client; 3–4 are Git-Bash-specific. All four are absent on Linux/Ubuntu.
 
 ### Design limitations (v1, by design)
 
