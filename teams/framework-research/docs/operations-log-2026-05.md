@@ -160,3 +160,39 @@ The full surface-back chain through this dispatch is a textbook example of the h
 6. **PO direction "stop and re-evaluate"** via Aen 17:37 → Brunel HALT close-out at 17:41 → ops-log + scratchpad written, this entry → idle
 
 (*FR:Hopper*)
+
+---
+
+## 2026-05-20T18:05+03:00 — CORRECTION ENTRY (substrate-scope qualifier for 2026-05-20T17:09 entry)
+
+**Format note:** per Provenance discipline ("The log is append-only; you may not edit prior entries — corrections go as new entries that reference the original by timestamp"), this is a NEW entry referencing the 17:09 entry by timestamp. The 17:09 entry stands unedited; this entry adds the host-scope qualifier and the substrate-selection-error attribution.
+
+**timestamp** — 2026-05-20T18:05+03:00 (correction written).
+
+**tasker** — Brunel (substrate-selection error attribution by self) and Aen (informational amendment relay at 17:58, post-PO surface).
+
+**dispatch summary** — Correction to the 2026-05-20T17:09 entry's substrate-scope. The diagnostic operated against `dev@100.96.54.170:22` (host) + `ai-teams@100.96.54.170:2222` (container) per `~/bin/rc-deployments.json` entries `num:"1"` and `num:"2"`. **Post-execution attribution (Aen 17:58, Brunel 17:59): these registry entries refer to RC-server, a non-production host that happens to host an `apex-research`-named container. The canonical production apex deployment is `~/bin/rc-deployments.json` entry `num:"9"` — PROD-LLM at `michelek@10.100.136.162:22`, key `id_ed25519_apex`. Production apex was NOT touched in the 2026-05-20 dispatch and its state remains unknown.**
+
+**tier classification + sanction status** — N/A (this is a documentation correction, not an operational dispatch; no substrate touches). Original 17:09 entry's tier classifications and Aen 17:34 Phase-2-r3 rescission stand unmodified.
+
+**deployed-artifacts-read declaration** — None for this correction entry. The 17:09 entry's declarations stand: those reads applied to FR's `designs/deployed/apex-research/container/*` (which is the design lineage; the consumer team that operationally uses these may be either RC-server or PROD-LLM or both — FR-design is host-agnostic).
+
+**commands executed** — None. Pure documentation correction.
+
+**outputs** — Implications of the substrate-scope correction:
+
+1. **All "degraded substrate" findings in the 17:09 entry apply to RC-server (100.96.54.170), NOT to PROD-LLM.** RC-server's apex container Config.Env has PO key in SLOT 2, has no `.env` at `$COMPOSE_DIR`, has multi-system credential dependency on baked-in env from before 2026-04-29 fresh-clone. **None of these statements have been verified for PROD-LLM.** PROD-LLM apex state remains unknown.
+2. **The original PO ask (Aleksandr's key persistence on the apex PO actually uses) is unaddressed.** The diagnostic ran against the wrong host; the production substrate has not been examined.
+3. **Findings retain audit value at host-scope.** The discipline lessons (hard-gate culture caught the substrate-degradation; multi-system failure prevented on the substrate where the recreate would have occurred) are host-agnostic. The substrate-truth findings are RC-server-scoped.
+
+**Attribution of the substrate-selection error** — Per Brunel 17:59 verbatim: *"The error is mine. I picked registry entries that looked like the apex pattern by inspection (num:2 even has `name: 'apex-research'`) without verifying canonical production. Your discipline correctly followed the dispatch text; the substrate-selection failure is upstream of your execution."* Per Aen 17:58: the correction is upstream of Hopper's execution; the audit trail of the 17:09 entry stays as written.
+
+**Sub-shape F catalogued** — Aen-named *registry-entry-choice-from-first-match*: picking the first registry entry matching the target substrate name without confirming canonical-production status. Joins the Cal-Protocol-A submission catalog (Sub-shapes A-F per Brunel's session-scratchpad). Cross-references the 17:09 entry's "Audit-trail surface" section as catalyzing incident.
+
+**outcome** — **documentation-correction-applied** (not an operational outcome). The 17:09 entry's `aborted-mid-execution` outcome stands unchanged; this correction adds substrate-scope qualifier without altering the operational record.
+
+**Cross-references:**
+- `teams/framework-research/memory/hopper.md` was updated at 18:02 per Aen's 17:58 informational amendment: 6 entries relabeled from `apex-research` to `RC-server (100.96.54.170)`; 2 new entries added (`[LEARNED — substrate, apex-PROD-LLM]` placeholder + `[LEARNED — discipline, substrate-selection]` Sub-shape F).
+- `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` (Aen's PO-facing memo) has the wrong-host correction prominently at the top.
+
+(*FR:Hopper*)
