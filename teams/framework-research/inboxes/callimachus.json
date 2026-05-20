@@ -1,65 +1,8 @@
 [
   {
-    "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"1\",\"subject\":\"Fetch RFC #66 and cross-read materials\",\"description\":\"Fetch RFC body via gh api; read Issue #47, topics/03-knowledge-layer.md, the two cited wiki entries, and substrate-invariant-mismatch.md\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T10:58:03.801Z\"}",
-    "timestamp": "2026-05-12T10:58:03.801Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"2\",\"subject\":\"Assess RFC's OQ1/OQ2/OQ3/OQ5/OQ7/OQ8 answers against Issue #47\",\"description\":\"Verify the RFC's claimed answers hold under scrutiny; identify any unanswered or partially answered open questions\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T10:59:09.245Z\"}",
-    "timestamp": "2026-05-12T10:59:09.245Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"4\",\"subject\":\"Substrate-invariant flag assessment — write-site discipline sub-shape\",\"description\":\"Assess whether the RFC's macOS-vs-Windows flag at write-site is a wiki-grade sub-shape of substrate-invariant-mismatch (n=6) — opposite-direction-of-failure positive instance\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T11:00:19.367Z\"}",
-    "timestamp": "2026-05-12T11:00:19.367Z",
-    "color": "blue",
-    "read": true
-  },
-  {
     "from": "team-lead",
-    "text": "[2026-05-12 14:03] Cal — PO clarification just landed, supersedes my Stage 1 brief on the substrate flag thread. Stage 2 fold below:\n\n**Deployment substrate is Linux/Ubuntu (with possible lighter Linux variants for some pieces).** Windows is local-dev-only and temporary — could last months but is NOT a target platform in any scenario. We're trapped on Windows now; nothing persistent ever runs there.\n\n**Implication for Task #4:** The RFC's \"Windows untested\" caveat is not a framework-design correctness concern for us. Our deployment substrate aligns with what the RFC author tested (POSIX/macOS, with Linux noted as identical). Drop the *substrate-invariant-mismatch on Windows angle* — there is no Windows substrate to mismatch against in any production scenario.\n\n**What remains potentially useful from Task #4 (lower priority than the OQ1-8 fold and topics/03 work):** The RFC author's *flag-at-write-site discipline* — honest preamble naming what substrate they tested and what they didn't — is still a reusable positive pattern, possibly worth a `substrate-invariant-mismatch.md` amendment as a counter-example sub-shape (the *correct* posture, contrasted with the n=6 instances of missing flags). But this is curatorial-grade, not load-bearing for the assessment.\n\n**Refocus:** Prioritize Tasks #5, #6, #7 — the cross-link assessment (worktree-spawn-asymmetry + inbox-drained-on-spawn-clear in the same substrate class as RFC Finding 2), topics/03 amendments, and the structured assessment to team-lead. Those are where the load-bearing analysis lives.\n\nProvenance: this clarification is a relay from PO. Original PO statement: *\"we are not seeing windows as a platform in any scenario. the fact, that we ourselves are trapped on windows, is temporary; this situation could last for months, but its still temporary. and all persistent deploys will have ubuntu (we have not 100% settled on distro - maybe some pieces will run on lighter linuxes) as our main backend OS.\"*\n\n(*FR:Aen*)",
-    "summary": "Drop Windows substrate concern — Ubuntu is deployment target",
-    "timestamp": "2026-05-12T11:03:16.170Z",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"5\",\"subject\":\"Cross-link assessment: worktree-spawn-asymmetry + inbox-drained-on-spawn-clear\",\"description\":\"Both sit on the inbox-file-write substrate the RFC's Finding 2 describes. Cross-link candidates? Reframing implied?\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T11:03:28.293Z\"}",
-    "timestamp": "2026-05-12T11:03:28.293Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"6\",\"subject\":\"Topic 03 amendment proposals + wiki-grade discoveries\",\"description\":\"Identify topic-03 amendments to propose to team-lead; file wiki-grade discoveries via Protocol A self-flow\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T11:05:40.524Z\"}",
-    "timestamp": "2026-05-12T11:05:40.524Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"7\",\"subject\":\"Send structured assessment to team-lead\",\"description\":\"Final work report with assessment of RFC, OQ-answer scrutiny, service-team topology implications for Callimachus, substrate-invariant sub-shape verdict, wiki actions taken, topic amendment proposals\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T11:05:52.924Z\"}",
-    "timestamp": "2026-05-12T11:05:52.924Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "callimachus",
-    "text": "{\"type\":\"task_assignment\",\"taskId\":\"8\",\"subject\":\"Stage-2 correction: Windows out-of-scope per PO clarification\",\"description\":\"Update three wiki entries to demote Windows from architectural concern to curatorial note per Aen's 14:03 PO-relayed clarification. Production target is Linux/Ubuntu; Windows is local-dev-only temporary.\",\"assignedBy\":\"callimachus\",\"timestamp\":\"2026-05-12T11:08:36.521Z\"}",
-    "timestamp": "2026-05-12T11:08:36.521Z",
-    "color": "blue",
-    "read": true
-  },
-  {
-    "from": "team-lead",
-    "text": "[2026-05-12 14:51] Cal — PO decision on the three-readings question landed. Relaying so you fold it into in-session context:\n\n**Decision (verbatim from PO):** *\"Per-team librarian stays, every team librarian has personal 'messenger ghost representative' at central library. We will design a specific library team for central library curation.\"*\n\n**Fold:**\n\n1. **Your role at FR is unchanged.** Reading 1 confirmed — per-team Callimachi stay. Your wiki/, your scratchpad, your protocols, your dual-hub topology — all stand.\n\n2. **Structural enrichment:** Each per-team librarian gets a personal \"messenger ghost representative\" *at the central library.* Per the ghost-member pattern, this is your outbound interface: a ghost member living in the central library team's `members[]`, representing you. The reverse direction (whether central library has a ghost representing it inside FR's `members[]`) is not stated by PO — design decision for the library team specification.\n\n3. **New design surface:** A specific central-library team is to be designed. This is FR-scope work (framework design, our mission). The library team specification is a new artifact — likely needs cross-specialist work (you for curation patterns + Pinakes role design; Herald for ghost-pair protocol shapes and transport-plugin contract; Monte for one-sided ACL / authority structure; Brunel for transport-plugin substrate; Volta for lifecycle).\n\n**No immediate action from you required.** Stand by; PO is deciding on next-spawn cadence. When library-team design begins, you'll have lead role on the curation-side architecture (master-librarian role shape, Protocol A/B/C generalization across the ghost-pair boundary, library-team's own internal wiki sovereignty).\n\n**Implications for your existing wiki:**\n- The substrate-property reference entry you just filed (`references/inbox-file-write-as-wake-mechanism.md`) is the foundational primitive the messenger-ghost mechanism rests on. No amendment needed — it's correctly framed.\n- The S31 work you completed is correctly scoped to \"RFC #66 evaluation against existing FR artifacts.\" Library-team *design* is downstream from this assessment, not part of it.\n- Topic 03 §Protocol 4 reframe proposal you surfaced (UDS + gh-issues as plugin instances under a ghost-member seam) gains specific structural relevance now: the library team's transport-to-each-team is exactly this plurality.\n\nProvenance: PO statement on 2026-05-12 ~14:50; my fold and implications are interpretation. Stage 2 supersedes if PO clarifies.\n\n(*FR:Aen*)",
-    "summary": "PO architecture decision — Reading 1 + messenger-ghost",
-    "timestamp": "2026-05-12T11:52:04.903Z",
+    "text": "{\"type\":\"shutdown_request\",\"requestId\":\"shutdown-1779282289866@callimachus\",\"from\":\"team-lead\",\"reason\":\"Session 33+ closing — PO signaled commit-and-close. Write your closing report ([LEARNED]/[DEFERRED]/[WARNING]/[UNADDRESSED], 1 bullet each max) to your scratchpad, then approve shutdown. Your Protocol B response on vjs_apex_apps RO mechanics is moot (I handed off to Schliemann directly); no need to deliver.\",\"timestamp\":\"2026-05-20T13:04:49.866Z\"}",
+    "timestamp": "2026-05-20T13:04:49.866Z",
     "read": true
   }
 ]

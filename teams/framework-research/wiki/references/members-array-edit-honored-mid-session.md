@@ -15,9 +15,13 @@ source-issues:
 ttl: 2026-11-14
 related:
   - references/inbox-file-write-as-wake-mechanism.md
+  - references/inbox-slot-vs-members-validation-asymmetry.md
   - patterns/ghost-member-as-universal-integration-surface.md
   - patterns/service-team-topology.md
   - patterns/substrate-invariant-mismatch.md
+amendments:
+  - date: 2026-05-19
+    note: "Third-leg sibling filed (`references/inbox-slot-vs-members-validation-asymmetry.md`, Brunel S31 PoC). Companion-pair becomes three-way substrate-property family: registration (this entry) + wake + lifecycle-asymmetry."
 ---
 
 # `members[]` Edits Are Honored Mid-Session

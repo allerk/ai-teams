@@ -1,5 +1,17 @@
 # Brunel scratchpad
 
+## SESSION 33+ CLOSING REPORT (2026-05-20 13:05)
+
+[LEARNED] **Joint-authorship discipline applies cleanly to procedural-pattern wiki entries where reproducibility-evidence and original-articulation are both load-bearing.** Cal's item-6 filing (`patterns/taskget-before-classify-as-noise.md`, `source-agents: [brunel, callimachus]`) is the canonical example: S31 original-shape + procedural-rule articulation from me + S33+ n=4 self-instantiation reproducibility + internal-routing-as-self-assignment sub-shape characterization from Cal. Without either half, the wiki claim collapses. Generalizable: when two contributors supply structurally-distinct halves of a single load-bearing claim, joint authorship is the right Protocol A discipline.
+
+[DEFERRED] **Relay-flatten-self-cloaking-failure-mode wiki entry** — flagged by Celes 16:46 and acknowledged my side. Post-Operator-role-ratification Cal Protocol A submission. Catalyzing incident is S33+ Schliemann-crash-surfaced-operator-mode-gap (scratchpad line 33). Generalizable shape: silent-broadening-via-intermediary failure modes can only be surfaced when the intermediary fails — the relay itself going down is the surfacing condition. Standing item for the session that follows Operator-role ratification.
+
+[WARNING] **Operator-role spec needs three textual updates before ratification** (per my Q1-Q5 sign-off to Celes): line 60 "Operator decides" → "Operator validates against deployed-artifacts read" (validation, not decision); add host-vs-container asymmetry table to tier section (Q2); make deployed-artifacts-read declaration REQUIRED field in operations-log shape (Q4). All three folded into Celes's checkpoint (c) per her 16:46 confirmation; future-Brunel should verify on next session that these landed in the ratified Operator prompt.
+
+[UNADDRESSED] None. Schliemann correction closed by PO direction (no dispatch); Cal 7-item Protocol A queue dispatched + fully processed (wiki 93→100); Celes 5-question spec clarification answered + folded; spec carry-forward to Celes session intact; Aen-relayed shutdown received and processed within request window. (*FR:Brunel*)
+
+---
+
 ## SESSION 33+ — apex fs blocker diagnosis (2026-05-19, mid-session spawn)
 
 [CHECKPOINT 13:41-13:43] Spawned coordinator/analyst mode for apex's `git fetch` blocker (`.git/FETCH_HEAD permission denied`; root-owned bind mount; ai-teams non-root). Diagnosed as **substrate-invariant mismatch, path-as-substrate-invariant sub-shape, ownership/permission variant** — kin to wiki Instances 1+6. NOT a new instance; well-known shape under existing n=6 umbrella. Diagnostic-question answer: `git fetch` needs write access to `.git/` as `ai-teams`; substrate provides read-only; EACCES is the loud failure (better than silent class members).
@@ -7,6 +19,7 @@
 [DECISION 13:41] **Path A (direct via ghost-bridge to apex-lead-ghost)** over Path B (team-lead-relay). Rationale: substrate-specific concrete recipes, bridge is operational, extra hop adds latency without value. Aen CC'd via separate closing report; cross-team interface stays visible.
 
 [DECISION 13:41] Four fix candidates enumerated, ordered cheapest→most invasive:
+
 1. **`GIT_DIR` redirect to `$HOME/scratch/vjs.git`** — zero substrate cost, branch-agnostic, respects RO-as-policy. **Recommended.**
 2. **Fresh clone to `$HOME/vjs_apex_apps`** — zero sudo, simpler mental model. Second-best.
 3. **`chown -R` on `.git/`** — needs sudo, touches bind-mount metadata. Not recommended.
@@ -28,7 +41,7 @@
 
 [CARRY-FORWARD — next Celes session] **Spec shipped at `teams/framework-research/docs/operator-role-spec-2026-05-19.md`.** Two co-evolving designs for Celes: (1) NEW Deployment Operator role as Brunel's sidekick for execution against FR-deployed substrates; (2) Brunel prompt amendments — read-deployed-artifacts discipline + explicit "no operator mode" with handoff pattern + Operator-pairing dispatch-package shape. Independence model locked by PO: tasked-by-Brunel-OR-Aen (not PO-direct); Tier R+M default-permitted (sanction not required); Tier D needs full PO sanction (exact command + reason + expected outcome) via Aen/Brunel relay; limited within-dispatch agency with hard scope-expansion gate. Aen-prompt amendment flagged separately (relay-visibility rule to fix silent-relay-scope-broadening). All creative decisions (Operator name, lore, persona, color, model, prose) reserved for Celes per S32 "let Celes propose first" pattern.
 
-[CARRY-FORWARD-ADJACENT] Standing item for Schliemann: my earlier `GIT_DIR`-redirect recommendation to apex-lead-ghost is now superseded by the substrate-correct refresh path (container restart). Correction not sent yet — pending PO direction on whether to dispatch. If PO sanctions, send via ghost-bridge with summary: "apex-research restarted; vjs_apex_apps source-data refreshed via entrypoint pull cycle; earlier GIT_DIR workaround superseded — canonical path now shows current origin/main."
+[CLOSED 2026-05-19 16:32] Schliemann correction standing-item closed by PO via Aen: *"we don't owe Schliemann, that's sorted."* No ghost-bridge dispatch. Apex-side handled outside FR scope; container restart at ~14:32 already concluded refresh on receiver side. Courtesy-correction would re-litigate concluded work — drop. (*FR:Brunel*)
 
 [LEARNED — session 33+ EOS, STRONG] **The Schliemann crash from the apex restart was load-bearing for surfacing the operator-mode gap.** Without the crash, PO would have kept relaying operational asks through Aen → Brunel via Schliemann's bridge, reading Brunel's scope-flagging as stubbornness; the underlying "no operator mode in prompt" diagnosis would have stayed buried under the relay. PO observation 2026-05-19 EOS: *"good that he is [crashed], because otherwise I would have kept struggling with your stubbornness through him without knowing that there is a real reason behind this madness."* Generalizable: sometimes the only thing that surfaces a relay-flatten failure mode (silent-broadening-via-intermediary) is the relay itself going down, forcing PO-direct conversation where the actual constraint becomes visible. Keep as catalyzing-incident context for the Celes session — adds weight to why Part C (Aen relay-visibility rule) is co-load-bearing with Part A (Operator role).
 
@@ -51,9 +64,11 @@ Three designs shipped via PR #1+#3 on `mitselek/prism`: topology (hub-and-spoke,
 [DECISION] Substrate probe BEFORE design (cheap empirical pre-design gate). Confirmed: `$HOME=/home/ai-teams` on apex container; path `~/.claude/teams/apex-research/inboxes/<name>.json` resolves cleanly; 5 active members in config.json (team-lead + 4 dashboards: eratosthenes, champollion, nightingale, berners-lee); 1 residual `hammurabi.json` orphan inbox (member removed, inbox not cleaned up — consistent with RFC #66 ACL-is-one-sided semantics).
 
 [DECISION] Inbox message canonical schema (empirical, from apex team-lead.json + berners-lee.json):
+
 ```json
 {"from":"<sender>","text":"<body>","summary":"<short>","timestamp":"ISO-8601-Z","color":"<name>","read":false}
 ```
+
 `from`/`text`/`timestamp`/`read` required. `summary` + `color` optional; harness fills `color` when present, our CLI can omit (or emit `"color":"green"` since FR-Brunel convention).
 
 [DECISION] ssh-write atomicity: single ssh invocation with remote `python3 -c` reading message body from stdin → append to inbox JSON array. Single remote process = process-level atomic. Adds `fcntl.flock(LOCK_EX)` if contention surfaces.
@@ -67,6 +82,7 @@ Three designs shipped via PR #1+#3 on `mitselek/prism`: topology (hub-and-spoke,
 [STATUS 15:16] #9 completed. #10 design in_progress. #11/#12 pending. Disk work gated on 3 PO clarifications: `$NAME`, wake-target agent, repo location. SSH details + apex paths implicitly settled by Aen — proceeding with ai-teams@100.96.54.170:2222 + `~/.claude/teams/apex-research/inboxes/<name>.json`.
 
 [UPDATE 15:19] #10 closed; #11 implementation now in_progress. 2/3 PO clarifications settled (Aen 15:19):
+
 - **Wake-target = apex `team-lead`** (Option A). `/list` + `/target` lets user pick alternatives in-CLI.
 - **Repo check-in = user-local** at `~/bin/ghost-chat.ps1`. No FR-repo until F1/F2/F3 verdict.
 - **`$NAME` pending** — PO coordinating registration with apex team-lead.
@@ -102,6 +118,7 @@ Three designs shipped via PR #1+#3 on `mitselek/prism`: topology (hub-and-spoke,
 [CHECKPOINT 16:51] **PoC CLOSED.** Task #18 completed. `~/bin/ghost-chat.ps1` renamed to `.deprecated` (rename-not-delete preserves contrast inspection). Python canonical artifact. Closing report shipped to Aen via SendMessage at 16:51.
 
 [CAL-PROTOCOL-A-QUEUE — REVISED per PO 16:42 reframe] **7 items** (down from 9; Windows-substrate items dropped as non-wiki-grade). File next active session, direct-dispatch (parent-process); fall back to team-lead relay if Sub-shape B mount-asymmetry recurs:
+
 1. **SF-1** Inbox-slot acceptance decoupled from `members[]` validation (apex Linux harness, RFC #66 ACL one-sidedness explicit doc proposal)
 2. **SF-2** `agentType` vs `backendType` separation as richer canonical-shape than RFC example (proposed RFC amendment)
 3. **SF-3** Per-message color override beats registered-member color (apex display semantics)
@@ -111,6 +128,7 @@ Three designs shipped via PR #1+#3 on `mitselek/prism`: topology (hub-and-spoke,
 7. **Decorative-polling-interval anti-pattern** (16:01, implementation discipline, language-agnostic)
 
 DROPPED (per PO reframe — Windows-substrate, not deployment-relevant):
+
 - 16:28 SendMessage success-vs-absence observation (Windows Claude Code harness quirk; "everything is a file" doesn't hold reliably on Windows)
 - PowerShell-on-Windows UTF-8 stdout decode quirk (PS-host-specific; Python on Linux doesn't have this class)
 - Symmetric Stage-1/Stage-2 relay-fidelity instance from S31 15:14-15:15 (discipline still holds elsewhere; Windows-substrate triggers not wiki-grade)
@@ -151,6 +169,7 @@ DROPPED (per PO reframe — Windows-substrate, not deployment-relevant):
 ## SESSION 29 CLOSED — Wiki review + T06 stale-prose cleanup (2026-05-07)
 
 [CHECKPOINT] **S29 closed 2026-05-07.** Two queued tail-end items from S28 close knocked out cleanly:
+
 - Task A: `wiki/patterns/worktree-spawn-asymmetry-message-delivery.md` accuracy review — confirmed entry accurately represents substrate failure as I observed it. Intermittent/mount-staleness framing (NOT deterministic-broken) preserved at line 28 + line 38 Cal→Brunel row. Team-lead-relay workaround correctly identified as only reliable cross-boundary path. Instance 3 names me directly with right shape (worktree → no-worktree, Sub-shape B). No amendments needed; no Protocol A traffic to Cal needed (Aen ratified as-is).
 - Task B: T06 stale "Phase 2.0a" references at lines 1135 + 1182 updated. L1135 anchors to the moved-from heading "$HOME reliability and runtime-path notes (above)". L1182 reframes the bullet as "$HOME validation in lifecycle scripts" — drops the stale phase-name dependency entirely (Phase 2.0a is no longer a separate numbered phase post-Volta-T06-rewrite). Volta's intentional historical anchors at L118+L120 left untouched (his domain, past-tense "moved from R4 Phase 2.0a" is correct).
 
@@ -163,6 +182,7 @@ DROPPED (per PO reframe — Windows-substrate, not deployment-relevant):
 ## SESSION 27 CLOSED — Phase B v1.0-final cluster shipped (2026-05-06 15:18)
 
 [CHECKPOINT] **Session 27 closed by PO direction (Aen 14:09 his-clock).** Phase B v1.0-final cluster fully shipped end-to-end:
+
 - ✓ #1 federation-bootstrap-template v0.7 (in-place; ~4.3kw; 7 versions, 3 async ratifications closed; execution-ready for n=2 apex-research)
 - ✓ #2 authority-drift-substrate-instrumentation v0.2 (in-place; ~2.9kw; cite-and-fold to T04 §Authority-Drift Detection complete)
 - ✓ Cross-design ratification clean across 4 consumers (Aen, Monte, Cal, Herald)
@@ -178,9 +198,9 @@ DROPPED (per PO reframe — Windows-substrate, not deployment-relevant):
 
 ## PHASE B CLOSED — Session 27 — compressed
 
-#1 Federation bootstrap protocol v0.7 SHIPPED + execution-ready for n=2 (apex-research). Path: `teams/framework-research/docs/federation-bootstrap-template-2026-05-06.md`. ~4.3kw, 7 versions in-place, all 4 consumers ratified (Aen, Monte, Cal, Herald). Cite-and-fold cadence held end-to-end.
+# 1 Federation bootstrap protocol v0.7 SHIPPED + execution-ready for n=2 (apex-research). Path: `teams/framework-research/docs/federation-bootstrap-template-2026-05-06.md`. ~4.3kw, 7 versions in-place, all 4 consumers ratified (Aen, Monte, Cal, Herald). Cite-and-fold cadence held end-to-end
 
-#2 Authority-drift design v0.2 SHIPPED with bidirectional cite-and-fold to T04 §Authority-Drift Detection (Monte's canonical surface, no separate Monte v1 file). Path: `teams/framework-research/docs/authority-drift-substrate-instrumentation-design-2026-05-06.md`. Asymmetry framing locked: "admission commits, observation cautions."
+# 2 Authority-drift design v0.2 SHIPPED with bidirectional cite-and-fold to T04 §Authority-Drift Detection (Monte's canonical surface, no separate Monte v1 file). Path: `teams/framework-research/docs/authority-drift-substrate-instrumentation-design-2026-05-06.md`. Asymmetry framing locked: "admission commits, observation cautions."
 
 [DECISION] Phase B cadence: scope-first then design-after, ~400w scope + ~1300w design body.
 [LEARNED] Monte S26 framing: "asymmetries live above substrate, not in substrate" is the #2 seam decomposition. I surface FROM substrate; he ACTS above substrate.

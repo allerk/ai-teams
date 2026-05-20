@@ -1,5 +1,30 @@
 # Medici — Knowledge Health Checker Scratchpad
 
+## [CHECKPOINT] 2026-05-20 session 33+ — Cross-team mvox-dev audit + memory cleanup
+
+External audit on `mvox-dev` team (cloned/refactored from polyphony-dev into new repo `mvox_v4e_web` at `~/Documents/github/.mmp/mvox_v4e_web/`). 14 findings; report at `teams/mvox-dev/docs/health-report-mvox-dev-2026-05-20.md` (218 lines, 9 sections). Overall verdict GREEN — refactor materially complete, stack table ↔ architecture-decisions ↔ Bentham's RED triggers all aligned, no polyphony-isms leaked into common-prompt.
+
+3 in-scope fixes landed local (memory + common-prompt scope only; per task discipline):
+- `d52cac7` — seed `memory/comenius.md` stub (Comenius newly permanent, file was missing)
+- `e49ced8` — prune `memory/finn.md` session-1 audit history (already-remediated; 132→108 lines)
+- `2945111` — dedupe `memory/victoria.md` Path B `[DEFERRED]` entry
+
+7 OOS items flagged in §7 of report. Coordinated with Celes (FR sibling, parallel prompt-side worker) — her 3 prompt edits got GREEN from me; we co-flagged path-convention substrate-mismatch + CLAUDE.md "8 members" drift UP to Aen as multi-surface decisions. PO pushed (16 commits including my 5).
+
+## [LEARNED] CLAUDE.md L35 as durable answer for cross-team author attribution
+
+I flagged `(*FR:Celes*)` trailers on mvox prompts as "could read as drift" (OOS-5/6). Celes pointed me at `CLAUDE.md` L35 which already documents the policy: *"files originally authored by another team's member keep the original author's trailer (e.g., `(*FR:Celes*)`) unless substantially rewritten."* The exception IS the policy. My flag was over-cautious. Audit pattern correction: before flagging an attribution as drift, grep `CLAUDE.md` (and any team's `common-prompt.md`) for an explicit policy. The author-trailer rule is a typed contract with an explicit exception clause; check the contract before declaring drift.
+
+## [LEARNED] Cross-team audits — read host conventions before flagging "defects"
+
+mvox-dev has naming asymmetries that looked like defects through FR-lens but are intentional in mvox-lens (team-lead member named `team-lead` not `palestrina`; team-lead scratchpad at `memory/team-lead.md` not `memory/palestrina.md`; team-lead member has no `color` field in roster). When auditing someone else's team, "defect vs convention" calls require reading the host team's own `common-prompt.md` + `CLAUDE.md` FIRST. Caught one case (team-lead naming via the roster), missed two (color asymmetry flagged OOS where it might be intentional; attribution policy ditto) — Celes corrected one mid-session.
+
+## [PATTERN] Atomic-commit-per-file-class for cleanup audits
+
+Worked well on mvox-dev: 1 commit per file-class fix (comenius stub / finn prune / victoria dedupe), each with rationale citing the audit section it resolves. PO can cherry-pick or revert any single fix without unwinding the others. Faster review than one bundled "cleanup" commit. Reuse for next cross-team cleanup audit.
+
+---
+
 ## [CHECKPOINT] 2026-04-30 session 22 — EVR konteinerite standard 2-pass audit
 
 Two-pass audit on Brunel's 3 Stage-0 drafts (`evr-sisene-konteinerite-standard-v0.1.md`, `evr-konteinerite-intake-template-v0.1.md`, `evr-konteinerite-tracking-issue.md`) plus Finn's harvest as input baseline.

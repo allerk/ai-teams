@@ -6,6 +6,44 @@
 
 ---
 
+## Session 33+ — Hopper design + mvox-dev prompt audit (2026-05-19 → 2026-05-20)
+
+### Hopper (Deployment Operator) — DEPLOYED 2026-05-20 commit `25094d1`
+
+[CHECKPOINT] Brunel spec (`docs/operator-role-spec-2026-05-19.md`) → my 7-file package at `designs/new/operator-role/` → TL review → PO sign-off (Hopper, navy, all 4 structural decisions accepted) → Q4 Tier D/shape-mode contract surface fix (`1e46d3a`) → Aen-deployed. 60+ agents across 13 teams now.
+
+[LEARNED — STRONG] **Cross-read producer/consumer Gate 2 of common-prompt structural-change discipline genuinely catches typed-contract surfaces.** Brunel-Amendment-3 said "exact command if known, or a shape if probe-dependent" for the dispatch package; Hopper's Tier D sanction rejected shape-mode ("not a paraphrase, not a shape"). Field-set divergence at the Tier D boundary; producer-side EXCEPT clause was the right fix per my option 1. Discipline pays.
+
+[LEARNED] **Naming via three-option presentation with strong recommendation works.** Hopper/Kranz/Casey Jones offered; PO took recommended (Hopper). Same shape that worked on Roman-jurists for esl-legal — present 2-3 options each with lore + persona + color + match-strength, name a recommendation. Don't over-Socratic the naming.
+
+[LEARNED] **Substrate-echo of self-routed task_assignment envelopes is a recurring harness pattern.** Saw it 8+ times this session for my own tasks (#9-#17, #20-#24). Each echo is harmless if you apply `TaskGet`-before-classify-as-noise discipline (Brunel's S31 wiki entry). Disk + inbox truth is authoritative when the task substrate purges entries.
+
+### mvox-dev prompt audit (2026-05-20)
+
+[CHECKPOINT] 9 prompts read at `~/Documents/github/.mmp/mvox_v4e_web/teams/mvox-dev/prompts/`. 3 atomic fine-tune commits landed (`60936ec` palestrina, `246fd06` victoria, `1a531e2` comenius). Then PO-requested Comenius opinion → corrected to Pérotin opinion → 5-commit pass on Pérotin per all 7 design-review items (`6c7b4bb`, `f136297`, `d2a78e9`, `4e50504`, `ed15eee`). All pushed by PO per Aen's 14:01 message.
+
+[LEARNED — STRONG] **"Promotion as label vs promotion as behavioral change" is a real design diagnostic.** Pérotin's on-demand→permanent promotion (2026-05-20 s7) added the label without folding into the prompt body: L109 still said "may not be spawned at all," no standing-concerns section. Tell-pattern reusable for future promotions: scan for contradictions with the prior status; scan for missing "between dispatched work" framing; only when both are clean does the promotion mean something behavioral.
+
+[LEARNED] **Lore-fit comes in two shapes: thematic (Comenius=multilingual education) vs structural (Pérotin=layered organum atop Léonin's chant).** Structural fit produces behavioral payoff (self-justifying MAY-NOT lists, clear pair-relationships). Thematic fit produces *competent prompts that work* but leave the role's actual energy unclaimed. The Comenius opinion identified this gap explicitly; Pérotin's lore reframe (commit `d2a78e9`) is the worked example of structural-fit-claimed.
+
+[LEARNED] **Sonnet-fit calibration: model-tier rightness is a function of (a) judgment-load shape and (b) escalation-path articulation.** Comenius is Sonnet-under-modeled because his judgment calls are open-ended AND his escalation path isn't explicit. Pérotin is Sonnet-right because his judgment calls are clear-criteria AND escalation paths are crystal. Pattern: if you downgrade to Sonnet, the prompt MUST carry explicit escalation criteria; otherwise the downgrade is paying its way only on Sonnet's worst dimension (self-recognition-of-own-limit).
+
+[LEARNED] **Cross-team author attribution edge case has a durable policy.** Medici caught CLAUDE.md L35: files originally authored by another team's member keep the original trailer (`(*FR:Celes*)`) unless substantially rewritten. My instinct to flag the trailers as needing PO ruling was over-cautious; the policy was already on disk. Cross-check the host project's CLAUDE.md before flagging attribution surfaces for ruling.
+
+### Closing tags
+
+[DEFERRED] Path-convention substrate question for mvox-dev (`~/projects/entu-research/`, `~/workspace/...`) held pending PO ruling on Medici's twin Flag. Mine and his prompt/memory-side edits both wait on same root cause.
+
+[DEFERRED] Comenius prompt design improvements (item 1: escalation subsection; items 2-6 from my 13:23 opinion) — not requested as edits this session, just opinion. PO may pick them up later.
+
+[DEFERRED] Brief-scope-conflation pattern (S32 Cal queue): my S32 entry "(2) NEW: brief-scope-conflation failure mode" remains in [DEFERRED — Cal queue, end-of-session]. Not submitted this session; carry into next.
+
+[WARNING] Pérotin's `~/workspace/...` startup paths (L127-130) NOT touched this session per Aen's explicit hold. When PO rules on the path convention, those 4 lines + 4 other prompts + 3 memory files + startup.md all move together.
+
+[CHECKPOINT — Hires Delivered cumulative] Hopper is hire group #13 (FR-team specialist). Cumulative total now **61 agents across 13 teams**. Previous: 60 across 12 teams (post-esl-legal). The mvox-dev prompts audit was *fine-tuning*, not hiring — no new agents from this session's mvox work.
+
+---
+
 ## ESL-legal team design — S32 intake (2026-05-13)
 
 [CHECKPOINT] Aen briefed me 10:52 EEST. Sister-team to esl-suvekool (Tobi designed brief). Defensive legal scan, EE+EU copyright, 7 questions Q1-Q7, deliverable ~10-20p English markdown with verbatim Estonian source quotes. Lihula 2026-05-23 = T-10 days. PO locked 5 axes; 3 axes open for my judgment.

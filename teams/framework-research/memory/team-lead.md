@@ -1,5 +1,112 @@
 # Team-Lead Scratchpad (*FR:team-lead*)
 
+## SESSION 33+ WRAP — 2026-05-19 → 2026-05-20 (Hopper Deployment Operator deployed; mvox-dev team registered + Pérotin promotion realized; cross-team substrate-knowledge handoff to apex unblocked S37 carry-over; agent-lifecycle no-autonomous-continuation pattern observed n=4 but framed as Windows-substrate friction per PO direction)
+
+**Spans:** Multi-day session 2026-05-19 → 2026-05-20 (PO-driven re-engagement after Aen crash mid-window 2026-05-19). Two distinct work surfaces in one continuous session: (A) Hopper Operator role design + deploy; (B) mvox-dev clone-and-refactor health audit + Pérotin promotion finalization.
+
+**Outcome:** Both surfaces shipped end-to-end. Hopper joined the FR roster as a navy-blue opus-4-6 Deployment Operator paired with Brunel. mvox-dev team indexed in `designs/deployed/`, audited GREEN by Medici, and Pérotin's permanent-promotion structurally realized via Celes's 5-commit fine-tune + Aen's roster-side edit. 17 commits across two repos (FR: 4 deploy-stack commits; mvox: 15 commits pushed to origin).
+
+### Outcomes shipped — Hopper Deployment Operator
+
+| Artifact | Δ | Owner | Path |
+|---|---|---|---|
+| `teams/framework-research/prompts/hopper.md` | NEW (26K, 11-slot full prompt) | Celes | committed in deploy `25094d1` (moved from staging) |
+| `teams/framework-research/prompts/brunel.md` | +3 amendments | Celes designed / Aen applied | `25094d1` |
+| `teams/framework-research/roster.json` | +1 member (hopper, navy, opus-4-6) | Aen | `25094d1` |
+| `designs/deployed/operator-role/` | NEW deployed-reference (design-spec, first-spawn-protocol, brunel-amendments, roster-entry, aeneas-amendment HELD) | Celes / Aen | `25094d1` (moved from `designs/new/`) |
+| `teams/framework-research/docs/operator-role-spec-2026-05-19.md` | NEW spec (Brunel-authored) | Brunel | committed earlier in `4a5dece` |
+
+### Outcomes shipped — mvox-dev team registration + Pérotin promotion
+
+| Artifact | Δ | Owner | Path / commit |
+|---|---|---|---|
+| `designs/deployed/mvox_v4e_web/README.md` | NEW deployment index | Aen | FR commit `300d2df` |
+| Medici health audit (218 lines, GREEN) | NEW | Medici | mvox commit `d9ecdde` |
+| Comenius scratchpad stub | NEW (resolved only RED finding — new member had no memory file) | Medici | mvox commit `d52cac7` |
+| Finn scratchpad prune (-24 lines) | M | Medici | mvox commit `e49ced8` |
+| Victoria + Comenius prompt fine-tunes (Paraglide/TBD/TDD Partners) | M (3 atomic commits) | Celes | mvox `60936ec`+`246fd06`+`1a531e2` |
+| Pérotin prompt — 5-commit pass (always-on framing + standing concerns + Léonin lore reframe + 3 coordination adds + first-spawn-as-permanent reorientation) | M (5 atomic commits) | Celes | mvox `6c7b4bb`..`ed15eee` |
+| Pérotin roster.json (drop spawn field + update lore.significance) | M | Aen | mvox commit `9ab6542` |
+| Palestrina memory append — 3 FR-flagged deferrals (path convention, CLAUDE.md drift, polyphony-isms) | M | Aen | mvox commit `4ca000b` |
+| Cosmetic markdownlint MD032 fix on perotin.md | M | (auto-formatter) | mvox commit `516e476` |
+
+mvox-dev pushed: 16 commits to `mvox-dev/mvox_v4e_web` origin/main (range `81f7d9c..516e476`).
+
+### Decisions (PO-ratified)
+
+[DECISION — session 33+] **Hopper deployment operator role finalized.** Naming via Celes-first-cut S32 pattern (PO chose Hopper over Kranz / Casey Jones); structural decisions all 4 accepted (no curator companion, generic-with-examples substrate scope, no first-spawn dry-run, monthly ops-log with REQUIRED deployed-artifacts-read declaration); 5 interpretive deltas locked via Celes↔Brunel DM exchange. TL-review Q4 (Tier D vs shape-mode contract surface) ratified per Celes's option 1 (clarify on producer side).
+
+[DECISION — session 33+] **Aen amendment (Part C, relay-visibility rule) HELD.** The `aeneas-amendment.md` file stays in the deployed package as a future-session candidate but NOT applied to `prompts/aeneas.md` this pass. PO direction.
+
+[DECISION — session 33+] **Pérotin permanent always-on interpretation.** Convention discovered empirically: every other permanent mvox-dev member has no `"spawn"` field in roster.json; only Pérotin had `"spawn": "on-demand"`. Promotion = delete the field. Aligned roster + prompt L109 to make the promotion structurally real (not just a label).
+
+[DECISION — session 33+] **mvox-dev is NOT FR-shipped substrate.** Indexed in `designs/deployed/mvox_v4e_web/` for visibility but flagged out-of-scope for Hopper's MAY-DO list — substrate-design ownership rule excludes clones+refactors on non-EVR github orgs. Re-evaluate only if PO migrates to an EVR-org deployment with FR substrate ownership.
+
+[DECISION — session 33+] **vjs_apex_apps RO mechanics handed off to Schliemann.** PO reversed initial "we don't owe Schliemann, that's sorted" framing after recognizing the substrate-knowledge handoff value (apex was carrying it as a pending fix). The handoff resolved apex's S37 carry-over.
+
+### Substantive learnings (promotion-grade candidates)
+
+[LEARNED — substrate, promotion-grade] **Read-your-own-deployed-artifacts diagnostic discipline.** Codified in Brunel-Amendment-1. Generalizable rule: when an FR-deployed substrate shows a failure, the first action is to read `designs/deployed/<team>/container/*` — the substrate's design intent is on disk in our repo, not opaque. Treating FR-shipped substrates as opaque is the first-pass error. Catalyzed by Brunel's S33+ apex-blocker diagnosis (first-pass plausible-but-wrong; PO surfaced; re-diagnose correct via reading own entrypoint).
+
+[LEARNED — substrate, promotion-grade] **Substrate-knowledge handoff value (cross-team).** Substrate-mechanics summary from FR to apex unblocked a pending carry-over on apex's side (S37 "Mount fix pending FR-team" → reframed as "structurally-enforced policy with canonical refresh path"). PO observation: "your reversal on 'we don't owe Schliemann' was load-bearing." Generalizable: when one team owns substrate-design and another team operates against it, periodic substrate-knowledge handoffs (even without a triggering incident) prevent the consuming team from accumulating "pending fix" entries for things that are actually deliberate policy. Promotion candidate after n=2.
+
+[LEARNED — process, promotion-grade] **Celes design discipline n=3.** Three teams designed via the same workflow shape: esl-suvekool (S23, summer school) → esl-legal (S32, Roman jurists) → operator-role (S33+, Hopper). Workflow: PO brief → Celes brainstorm → naming proposals + structural decisions (PO pause-point) → atomic-commit drafting at `designs/new/` → TL review → deploy + `mv` to `designs/deployed/`. Promotable as the canonical team-design pattern. The 4-step "checkpoint with naming proposals + structural decisions + interpretive deltas BEFORE drafting" cadence is the load-bearing discipline; it prevents the drafting-without-alignment failure mode.
+
+[LEARNED — process] **Per-domain opinion review n=2.** Celes-design-opinion-on-a-single-prompt is a useful intermediate artifact between audit and edit. Applied to Comenius (under-modeled, lore-to-role-fit gap surfaced) and Pérotin (promotion not folded into prompt body surfaced). The opinion shape — prose, not checklist; "strong recommendation explicit if differs from on-disk"; "what I'd change if asked to redesign" framing — produced actionable items that the surgical-edit pass alone would have missed. Promotable to a Celes-tool: "prompt-design-opinion as separate artifact from prompt-fine-tune."
+
+[LEARNED — protocol-design] **Agent-lifecycle no-autonomous-continuation observed n=4-ish across the session.** Pattern: agent sends intro / reply / closing report → idle → does NOT process inbox until next inbound message wakes them. Specific instances this session: all 3 spawn intros (Brunel/Cal/Celes) sat unread in my inbox marked `read: true` until PO prompted "check inbox"; Celes wrote initial intro then idled without starting (a)+(b) until I sent the wake; Medici closed his work before processing Celes's scope-overlap DM; Celes idled multiple times before each turn-driven action. Workaround that worked: producer→consumer paired loops (Brunel feeding Cal one item at a time; Cal's ACKs woke Brunel for next) self-sustain; open-loop dispatches stall. PO framing 2026-05-13 (saved auto-memory `feedback_no_windows_substrate_findings.md`): "Don't characterize Claude Code messaging/inbox failures observed on Windows as framework findings — Linux is the deployment substrate." NOT pursued as a wiki finding per PO direction. Noted for protocol-design context only.
+
+[LEARNED — substrate] **Operator-role spec authored mid-session by a substrate-engineer is a Brunel-shaped artifact.** Brunel's S33+ spec authorship (Part A operator role + Part B Brunel amendments + Part C Aen amendment) is the first instance of a non-Aen specialist authoring a multi-role spec across team-membership boundaries. Worked because Brunel was the diagnostic-discipline-keeper at the moment the gap surfaced; the spec encoded the gap's resolution from the diagnostic-keeper's vantage. Generalizable: substrate-engineers authoring cross-team specs is a viable pattern when the gap is substrate-shaped.
+
+[LEARNED — process] **Promotion-as-label vs promotion-as-structural-change.** Pérotin's case made this concrete: the L134 footer added the "permanent data-manager" label without folding the implications into the prompt body. L109 still said "spawned on-demand; may not be spawned at all"; roster.json still had `spawn: on-demand`. Without Celes's design-opinion catching this, the promotion would have stayed cosmetic — a label without behavior. Generalizable: when promoting an agent's role, run a "promotion fit" pass on prompt body + roster + lore.significance + any cross-references in other prompts. The fold-the-implications pass is what makes the promotion real.
+
+[LEARNED — process] **Race condition between dispatch and correction — agents respect retroactive correction.** Celes started writing the Comenius opinion at 13:23, my "actually Pérotin" correction reached her inbox at 13:24, she sent the Comenius opinion at 13:25 and idled. On next wake she processed the correction and wrote the Pérotin opinion at 13:29. Both artifacts shipped clean. The Comenius opinion was substantive enough to be its own surface (PO acted on it). Workaround: when correcting a dispatch, don't assume the wrong-target work is lost — it may complete in parallel and remain useful.
+
+### Cal queue additions from session 33+ (Cal already filed during her batch close)
+
+Cal closed her 7-item Brunel queue cleanly. Wiki entries filed (untracked → tracked during S4 commit):
+
+- `wiki/patterns/agenttype-vs-backendtype-separation.md`
+- `wiki/patterns/cross-host-atomic-inbox-write-primitive.md`
+- `wiki/patterns/decorative-polling-interval-anti-pattern.md`
+- `wiki/patterns/per-message-color-overrides-registered-default.md`
+- `wiki/patterns/read-flag-replication-discipline-for-external-cli.md`
+- `wiki/patterns/taskget-before-classify-as-noise.md`
+- `wiki/references/inbox-slot-vs-members-validation-asymmetry.md`
+
+Plus amendments to existing entries: `ghost-member-as-universal-integration-surface.md`, `inbox-file-write-as-wake-mechanism.md`, `members-array-edit-honored-mid-session.md`, `wiki/index.md`.
+
+Wiki count: 93 → 100 (7 new) + 3 amended + 1 index update.
+
+### Standing watch items going into session 34+
+
+- **Hopper's first dispatch** — will create `teams/framework-research/docs/operations-log-2026-05.md`. Watch for the first deployed-artifacts-read declaration in the log; it's the audit surface for repeat-of-Discovery-2 anti-pattern.
+- **mvox-dev session 8 handoff** — Palestrina has 3 deferred items in his NEXT-SESSION carry-forward (path convention, CLAUDE.md drift, polyphony-isms). PO may surface mvox outcomes from session 8 next time we engage; absorb learnings.
+- **Aen amendment Part C (relay-visibility rule) — HELD, candidate for future session.** Staged at `designs/deployed/operator-role/prompts/aeneas-amendment.md`. PO may revisit if a future incident surfaces silent-relay-scope-broadening.
+- **apex-research bidirectional cite-back** — Schliemann routed the vjs_apex_apps substrate-knowledge to Champollion → likely Eratosthenes Protocol A submission with bidirectional cite-link back to our `wiki/patterns/substrate-invariant-mismatch.md`. If apex files, Cal may need to add a cite-back amendment on our side.
+- **Comenius prompt overhaul (mvox)** — Celes's opinion surfaced load-bearing recommendations (escalation subsection, *Didactica Magna* lore reframe, Sonnet-vs-Opus tier question, active-pushback framing). Not actioned this session (Pérotin was the priority). Possible mvox-side surface for a future session if PO wants the Comenius investment.
+- **Brunel-as-spec-author pattern n=1** — first instance of a non-Aen specialist authoring a multi-role spec. Watch for n=2 to confirm this is a viable cross-team pattern.
+- **TPS-583 (apex-research)** — when PO signals Ruth has progressed, action Stage-2 standard moves (carry-forward from S32).
+
+### NEXT-SESSION BOOT (re-orient instructions for S34+)
+
+1. Read `startup.md` first (always). Steps 1-5 (Sync → Reset team state → Restore inboxes → Spawn — wait for PO direction).
+2. **Pull `mitselek-ai-teams` repo** for any external scratchpad updates.
+3. **Consider also pulling `mitselek/esl-legal` and/or `mvox-dev/mvox_v4e_web`** if PO references session-N work from those repos.
+4. **Don't pre-spawn any agent at session start.** Wait for PO direction.
+5. **If PO surfaces Hopper's first dispatch:** spawn Brunel (diagnostic step) + Hopper (execution) per the Brunel-amendment-3 dispatch-package shape. If the ask is simple (e.g., "restart apex"), Aen can route Hopper solo per the "pair-as-unit is the common case, not the only case" framing. Watch for the first `operations-log-2026-05.md` entry to land.
+6. **If PO surfaces mvox-dev session 8 outcomes:** Palestrina has 3 deferred items + likely his own learnings. Receive via PO; possibly spawn Celes for any prompt-side fold (Comenius overhaul candidate) or Medici for any memory-audit fold.
+7. **If PO surfaces apex-research bidirectional cite-back** (Eratosthenes filing references our wiki): spawn Cal for cross-team cite-and-fold via Protocol A. Brunel-side substrate-engineer involvement only if substrate-claim needs verification.
+8. **If PO surfaces Aen amendment (Part C relay-visibility) revisit:** `designs/deployed/operator-role/prompts/aeneas-amendment.md` is the starting artifact. Decide land-now vs further-deliberate.
+9. **First operational item if Cal-spawning:** her S33+ close was clean (7-item queue + amendments + index). Surface-grade work: receive any Brunel/Hopper Protocol A submissions from the first Hopper-dispatch cycle; field any apex-research bidirectional cite-and-fold.
+10. **If PO surfaces "design another team":** Celes-design-discipline n=3 holds. Same workflow shape: brainstorm → naming proposals + structural decisions (PO pause-point) → atomic-commit drafting at `designs/new/<team>/` → TL review → deploy + `mv` to `designs/deployed/`. The per-team opinion-as-intermediate-artifact (Comenius/Pérotin pattern) is now n=2 — usable when Celes is given a prompt to review without an immediate edit dispatch.
+11. **If PO surfaces "manager-team / PO-team architecture":** PO floated this 2026-05-20 EOS with the framing *"I'm messing with too many teams in parallel; I feel I should soon create a dedicated team of PO's to manage all my teams."* Maps cleanly onto Monte's domain — governance architecture, separation of powers, manager-agent boundaries, delegation matrices, authority drift at scale. Spawn Monte for the design surface; Cal for accumulated wiki on team-taxonomy + service-team topology that this composes against. Brunel + Volta likely downstream once envelope shapes settle (substrate + lifecycle). This is the fatigue-as-observation design-pressure signal — when the PO role itself becomes the bottleneck, the framework needs to grow up.
+12. **If PO surfaces "Volta evaluates mvox-dev's startup procedure":** PO observation 2026-05-20 EOS — last night's mvox-dev session "redesigned a startup procedure" worth comparing against FR's own. Spawn Volta to read `~/Documents/github/.mmp/mvox_v4e_web/teams/mvox-dev/startup.md` against `teams/framework-research/startup.md`, identify innovations, and propose any adoption candidates. Medici's S33+ audit already flagged mvox-dev's startup as "three-state probe is sound and mirrors FR's own discipline" — but innovations beyond mirroring are the surface PO wants evaluated. Output: comparison doc + adoption-recommendations, route to Aen for ratification.
+
+(*FR:Aen*)
+
+---
+
 ## SESSION 32 WRAP — 2026-05-13 (esl-legal team designed + deployed; Roman-jurist roster; long-lived per-domain archetype confirmed; brief-scope-conflation failure mode surfaced)
 
 **Goal (PO-set 10:18):** Wake the team for "another exciting teambuilding effort" — design a new team to support ESL through an active EE/EU copyright dispute (Peterson / SP Muusikaprojekt, Lihula T0 = 2026-05-23). PO scope clarification at 11:04: *"I see this team as long-living support unit and Peterson is just the case nr.1"* — corrected initial misread of brief as 10-day one-shot.

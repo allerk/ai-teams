@@ -15,12 +15,17 @@ source-issues:
 related:
   - references/inbox-file-write-as-wake-mechanism.md
   - references/members-array-edit-honored-mid-session.md
+  - references/inbox-slot-vs-members-validation-asymmetry.md
+  - patterns/agenttype-vs-backendtype-separation.md
+  - patterns/per-message-color-overrides-registered-default.md
   - patterns/service-team-topology.md
   - patterns/multi-provider-integration-seams.md
   - patterns/framework-participating-vs-service-roles.md
 amendments:
   - date: 2026-05-14
     note: "Confidence medium → high. Both upgrade triggers satisfied: (1) ghost-bridge v1 daemon (commit 9c5bf83) implements the local-fs plugin demonstrating end-to-end FR↔apex flow on the deployment-substrate family; (2) n=2 cross-substrate verification (FR Windows-Git-Bash + apex Linux/Docker, 2026-05-14) of mid-session `members[]` edits being honored without restart — see new sibling reference `members-array-edit-honored-mid-session.md`. OQ #2 (member-list cache window) closed."
+  - date: 2026-05-19
+    note: "Cross-link to two new Brunel S31 entries: `references/inbox-slot-vs-members-validation-asymmetry.md` (third-leg substrate-property sibling — lifecycle-asymmetry between members[] and inbox-files) and `patterns/agenttype-vs-backendtype-separation.md` (richer-than-RFC-#66-example canonical shape documenting the shipped two-field structure)."
 ---
 
 # Ghost-Member as Universal Integration Surface

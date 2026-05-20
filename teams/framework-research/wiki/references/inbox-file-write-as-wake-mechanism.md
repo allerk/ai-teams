@@ -14,6 +14,7 @@ source-issues:
 ttl: 2026-11-12
 related:
   - references/members-array-edit-honored-mid-session.md
+  - references/inbox-slot-vs-members-validation-asymmetry.md
   - patterns/worktree-spawn-asymmetry-message-delivery.md
   - gotchas/inbox-drained-on-spawn-clear-without-deliver.md
   - patterns/substrate-invariant-mismatch.md
@@ -22,6 +23,8 @@ related:
 amendments:
   - date: 2026-05-14
     note: "Companion-pair sibling filed (`references/members-array-edit-honored-mid-session.md`); substrate scope strengthened by parallel n=2 verification on Linux/Docker (apex-research) confirming POSIX-equivalence in practice, not just by extrapolation."
+  - date: 2026-05-19
+    note: "Third-leg sibling filed (`references/inbox-slot-vs-members-validation-asymmetry.md`, Brunel S31 PoC). The companion-pair becomes a three-way substrate-property family: this entry (recipient-wake), members-array-edit (dispatch-validation), inbox-slot-vs-members (lifecycle-asymmetry)."
 ---
 
 # Inbox-File-Write IS the Wake Mechanism
