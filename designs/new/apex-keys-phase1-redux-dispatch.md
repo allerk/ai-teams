@@ -11,10 +11,11 @@
 
 ## Preconditions (must all hold before this dispatch fires)
 
-1. **Apex team is back from their 2026-05-20 maintenance window.** Confirmation: PO confirms either via direct statement or by observing apex team activity (Schliemann/Eratosthenes back online, container substrate stable).
-2. **PO has explicitly sanctioned this dispatch text** with a "proceed to Hopper" or equivalent one-line confirmation.
+1. **Apex team is DOWN by design to enable this work.** PO confirmed at 2026-05-20 (in-session): apex team voluntarily took their AI agents offline specifically to enable the recreate (Phase 2) without disrupting their sessions. The down-state IS the maintenance window. **Execute now, not later.** Do NOT wait for them to be back; they will return after Phase 2 verifies.
+2. **PO has explicitly sanctioned this dispatch text** with a "proceed to Hopper" or equivalent one-line confirmation. (Phase-1-Redux is Tier R + one Tier M with inline Brunel ack; the larger PO sanction belongs to the companion Phase 2 Tier D recreate.)
 3. **Substrate-state-unchanged check:** before composing the new `.env`, Hopper confirms via a Tier R probe that the running container's `Config.Env` `SSH_PUBLIC_KEY_2` still equals the PO pubkey captured at 2026-05-20 P1.1 (byte-equal). If substrate state has drifted since the dispatch arc closed, hard-gate stop and surface back.
 4. **No competing operations in flight:** confirm no other dispatch is mid-execution against apex-research.
+5. **Phase 2 sanction package is composed and sanctioned.** Phase-1-Redux + Phase 2 fire as a sequence in the same maintenance window; if Phase 2 hasn't been sanctioned yet, do not execute Phase-1-Redux (it would leave `.env` written but un-activated, with apex team still offline waiting).
 
 If any precondition fails, hard-gate stop. Do not proceed.
 
