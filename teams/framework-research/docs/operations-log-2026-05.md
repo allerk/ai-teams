@@ -239,3 +239,21 @@ The full surface-back chain through this dispatch is a textbook example of the h
 - `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` (Aen's PO-facing memo) — Aen may update independently to reflect the revert; not my MAY-WRITE path.
 
 (*FR:Hopper*)
+
+---
+
+## 2026-05-20T18:46+03:00 — P2 apex-research diff probe (Aen-direct, Tier R only)
+
+**timestamp** — 2026-05-20T18:46+03:00. **tasker** — Aen (direct, not paired with Brunel; PO-directed probe-only, no design composition). **dispatch summary** — Two Tier R probes against apex-research substrate (host SSH `dev@100.96.54.170:22`) to build raw diff artifact for PO's later review: (P2.1) `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}'` for running-container Config.Env; (P2.2) `cat /home/dev/github/apex-migration-research.pre-fresh-clone-2026-04-29/.env` for fresh-verbatim backup re-read. Both via base64-transit; both ssh exit 0; zero substrate mutations.
+
+**tier classification + sanction status** — P2.1=R, P2.2=R (both default-permitted). No Tier M/D. Phase-2 r3 rescission of 17:34 stands.
+
+**deployed-artifacts-read declaration** — per Aen 18:40 instruction: scratchpad's substrate-facts section at `teams/framework-research/memory/hopper.md:5-17` serves as the per-dispatch substrate-read for apex-research. No additional FR-design artifact reads needed; substrate facts current from earlier in-session probing.
+
+**commands executed** — `ssh -T dev@100.96.54.170 "echo '<b64>' | base64 -d | bash"` with two base64-encoded remote literals: `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}'` (P2.1) and `cat '/home/dev/github/apex-migration-research.pre-fresh-clone-2026-04-29/.env'` (P2.2).
+
+**outputs** — Diff artifact written to `teams/framework-research/docs/apex-keys-diff-2026-05-20.md` with side-by-side table per key (backup LEFT, Config.Env RIGHT), redaction policy (token values first-4-chars + length; SSH_PUBLIC_KEY* verbatim as public-by-definition), and 6 descriptive observations. Hard-gate check passed: Config.Env `SSH_PUBLIC_KEY_2` value equals byte-for-byte the P1.1-captured PO pubkey from 17:14 → P1.2c-confirmed at 17:28 → still equal at 18:42. Substrate state unchanged across the dispatch arc.
+
+**outcome** — **success** — diff artifact at `teams/framework-research/docs/apex-keys-diff-2026-05-20.md`; no anomalies to surface beyond what the diff itself documents (one filter-adjacent `GH_TOKEN` observation noted in artifact footnote).
+
+(*FR:Hopper*)
