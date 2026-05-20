@@ -196,3 +196,46 @@ The full surface-back chain through this dispatch is a textbook example of the h
 - `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` (Aen's PO-facing memo) has the wrong-host correction prominently at the top.
 
 (*FR:Hopper*)
+
+---
+
+## 2026-05-20T18:22+03:00 — REVERT-CORRECTION ENTRY (supersedes 2026-05-20T18:05; restores 17:09 substrate-target as correct)
+
+**Format note:** per Provenance discipline (append-only; corrections go as new entries referencing the original by timestamp). This entry references **both** the 2026-05-20T17:09 original entry and the 2026-05-20T18:05 first-correction entry by timestamp. Neither is edited in place; the chronological order on disk preserves the full confusion-and-resolution audit trail.
+
+**timestamp** — 2026-05-20T18:22+03:00 (revert-correction written).
+
+**tasker** — Aen (revert instruction at 18:19, post-PO 18:08 registry re-check).
+
+**dispatch summary** — Revert-correction supersedes the 2026-05-20T18:05 substrate-scope correction entry. PO re-checked `~/bin/rc-deployments.json` himself at 18:08 and confirmed the 17:09 entry's substrate-target was correct the entire time. The 18:05 correction was itself based on a transient PO mis-read of the registry, not a real substrate-selection error. Apex production runs at `100.96.54.170` (registry entry `num:"1"` for host SSH + `num:"2"` for container SSH on port 2222) — exactly what the 17:09 dispatch operated against. The registry entry `num:"9" PROD-LLM` is a separate system, **NOT** the apex production deployment. The 17:09 entry stands as the canonical record of dispatch-as-executed; the 18:05 entry stands as documented confusion-and-resolution audit trail; this 18:22 entry supersedes both with the resolved state.
+
+**PO's verbatim 18:08 registry confirmation** (relayed via Aen 18:19):
+
+> - `num:1 RC-server 100.96.54.170 22 (default)` — host SSH ✓ exactly what your dispatch cited
+> - `num:2 apex-research 100.96.54.170 2222 id_ed25519_apex` — container SSH ✓ exactly what your dispatch cited
+> - `num:9 PROD-LLM` is a SEPARATE system, NOT the apex production. PO's earlier surfacing of `num:9` was a transient mis-read on his side; he corrected after re-checking.
+
+**tier classification + sanction status** — N/A (documentation revert-correction; no substrate touches). Original 17:09 entry's tier classifications and Aen 17:34 Phase-2-r3 rescission stand unmodified.
+
+**deployed-artifacts-read declaration** — None for this revert-correction entry.
+
+**commands executed** — None. Pure documentation revert-correction.
+
+**outputs** — Implications of the revert-correction:
+
+1. **The 17:09 entry's substrate-truth findings ARE operationally real for the apex production substrate.** Degraded state at $COMPOSE_DIR (no operational `.env`), container surviving on Config.Env baked pre-2026-04-29 fresh-clone, multi-system credential dependency on baked-in env — all of these statements describe the actual production apex substrate. Not a parallel non-production substrate.
+2. **The original PO ask (Aleksandr's key persistence on the apex container) IS addressable on this substrate**, legitimately deferred to apex team's post-maintenance window per Aen 17:34 Phase-2-r3 rescission pending re-architecture.
+3. **Sub-shape F (registry-entry-choice-from-first-match) is WITHDRAWN from the Cal-Protocol-A catalog candidate list.** No valid instance from this dispatch. Catalog reverts to Sub-shapes A-E.
+4. **Phase 2 sanction package r3 remains formally rescinded by Aen 17:34** — that rescission was based on the substrate-truth probes from P1.2c (which are now confirmed operationally real for production), not on the spurious substrate-selection error. Future Phase 2 against apex-research still requires `.env` reconstruction prerequisite + new sanction package; the rescission stands.
+
+**Attribution of the documentation confusion** — Per Aen 18:19: PO's 18:08 self-correction supersedes his earlier 17:47 surfacing of `num:9`. Brunel's 17:59 attribution ("The error is mine") and Aen's 17:58 informational amendment were both downstream consequences of the same upstream PO transient mis-read. No tasker-side or operator-side process failure; the discipline-honoring artifact updates I executed at 18:02 (scratchpad) and 18:05 (ops-log) were correct enforcement of the instructions-as-given-at-the-time. They've been reverted because the premise was invalidated, not because the discipline was wrong.
+
+**Lesson (folded into scratchpad)** — Even after discipline-honoring artifact updates (append-only ops-log corrections + scratchpad amendments), be willing to revert when the original premise is invalidated. **Discipline serves accuracy, not consistency-with-prior-correction.** The append-only ops-log chain (17:09 → 18:05 → 18:22) preserves the full confusion-and-resolution audit trail for future readers; scratchpad reverts to pre-amendment state because scratchpad is working-memory, not append-only audit log.
+
+**outcome** — **documentation-revert-correction-applied**. The 17:09 entry's `aborted-mid-execution` operational outcome stands unchanged and is now confirmed as the canonical record. The 18:05 entry's `documentation-correction-applied` outcome stands but is superseded by this entry. No operational outcome changes for any tier-classified step.
+
+**Cross-references:**
+- `teams/framework-research/memory/hopper.md` reverted at 18:21 per Aen 18:19: 6 substrate entries restored from `RC-server (100.96.54.170)` back to `apex-research` (with section-header revert); `[LEARNED — substrate, apex-PROD-LLM]` placeholder deleted; `[LEARNED — discipline, substrate-selection]` (Sub-shape F) deleted; new `[LEARNED — discipline, revert-on-invalidated-premise]` added capturing the lesson.
+- `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` (Aen's PO-facing memo) — Aen may update independently to reflect the revert; not my MAY-WRITE path.
+
+(*FR:Hopper*)
