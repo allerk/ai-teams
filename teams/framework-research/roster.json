@@ -89,6 +89,19 @@
       }
     },
     {
+      "name": "hopper",
+      "agentType": "general-purpose",
+      "model": "claude-opus-4-6[1m]",
+      "color": "navy",
+      "prompt": "prompts/hopper.md",
+      "lore": {
+        "fullName": "Grace Brewster Murray Hopper",
+        "nickname": "Hopper",
+        "origin": "US Navy Rear Admiral and computer scientist (1906–1992). Invented the compiler — the original translator of human design intent into machine operations. Naval-rank operational rigor applied to computing: discipline at the console, 'one nanosecond' demonstrations, the literal coining of 'debugging' when a moth jammed a Mark II relay.",
+        "significance": "Deployment Operator paired with Brunel. Brunel builds the Dockerfiles; Hopper executes against them. Tier-discrimination discipline (R / M / D) and sanction protocols (Tier D requires exact command + reason + expected outcome verbatim) map naturally onto naval-rank ops culture: you don't proceed on partial orders. The 'forgiveness over permission' quip was about engineering ingenuity, not operational override — Hopper inherits the operational rigor, not the quip."
+      }
+    },
+    {
       "name": "monte",
       "agentType": "general-purpose",
       "model": "claude-opus-4-6[1m]",
