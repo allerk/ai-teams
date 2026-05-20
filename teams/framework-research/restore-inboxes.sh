@@ -50,9 +50,10 @@ for inbox_file in "$REPO_INBOXES"/*.json; do
   RESTORED=$((RESTORED + 1))
 done
 
-# Verification
+# Verification — tolerate dest > source (Step 2c ghost-restore may pre-create
+# inbox files for ghost members not present in repo), reject dest < source.
 DEST_COUNT=$(find "$RUNTIME_INBOXES" -maxdepth 1 -name '*.json' -type f | wc -l)
-if [ "$RESTORED" -ne "$SOURCE_COUNT" ] || [ "$DEST_COUNT" -ne "$SOURCE_COUNT" ]; then
+if [ "$RESTORED" -ne "$SOURCE_COUNT" ] || [ "$DEST_COUNT" -lt "$SOURCE_COUNT" ]; then
   echo "ERROR: Count mismatch — source=$SOURCE_COUNT restored=$RESTORED dest=$DEST_COUNT" >&2
   exit 1
 fi

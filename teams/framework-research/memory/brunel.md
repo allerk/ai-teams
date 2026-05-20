@@ -1,5 +1,39 @@
 # Brunel scratchpad
 
+## SESSION 34 — Apex authorized_keys dispatch (2026-05-20)
+
+[LEARNED — STRONG] **Substrate-selection error: dispatched against RC-server (num:1+num:2 in rc-deployments.json) when production apex is on PROD-LLM (num:9).** Aen-named **Sub-shape F: registry-entry-choice-from-first-match.** The error is mine — cited registry entries `num:"1"` and `num:"2"` as "the apex host/container" without confirming canonical production deployment. Hopper's role discipline required following the dispatch text as written; the substrate-selection failure is upstream of execution. Hopper's audit-trail stays gold-star clean; the diagnostic-side gap is the substrate-selection step that should precede the substrate-truth-probe step. Future-Brunel: when multiple registry entries share a team-name root ("apex"), pick by canonical production deployment, not by first-match-by-name. PO can disambiguate in one sentence if unclear.
+
+[LEARNED — STRONG] **Diagnostic loop produced multi-system-failure prevention against the wrong host.** RC-server IS in degraded state (verified via Hopper's P1.2c three-probe batch + P1.2d backup-read): no `.env` at $COMPOSE_DIR, container is a 2026-04-29 fresh-clone survivor, `docker compose up --force-recreate` against THAT container would wipe SSH keys + GITHUB_TOKEN + ATLASSIAN_API_TOKEN + TUNNEL_TOKEN simultaneously. Findings have audit value for that host; do NOT discard. But the original ask (Aleksandr's persistence on PROD-LLM apex) is unaddressed. Future-session work: redo the diagnostic against `michelek@10.100.136.162` (num:9, key `id_ed25519_apex`) with the same probe shapes.
+
+[LEARNED — STRONG] **Sub-shape catalog A-F surfaced this dispatch, all instances of "discriminator/premise/selection anchored on a sub-canonical source":**
+- A: template-stub-as-selector (P1.1 `michelek` regex)
+- B: name-inference-as-selector (P1.2a 2-candidate ambiguity)
+- C: documentation-convention-as-discriminator (P1.2a label-key underscore-vs-dot)
+- D: deployed-artifacts-as-premise-source (P1.2b `.env`-presence assumption)
+- E: substrate-ownership-vs-design-ownership distinction (Layer 1 FR-design / Layer 2 consumer-operational / Layer 3 runtime, two drift surfaces concretely materialized)
+- F: registry-entry-choice-from-first-match (substrate-selection layer, this scratchpad entry's load-bearing finding)
+Recovery pattern for all: cheap Tier R probe of substrate-live state beats offline inference. Cal-Protocol-A submission planned at session wrap: `wiki/patterns/discriminator-anchored-on-sub-canonical-source.md` (A+C as instances) + `wiki/patterns/three-layer-substrate-truth-discipline.md` (joint-authored with Hopper, E as headline + B+D+F as illustrative sub-shapes).
+
+[LEARNED] **r3 Phase-2 sanction package RESCINDED** by Aen 17:34 + retroactively by PO 17:37. Reason: r3 Phase-2 (`docker compose up -d --force-recreate apex-research`) would have caused multi-system failure against RC-server (SSH lockout + GitHub auth + Atlassian auth + Cloudflare tunnel auth all empty). Even after substrate-selection correction, future Phase 2 against PROD-LLM apex needs new sanction package built on fresh probe-suite of THAT host's substrate-truth. The r3 package is dead; do not resurrect.
+
+[LEARNED — joint with Hopper] **Three-layer substrate-truth model:** Layer 1 = FR design-as-shipped (`designs/deployed/<team>/container/*`) canonical for design lineage only; Layer 2 = consumer-team operational copy (e.g., `/home/dev/github/<repo>/`) canonical for compose-up resolution; Layer 3 = runtime container state (Config.Env, mounted volumes, in-process state) canonical for current-serving. Each layer can drift from its neighbor without notice. My `[LEARNED — STRONG, session 33+]` read-your-own-deployed-artifacts discipline reads Layer 1 only — INSUFFICIENT for FR-shipped substrates the consumer team operationalizes. Hopper's prompt has the same gap. Joint amendment-4 candidate (Brunel + Hopper) for Celes routing at session-end: "read all three layers on first-dispatch against a substrate." Defer until Celes online; pattern surfaced today, drafting later.
+
+[LEARNED — provisional, n=11 this session] **Cross-in-transit pattern at high tasker↔operator cadence.** Async inbox transport with no priority lane for HALT messages accumulates message-crossings when pair-loop cadence is dense (~1-3 min per round-trip). Aen-named meta-observation: "when team-lead halts mid-pair-loop, what's the structural mechanism to interrupt in-flight dispatches at the SendMessage layer?" Three future-session candidates: (a) HALT primitive at SendMessage layer with priority delivery, (b) Brunel-side discipline pattern polling for halt-signal between every outbound, (c) acceptance that pair-loops at high cadence have inherent halt-latency = round-trip-time. Filed pending Linux-substrate replication per `feedback_no_windows_substrate_findings.md` — n=11 stays Windows-session-local class until Linux-substrate same-cadence dispatch surfaces equivalent count.
+
+[CARRY-FORWARD — session-end Cal Protocol A submissions]
+1. `wiki/patterns/discriminator-anchored-on-sub-canonical-source.md` — Brunel-authored. Sub-shapes A + C as instances. Recovery: substrate-live discriminator + JSON-dump-when-single-probe-empty.
+2. `wiki/patterns/three-layer-substrate-truth-discipline.md` — JOINT (Brunel architectural distinction + Hopper operator-defense pattern). Sub-shape E as headline; B + D + F as illustrative. Catalyzing incident: Hopper ops-log entry 2026-05-20T17:09+03:00 at `teams/framework-research/docs/operations-log-2026-05.md`.
+3. **Amendment-4 candidate (Hopper + Brunel prompts):** three-layer Diagnostic Discipline. Surface to Celes at session wrap, NOT this session. Draft text in Hopper's 17:35 message body + my 17:37 elaboration.
+
+[CARRY-FORWARD — Phase-1 re-architecture (post-PO direction)] Future-session work: when PO returns from "stop and let me think," redo diagnostic against PROD-LLM (num:9) using Hopper's three-probe pattern + the three-layer substrate-truth reads. If PROD-LLM's state is healthy (has operational `.env`, container Config.Env matches), Phase-1 fix-shape is simple `.env` amendment. If PROD-LLM has its own degradation, treat that as a separate diagnosis. Don't reach for the rescinded r3 package; build fresh.
+
+[GOTCHA — apex-research RC-server, NOT production] As of 2026-05-20: container at `ai-teams@100.96.54.170:2222` is degraded-but-stable. No `.env` at `/home/dev/github/apex-migration-research/`. `docker compose up --force-recreate` on that host = multi-system failure. Production apex is `michelek@10.100.136.162` per rc-deployments.json num:9; that's where the original ask should be re-diagnosed.
+
+[CROSS-LINK] Hopper ops-log canonical record: `teams/framework-research/docs/operations-log-2026-05.md` entry timestamp 2026-05-20T17:09+03:00. Aen PO-facing memo: `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` (includes Aen-named Sub-shape F + wrong-host correction at the top). Both are public-grade audit artifacts.
+
+[STATUS] Idle pending Aen direction. Close-out report sent 2026-05-20 17:46 (planned); written 17:48.
+
 ## SESSION 33+ CLOSING REPORT (2026-05-20 13:05)
 
 [LEARNED] **Joint-authorship discipline applies cleanly to procedural-pattern wiki entries where reproducibility-evidence and original-articulation are both load-bearing.** Cal's item-6 filing (`patterns/taskget-before-classify-as-noise.md`, `source-agents: [brunel, callimachus]`) is the canonical example: S31 original-shape + procedural-rule articulation from me + S33+ n=4 self-instantiation reproducibility + internal-routing-as-self-assignment sub-shape characterization from Cal. Without either half, the wiki claim collapses. Generalizable: when two contributors supply structurally-distinct halves of a single load-bearing claim, joint authorship is the right Protocol A discipline.
