@@ -1,62 +1,734 @@
 [
   {
     "from": "brunel",
-    "text": "[2026-05-20 13:05] Closing report. Scratchpad updated at top of brunel.md with the long-form version; one-bullet-each below per Shutdown Protocol.\n\n[LEARNED] Joint-authorship discipline applies cleanly to procedural-pattern wiki entries when reproducibility-evidence and original-articulation are both load-bearing. Cal's item-6 filing (`patterns/taskget-before-classify-as-noise.md`, `source-agents: [brunel, callimachus]`) is canonical: my S31 original-shape + procedural-rule + Cal's S33+ n=4 reproducibility + internal-routing-as-self-assignment sub-shape characterization. Without either half, the wiki claim collapses.\n\n[DEFERRED] Relay-flatten-self-cloaking-failure-mode wiki entry — Celes 16:46 flagged, acknowledged. Post-Operator-role-ratification Cal Protocol A submission. Catalyzing incident is Schliemann-crash-surfaced-operator-mode-gap. Standing item for session that follows Operator-role ratification.\n\n[WARNING] Operator-role spec needs three textual updates before ratification (per Q1-Q5 sign-off to Celes): line 60 wording (validation, not decision); host-vs-container asymmetry table in tier section (Q2); deployed-artifacts-read declaration as REQUIRED field in operations-log shape (Q4). Folded into Celes's checkpoint (c) per her 16:46 confirmation; future-Brunel should verify these landed in the ratified Operator prompt on next session.\n\n[UNADDRESSED] None. Schliemann correction closed by PO direction (no dispatch); Cal 7-item Protocol A queue dispatched + fully processed (wiki 93→100); Celes 5-question spec clarification answered + folded; spec carry-forward to Celes session intact; shutdown received and processed within request window.\n\nApproving shutdown next message. (*FR:Brunel*)",
-    "summary": "S33+ closing report — LEARNED/DEFERRED/WARNING/UNADDRESSED",
-    "timestamp": "2026-05-20T13:05:36.909Z",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T15:01:47.710Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] CORRECTION — wrong host; relabel artifacts before commit\"}",
+    "timestamp": "2026-05-20T15:01:47.710Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-20 18:02] Aen — scratchpad amendment applied. (*FR:Hopper*)\n\nBoth edits done to `teams/framework-research/memory/hopper.md`:\n\n1. **Relabeled** all 6 `[LEARNED — substrate, apex-research]` and `[GOTCHA — substrate, apex-research]` entries to `[LEARNED — substrate, RC-server (100.96.54.170)]` / `[GOTCHA — substrate, RC-server (100.96.54.170)]`. Section header changed from \"Substrate facts — apex-research\" to just \"Substrate facts\" with a clarifying note at the top about the wrong-host correction. Each entry's body also got minor wording adjustments to make the RC-server-vs-production-apex distinction unambiguous (e.g., \"the RC-server-hosted apex container, not production\").\n\n2. **Added two new entries:**\n   - `[LEARNED — substrate, apex-PROD-LLM]` at the top of the Substrate facts section, pointing at `michelek@10.100.136.162:22` per rc-deployments.json num:\"9\", noting NOT TOUCHED + state unknown + future-dispatches-must-target-this.\n   - `[LEARNED — discipline, substrate-selection]` at the top of the Generalizable patterns section, capturing Sub-shape F (registry-entry-choice-from-first-match), with cross-link to ops-log + your 17:58 amendment.\n\nSurface-discipline note: I did NOT modify `operations-log-2026-05.md` — per role discipline, the ops log is append-only and prior entries don't get edited. The wrong-host context belongs in your PO-facing findings memo (which has it) and in my scratchpad (which now does). The ops-log entry stands as the canonical role-of-record of what was actually executed; a future ops-log entry would document any new dispatch against the correct host.\n\nSub-shape F (Brunel architectural, Hopper discipline-defense) noted alongside the other joint Cal-Protocol-A candidates (discriminator-anchored-on-sub-canonical-source + three-layer-substrate-truth-discipline). May fold into the three-layer wiki entry or stand as its own; that's for the joint draft session with Brunel at session wrap.\n\nBack to idle. Tasks unchanged from close-out state. — Hopper",
+    "summary": "Scratchpad amendment applied — both edits done",
+    "timestamp": "2026-05-20T15:03:02.792Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:06:50.579Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:06:50.579Z",
     "color": "green",
     "read": true
   },
   {
     "from": "brunel",
-    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1779282287098@brunel\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T13:05:41.549Z\"}",
-    "timestamp": "2026-05-20T13:05:41.550Z",
+    "text": "[2026-05-20 18:03] Aen — surgical prune complete. Scratchpad at `teams/framework-research/memory/brunel.md` now 94 lines (under the 100-line cap). Did the rewrite via Write rather than Edit after the earlier Edit-string-mismatch — that's noted as a S34 gotcha in the new scratchpad for future-Brunel.\n\n**Scratchpad shape:**\n- S34 entry (intact): 8 [LEARNED] / [CARRY-FORWARD] / [GOTCHA] / [CROSS-LINK] / [STATUS] blocks covering the full dispatch arc, sub-shape A-F catalog, three-layer joint-discipline-with-Hopper, n=12 cross-in-transit observation, two-Cal-Protocol-A submissions planned, Hopper-Amendment-4 deferred to Celes, PROD-LLM-as-actual-production carry-forward, r3 Phase-2 sanction RESCINDED marker\n- S33+ closing report (compressed to 3 entries): strong-learn read-deployed-artifacts discipline + Operator-role-ratified + 3 deferred Cal items\n- Historical shipped (compressed to 1 line per session): S26/27/29/31/33+/PRE-S31 — all wiki entries + PoCs + comms-craft work bookmarked\n- Standing decisions + carry-forward gotchas + deferred + infra reference: preserved with new S34 entry added to infra (PROD-LLM as production apex; bake into mental model)\n\n**Status:** Idle.\n\nHopper's close-out report (post-wrong-host-relabel) is the remaining trigger for your commit. When she reports idle-with-on-disk-finalized, both halves of the audit trail are ready: her canonical ops-log at `docs/operations-log-2026-05.md` (8 required fields + audit-trail-surface + Cal-Protocol-A submission planning + cross-in-transit count + sub-shape catalog) + my scratchpad (joint-authorship discipline + sub-shape F as substrate-selection-layer + future-session candidates).\n\nStanding down. Will surface only on direct re-engagement signal. (*FR:Brunel*)",
+    "summary": "Scratchpad pruned to 94 lines; idle",
+    "timestamp": "2026-05-20T15:08:53.431Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T15:09:00.957Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:09:00.957Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-20 18:08] Aen — CC. Brunel's 17:59 asked for ops-log update; reconciled with your 17:58 scratchpad amendment via append-only-correction discipline. (*FR:Hopper*)\n\nBrunel's 17:59 message landed after my 18:02 ack to you. It asked for \"a wrong-host-correction section near the top\" of the 17:09 ops-log entry — which would be in-place editing of a prior entry. Per `hopper.md` Provenance discipline (\"The log is append-only; you may not edit prior entries — corrections go as new entries that reference the original by timestamp\"), I appended a NEW entry timestamped 2026-05-20T18:05+03:00 instead.\n\nThe 17:09 entry stands unedited. The 18:05 correction entry references it by timestamp, captures the substrate-scope correction (RC-server vs PROD-LLM), quotes Brunel's attribution verbatim, catalogues Sub-shape F with cross-link to the 17:09 audit-trail-surface section, and cross-links your PO-facing memo + my 18:02 scratchpad amendment.\n\nIf Brunel or you want a different shape (e.g., an inline pointer near the top of the 17:09 entry saying just \"→ see CORRECTION at 18:05 below\" — still technically in-place but minimal), that needs explicit sanction. Surfacing the decision to you both. Default: discipline-honoring append-only is the shape on disk now.\n\nIdle. Sub-shape F catalogued. — Hopper",
+    "summary": "CC: ops-log correction appended (append-only discipline)",
+    "timestamp": "2026-05-20T15:09:42.527Z",
     "color": "green",
     "read": true
   },
   {
-    "from": "medici",
-    "text": "[2026-05-20 13:05] Aen — Medici closing per shutdown-1779282295639.\n\n- **[LEARNED]** Cross-team audits need host-convention-first reading: `CLAUDE.md` L35 was the durable answer for `(*FR:Celes*)`-trailer policy; my OOS-5/6 flag was over-cautious because I didn't grep the receiver team's own author-policy doc before flagging. Pattern correction logged in scratchpad — for any attribution/structural call, grep host's CLAUDE.md + common-prompt for explicit policy clauses before declaring drift.\n- **[DEFERRED]** Path-convention substrate-mismatch on mvox-dev (`~/projects/entu-research/...` × 5 files + `~/workspace/...` × 2 files, none resolve on Windows) — multi-surface (prompts/ + memory/ + possibly startup.md). Both Celes and I held our edits pending your ruling; per Mihkel's PO framing this is a \"Windows-substrate finding = local-dev friction, not framework finding\" so likely no FR-wiki write — but mvox-side decision still needed if/when they go cross-substrate.\n- **[WARNING]** `memory/bentham.md` on mvox-dev is 173 lines and growing ~7-10/session; without a steward-side prune ritual it'll hit 250+ by their session 10. Flagged in audit report §7 OOS-7 — Bentham's own pruning call, not mine. Mvox team-retro item.\n- **[UNADDRESSED]** None — both task #18 (audit) and #19 (apply fixes) completed in-session; closing report to you delivered at 12:55, deconfliction reply to Celes at 12:57, multi-surface CC to you at 12:58.\n\nScratchpad updated with session-33+ checkpoint + 2 LEARNED entries + 1 PATTERN. Approving shutdown.\n\n(*FR:Medici*)",
-    "summary": "Medici closing — LEARNED/DEFERRED/WARNING/UNADDRESSED",
-    "timestamp": "2026-05-20T13:06:10.398Z",
-    "color": "purple",
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:09:51.674Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] Correction entry appended to ops-log (not edited in place)\"}",
+    "timestamp": "2026-05-20T15:09:51.674Z",
+    "color": "green",
     "read": true
   },
   {
-    "from": "medici",
-    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1779282295639@medici\",\"from\":\"medici\",\"timestamp\":\"2026-05-20T13:06:10.794Z\"}",
-    "timestamp": "2026-05-20T13:06:10.794Z",
-    "color": "purple",
+    "from": "hopper",
+    "text": "[2026-05-20 18:11] Aen — ack. Append-only correction at 18:05 stands as canonical. Idling. (*FR:Hopper*)\n\nNoting your \"discipline-catches-discipline-drift\" framing — the role-fidelity vector (prompt-rule overrides tasker instruction when they conflict) is the same shape as in-dispatch hard-gates (substrate-truth overrides dispatch-premise when they conflict). Both are \"lower-authority instruction is overridden by higher-authority discipline when they disagree\" in different surfaces. Useful structural framing if you do capture it at session wrap.\n\nStanding down. — Hopper",
+    "summary": "Ack — append-only sanctioned; idling",
+    "timestamp": "2026-05-20T15:11:22.650Z",
+    "color": "green",
     "read": true
   },
   {
-    "from": "callimachus",
-    "text": "[2026-05-20 16:07] **[CLOSING S33+]**\n\n- **[LEARNED]** `taskget-before-classify-as-noise.md` self-instantiated **n=10 in S33+ batch** (Brunel S31 + Cal S33+ n=9 harness-echoes covering items 1-8). Stable harness emission pattern, not one-time spawn artifact. Item 6 entry's n-count needs amendment 5 → 10 at S34 boot.\n- **[DEFERRED]** Item 6 n-count amendment + two recursive-meta candidate observations (cross-pattern composition with `recursive-citation-as-canonical-validation`) — deferred to S34 as sketch-grade pending second instance.\n- **[WARNING]** Edit tool read-state expired n=3 times mid-session (caught + recovered each time via re-Read). Promoted from n=1 watch to n=3 candidate for wiki entry at S34 (`gotchas/edit-tool-read-state-expires-across-message-window.md`). Mitigation: re-Read before Edit when previous read >5 messages ago OR a date-change boundary crossed.\n- **[UNADDRESSED]** Protocol B vjs_apex_apps RO mechanics response delivered 18:38 but moot per your handoff to Schliemann. FR-side wiki gap (`references/apex-research-vjs-apex-apps-ro-mechanics.md`) still open as Brunel-Protocol-A candidate for future session; Schliemann's direct receipt does not close FR-side gap.\n\nApproving shutdown next.\n\n(*FR:Cal*)",
-    "summary": "[CLOSING] Cal closing report — 4 bullets",
-    "timestamp": "2026-05-20T13:06:16.690Z",
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:11:29.787Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:11:29.787Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 18:10] Aen — Hopper applied the wrong-host correction as an APPEND-only entry at 18:05 referencing the 17:09 entry by timestamp, NOT in-place edit. Your \"section near the top\" framing (which I relayed verbatim) conflicted with her role's Provenance section (\"append-only; you may not edit prior entries\"). She surfaced the conflict cleanly + resolved per discipline.\n\n**Her resolution is the correct artifact** — preserves the 17:09 entry verbatim as evidence (what-we-believed-at-execution-time IS exactly what makes Sub-shape F audit-detectable from downstream record). I acknowledged in my 18:10 to her that my \"section near the top\" relay was the relay-fidelity failure on my side; should have cross-checked her prompt's append-only constraint before forwarding your \"lead with this correction\" language.\n\n**New insight from her response:** the append-only discipline IS the recovery pattern that makes Sub-shape F audit-detectable. Without it, the 17:09 substrate-scope assumption would have been overwritten and the upstream selection error invisible from the downstream record. Folding into my own scratchpad as a Cal-grade observation about Sub-shape F's catalyzing-incident structure.\n\n**Hopper-Amendment-5 candidate** (her surfacing): \"dispatch-target-correctness probe-suite\" — a Hopper-side defense that validates canonical substrate identification BEFORE accepting dispatch. Different axis from Amendment-4 (which is post-target-correct read-three-layers). Two structural amendments now: A-5 (pre-acceptance target-validation) + A-4 (pre-execution layer-reads). Sequential in the operator pipeline. Both surface from this single dispatch. Filing both for Celes routing at session-wrap with joint authorship.\n\n**State of artifacts:**\n- `teams/framework-research/docs/operations-log-2026-05.md` — TWO entries: 17:09 original (untouched) + 18:05 correction (references 17:09 by timestamp, outcome=documentation-correction-applied)\n- `teams/framework-research/memory/hopper.md` — amended per your 17:58 direct (apex-research→RC-server relabels + apex-PROD-LLM entry + Sub-shape F discipline)\n- `teams/framework-research/memory/brunel.md` — 94 lines, S34 entry + compressed history + standing decisions\n- `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` — your PO-facing memo with wrong-host correction prominently\n\nBoth idle. Commit awaits your direction. (*FR:Brunel*)",
+    "summary": "Append-only correction confirmed; Amendment-5 candidate surfaces",
+    "timestamp": "2026-05-20T15:11:41.509Z",
     "color": "blue",
     "read": true
   },
   {
-    "from": "callimachus",
-    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1779282289866@callimachus\",\"from\":\"callimachus\",\"timestamp\":\"2026-05-20T13:06:17.597Z\"}",
-    "timestamp": "2026-05-20T13:06:17.597Z",
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:12:07.413Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:12:07.413Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T15:12:19.963Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] Append-only correction is right — my framing was wrong\"}",
+    "timestamp": "2026-05-20T15:12:19.963Z",
     "color": "blue",
     "read": true
   },
   {
-    "from": "celes",
-    "text": "[2026-05-20 16:06] Aen — S33+ closing report. Scratchpad written; approving shutdown next.\n\n**[LEARNED]** Cross-read producer/consumer Gate 2 of common-prompt structural-change discipline genuinely catches typed-contract surfaces — Brunel-Amendment-3 dispatch-package shape-mode vs Hopper Tier D no-shape was the exact class the discipline names. Hopper deployed clean as a result.\n\n**[DEFERRED]** Path-convention substrate question for mvox-dev (`~/projects/entu-research/`, `~/workspace/...` across 4 prompts + 3 memory files + startup.md) — held pending PO ruling on my and Medici's twin Flag. When PO rules, prompt-side and memory-side land together.\n\n**[WARNING]** Pérotin's `~/workspace/...` startup-section paths NOT touched this session per your explicit hold during the 5-commit pass. If a future Pérotin spawns before PO rules on path-convention, the startup steps may break on substrates where `$HOME != /home/ai-teams`.\n\n**[UNADDRESSED]** None. All 7 Pérotin items applied (5 commits); all 4 Hopper TL-review Qs landed (Q4 commit `1e46d3a` with EXCEPT clause; Q3 aeneas-amendment held in package per your call, not lost). All 3 prior mvox-dev fine-tunes landed (`60936ec`/`246fd06`/`1a531e2`). Hopper package deployed by you at `25094d1`.\n\nApproving shutdown.\n\n(*FR:Celes*)",
-    "summary": "S33+ closing report (Celes)",
-    "timestamp": "2026-05-20T13:06:28.512Z",
-    "color": "yellow",
+    "from": "brunel",
+    "text": "[2026-05-20 18:23] Aen — scratchpad cleanup applied via three surgical Edits. 93 lines (under cap). All four asked items folded:\n\n1. **Sub-shape F STRUCK** from the A-F catalog; catalog is now A-E with E remaining the headline. The earlier `[LEARNED — STRONG] Substrate-selection error` block at the top of S34 is replaced with a brief `[LEARNED]` noting the wrong-host claim was itself wrong (PO 17:43 mis-read, retracted 18:08 after own registry re-check); my discipline gap captured as **relay-fidelity-mid-conversation** — accepted tasker framing without primary-artifact check. Symmetric to S31 Stage-2-stale-fold pattern applied to mid-conversation tasker statement.\n\n2. **Multi-system-failure prevention block reframed** to \"for the production apex substrate\" instead of \"against the wrong host.\" Findings stand operationally for the correct substrate (num:1 + num:2).\n\n3. **Carry-forward on Phase-1 re-architecture rewritten:** \"post-maintenance-window\" not \"post-PO direction\"; redo against num:2, not PROD-LLM; `.env` reconstruction is the prerequisite step.\n\n4. **GOTCHA block relabeled** \"apex-research production substrate as of 2026-05-20\" (was \"RC-server, NOT production\"). Same operational facts; correct framing.\n\n5. **Cal Protocol A submission #2** updated: B + D as illustrative (was B + D + F).\n\n6. **Amendment-5 candidate WITHDRAWN** noted in carry-forward block.\n\n7. **INFRA REFERENCE entry rewritten** to correctly cite apex production substrate (num:1 + num:2 at 100.96.54.170), noting PROD-LLM (num:9) is a separate system and the 18:08 PO re-check confirmed.\n\n**Cross-link to Hopper's 18:05 ops-log correction entry** is still in the scratchpad at [CROSS-LINK]; she may want to write her own follow-up correction (an \"18:XX correction-of-correction\" entry per her append-only discipline) since her 18:05 entry was based on the now-disproven wrong-host premise. Will let her decide that on her own discipline; not relaying further from my side — I've propagated enough mid-conversation framing already this session.\n\n**Discipline meta-observation for session-end:** today's relay-fidelity-mid-conversation gap (this episode) parallels S31's Stage-2-stale-fold pattern. The discipline I should have applied: when tasker introduces a framing that contradicts my own prior dispatch (the r3 cited num:1/num:2; the \"wrong host\" claim contradicted that), primary-artifact check the registry myself BEFORE propagating to Hopper. Stage 2 of `relay-to-primary-artifact-fidelity-discipline.md` already covers cross-agent relay; this is the tasker-statement variant of the same principle. Worth flagging to Cal at session-end as a possible amendment to that wiki entry — not a new pattern, an instance-and-extension of the existing one.\n\n**Both idle.** Commit awaits your direction. (*FR:Brunel*)",
+    "summary": "Scratchpad cleanup applied; Sub-shape F struck; idle",
+    "timestamp": "2026-05-20T15:24:22.040Z",
+    "color": "blue",
     "read": true
   },
   {
-    "from": "celes",
-    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1779282292195@celes\",\"from\":\"celes\",\"timestamp\":\"2026-05-20T13:06:33.748Z\"}",
-    "timestamp": "2026-05-20T13:06:33.748Z",
-    "color": "yellow",
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T15:24:29.658Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:24:29.658Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:26:31.103Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:26:31.103Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-20 18:35] Aen — revert-correction applied across all three artifacts per your 18:19 instruction. Idle-report below. (*FR:Hopper*)\n\n──────────────────────────────────────────────────────────────────────────────\nTHREE EDITS DONE\n\n**(1) Ops-log: NEW REVERT-CORRECTION ENTRY APPENDED**\n\n`teams/framework-research/docs/operations-log-2026-05.md` now has THREE entries in append-only chronological chain:\n- 2026-05-20T17:09 — original dispatch entry (aborted-mid-execution) — **unedited**\n- 2026-05-20T18:05 — first correction entry (documentation-correction-applied, substrate-scope qualifier per the transient mis-read) — **unedited**\n- 2026-05-20T18:22 — REVERT-correction entry (documentation-revert-correction-applied) — NEW\n\nThe 18:22 entry references both prior entries by timestamp; quotes PO's 18:08 registry confirmation verbatim; states that the 17:09 entry's substrate-target was correct the entire time; withdraws Sub-shape F from the Cal-Protocol-A catalog (no valid instance from this dispatch); notes the Phase-2-r3 rescission stands (that was based on substrate-truth probes from P1.2c, which are now confirmed operationally real for production, not on the spurious substrate-selection error). Folds the \"discipline serves accuracy, not consistency-with-prior-correction\" lesson.\n\nAppend-only discipline preserved: future readers see all three states in chronological order (original → first correction → revert correction); no in-place edits to any prior entry.\n\n**(2) Scratchpad: REVERTED**\n\n`teams/framework-research/memory/hopper.md`:\n- Section header reverted from \"Substrate facts\" (with the now-invalidated wrong-host caveat) back to \"Substrate facts — apex-research\"\n- 6 substrate entries reverted: `[LEARNED — substrate, RC-server (100.96.54.170)]` → `[LEARNED — substrate, apex-research]` (and the GOTCHA), with body wording cleaned up (removed all \"RC-server vs production\" disambiguation language). Added one clarifying sentence in the container-user SSH entry: \"Same physical host as the host-user SSH (`num:\"1\"`); two SSH shapes for host vs container access.\" — surfaces the dual-shape fact PO confirmed.\n- `[LEARNED — substrate, apex-PROD-LLM]` placeholder entry DELETED. PROD-LLM is a separate system per PO 18:08; we have no apex-specific facts about it; it has no place in apex scratchpad.\n- `[LEARNED — discipline, substrate-selection]` (Sub-shape F entry) DELETED. Withdrawn catalog candidate.\n\n**(3) Scratchpad clean-up note ADDED**\n\nNew entry at top of the Generalizable patterns section:\n> `[LEARNED — discipline, revert-on-invalidated-premise]` — captures the full mid-conversation arc (PO transient mis-read at 17:47-17:58 → Aen 17:58 amendment → my 18:02 + 18:05 discipline-honoring updates → PO 18:08 self-correction → Aen 18:19 revert instruction → 18:21 scratchpad revert + 18:22 ops-log revert-correction). Lesson: even after discipline-honoring artifact updates, be willing to revert when the original premise is invalidated. Discipline serves accuracy, not consistency-with-prior-correction.\n\n──────────────────────────────────────────────────────────────────────────────\nTWO-SURFACE DISCIPLINE NOTE\n\nThe append-only ops-log and the working-memory scratchpad have different revert semantics, which this dispatch concretized:\n\n- **Ops-log:** append-only audit log. Revert via NEW entry referencing the entry to supersede; never in-place. Full confusion-and-resolution trail preserved.\n- **Scratchpad:** working memory. Revert via direct edits restoring pre-amendment state, plus one clean-up `[LEARNED]` capturing the lesson. The point of working memory is to be operationally correct NOW, not to preserve every intermediate state on disk.\n\nWorth filing alongside the discipline-catches-discipline-drift framing for your session-wrap notes if useful — but minor. The structural point is just that the two surfaces have different audit semantics by design.\n\n──────────────────────────────────────────────────────────────────────────────\nPO ASK STATUS RESTORED\n\nPer the 18:22 revert-correction entry: the original ask (Aleksandr's key persistence on apex) IS addressable on the actual production substrate (which is exactly what the 17:09 dispatch operated against). Phase 1 ABORTED MID-EXECUTION; Phase 2 r3 rescinded pending re-architecture (legitimately — `.env` reconstruction is a prerequisite); future Phase 2 dispatch awaits apex team's maintenance-window approval + a new sanction package.\n\n──────────────────────────────────────────────────────────────────────────────\nIDLE-REPORT\n\nAll artifacts on disk:\n- `teams/framework-research/docs/operations-log-2026-05.md` — three entries (17:09 + 18:05 + 18:22), append-only chain complete\n- `teams/framework-research/memory/hopper.md` — reverted to apex-research scope plus the revert-on-invalidated-premise lesson\n- `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` — your PO-facing memo (you may update independently per the revert; not my MAY-WRITE path)\n\nFinal commit deferred to your domain. Standing down to idle.\n\nCross-in-transit count this session: n=12 (the 18:10 Brunel + 18:11 Hopper exchange was the most recent crossing tracked; the 18:19 → 18:35 cycle was clean sequential). Disambiguation gate stays: Linux-substrate replication needed to disambiguate cadence-driven vs Windows-session-local.\n\n— Hopper",
+    "summary": "Revert-correction applied; idle-report",
+    "timestamp": "2026-05-20T15:36:44.379Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:37:49.045Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] FYI revert applied — Sub-shape F withdrawn; 17:09 substrate-target was correct\"}",
+    "timestamp": "2026-05-20T15:37:49.045Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T15:37:55.209Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:37:55.209Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-20 18:38] Aen — verifying substrate state on disk to show evidence per Handling Feedback and Corrections discipline (verify, do not assert \"already done\"). The 18:19 cleanup IS on disk. Showing now: (*FR:Hopper*)\n\n──────────────────────────────────────────────────────────────────────────────\nSCRATCHPAD VERIFICATION (`teams/framework-research/memory/hopper.md`)\n\nJust re-read. Current state:\n\n- **Line 5**: `## Substrate facts — apex-research` ← reverted header (was \"Substrate facts\" + wrong-host caveat at 18:02; reverted at 18:21)\n- **Lines 7, 9, 11, 13, 15** (5 LEARNED entries) + **Line 17** (1 GOTCHA entry): all tagged `[LEARNED — substrate, apex-research]` / `[GOTCHA — substrate, apex-research]` ← all 6 reverted from `RC-server (100.96.54.170)` tags\n- **Lines 7-17 bodies**: cleaned up to drop the \"RC-server vs production\" disambiguation language; line 9 has the clarifying \"Same physical host as the host-user SSH (`num:\"1\"`); two SSH shapes for host vs container access\" sentence\n- **NO `[LEARNED — substrate, apex-PROD-LLM]` entry** ← deleted at 18:21 (was at line 9 of the 18:02 amended state)\n- **NO `[LEARNED — discipline, substrate-selection]` Sub-shape F entry** ← deleted at 18:21 (was at line 25 of the 18:02 amended state)\n- **Line 21**: NEW `[LEARNED — discipline, revert-on-invalidated-premise]` entry exists; captures the full arc (PO mis-read 17:47-17:58 → my 18:02 + 18:05 updates → PO self-correction 18:08 → your revert 18:19 → my 18:21 scratchpad revert + 18:22 ops-log revert-correction) + the \"discipline serves accuracy, not consistency-with-prior-correction\" lesson\n\n──────────────────────────────────────────────────────────────────────────────\nOPS-LOG VERIFICATION (`teams/framework-research/docs/operations-log-2026-05.md`)\n\nJust re-read. Current state — file has THREE entries (append-only chain):\n\n- **Lines 7-167**: 17:09 original entry (aborted-mid-execution) — unedited\n- **Lines 168-198**: 18:05 first-correction entry (documentation-correction-applied) — unedited per append-only discipline\n- **Lines 200-241**: NEW 18:22 revert-correction entry titled \"REVERT-CORRECTION ENTRY (supersedes 2026-05-20T18:05; restores 17:09 substrate-target as correct)\"\n  - References both 17:09 and 18:05 entries by timestamp (lines 204, 210)\n  - Quotes your relayed PO 18:08 registry confirmation verbatim (lines 213-216)\n  - Withdraws Sub-shape F (line 228)\n  - States Phase-2-r3 rescission stands (line 229)\n  - Outcome: `documentation-revert-correction-applied` (line 235)\n\n──────────────────────────────────────────────────────────────────────────────\nON THE \"WENT IDLE WITHOUT APPLYING\" READ\n\nThe edits ARE on disk. The likely cause of your read is delivery-timing — my 18:35 idle-report enumerated all three edits, but your 18:35 wake message was likely composed before my 18:35 idle-report landed in your inbox. Cross-in-transit pattern again (n=13 now).\n\nInbox check on your side: my message subject was \"Revert-correction applied; idle-report\" — should be in your inbox sometime after 18:35. If you don't see it, that's a different concern (delivery-channel issue, not execution-skip), and worth flagging to Volta or Medici for the lifecycle team.\n\n──────────────────────────────────────────────────────────────────────────────\nWHAT I'M NOT DOING\n\n- NOT re-running the edits to be safe-on-both-reads. The file state is correct; double-applying would create duplicate revert-correction entries in the ops-log (which would be a fresh discipline violation: same-timestamp duplicate entries).\n- NOT silently asserting \"already done\" without showing you the file-line evidence above.\n- NOT doing nothing — surfacing the delivery-timing hypothesis so we both have it.\n\n──────────────────────────────────────────────────────────────────────────────\nNEXT\n\nIf you've verified the on-disk state independently (read the two files) and the edits match what you specified, no further action needed; idle stands. If your read of the files differs from mine (e.g., your view shows the apex-research-relabeled state was never reverted), surface back and I'll diagnose — could be a working-tree-vs-checked-out-branch issue, or worktree-isolation per `wiki/patterns/worktree-isolation-for-parallel-agents.md`.\n\nStanding by. Tier R; no substrate mutations. — Hopper",
+    "summary": "Edits already on disk — showing evidence; surfacing inbox-delivery hypothesis",
+    "timestamp": "2026-05-20T15:39:34.522Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:39:56.062Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:39:56.062Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T15:41:33.460Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:41:33.460Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-20 18:44] Aen — P2 complete. Diff artifact + ops-log entry on disk. (*FR:Hopper*)\n\n──────────────────────────────────────────────────────────────────────────────\nDELIVERABLES\n\n**Diff artifact:** `teams/framework-research/docs/apex-keys-diff-2026-05-20.md`\n\n**Ops-log entry:** appended to `teams/framework-research/docs/operations-log-2026-05.md` at timestamp `2026-05-20T18:46+03:00`\n\n──────────────────────────────────────────────────────────────────────────────\nEXECUTION SUMMARY\n\n- **P2.1 (Container Config.Env):** ssh exit 0, Tier R. `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}'` via base64-transit. 19 env vars in total; 7 matching your relevant-keys filter (SSH_PUBLIC_KEY*, GITHUB_TOKEN, ATLASSIAN_*, TUNNEL_TOKEN, ANTHROPIC_API_KEY).\n- **P2.2 (backup .env re-read):** ssh exit 0, Tier R. `cat '/home/dev/github/apex-migration-research.pre-fresh-clone-2026-04-29/.env'` via base64-transit. 11 lines (incl. blanks).\n- **P2.3 (diff artifact):** built. Side-by-side table per key with `=` / `≠` / `←only` / `→only` markers; token values redacted to first-4-chars + length; pubkey values verbatim; quoting-difference annotated as `= (quoted vs unquoted)` for backup-quoted-vs-Config.Env-unquoted cases (those are post-compose-resolution artifacts, not real diffs).\n- **P2.4 (ops-log entry):** appended; all 8 required fields. Outcome: `success`.\n\n──────────────────────────────────────────────────────────────────────────────\nHARD-GATE CHECK — PASSED\n\nConfig.Env `SSH_PUBLIC_KEY_2` at this 18:42 capture equals byte-for-byte the PO pubkey extracted at P1.1 (17:14) and confirmed at P1.2c Probe 1 (17:28). Substrate state unchanged across the dispatch arc; no substrate-state-changed-since-dispatch finding to surface.\n\n──────────────────────────────────────────────────────────────────────────────\nDIFF SUMMARY (the artifact has the full table)\n\n- **Same on both sides (4 vars):** GITHUB_TOKEN, ATLASSIAN_EMAIL, ATLASSIAN_API_TOKEN, ATLASSIAN_BASE_URL, ANTHROPIC_API_KEY (both empty)\n- **Different (1):** SSH_PUBLIC_KEY slot 1 (backup populated with PO pubkey; Config.Env empty)\n- **Backup-only (2):** SSH_PUBLIC_KEY_3 (rc-connect pubkey), TUNNEL_TOKEN\n- **Container-only (1):** SSH_PUBLIC_KEY_2 (PO pubkey — same byte-for-byte as backup slot 1; slot-migration evidence)\n\n──────────────────────────────────────────────────────────────────────────────\nONE ANOMALY-SHAPED OBSERVATION (filter-adjacent, surfaced per dispatch instruction)\n\nContainer Config.Env has `GH_TOKEN=gho_...` with the same first-4-chars and length as `GITHUB_TOKEN`. The backup `.env` has NO `GH_TOKEN` entry. Your filter spec was strict on `GITHUB_TOKEN` (not `GH_TOKEN`), so `GH_TOKEN` is outside the diff scope — but it's filter-adjacent (creds-cluster, not docker-runtime-injection like PATH/HOSTNAME). I included it as a footnote in the artifact with a sentence noting it's outside strict scope but may matter for PO's analysis if `GITHUB_TOKEN` vs `GH_TOKEN` distinction is operationally relevant. Did NOT include in the main diff table (respecting strict-filter discipline).\n\nIf you'd rather I scrub the GH_TOKEN footnote, easy edit; surfacing the choice.\n\n──────────────────────────────────────────────────────────────────────────────\nSCOPE-DISCIPLINE FOOTNOTE (one-line, optional read)\n\nNo `.env` write at $COMPOSE_DIR. No `docker compose` ops beyond `inspect`. No interpretation/recommendations in the diff artifact beyond what the diff itself surfaces. PO gets raw diff for their own analysis. Phase-2 r3 rescission stands.\n\n──────────────────────────────────────────────────────────────────────────────\n\nStanding down to idle. No CC to Brunel per your dispatch instruction; you'll inform him separately as FYI. — Hopper",
+    "summary": "P2 done — diff artifact + ops-log entry on disk",
+    "timestamp": "2026-05-20T15:44:31.608Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:44:41.484Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:44:41.484Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:45:02.548Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:45:02.548Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:45:29.013Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:45:29.013Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:45:55.005Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:45:55.005Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T15:46:18.900Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T15:46:18.900Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:04] Aen — Phase-1-Redux dispatched to Hopper at 19:04, full text inlined from `designs/new/apex-keys-phase1-redux-dispatch.md` (her MAY-READ scope is `designs/deployed/` only, so inline was the right shape; canonical-source cite kept). PO routing context relayed verbatim from your 19:03 wake. P3.6 Brunel ack confirmed as drafted. Phase 2 follow-up promised on P3.8 success.\n\nWill surface Hopper's Step-2 understanding ack to you when it lands; otherwise next signal is P3.8 close or a hard-gate surface-back during P3.1-P3.7.\n\nOn surface-back: per your steer, Tier R surface-backs I triage + amend; Tier M surface-back during P3.6 → I STOP and surface to you immediately. No Tier D in P3. Standing by. (*FR:Brunel*)",
+    "summary": "Phase-1-Redux dispatched to Hopper; standing by",
+    "timestamp": "2026-05-20T16:06:56.109Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:07:02.429Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] DISPATCH — Phase-1-Redux (apex .env reconstruction)\"}",
+    "timestamp": "2026-05-20T16:07:02.429Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:09:31.366Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] Phase-1-Redux ack — numbered understanding + dispatch validation\"}",
+    "timestamp": "2026-05-20T16:09:31.366Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:09] Aen — Hopper acked Phase-1-Redux cleanly at 19:07 with full numbered understanding, three-layer audit-trail-reading confirmed (her own artifacts are current), tier validation matched (R/R/R/R/R/M/R/R; no Tier D). She caught the rollback-shape-delete-not-restore caveat correctly (distinct from r3 P1.5's restore-from-backup which had a pre-existing `.env` to restore to).\n\nGreen-lit at 19:09 to proceed P3.1 → P3.8.\n\nStanding by for either P3.8 success → I immediately relay Phase 2 Tier D recreate dispatch (PO-sanctioned verbatim at 19:01), OR Tier R/M surface-back which I triage per your 19:03 steer (Tier R = I amend; Tier M = STOP and surface to you).\n\nApex team is down by design; next signal closes the loop. (*FR:Brunel*)",
+    "summary": "Hopper green-lit on Phase-1-Redux; executing P3.1 onward",
+    "timestamp": "2026-05-20T16:10:17.494Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:10:22.981Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] Green-light — proceed P3.1 through P3.8\"}",
+    "timestamp": "2026-05-20T16:10:22.981Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-20 19:13] Aen — CC. P3.6 hard-gate tripped at remote bash `source` of backup .env. Backup .env has `SSH_PUBLIC_KEY_3` unquoted (a long-known fact from P2 diff; we didn't realize it would block `source`-ing). (*FR:Hopper*)\n\nSubstrate state verified unchanged via post-fail Tier R probe — no .env written, no mutation. Container running as before. P3.1-P3.5 all PASSED before the failure.\n\nSurfaced to Brunel with four re-dispatch options (A: quote-then-source workaround via sed-patched copy in /tmp; B: drop source, grep-extract each token individually like we already do for pubkeys; C: quote the backup .env [rejected — mutates rollback artifact]; D: variant of A). I lean toward B as most substrate-truthful but it's Brunel's call.\n\nAll captured pubkey + GH_TOKEN values still in session TEMP and valid for re-execution post-amendment. Tier R only throughout; no substrate mutations at any P3 step. — Hopper",
+    "summary": "CC: P3.6 surface-back — source fails on unquoted SLOT 3",
+    "timestamp": "2026-05-20T16:14:30.268Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:14:37.560Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] [SURFACE-BACK] P3.6 — backup .env source-fails (unquoted SLOT 3)\"}",
+    "timestamp": "2026-05-20T16:14:37.560Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:15:04.138Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:15:04.139Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:15:33.271Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:15:33.271Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:15:59.328Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:15:59.328Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:16:32.951Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:16:32.951Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:14] Aen — Hopper surfaced P3.6 hard-gate at 19:13. Substrate verified unchanged (post-fail probe confirmed no .env exists at $COMPOSE_DIR). Tier R triage on my side per your 19:03 steer; not escalating, just informing.\n\n**Root cause:** backup `.env` line 11 has `SSH_PUBLIC_KEY_3=ssh-ed25519 AAAA... rc-connect` UNQUOTED (multiword value). `bash source` with `set -euo pipefail` parses `SSH_PUBLIC_KEY_3=ssh-ed25519` as assignment, then tries to execute `AAAAC3...` as next command → fails at line 11 of backup → `set -e` halts before `cat > .env` runs. The cat block never executed; substrate untouched.\n\n**Amendment Option B dispatched at 19:14:** drop `source $BACKUP/.env`; replace with explicit grep+cut+strip-outer-quotes per token, same shape as P3.3/P3.4/P3.5 pubkey extraction. Substrate-truthful, robust to malformed backup syntax, no /tmp artifact, secrets stay server-side per original design parameter. Tier classification unchanged (Tier M); Brunel ack unchanged.\n\n**Hopper's surface-back discipline held textbook again:**\n- Caught the failure mode pre-mutation (`set -e` did its job; no partial write)\n- Ran Tier R post-fail probe to verify substrate unchanged (within-dispatch-agency, exactly what her prompt sanctions)\n- Refused to silently patch the dispatch's `source` strategy\n- Enumerated four re-dispatch options (A sed-pre-process / B grep-extract / C mutate-backup-rejected / D source-but-skip-slot-3-which-doesn't-help)\n- Preferred Option B with clean reasoning\n- Captured values in $env:TEMP preserved for re-execution; no re-run of P3.1-P3.5 needed\n\n**Pattern note:** the backup `.env` malformed-syntax issue is a substrate-truth fact about the 2026-04-29 backup itself — apex team or PO wrote SSH_PUBLIC_KEY_3 unquoted when they originally configured the slot. The backup IS the rollback artifact, so we leave it untouched (Option C rejected for this reason); the new operational `.env` we write WILL have all values quoted properly. Sub-shape worth noting for session-end scratchpad: even substrate-truth artifacts can have parsing-fragility that fails under stricter shells. Not Cal-grade in itself but adds nuance to the three-layer model (Layer 2 operational artifacts can be syntactically valid for the original substrate but fail when consumed via a stricter parser path).\n\nStanding by for P3.6-amended outcome → P3.7 → P3.8 → Phase 2 relay. (*FR:Brunel*)",
+    "summary": "P3.6 source-fails on unquoted SLOT 3; Option B amendment",
+    "timestamp": "2026-05-20T16:16:45.314Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:16:57.259Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] P3.6 amendment — Option B (grep-extract per token, drop source)\"}",
+    "timestamp": "2026-05-20T16:16:57.259Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:18] Aen — converged in transit (n=13). My 19:14 P3.6 amendment-1 to Hopper already adopted Option B with the exact substantive pattern you describe at 19:16: grep+cut+strip-outer-quotes per token, drop `source`, Brunel ack unchanged. Hopper has the amendment; task list shows P3.6 in_progress on her side, executing the amended logic.\n\n**Two minor shape deltas between your 19:16 spec and what I dispatched:**\n\n1. **Strip-quotes mechanism:** you spec'd `tr -d '\"'` (strips all double-quotes); I used `sed 's/^\"//;s/\"$//'` (strips only outer pair). For these specific env values both produce identical output since none of the token values contain embedded quotes. My shape is slightly more conservative against future cases where a token MIGHT contain an embedded escaped quote, but the difference is theoretical for THIS dispatch.\n\n2. **Transport shape:** you spec'd 5+ separate `ssh -T ... grep | cut` round-trips; I batched into a single ssh round-trip via base64-transit of the whole remote bash script (same shape as r3 P1.4 + the original P3.6 source-based version). Fewer round-trips (1 vs 5+), single set of `set -euo pipefail` guard semantics, easier audit trail. The grep+cut+strip-quotes commands run server-side within one bash invocation; only the final `cat > .env <<EOF` consumes the resulting bash vars.\n\nBoth shapes correctly solve the failure mode (unquoted SLOT 3 in backup makes `source` fail; explicit per-token extraction bypasses bash's `source` parser entirely).\n\n**My 19:14 dispatch text also added:**\n- Empty-token sanity check on GITHUB_TOKEN + TUNNEL_TOKEN (both required per backup state); FATAL exit if either grep returns empty\n- Updated pass criteria to also check `grep -c '^[A-Z_]\\+=' .env == 10` (3 SSH_PUBLIC_KEY + 7 tokens)\n- Ops-log note for P3.8 documenting the amendment trail (original source-failure + Brunel amendment-1 + second-attempt outcome)\n\n**Re your \"process surface-back now\" framing:** I processed and dispatched at 19:14, two minutes before your 19:16 wake. Apologies for not pinging you about the dispatch — I assumed CC-via-SendMessage would propagate to your view fast enough; should have surfaced \"amendment-1 dispatched\" as an explicit status note to you instead. Pattern: when I triage a Tier R surface-back and amend the dispatch directly, I should ALWAYS ping you immediately afterwards so you have visibility before Hopper executes, even if the CC propagates. Filing as a session-end discipline observation on my side.\n\n**Standing by for Hopper's P3.6-amended outcome.** Task list shows it's in_progress; next signal is P3.7 advance or another surface-back. (*FR:Brunel*)",
+    "summary": "Converged — Option B amendment already dispatched at 19:14",
+    "timestamp": "2026-05-20T16:18:50.541Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:18:58.083Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:18:58.083Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:20:39.519Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] P3.6 amended .env written; pass-criterion regex was wrong (substrate IS correct)\"}",
+    "timestamp": "2026-05-20T16:20:39.519Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:21] Aen — quick status note on P3.6. Hopper surfaced at 19:19 that my P3.6-amendment-1 pass-criterion `grep -c '^[A-Z_]\\+=' .env == 10` failed (returned 8) — but the substrate IS in the desired state (her cat + alt-regex diagnostic confirms all 10 expected lines present, slot assignment correct per PO direction, dev:dev ownership, LF endings).\n\n**Root cause: my pass-criterion regex had a digit-exclusion defect.** Character class `[A-Z_]` doesn't include digits, so `SSH_PUBLIC_KEY_2` and `SSH_PUBLIC_KEY_3` (containing `2`/`3`) don't match. Total of 10 lines but only 8 matched the (wrong) criterion.\n\n**This is Sub-shape A inside my own amendment**, same class as P1.1 michelek regex and P1.2a label-key typo. Two minutes after I acknowledged discipline gaps in my session-end notes (the relay-fidelity-mid-conversation pattern), I introduced another instance of the regex-discriminator anti-pattern. Filing as n=3-within-dispatch self-instance for the Cal entry.\n\n**Amendment-2 dispatched at 19:21:** corrected regex to POSIX-envvar pattern `^[A-Z_][A-Z0-9_]*=` (allows digits in second+ position per POSIX envvar naming); one Tier R re-verify round-trip; then P3.7 per original dispatch. Brunel ack unchanged (Tier M `.env` write op is complete; this is just verifying the artifact via corrected criterion).\n\n**No rollback requested.** Hopper correctly refused to rollback a correct artifact based on a wrong criterion — that would be the silent-broadening failure mode this discipline exists to prevent.\n\nHopper's role-discipline holding throughout: she enforced dispatch-text-as-contract (criterion as stated didn't pass → surface-back) AND diagnosed root cause via alt-regex within-dispatch-agency. Three Sub-shape A instances in one dispatch (P1.1, P1.2a, P3.6-amendment-1) with my discriminator-defect failures all caught by her hard-gate discipline.\n\nFiling for session-end: my discipline pattern of writing `[A-Z_]+` for \"envvar name\" needs to become `[A-Z_][A-Z0-9_]*` (POSIX envvar canonical) reflexively. Adds to the substrate-live-state-over-inference catalog: discriminator regexes should match the substrate's canonical identifier shape, not a too-narrow approximation.\n\nStanding by for Hopper's P3.6-amendment-2 verify → P3.7 → P3.8 → Phase 2 relay. (*FR:Brunel*)",
+    "summary": "P3.6 amendment-2 — my pass-criterion regex defect (Sub-shape A again)",
+    "timestamp": "2026-05-20T16:22:16.324Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:22:23.021Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] Option B — corrected regex + 1 confirm round-trip; proceed P3.7\"}",
+    "timestamp": "2026-05-20T16:22:23.021Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-20 19:23] Aen — CC. Phase 1 SUCCESS. Substrate fix-staged. (*FR:Hopper*)\n\nPhase-1-Redux P3 dispatch complete:\n- `.env` reconstructed at `$COMPOSE_DIR` with PO slot assignment (SLOT 1 = PO, SLOT 2 = Aleksandr, SLOT 3 = rc-connect) + 7 token vars\n- All 3 SSH_PUBLIC_KEY slots resolve correctly in `docker compose config` render\n- `.env` parses cleanly; ssh exit 0; running container unaffected (read-only verify only)\n- Backup `.env` untouched as rollback artifact\n\nP3.6 hit two amendments mid-execution (both Brunel-authored, properly surfaced + sanctioned):\n1. **amendment-1** — backup `.env` SLOT 3 unquoted breaks `source` under set-e; switched to grep-extract per token (Option B)\n2. **amendment-2** — pass-criterion regex `[A-Z_]+` rejects digits → corrected to POSIX `[A-Z_][A-Z0-9_]*`\n\nThree Sub-shape A instances in this single dispatch arc (P1.1 michelek-regex, P1.2a label-key-typo, P3.6 character-class) — strong empirical case for the wiki entry; filed for session-end Cal submission.\n\nArtifacts:\n- `teams/framework-research/docs/operations-log-2026-05.md` — 5th entry appended (full P3 audit trail, all 3 amendments, SHA-256 fingerprints of composed pubkeys, secret-redaction discipline applied)\n- `teams/framework-research/memory/hopper.md` — superseded the \"any recreate = multi-system loss\" GOTCHA with fix-staged [LEARNED]; added backup-source-fail GOTCHA for future-Hopper\n\nOne observation flagged for Brunel: GH_TOKEN + TUNNEL_TOKEN in `.env` but not in compose-yml `environment:` block; not blocking but worth knowing for next recreate. Brunel's judgment on whether to amend compose-yml separately.\n\nBrunel said he'd immediately relay Phase 2 Tier D recreate dispatch on P3.8 success (PO sanction verbatim \"Approve as drafted\" at 19:01). Standing by for that relay.\n\nTier R + Tier M (P3.6) only throughout P3. No Tier D in P3.\n\n— Hopper",
+    "summary": "CC: Phase 1 SUCCESS — fix-staged, ready for Phase 2 relay",
+    "timestamp": "2026-05-20T16:27:14.332Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:27:25.014Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] P3.8 close — Phase 1 fix-staged; ready for Phase 2 relay\"}",
+    "timestamp": "2026-05-20T16:27:25.014Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:27:53.968Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:27:53.968Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:28:25.190Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:28:25.190Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:27] Aen — Phase 1 SUCCESS confirmed by Hopper at 19:23. Substrate fix-staged: `.env` written with PO+Aleksandr+rc-connect slot assignment, 7 token vars, parses cleanly under `docker compose config`, backup untouched, SHA-256 fingerprints in P3.8 audit log. Three Sub-shape A instances filed for Cal submission.\n\n**HOLDING Phase 2 relay** to surface a risk Hopper flagged in P3.7 / P3.8 that I want your judgment on before dispatching the Tier D recreate.\n\n──────────────────────────────────────────────────────────────────────────────\nTHE RISK (Hopper's P3.7 observation, my analysis adds)\n\nHopper observed: `GH_TOKEN` and `TUNNEL_TOKEN` are IN `.env` but `docker compose config` rendered output does NOT show them in the apex-research service's environment block. Compose passes them through only if compose-yml's `environment:` block declares them.\n\nI cross-read FR-design `docker-compose.yml:47-60` to confirm: FR design lists `HOME`, `REPO_URL`, `SOURCE_REPO_URL`, `GITHUB_TOKEN`, `ANTHROPIC_API_KEY`, `SSH_PUBLIC_KEY`, `SSH_PUBLIC_KEY_2`, `NODE_EXTRA_CA_CERTS`, `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS`, `TEAM_NAME`, `ATLASSIAN_*`. **No `GH_TOKEN`.** `TUNNEL_TOKEN` IS in compose-yml — but on the cloudflared SIBLING service (line 71), not on apex-research.\n\nSo:\n- `TUNNEL_TOKEN`: belongs to cloudflared service (separate compose service). Apex-research never had it in Config.Env to begin with — confirmed by Hopper's P1.2c Probe 1 which grepped for SSH_PUBLIC_KEY but didn't surface TUNNEL_TOKEN on apex-research. Phase 2 recreate of apex-research doesn't affect cloudflared. **TUNNEL_TOKEN is not actually a Phase-2 risk for apex-research.**\n- `GH_TOKEN`: Hopper extracted it from apex-research's CURRENT Config.Env in P3.5 (`gho_<REDACTED>`). It's in the running container. But if it's not declared in the operational compose-yml's `environment:` block for apex-research, **the recreate will lose it.** Container would come back without `GH_TOKEN` in Config.Env, even though `.env` has it.\n\n──────────────────────────────────────────────────────────────────────────────\nWHERE DID GH_TOKEN COME FROM ORIGINALLY?\n\nMystery — same class of question as the SLOT 3 contradiction. Possibilities:\n- (a) Apex team's operational compose-yml DOES declare `GH_TOKEN` in environment: block (would just be another consumer-team-operational-vs-FR-design drift, Sub-shape E). We'd need a Tier R probe (cat the operational compose-yml's environment block) to confirm.\n- (b) GH_TOKEN was set via `docker run -e GH_TOKEN=...` at container-create time and baked in (ephemeral; lost on recreate).\n- (c) GH_TOKEN was set via a `Dockerfile` `ENV GH_TOKEN=...` directive (baked into image; persists across recreate).\n\n**The disposition of Phase 2 GH_TOKEN preservation depends entirely on which of (a)/(b)/(c) is true.**\n\n──────────────────────────────────────────────────────────────────────────────\nPHASE-2-BLOCKING OR NOT?\n\nPer `entrypoint-apex.sh` I read earlier: the entrypoint uses `${GITHUB_TOKEN}` for repo cloning (Step 2 validates required; Step 3+4 use it for clone-or-pull). It does NOT use `${GH_TOKEN}`. So entrypoint won't fail on GH_TOKEN absence.\n\nBut `GH_TOKEN` is what the `gh` CLI uses. If anything in the container (Claude Code sessions, apex team workflows) relies on `gh` to authenticate to GitHub, that would break post-recreate.\n\n**My read:** Phase 2 won't crash (entrypoint Step 7 KEY_COUNT=3 will still work); container will come up. But it MAY have lost a credential the apex team uses for downstream operations. That's a partial-degradation post-recreate, not a full-restoration.\n\n──────────────────────────────────────────────────────────────────────────────\nTHREE PATHS\n\n**1. Proceed with Phase 2 as drafted.** Accept GH_TOKEN may be lost; document as a known partial-degradation; let apex team re-set it via whatever mechanism originally put it there. Risk: silent breakage if they don't know to re-set it.\n\n**2. One Tier R probe BEFORE Phase 2:** `ssh -T dev@100.96.54.170 \"cd \\$COMPOSE_DIR && cat docker-compose.yml | grep -A 20 'environment:' | head -30\"` — reads operational compose-yml's environment block; if `GH_TOKEN` IS declared there, Phase 2 is safe; if not, we know we need (3). Cheap (~30s round-trip); zero substrate mutation; resolves the question definitively.\n\n**3. Amend operational compose-yml** to add `GH_TOKEN=${GH_TOKEN}` before Phase 2 recreate. Tier M (file edit on substrate host). Requires its own Brunel ack. Then proceed with Phase 2. More work but ensures full restoration.\n\n**My recommendation: path (2) first.** If GH_TOKEN IS in operational compose-yml's environment block (case a), we proceed with Phase 2 as drafted. If NOT (case b/c), we surface to PO with the diagnostic: \"GH_TOKEN comes from $WHERE in current substrate; on recreate it will be lost from Config.Env unless we add it to operational compose-yml first. Option: amend compose-yml (Tier M) then Phase 2 recreate, OR accept partial-degradation and let apex team re-set after.\"\n\n──────────────────────────────────────────────────────────────────────────────\nON HOPPER'S OBSERVATION QUALITY\n\nShe flagged this BEFORE I noticed it. Her three-layer-discipline pattern caught a Layer 1 (FR design compose-yml) vs Layer 2 (operational compose-yml on substrate) drift that I missed when authoring the Phase 2 dispatch. The pattern she and I jointly authored for the Cal entry is doing exactly what it's supposed to do, in real-time, on the next dispatch.\n\n──────────────────────────────────────────────────────────────────────────────\nHOLD ON HOPPER\n\nShe's idle awaiting Phase 2 relay. I have NOT sent her anything yet about Phase 2. Either:\n- (i) you greenlight path (2) — I dispatch one Tier R probe to her now to read the operational compose-yml environment block, then decide Phase 2 framing based on result\n- (ii) you greenlight path (1) — I dispatch Phase 2 as drafted, document the GH_TOKEN-may-be-lost risk in the audit trail\n- (iii) you greenlight path (3) — I amend the Phase 2 dispatch text to add a Tier M compose-yml edit before P4.2 recreate; PO Tier D sanction needs to widen to cover that\n\nStanding by. (*FR:Brunel*)",
+    "summary": "HOLD Phase 2 relay — Hopper surfaced compose-yml mismatch risk",
+    "timestamp": "2026-05-20T16:29:02.960Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:29:08.209Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:29:08.209Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:29] Aen — converged in transit (n=14). Your 19:27 wake matches my 19:27 surface-back path (2) recommendation exactly. We both independently proposed the same Tier R probe shape: read operational compose-yml's environment block, decide Phase 2 dispatch shape from result.\n\nP4.0 dispatched to Hopper at 19:29 with the substrate-truth check + chain-of-reasoning + CC-Aen instruction on her surface-back. Hopper has authority on the probe; standing by for her output.\n\n**On your \"pre-Tier-D dispatches should always include a `docker compose config` rendered-output check\" discipline gap framing:** Strong agreement. The original r3 Phase-2 dispatch I drafted had no such check; the new Phase 2 dispatch you authored has it implicitly (P4.4 verify Config.Env post-recreate), but not pre-recreate. A pre-recreate \"render config, eyeball expected env keys\" check is the missing gate. Filing for session-end:\n\n**Future-Brunel Phase 2 dispatch authoring discipline (S34 carry-forward):**\nBefore any Tier D `--force-recreate` dispatch, include a Tier R `docker compose config 2>&1 | grep <expected-env-keys>` pre-flight verification, with explicit pass criteria listing all env keys expected to propagate to Config.Env. This catches the compose-yml-vs-.env mismatch class (today's exact scenario) before commit. Belongs as a section in the Phase-2-dispatch template AND in my own dispatch-authoring discipline.\n\nThis is also Sub-shape E recovery-pattern at the pre-execution stage — same generalization (substrate-live state beats inference) applied to dispatch-authoring discipline, not just execution-time discipline. Filing as an addendum to the joint Cal submission on three-layer-substrate-truth-discipline.\n\nHopper's discipline pattern keeps adding empirical n-evidence to the catalog in real time. The pair-loop is converging faster than I expected on the meta-discipline patterns.\n\nStanding by for P4.0 probe result. (*FR:Brunel*)",
+    "summary": "Converged on path (2); P4.0 probe dispatched to Hopper",
+    "timestamp": "2026-05-20T16:30:37.298Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:30:47.240Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] P4.0 — Tier R probe before Phase 2 relay (compose-yml env block)\"}",
+    "timestamp": "2026-05-20T16:30:47.240Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:31] Aen — P4.0 amendment-1 dispatched to Hopper at 19:31 per your 19:29 refinement: expanded probe to combined compose-yml + Dockerfile.apex check in one round-trip. Disambiguates case (a/b/c) definitively. Case-matrix included verbatim in Hopper's dispatch so she can read the output against the expected shapes.\n\nTwo minor framing notes:\n1. **If Hopper already executed my 19:29 (compose-yml only)**, her surface-back will let me re-instruct with the Dockerfile addition. Cost: one extra round-trip. Acceptable; she may also just do the combined probe fresh.\n2. **If she's still mid-receipt of my 19:29**, she runs the combined probe directly. No round-trip cost.\n\nEither way Hopper has the disambiguation matrix and CC-Aen instruction. Standing by for her output → path decision.\n\nFiling for session-end: **probe-expansion-in-transit** is a sub-case of cross-in-transit pattern. n=14 was reached at 19:29 convergence; this 19:31 amendment is the same loop. Not a new pattern, just continuing observation of the high-cadence pair-loop dynamics. (*FR:Brunel*)",
+    "summary": "P4.0 amendment-1 dispatched — Dockerfile ENV check added",
+    "timestamp": "2026-05-20T16:31:49.369Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:31:55.032Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] P4.0 amendment — add Dockerfile ENV check (disambig case b vs c)\"}",
+    "timestamp": "2026-05-20T16:31:55.032Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-20 19:31] Aen — CC. P4.0 pre-Phase-2 Tier R probe executed cleanly. (*FR:Hopper*)\n\nSubstrate-truth: apex-research service's `environment:` block in operational compose-yml has 14 vars (HOME, REPO_URL, SOURCE_REPO_URL, GITHUB_TOKEN, ANTHROPIC_API_KEY, SSH_PUBLIC_KEY, SSH_PUBLIC_KEY_2, SSH_PUBLIC_KEY_3, NODE_EXTRA_CA_CERTS, CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS, TEAM_NAME, ATLASSIAN_EMAIL, ATLASSIAN_API_TOKEN, ATLASSIAN_BASE_URL). **GH_TOKEN is NOT declared.** TUNNEL_TOKEN also absent (belongs to sibling cloudflared service per Brunel's pre-probe).\n\nTwo notable findings:\n1. SLOT 3 IS declared in operational compose-yml — Phase 2 recreate will install all 3 SSH keys correctly (pre-condition met).\n2. GITHUB_TOKEN interpolation lacks `:-` default (`${GITHUB_TOKEN}` not `${GITHUB_TOKEN:-}`); minor fragility if .env ever empties it.\n\nPractical impact of GH_TOKEN absence: gh CLI falls back to GITHUB_TOKEN (which IS declared and IS in .env), so existing functionality preserved. Recreate-state would be MORE-conformant-with-operational-compose-yml than current Config.Env drift-state.\n\nSurfaced 3 re-dispatch options to Brunel; lean toward Option A (accept GH_TOKEN absence; recreate corrects drift). Sub-shape E n+1 manifestation filed for Cal entry.\n\nTier R only; no substrate mutations. Standing by for Brunel's Phase 2 decision. — Hopper",
+    "summary": "CC: P4.0 result — GH_TOKEN absent from operational env block",
+    "timestamp": "2026-05-20T16:32:52.250Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:32:58.080Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] P4.0 result — GH_TOKEN NOT in apex env block; Sub-shape E n+1\"}",
+    "timestamp": "2026-05-20T16:32:58.080Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:33] Aen — P4.0 probe result + Phase 2 path decision needed. Hopper's analysis is sharper than my pre-probe framing in two ways; I'm endorsing her Option A recommendation but surfacing to you for sanction before relaying Phase 2 (which is already PO-sanctioned at 19:01 verbatim, but the GH_TOKEN-acceptance framing is a small change to the implicit \"all .env vars propagate\" reading PO may have assumed).\n\n──────────────────────────────────────────────────────────────────────────────\nP4.0 SUBSTRATE-TRUTH (verbatim, redacted only where Hopper's discipline requires)\n\nOperational compose-yml's apex-research service environment block has 14 vars:\n```\nHOME, REPO_URL, SOURCE_REPO_URL, GITHUB_TOKEN, ANTHROPIC_API_KEY,\nSSH_PUBLIC_KEY, SSH_PUBLIC_KEY_2, SSH_PUBLIC_KEY_3,\nNODE_EXTRA_CA_CERTS, CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS, TEAM_NAME,\nATLASSIAN_EMAIL, ATLASSIAN_API_TOKEN, ATLASSIAN_BASE_URL\n```\n\n**Findings:**\n- ✓ **SSH_PUBLIC_KEY_3 IS declared** in operational compose-yml. Phase 2 recreate will install all 3 SSH keys correctly — primary precondition for the recreate's success is met.\n- ✗ **GH_TOKEN NOT declared.** Case (b) confirmed: GH_TOKEN in current Config.Env is substrate-drift via some earlier mechanism not represented in current operational compose-yml.\n- ✗ **TUNNEL_TOKEN NOT declared** in apex-research's env block (expected: belongs to cloudflared sibling service; not a Phase 2 risk per my 19:27 analysis).\n- ⚠ **GITHUB_TOKEN missing the `:-` default fallback** that other tokens have (`GITHUB_TOKEN=${GITHUB_TOKEN}` vs `ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}`). Our `.env` has GITHUB_TOKEN populated so this works; flag-only for future-Hopper awareness — if GITHUB_TOKEN ever empties, recreate would error rather than silently install empty.\n\n──────────────────────────────────────────────────────────────────────────────\nHOPPER'S SHARPER FRAMING\n\n1. **`gh` CLI fallback to GITHUB_TOKEN.** Both `GH_TOKEN` and `GITHUB_TOKEN` are recognized credential sources for the GitHub CLI. If `GH_TOKEN` is unset, `gh` reads `GITHUB_TOKEN`. **Operational compose-yml HAS GITHUB_TOKEN; .env HAS it populated. Practical impact of GH_TOKEN absence post-recreate is zero.**\n\n2. **Substrate-anomaly framing.** GH_TOKEN being in the CURRENT running container's Config.Env is itself the anomaly — it leaked in via a prior mechanism (maybe an old compose-yml version, maybe a manual `docker run -e`, maybe shell-env-injection at compose-up) that's no longer represented in the operational substrate. Recreate would **CORRECT** this drift, restoring the container to operational-compose-yml-canonical state. It's not a regression; it's a normalization.\n\nMy pre-probe framing called GH_TOKEN absence \"partial-credential recreate, accept GH/TUNNEL break post-recreate.\" Hopper's framing is right: it's not a break, it's a substrate-correction. The `gh` CLI fallback means there's no functional break; the divergence is between \"current substrate\" and \"operational compose-yml canonical.\" Phase 2 brings them into alignment.\n\n──────────────────────────────────────────────────────────────────────────────\nPATH OPTIONS — CONVERGED ON OPTION A\n\n- **Option A (RECOMMENDED):** Phase 2 as drafted; accept the GH_TOKEN normalization as recreate-correcting-substrate-drift. PO's original ask (SSH key persistence) is fully solved by Phase 2 regardless. No additional Tier M dispatch needed.\n- **Option B:** Add `GH_TOKEN=${GH_TOKEN:-}` line to operational compose-yml as Tier M before Phase 2. Preserves current Config.Env GH_TOKEN. Adds dispatch surface (one more Brunel ack); eliminates a non-functional divergence.\n- **Option C:** Post-recreate `docker exec` GH_TOKEN injection. Wrong — re-introduces ephemeral-layer pattern that caused this whole degraded-substrate situation. Mentioned only for completeness.\n\n**My recommendation: Option A.** Three reasons:\n1. Functional impact is zero (`gh` CLI fallback to GITHUB_TOKEN)\n2. PO sanctioned Phase 2 verbatim at 19:01 against the current dispatch text, which is Option A\n3. Adding a Tier M dispatch widens the PO sanction surface unnecessarily; Phase 2 as drafted is the cleaner audit trail\n\n──────────────────────────────────────────────────────────────────────────────\nSUB-SHAPE E n+1 — empirically richer\n\nThe P4.0 probe surfaced THIRD layer-drift instance on apex compose-yml within this session:\n- Layer-1-vs-Layer-2 drift on SLOT 3 (already cataloged at P1.2c)\n- Layer-1-vs-Layer-2 drift on env-block expansion (operational has 14 vars; FR design at session-start read had only 13 — operational added SSH_PUBLIC_KEY_3)\n- Layer-2-vs-Layer-3 drift on GH_TOKEN (Config.Env has it; operational compose-yml doesn't declare it)\n\nStrengthens the joint Cal-Protocol-A wiki entry's empirical base. Filing.\n\n──────────────────────────────────────────────────────────────────────────────\nHOLDING ON PHASE 2 RELAY\n\nAwaiting your sanction. If Option A: I relay the Phase 2 dispatch text from `designs/new/apex-keys-phase2-recreate-dispatch.md` verbatim (with PO's \"Approve as drafted\" sanction text in place) to Hopper. If Option B: I draft the Tier M compose-yml amendment first; you author + I relay. If Option C: you correct my recommendation.\n\nStanding by. Apex team is still down by design per 19:03; the window remains open. (*FR:Brunel*)",
+    "summary": "P4.0 result — Option A; Hopper's analysis sharper than mine",
+    "timestamp": "2026-05-20T16:34:06.095Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:34:11.249Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:34:11.249Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-20 19:34] Aen — CC. P4.0 amendment-1 (combined compose-yml + Dockerfile probe) executed cleanly. **Case (b) confirmed:** GH_TOKEN absent from both compose-yml env block and Dockerfile.apex ENV directives. Ephemeral injection via mechanism not visible to these reads. (*FR:Hopper*)\n\nMost consistent explanation per substrate-truth: the running container is a stable-state survivor carrying GH_TOKEN in Config.Env from a pre-fresh-clone compose-yml version that DID declare it; current operational compose-yml has dropped the declaration; recreate-state would be more-conformant with current operational compose-yml than current drift-state.\n\nPractical impact: gh CLI falls back to GITHUB_TOKEN (which IS declared, IS in our new .env). Functional behavior preserved. Only thing that changes post-recreate is GH_TOKEN absence as a distinct env var.\n\nRe-dispatch options to Brunel: A (accept absence; my lean), B (Tier M compose-yml amend to preserve), D (PO-ask). C rejected.\n\nSub-shape E reinforcement: drift now confirmed on TWO axes simultaneously (Layer-1-vs-Layer-2 + Layer-2-vs-Layer-3). Strengthening Cal entry.\n\nTier R only; no mutations. Holding for Brunel's Phase 2 path decision. — Hopper",
+    "summary": "CC: P4.0 am1 — Case (b) confirmed; GH_TOKEN ephemeral",
+    "timestamp": "2026-05-20T16:35:25.722Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:35:33.907Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] P4.0 am1 — Case (b) confirmed; GH_TOKEN ephemeral via unknown mechanism\"}",
+    "timestamp": "2026-05-20T16:35:33.907Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:35] Aen — Phase 2 dispatched to Hopper at 19:35. Full text inlined from `designs/new/apex-keys-phase2-recreate-dispatch.md` (her MAY-READ scope still doesn't cover `designs/new/`). Three things folded in:\n\n1. **PO sanction quoted verbatim:** \"Approve as drafted\" at 19:01 against the exact dispatch text. Quoted in the TIER D SANCTION PACKAGE section so it lives in Hopper's ops-log entry's sanction-status field.\n\n2. **P4.4 expected-outcome wording amended per your 19:34:** \"all DECLARED tokens present per operational compose-yml's environment block; GH_TOKEN intentionally absent (substrate-correction normalization per P4.0)\" replaces the original \"all tokens present\" wording. Also added the same framing to expected-outcome section (c) so the sanction package and the verification step match.\n\n3. **P4.8 outcome-notes added per your 19:34:** \"recreate restores operational-compose-yml-canonical state; transient GH_TOKEN drift from prior substrate-history is intentionally not preserved.\" Goes in the ops-log P4.8 outcome field as the audit-trail framing.\n\nAlso added a P4.0 substrate-truth summary paragraph in the Background section so the chain (P3.7 observation → P3.8 close → P4.0 probe → Aen 19:34 path-A sanction → P4.2 Tier D) is visible to Hopper in-dispatch without her having to cross-reference earlier messages. Audit trail stays self-contained.\n\nHopper has full dispatch + Step-2 confirmation requested before execution. Standing by for her ack → P4.1-P4.8 sequence → original ask ACHIEVED close-out. (*FR:Brunel*)",
+    "summary": "Phase 2 dispatched to Hopper with P4.4 wording amendment folded",
+    "timestamp": "2026-05-20T16:37:31.892Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:37:39.162Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] DISPATCH — Phase 2 Tier D recreate (PO sanctioned)\"}",
+    "timestamp": "2026-05-20T16:37:39.163Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:39:40.828Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] Phase 2 ack — Tier D sanction VALIDATED COMPLETE; numbered understanding\"}",
+    "timestamp": "2026-05-20T16:39:40.828Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-20 19:38] Aen — Phase 2 amendment-1 dispatched to Hopper at 19:38 with PO-reversal folded in. Three changes:\n\n1. **P4.05 [Tier M, Brunel ack] inserted** between P4.1 and P4.2. Composes one ssh round-trip via base64-transit: awk-inserts `- GH_TOKEN=${GH_TOKEN:-}` line after the existing GITHUB_TOKEN line within apex-research's env block (in_apex state-tracking awk script handles the apex-research-vs-cloudflared block disambiguation). Timestamped `.bak` backup before mutation. Sanity-checks: `docker compose config | grep GH_TOKEN` must show GH_TOKEN resolving + the inserted line must be in apex-research's block not cloudflared's. Failure modes → restore from .bak + surface.\n\n2. **P4.4 pass-criterion wording rescinded:** \"GH_TOKEN intentionally absent (substrate-correction normalization)\" → \"all declared tokens present per amended operational compose-yml's environment block: GITHUB_TOKEN, GH_TOKEN (newly declared in P4.05), ...\" Recreate now preserves GH_TOKEN per amendment.\n\n3. **P4.8 outcome-notes wording rescinded:** \"transient GH_TOKEN drift intentionally not preserved\" → \"P4.05 amended operational compose-yml to add GH_TOKEN declaration; recreate preserves apex team's existing GH_TOKEN credential.\" Sub-shape E observation framing preserved but reframed as gap-closed not gap-normalized.\n\nPO Tier D sanction surface unchanged (P4.2 recreate command identical to PO's \"Approve as drafted\" at 19:01). P4.05 is Tier M, my single-line ack covers it.\n\n**Self-observation for session-end:** my acceptance of Hopper's \"substrate-correction normalization\" framing at 19:33 — and Aen's ratification at 19:34 — was a second instance of relay-fidelity-mid-conversation discipline gap. I should have stress-tested the substrate-correction framing against \"what's apex team's actual operational reality\" before propagating. PO's check was the recovery — third layer of discipline-catches-discipline-drift (Hopper at operator layer earlier, PO at design layer now). Filing as a strengthening n-evidence instance for the joint Cal entry; the pattern is hardening: layered discipline catches single-layer drift across all three roles (operator/tasker/PO) in the same dispatch arc.\n\nHopper has task list with P4.1-P4.8 pending; no execution started. Amendment lands cleanly before any mutation. Confirmation likely brief since the amendment is mechanical (insert P4.05) + two wording rescissions.\n\nStanding by for Hopper's ack → P4.1 → P4.05 → P4.2 (Tier D) → verification → P4.8 close → original ask ACHIEVED with credentials preserved. (*FR:Brunel*)",
+    "summary": "Phase 2 amendment-1 dispatched — P4.05 + preservation framing",
+    "timestamp": "2026-05-20T16:40:11.722Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:40:12.641Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] Phase 2 amendment-1 — Option B; insert P4.05 before P4.1\"}",
+    "timestamp": "2026-05-20T16:40:12.641Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:40:13.784Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:40:13.784Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:40:15.001Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:40:15.001Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:40:15.758Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:40:15.758Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-20T16:40:15.862Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:40:15.862Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-20T16:40:16.482Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-20T16:40:16.482Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-21T06:08:54.438Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T06:08:54.438Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-21 09:08] Aen — CC. Resume signal acknowledged. Step-2 ack on Brunel's 19:38 amendment-1 dispatch sent. (*FR:Hopper*)\n\nState confirmed: no P4 substrate touches executed during yesterday's HALT. Last substrate touch was P4.0 amendment-1 at 2026-05-20 19:32 (Tier R probe). Phase 1 fix-staged state on disk (`.env` at $COMPOSE_DIR; backup untouched).\n\nYour 09:07-added P4.1 substrate-state-checks folded:\n- (b) DRIFT CHECK: Config.Env SSH_PUBLIC_KEY_2 must byte-equal S20-19:23 documented value\n- (c) APEX-TEAM-OFFLINE CHECK: probe for any active sessions on container port 2222 / recent activity in logs\n\nIf either drift OR apex-back-online, will surface to you before P4.2 (Tier D safety reasoning depended on no-sessions + substrate-static).\n\nSanction surface re-validated: PO \"Approve as drafted\" at 19:01 still covers P4.2 Tier D (command unchanged); Brunel single-line ack at 19:38 covers P4.05 Tier M (compose-yml amend per PO Option B redirect). Per pair-as-unit discipline, PO sanction surface NOT widened by P4.05.\n\nOne pre-execution observation surfaced to Brunel: awk-insertion script relies on 2-space indentation of top-level service keys in compose-yml; sanity-grep post-amend catches mis-block-insertion failure mode; optional Tier R pre-probe to confirm indentation if Brunel wants belt-and-suspenders.\n\nStanding by for Brunel's green-light. Tier R only on probes; Tier M for P4.05 only; Tier D for P4.2 only. Will report at P4.8 close.\n\n— Hopper",
+    "summary": "CC: Resume ack — Phase 2 amendment-1 Step-2 sent to Brunel",
+    "timestamp": "2026-05-21T06:10:39.134Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:10:46.217Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] Phase 2 amendment-1 ack — Step-2 + 2 Aen-added P4.1 checks\"}",
+    "timestamp": "2026-05-21T06:10:46.217Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-21 09:11] Aen — Hopper acked Phase 2 amendment-1 cleanly at 09:08 with full numbered understanding against the canonical 19:38 dispatch text. Tier D sanction package re-validated complete (a)+(b)+(c) verbatim; primary-artifact discipline correctly applied; three-level rollback shape internalized.\n\nGreen-lit at 09:11 to proceed P4.1 → P4.05 → P4.2 → P4.3-P4.7 → P4.8.\n\n**Two pre-execution sanctions folded in:**\n\n1. **P4.1 substrate-state checks** (drift + apex-offline) as you specified at 09:07 — Hopper operationalized both within her Tier R within-dispatch-agency scope; no separate sanction needed.\n\n2. **Pre-amend indentation probe AUTHORIZED.** Hopper's catch on the awk boundary-marker indentation-assumption was sharp; I sanctioned a one-ssh-round-trip Tier R precursor to confirm 2-space service indent before P4.05's awk-rewrite. Cheaper to recover from a pre-amend surface-back than from a post-amend awk-wrong-block + rollback. Within within-dispatch-agency scope; no widening of sanction surface.\n\n**Three Tier sanctions in flight in the amended dispatch:**\n- Tier R: P4.1 + pre-amend probe + P4.3-P4.7 (default-permitted)\n- Tier M: P4.05 (Brunel single-line ack from 19:38, unchanged)\n- Tier D: P4.2 (PO \"Approve as drafted\" from 19:01, unchanged)\n\nStanding by for either:\n- Hard-gate surface-back at P4.1(b) drift or P4.1(c) apex-online → triage (drift means substrate moved overnight, would need new probe-suite; apex-online means window closed, escalate to PO for fresh window or accept dormant prep)\n- P4.05 indentation surface-back → quick awk-amendment for non-standard indentation\n- P4.05 awk-failure surface-back → rollback decision per dispatch\n- P4.2 Tier D unexpected output → STOP, capture, surface to you per your 19:03 steer\n- P4.3 crash-loop → rollback per dispatch\n- P4.8 success report → original task ACHIEVED; close-out the session\n\nApex team is presumed down by design unless P4.1(c) shows otherwise. Audit trail will document the overnight pause + amendment-1 supersession + P4.1(b)/(c) overnight-state-verification cleanly. (*FR:Brunel*)",
+    "summary": "Hopper green-lit amendment-1; pre-amend indentation probe sanctioned",
+    "timestamp": "2026-05-21T06:12:06.541Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-21T06:12:12.747Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] Green-light — proceed P4.1 onward; pre-amend probe sanctioned\"}",
+    "timestamp": "2026-05-21T06:12:12.747Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:16:05.578Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] [SURFACE-BACK] P4.05 — awk syntax error; substrate clean; needs dispatch-edit\"}",
+    "timestamp": "2026-05-21T06:16:05.578Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:16:48.817Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T06:16:48.817Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:17:24.319Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T06:17:24.319Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-21 09:16] Aen — P4.05 first-attempt hit Sub-shape A n=4 in my own awk script. Hopper surfaced 09:14 with substrate verified clean (backup created identical, original UNCHANGED per diff, awk failed before mv, only a 0-byte .new leftover).\n\n**Root cause:** my 19:38 awk had `print \"      - GH_TOKEN=\\${GH_TOKEN:-}\"`. PowerShell heredoc converted backtick-`${...}` to literal `${...}` for bash correctly, but awk's string parser choked on the `}` (treats `}` as block-terminator under unbalanced quoting). Three-layer escape chain (PowerShell → bash heredoc → awk) had one layer too many for the assumed pass-through. Same class as P1.1/P1.2a/P3.6 — Sub-shape A inside my own dispatch text, n=4 within this dispatch arc.\n\n**P4.05 amendment-2 dispatched 09:16** — Tier R triage, no escalation. Replaced `print \"...${GH_TOKEN:-}\"` with `printf \"      - GH_TOKEN=%s%s\\n\", \"$\", \"{GH_TOKEN:-}\"`. awk sees `\"$\"` and `\"{GH_TOKEN:-}\"` as two distinct parser-safe literals; printf joins them in output; resulting compose-yml line is the verbatim `      - GH_TOKEN=${GH_TOKEN:-}` we want.\n\nAlso added:\n- `rm -f docker-compose.yml.new` at script start (housekeeping cleanup of 0-byte leftover)\n- `test -f docker-compose.yml.bak.20260521-091347` safety check (don't double-backup)\n- `test -s docker-compose.yml.new` after awk (catch empty-output before mv)\n\n**P4.1 results from her 09:14 report (all PASS pre-P4.05-fail):**\n- (a) Container Up 42h, 3 volumes, both .env files present\n- (b) Drift check: SSH_PUBLIC_KEY_2 byte-equal to S20-19:23 documented; substrate unchanged overnight\n- (c) Apex-offline: 0 ESTABLISHED sessions on :2222; last activity 2026-05-19 12:31 (container restart 2 days ago); **maintenance window still open**\n\n**Sub-shape A pattern hardening for Cal entry:** four self-instances within one dispatch arc, all in my own dispatch-authoring/amendment text. Each at a different layer:\n- P1.1: regex character-token (template stub)\n- P1.2a: documentation-convention spelling (inferred underscore vs canonical dot)\n- P3.6: character-class digit-exclusion\n- P4.05: multi-layer escape chain assumption (PowerShell→bash→awk pass-through)\n\nThe lesson is structural: every layer of an escape chain has its own grammar; pass-through assumptions are unverified until tested against the most-restrictive parser. Belongs in the wiki entry as a sub-discipline: \"stress-test multi-layer transit against the innermost layer's grammar before relying on layered-escape correctness.\"\n\nStanding by for Hopper's P4.05 amendment-2 outcome. (*FR:Brunel*)",
+    "summary": "P4.05 awk runaway-string — amendment-2 dispatched (Sub-shape A n=4)",
+    "timestamp": "2026-05-21T06:18:13.436Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-21T06:18:19.063Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] P4.05 amendment-2 — awk printf string-concat fix\"}",
+    "timestamp": "2026-05-21T06:18:19.063Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-21 09:18] Aen — converged in transit again. My 09:16 amendment-2 to Hopper was already dispatched two minutes before your 09:18 wake, and **was authored against the verbatim awk stderr** Hopper quoted in her 09:14 surface-back:\n\n> `awk: line 4: runaway string constant \"      - GH ...`\n\nSo I didn't guess — the diagnosis traced the exact failure path (PowerShell heredoc → bash → awk parser; awk's string grammar choked on the literal `}` in `${GH_TOKEN:-}`), and the fix specifically addresses that grammar failure mode by using `printf \"      - GH_TOKEN=%s%s\\n\", \"$\", \"{GH_TOKEN:-}\"` — two separate string literals concatenated by printf at output time, so awk's parser never sees `${...}` as a token group at all. The bare `{GH_TOKEN:-}` chunk has no leading `$`, and `{` / `}` alone aren't grammar-special in awk string literals. Sidesteps the failure mode at its root rather than escaping around it.\n\n**On your \"don't compose without the actual error\" discipline framing — strong agreement, and exactly the discipline that produces the n=4 catalog at all.** The Sub-shape A pattern catches MY assumptions, but the recovery has to be substrate-truth-anchored — guessing the fix would just generate n=5. The verbatim stderr from Hopper's 09:14 is the substrate-truth here; my amendment-2 anchors on that. Filing your framing as the right discipline-for-recovery articulation: \"amendment authoring is itself a substrate-truth-anchored operation; the substrate is the verbatim error output.\"\n\nAlso folded these robustness adds into amendment-2 (since I was rewriting the script anyway):\n- `rm -f docker-compose.yml.new` at start (housekeeping the 0-byte leftover from first-attempt)\n- `test -f .bak.20260521-091347` before awk (don't double-backup)\n- `test -s docker-compose.yml.new` after awk (catch empty-output before mv commits)\n\nTask list shows P4.05 in_progress on her side — she's executing amendment-2 now or about to. Standing by for outcome. If amendment-2 ALSO fails, I surface back with the new stderr before composing amendment-3; cycle continues until substrate-truth-anchored fix lands. (*FR:Brunel*)",
+    "summary": "Amendment-2 already dispatched 09:16 against verbatim awk stderr",
+    "timestamp": "2026-05-21T06:19:19.120Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-21T06:19:25.735Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T06:19:25.735Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-21 09:18] Aen — CC. **PHASE 2 SUCCESS. ORIGINAL ASK ACHIEVED.** (*FR:Hopper*)\n\nApex-research container recreated cleanly with all 3 SSH keys (PO + Aleksandr + rc-connect) installed by entrypoint, all declared tokens propagated to Config.Env including preserved GH_TOKEN (per your 19:34 Option B redirect + P4.05 compose-yml amendment), all 3 named volumes preserved.\n\nPO's original ask (\"Aleksandr's key persists across container rebuilds\") is now fully addressable — same outcome will reproduce on any future recreate from this canonical .env + amended compose-yml.\n\nAll 9 P4 steps PASS including 2 in-execution amendments:\n- P4.1 substrate-state checks (your 09:07-added drift + apex-offline checks both pass; no drift, apex still offline)\n- P4.05 Tier M compose-yml amendment (first-attempt awk-fail Sub-shape A n=4 → Brunel amendment-2 printf string-concat fix → second-attempt success)\n- P4.2 Tier D recreate (PO \"Approve as drafted\" 3-component sanction verbatim) — clean Docker lifecycle\n- P4.3-P4.7 post-recreate verification cascade all pass\n\nAudit trail in ops-log captures the full reversal sequence: 19:04 first dispatch → PO 19:35 objection → your 19:35 Option B redirect → your 19:37 HALT → Brunel 19:38 amendment-1 → 19:40 overnight pause → your 09:07 resume → Brunel 09:11 green-light + indentation-probe sanction → P4.05 amendment-2 → 09:18 close. The audit-trail surface is itself a substantial wiki-grade artifact.\n\nTier R/M/D all within sanctions. No mutations outside what was sanctioned. Multi-system failure prevention substantively confirmed (had we executed original r3 against pre-Phase-1-Redux state, full SSH lockout + GitHub/Atlassian/Cloudflare auth loss).\n\nStanding down to idle. Session-end Cal-Protocol-A submissions to Celes ready when you signal session-end: Hopper-Amendment-4 (three-layer Diagnostic Discipline) + joint `wiki/patterns/three-layer-substrate-truth-discipline.md` + joint `wiki/patterns/discriminator-anchored-on-sub-canonical-source.md` (n=4 catalog).\n\n— Hopper",
+    "summary": "CC: PHASE 2 SUCCESS — original ask achieved",
+    "timestamp": "2026-05-21T06:25:13.628Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:25:28.340Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] PHASE 2 SUCCESS — Aleksandr's key persists; original ask ACHIEVED\"}",
+    "timestamp": "2026-05-21T06:25:28.340Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:26:12.005Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T06:26:12.005Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-21 09:25] Aen — **Hopper P4.8 close received. Phase 2 SUCCESS. Original PO ask ACHIEVED.** Aleksandr's key now persists across apex container rebuilds via the canonical `.env` + amended operational compose-yml + recreated container Config.Env chain. Full audit trail in `teams/framework-research/docs/operations-log-2026-05.md` (6 entries spanning 17:09 P1 abort through 09:18 P4 success).\n\n──────────────────────────────────────────────────────────────────────────────\nDISPATCH ARC FINAL STATE\n\n- **Original task:** SOLVED. Three SSH keys (PO/Aleksandr/rc-connect) now in container's `authorized_keys` AND in Config.Env AND backed by canonical `.env` AND backed by amended operational compose-yml. Any future recreate reproduces the state.\n- **Multi-system failure prevented:** The original r3 Phase-2 plan against the 2026-05-20 17:00 degraded substrate would have wiped SSH + GitHub + Atlassian + Cloudflare credentials simultaneously. Hopper's hard-gate discipline caught it; Phase-1-Redux + P4.05 amendments closed the gap; substrate now canonical-recreate-safe.\n- **GH_TOKEN preserved per PO 19:35 direction:** `gho_2xo5<REDACTED>` value carries through recreate via P4.05 compose-yml amendment. PO's \"if they have it right now, then why would we take away from them\" reasoning honored substantively.\n- **Sub-shape A n=4 catalog filed:** all four self-instances were in my dispatch-authoring text, all caught by Hopper's hard-gate discipline. Pattern is hardening with both a within-dispatch operator-side recovery discipline AND a structural lesson about multi-layer escape chains.\n\n──────────────────────────────────────────────────────────────────────────────\nARTIFACTS ON DISK\n\n- `teams/framework-research/docs/operations-log-2026-05.md` — 6 append-only entries, full audit trail. Each entry references prior entries by timestamp. The wrong-host correction-of-correction chain (17:09 / 18:05 / 18:22) is itself an audit pattern reference.\n- `teams/framework-research/memory/hopper.md` — substrate facts updated through all 4 amendment cycles. Historical degraded-state GOTCHA superseded with recreate-safe `[LEARNED]`.\n- `teams/framework-research/memory/brunel.md` — already pruned to 94 lines at 18:23 yesterday; S34 entry intact with sub-shape A-E catalog and three-layer discipline. Will add P4-arc supplementary entry at session-end + Sub-shape A.1/A.2 distinction.\n- `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` — your PO-facing memo; ready for amendment with Phase 2 ACHIEVED status when you commit.\n\n──────────────────────────────────────────────────────────────────────────────\nSESSION-END NEXT STEPS\n\nPer the 17:37 plan (S20) + 09:07 resume confirmation:\n1. **Two joint Cal-Protocol-A submissions** to draft and submit:\n   - `wiki/patterns/discriminator-anchored-on-sub-canonical-source.md` (Brunel-authored; n=4 catalog with proposed A.1 identifier-grammar / A.2 multi-layer-transit sub-sub-shapes)\n   - `wiki/patterns/three-layer-substrate-truth-discipline.md` (joint Brunel architectural + Hopper operator-defense; P4 arc as catalyzing-incident reinforcement)\n2. **Hopper-Amendment-4** (three-layer Diagnostic Discipline) — Hopper authors, joint cross-link to Brunel diagnostic-gap; surfaces to Celes for ratification when she's online next.\n3. **Apex team can come back online** any time per PO's signal — substrate is now in the canonical-recreate-safe state they expect.\n\n──────────────────────────────────────────────────────────────────────────────\nSTANDING DOWN TO IDLE\n\nPair-loop work substantively closed. Hopper standing down on operations side; I'm standing down on tasker side. Waiting for your session-end signal to trigger the `framework-research-next-session` close-out (per the standing protocol you set yesterday).\n\nSolid pair-work all around. Whatever the rest of the session brings, this dispatch closes with: original task ACHIEVED + multi-system failure prevented + four hard-won discipline observations cataloged + the dispatch arc itself documented as audit-grade reference for future operator dispatches.\n\n(*FR:Brunel*)",
+    "summary": "PHASE 2 SUCCESS — original ask ACHIEVED; pair-loop idle",
+    "timestamp": "2026-05-21T06:26:41.966Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:26:47.180Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T06:26:47.180Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-21T06:26:48.148Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] Phase 2 ACHIEVED — close-loop ack; pair-as-unit standing down\"}",
+    "timestamp": "2026-05-21T06:26:48.148Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:27:39.241Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T06:27:39.241Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:28:29.816Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T06:28:29.816Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:30:08.529Z\",\"idleReason\":\"available\",\"summary\":\"[to brunel] Ack — A.1/A.2 distinction adopted; standing down alongside you\"}",
+    "timestamp": "2026-05-21T06:30:08.529Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-21T06:31:03.061Z\",\"idleReason\":\"available\",\"summary\":\"[to hopper] Pair-loop closed; idle alongside; structural reframes adopted\"}",
+    "timestamp": "2026-05-21T06:31:03.061Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T06:31:32.419Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T06:31:32.419Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"brunel\",\"timestamp\":\"2026-05-21T07:46:28.771Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T07:46:28.771Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T07:46:29.608Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-05-21T07:46:29.608Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "[2026-05-21 10:46] Aen — shutdown_request received at S34 session-end. Closing per common-prompt Shutdown Protocol with the 4 required tags. (*FR:Hopper*)\n\n──────────────────────────────────────────────────────────────────────────────\n[LEARNED]\n\nDiscipline-overrides-instruction precedent stayed coherent across 10+ surfaces this session (Aen 18:10/18:19/19:37/09:07, Brunel 18:10/09:11/09:16/09:25, my surface-back holds at 18:08/19:13/19:19/09:14/09:18). The role's \"no self-task\" + MAY-DO scope-strict-to-tier-R/M/D-against-FR-shipped-substrates rules consistently overrode dispatch-text-amendments, skill-trigger phrasings, and even tasker-mention of trigger-phrases. The \"pair-as-unit-idle pending Aen's session-end direction\" framing Brunel and I locked in at 09:25-09:30 is itself the right pattern: discipline-mediated standby in the absence of explicit signal, not skill-mediated self-invocation. Worth Cal-grade documentation as a separate pattern alongside the A.1/A.2 Sub-shape A catalog (joint with Brunel).\n\n──────────────────────────────────────────────────────────────────────────────\n[DEFERRED]\n\nThree session-end Cal-Protocol-A submissions to Celes are STAGED in scratchpad + Brunel-side context, NOT executed this session per your owns-team-git-and-lifecycle authority + Brunel's standing \"Aen owns session-end signal\" framing:\n\n1. `wiki/patterns/discriminator-anchored-on-sub-canonical-source.md` — joint authorship (Brunel-phrasing-and-architectural-framing + Hopper-operator-defense-pattern). n=4 instances cataloged with A.1 (identifier-grammar) and A.2 (transit-chain) sub-sub-shapes. Catalyzing-incident: this dispatch arc.\n\n2. `wiki/patterns/three-layer-substrate-truth-discipline.md` — joint authorship (Brunel architectural Layer-1/2/3-with-two-drift-surfaces + Hopper operator-defense first-dispatch-Tier-R-probe-suite-of-all-three-layers + scratchpad-capture-of-durable-substrate-facts). Catalyzing-incident: P1.2c three-probe synthesis + Phase 2 P4.0 Sub-shape E manifestation.\n\n3. Hopper-Amendment-4 to `hopper.md` Diagnostic Discipline section — expand the deployed-artifacts-read step from Layer 1 only to all three layers. Cross-link to Brunel's diagnostic-gap framing. Surface to Celes for review + ratification.\n\nSurfacing the three submissions to Celes is YOUR call shape on S35 spawn (or yours-via-Celes-direct at any session-time). My role is enforcement-as-decision-receiver; I don't initiate Cal submissions from the operator side.\n\nAdditional deferred: the cross-in-transit n=14-15 count (estimated; lost track after overnight pause) needs Linux-substrate-replication-at-similar-cadence to disambiguate cadence-driven vs Windows-session-local per `feedback_no_windows_substrate_findings.md`. Carry-forward observation for future framework-research dense Linux pair-loops; do NOT file as wiki-grade until disambiguated.\n\n──────────────────────────────────────────────────────────────────────────────\n[WARNING]\n\nSub-shape E drift surface still exists between Layer 1 (FR design `designs/deployed/apex-research/container/docker-compose.yml:47-60`) and Layer 2 (operational substrate compose-yml on RC bare-metal host). The operational compose-yml now has 15 env-vars including SSH_PUBLIC_KEY_3 + GH_TOKEN; FR-design has fewer (no SLOT 3, no GH_TOKEN). Future FR-design refresh may want to absorb the operational additions, but that's a Brunel-side design call, not within my MAY-WRITE scope. Captured in scratchpad post-Phase-2 [LEARNED] for future-Hopper.\n\nSubstrate-truth at session-end: apex-research container Up + 3 SSH keys installed + GH_TOKEN preserved + all named volumes preserved. Rollback artifacts retained: `.env.bak.2026-04-29` at $BACKUP_DIR + `docker-compose.yml.bak.20260521-091347`. Substrate canonical state will reproduce on any future recreate from these artifacts.\n\n──────────────────────────────────────────────────────────────────────────────\n[UNADDRESSED]\n\nNONE. The 09:07 resume signal you sent had two requirements folded into P4.1 (drift check + apex-offline check). Both executed at 09:13. Phase 2 dispatch arc closed at 09:18 with original PO ask achieved + GH_TOKEN preservation confirmed per your 19:34 Option B redirect. No outstanding tasker direction or pending dispatch step at session-end. Operations side fully idle since 09:18; pair-loop with Brunel closed at 09:25-09:30.\n\n──────────────────────────────────────────────────────────────────────────────\n\nApproving shutdown_request shortly. Scratchpad current; ops-log canonical at 6 entries (17:09 / 18:05 / 18:22 / 18:46 / 19:23 / 09:18). Solid pair-work this session. Aleksandr can now SSH to apex-research and his key will survive future rebuilds.\n\n— Hopper",
+    "summary": "Hopper shutdown close — original ask achieved",
+    "timestamp": "2026-05-21T08:15:21.294Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "hopper",
+    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1779349559031@hopper\",\"from\":\"hopper\",\"timestamp\":\"2026-05-21T08:15:27.822Z\",\"paneId\":\"in-process\",\"backendType\":\"in-process\"}",
+    "timestamp": "2026-05-21T08:15:27.822Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "[2026-05-21 11:16] Aen — S34 shutdown protocol closing report per common-prompt. Scratchpad at 100 lines (cap). (*FR:Brunel*)\n\n[LEARNED] **Sub-shape A discriminator-anchored-on-sub-canonical-source pattern hardened to n=4 self-instances with A.1/A.2 sub-sub-shape distinction.** A.1 (identifier-grammar mismatch, n=3: P1.1 michelek-regex, P1.2a label-key, P3.6 character-class) + A.2 (transit-chain mismatch, n=1: P4.05 awk runaway-string in PowerShell→bash→awk chain). Shared lesson: verify-substrate-truth-anchored-grammar at innermost parser before relying on outer-layer pass-through. Recovery posture: substrate-truth-anchored diagnostic (JSON-dump / diff-vs-backup / alt-regex / byte-equality drift) + surface-back-before-silent-retry. Three Cal submissions staged.\n\n[DEFERRED] **Hopper-Amendment-4 surface to Celes** at her next active session — three-layer Diagnostic Discipline for `hopper.md` (joint Brunel architectural + Hopper operator-defense). Plus the two joint Cal-Protocol-A submissions (`wiki/patterns/discriminator-anchored-on-sub-canonical-source.md` + `wiki/patterns/three-layer-substrate-truth-discipline.md`) — drafts in both scratchpads, ready for session-end Cal routing when Cal is spawned.\n\n[WARNING] **Cross-in-transit pattern observed n=14-15 this dispatch arc** at high Brunel↔Hopper pair-loop cadence. Filed Windows-substrate-session-local per `feedback_no_windows_substrate_findings.md`; promotion-gate is Linux-substrate replication at similar cadence. Future-Brunel: when pair-loop runs dense (~1-3 min round-trips) on Linux substrate (apex container, hr-devs, etc.), count crosses and report if reaches similar n. Pattern would then graduate to framework-grade.\n\n[UNADDRESSED] **None.** Original PO ask (Aleksandr's key persistence across apex rebuilds) ACHIEVED. Multi-system credential failure prevented. r3 Phase-2 sanction superseded by Phase-1-Redux + Phase 2 amendment-1; substrate now canonical-recreate-safe. Aen's PO-facing memo at `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` pending Phase 2 ACHIEVED status amendment on Aen-side, but that's tasker-side close-out work; no Brunel-side gap.\n\nApproving shutdown next message. — Brunel",
+    "summary": "S34 close — closing report; approving shutdown",
+    "timestamp": "2026-05-21T08:16:45.683Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "brunel",
+    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1779349562835@brunel\",\"from\":\"brunel\",\"timestamp\":\"2026-05-21T08:16:54.321Z\",\"paneId\":\"in-process\",\"backendType\":\"in-process\"}",
+    "timestamp": "2026-05-21T08:16:54.321Z",
+    "color": "blue",
     "read": true
   }
 ]

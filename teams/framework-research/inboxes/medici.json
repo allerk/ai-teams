@@ -1,8 +1,1 @@
-[
-  {
-    "from": "team-lead",
-    "text": "{\"type\":\"shutdown_request\",\"requestId\":\"shutdown-1779282295639@medici\",\"from\":\"team-lead\",\"reason\":\"Session 33+ closing — PO signaled commit-and-close. mvox-dev pushed (16 commits including your 5 audit/memory fixes). Write your closing report ([LEARNED]/[DEFERRED]/[WARNING]/[UNADDRESSED], 1 bullet each max) to your scratchpad, then approve shutdown.\",\"timestamp\":\"2026-05-20T13:04:55.639Z\"}",
-    "timestamp": "2026-05-20T13:04:55.639Z",
-    "read": true
-  }
-]
+[]

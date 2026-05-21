@@ -1,5 +1,88 @@
 # Team-Lead Scratchpad (*FR:team-lead*)
 
+## SESSION 34 WRAP — 2026-05-20 → 2026-05-21 (Hopper's first dispatch — apex-research authorized_keys multi-key persistence; original PO ask ACHIEVED; degraded-substrate diagnostic prevented multi-system credential cascade; Sub-shape A-E pattern catalog + 3-layer substrate-truth discipline crystallized)
+
+**Spans:** Multi-day session 2026-05-20 → 2026-05-21 (apex team's voluntary maintenance window enabled the recreate). Single dispatch arc, but the diagnostic depth made it the richest dispatch in FR history.
+
+**Outcome:** Original PO ask — "Aleksandr's SSH key persists across apex container rebuilds" — fully ACHIEVED at 09:18 on 2026-05-21. Apex container now has canonical `.env` at `$COMPOSE_DIR` (PO/Aleksandr/rc-connect in SLOTS 1/2/3) + amended operational compose-yml (declares GH_TOKEN per PO direction) + recreated container Config.Env (all declared tokens propagated). Future recreates reproduce the state.
+
+### Outcomes shipped
+
+| Artifact | Δ | Owner | Path |
+|---|---|---|---|
+| `teams/framework-research/docs/operations-log-2026-05.md` | NEW (6 append-only entries spanning the full arc) | Hopper | committed across `b802c31`, `62a0e2a`, `3f74987`, `0e7fe8f` |
+| `teams/framework-research/memory/hopper.md` | NEW (first-dispatch carry-forward; apex substrate-facts; n=4 Sub-shape A catalog; revert-on-invalidated-premise discipline) | Hopper | `b802c31`, `296bc83`, `0e7fe8f` |
+| `teams/framework-research/memory/brunel.md` | S34 entry added (sub-shape A-F→A-E catalog, 3-layer model, recovery-pattern articulation); pruned to 94 lines | Brunel | `296bc83` |
+| `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` | NEW (PO-facing memo; full arc + open questions) | Aen | `b802c31`, then cleanup at `296bc83` |
+| `teams/framework-research/docs/apex-keys-diff-2026-05-20.md` | NEW (P2 substrate-state diff: backup `.env` vs container Config.Env, redacted) | Hopper | `3f74987` |
+| `designs/new/apex-keys-phase1-redux-dispatch.md` | NEW (executable dispatch design; Tier R + Tier M `.env` write) | Aen | `690457b` |
+| `designs/new/apex-keys-phase2-recreate-dispatch.md` | NEW (executable dispatch design; Tier D recreate + PO sanction package) | Aen | `abfb026` |
+| `teams/framework-research/restore-inboxes.sh` | M (count-check fix: tolerate `dest > source` per Step 2c ghost pre-create; matches persist-inboxes.sh `-lt` pattern) | Aen | `b802c31` |
+| Apex production container | RECREATED via PO-sanctioned Tier D | Hopper P4.2 | substrate-side; ops-log entry at 09:18 |
+
+8 commits shipped this session: `b802c31`, `296bc83`, `62a0e2a`, `3f74987`, `690457b`, `abfb026`, `0e7fe8f` (plus one prior session-end commit `e12e810` from S33+ that bridges).
+
+### Decisions (PO-ratified)
+
+[DECISION — session 34] **Phase 2 r3 recreate RESCINDED mid-execution** after P1.2c three-probe batch revealed degraded substrate state (no `.env` at `$COMPOSE_DIR`; container surviving on pre-2026-04-29-fresh-clone Config.Env; recreate would have wiped SSH + GitHub + Atlassian + Cloudflare credentials simultaneously). Multi-system failure prevented by Hopper's hard-gate discipline.
+
+[DECISION — session 34] **Two-phase plan: Phase-1-Redux (Tier M `.env` write) + Phase 2 (Tier D recreate).** Phase-1-Redux executable when apex team in maintenance window. Phase 2 PO-sanctioned verbatim 2026-05-20 19:01 ("Approve as drafted") against the recreate command + reason + expected outcome.
+
+[DECISION — session 34] **GH_TOKEN preserved across recreate via P4.05 compose-yml amendment.** PO objection at 19:35 reversed my 19:34 Option A sanction ("substrate-correction normalization" — drop GH_TOKEN). PO direction: "if they have it right now, then why would we take away from them." P4.05 Tier M added `- GH_TOKEN=${GH_TOKEN:-}` to operational compose-yml's apex-research env block before P4.2 recreate.
+
+[DECISION — session 34] **Apex maintenance window IS the recreate window** (not "wait until they're back"). PO clarification 2026-05-20: apex team voluntarily took agents offline SPECIFICALLY to enable our Phase 2 recreate without disrupting their sessions. Reframed Phase-1-Redux preconditions; both phases executed in the same window.
+
+### Substantive learnings (Cal-grade candidates; pre-drafted in scratchpads)
+
+[LEARNED — substrate, promotion-grade] **Sub-shape A: discriminator-anchored-on-sub-canonical-source.** Four self-instances within one dispatch arc, all in Brunel's dispatch-authoring text, all caught by Hopper's hard-gate discipline:
+- A.1 (identifier-grammar): P1.1 `michelek` regex (template-stub vs live), P1.2a label-key typo (inferred underscore vs canonical dot), P3.6 pass-criterion `[A-Z_]+` (digit-exclusion)
+- A.2 (multi-layer-transit): P4.05 awk script (PowerShell→bash→awk escape chain failed at innermost layer's grammar)
+- **Recovery pattern:** substrate-live-state-as-discriminator-source + JSON-dump-on-empty for within-dispatch-agency disambiguation
+- **Sub-discipline:** "stress-test multi-layer transit against the innermost layer's grammar before relying on layered-escape correctness" (Brunel session-end articulation)
+
+[LEARNED — substrate, promotion-grade] **Sub-shape E: substrate-ownership-vs-design-ownership.** Headline of the joint wiki entry. FR ships design templates (Layer 1); consumer team operationalizes by forking/copying into their own repo (Layer 2); running container state diverges further (Layer 3). Three drift instances materialized in this single arc: SLOT 3 added in apex's compose-yml (Layer 1↔2), env-block size drift (Layer 1↔2), GH_TOKEN in Config.Env not declared in operational compose-yml (Layer 2↔3). **FR's read-deployed-artifacts discipline reads Layer 1 only — insufficient for FR-shipped substrates consumer teams operationalize.**
+
+[LEARNED — process, promotion-grade] **Three-layer substrate-truth discipline** (joint Brunel architectural + Hopper operator-defense). Required reads: FR design + operational copy + runtime container state. Cheap when Tier R; conclusive when authoritative; substrate-live-state beats offline inference at every layer. Companion Hopper-Amendment-4 candidate (three-layer Diagnostic Discipline added to her existing read-deployed-artifacts-before-executing section) for Celes routing next session.
+
+[LEARNED — process, promotion-grade] **Discipline-catches-discipline-drift across THREE roles in one dispatch arc.** Operator layer (Hopper's hard-gates caught Brunel's regex/script defects at P1.1, P1.2a, P3.6, P4.05); tasker layer (Brunel's own self-corrections + recovery-pattern articulation); design layer (PO's GH_TOKEN preservation objection against Aen+Brunel's "normalization" framing). Layered discipline catches single-layer drift across all three roles in the same dispatch arc. Strengthens existing pattern beyond two-role variants.
+
+[LEARNED — process] **Relay-fidelity-mid-conversation gap** = Stage-2 extension of `relay-to-primary-artifact-fidelity-discipline.md`. When tasker introduces a framing that contradicts prior dispatch text (or relays mid-conversation PO framing), primary-artifact check the registry/source-of-truth BEFORE propagating to downstream operator. Instances this arc: my 17:47 wrong-host propagation (PO mis-read retracted at 18:08); my 19:34 substrate-correction-normalization ratification (PO objected at 19:35). Both caught by PO at design layer; the discipline applies to tasker layer too.
+
+[LEARNED — process] **Append-only ops-log vs working-memory scratchpad have different revert semantics by design** (Hopper's session-end articulation). Ops-log: revert via NEW entry referencing the entry to supersede; never in-place. Scratchpad: revert via direct edits to pre-amendment state + clean-up `[LEARNED]` capturing the lesson. The point of working memory is to be operationally correct NOW, not to preserve every intermediate state on disk.
+
+[LEARNED — process] **Amendment authoring is itself a substrate-truth-anchored operation.** The substrate-of-truth is the verbatim error output. Discipline: "don't compose amendment without the actual error" (Aen 09:18 articulation; Brunel ratification). Recovery-discipline companion to Sub-shape A failure-mode catalog.
+
+### Standing watch items going into session 35
+
+- **Cal-Protocol-A submissions pending** — Hopper + Brunel pre-drafted two joint wiki entries in their scratchpads + Hopper-Amendment-4 candidate. Need Celes online next session for prompt-amendment ratification, Cal online for wiki authoring. Three artifacts: (a) `wiki/patterns/discriminator-anchored-on-sub-canonical-source.md` (Brunel-authored, n=4 catalog with A.1/A.2 sub-distinction); (b) `wiki/patterns/three-layer-substrate-truth-discipline.md` (joint Brunel + Hopper); (c) Hopper-Amendment-4 (three-layer Diagnostic Discipline prompt amendment, Celes-routed).
+- **apex team back online post-rebuild** — they returned at ~09:30 on 2026-05-21 (PO observation). Substrate is canonical-recreate-safe; they should notice no disruption. Bidirectional cite-back from Eratosthenes still possible if apex files their own version of any of our learnings.
+- **Aen amendment Part C (relay-visibility rule) — HELD** at `designs/deployed/operator-role/prompts/aeneas-amendment.md`. PO may revisit if a future incident surfaces silent-relay-scope-broadening; not actioned this session.
+- **mvox-dev session 8 carry-forward** (from S33+) — Palestrina had 3 deferred items. Still dormant; surfaces if PO references mvox outcomes.
+- **Manager-team / PO-team architecture** (from S33+) — Monte design surface; PO floated 2026-05-20 EOS. Not actioned this session.
+- **Volta evaluates mvox-dev startup procedure** (from S33+) — Volta-routed comparison work. Not actioned this session.
+- **TPS-583 (apex-research)** — when PO signals Ruth has progressed, action Stage-2 standard moves.
+- **Brunel-as-spec-author pattern n=1** (from S33+) — watch for n=2 confirmation.
+- **Sub-shape F catalog candidate WITHDRAWN** — was filed mid-session as "registry-entry-choice-from-first-match" against a wrong-host claim that PO retracted at 18:08. Not a valid instance from this dispatch.
+
+### NEXT-SESSION BOOT (re-orient instructions for S35)
+
+1. Read `startup.md` first (always). Steps 1-5 (Sync → Reset team state → Restore inboxes → Spawn — wait for PO direction).
+2. **Pull `mitselek-ai-teams` repo** for any external scratchpad updates.
+3. **Don't pre-spawn any agent at session start.** Wait for PO direction.
+4. **If PO surfaces Cal-Protocol-A submission work** for the S34 learnings (most likely first ask if PO surfaces FR work next session): spawn Cal for wiki authoring + Brunel + Hopper for joint-authorship review of the three pre-drafted artifacts (see Standing watch item #1). Their scratchpads have the substantive drafts; Cal authors the canonical wiki entries from those + cross-link to ops-log-2026-05.md catalyzing-incident entries.
+5. **If PO surfaces Hopper-Amendment-4 prompt amendment** (three-layer Diagnostic Discipline): spawn Celes for prompt-amendment work + Hopper + Brunel for joint-authorship review. Amendment text body is in Hopper's 19:35 message + Brunel's 19:37 elaboration from this session (cross-reference ops-log-2026-05.md for transcript).
+6. **If PO surfaces apex-research bidirectional cite-back** (Eratosthenes Protocol A filing referencing our wiki post-rebuild): spawn Cal for cross-team cite-and-fold via Protocol A.
+7. **If PO surfaces Aen amendment Part C revisit:** `designs/deployed/operator-role/prompts/aeneas-amendment.md` is the starting artifact. Decide land-now vs further-deliberate.
+8. **If PO surfaces "design another team"** (Celes-design-discipline at n=3 from S33+): same workflow shape — brainstorm → naming proposals + structural decisions (PO pause-point) → atomic-commit drafting at `designs/new/<team>/` → TL review → deploy + mv to `designs/deployed/`.
+9. **If PO surfaces manager-team / PO-team architecture** (from S33+ standing watch): Monte's domain; spawn Monte + Cal.
+10. **If PO surfaces Volta evaluates mvox-dev startup** (from S33+ standing watch): spawn Volta against `~/Documents/github/.mmp/mvox_v4e_web/teams/mvox-dev/startup.md`.
+11. **First operational item if Cal-spawning:** route the three S34 pre-drafted Cal-Protocol-A submissions (see Standing watch item #1). Hopper + Brunel scratchpads have the drafts; Cal authors canonical entries with cross-links.
+12. **Apex team is back online as of 2026-05-21 ~09:30.** Do NOT push substrate work against apex without explicit PO sanction; the maintenance window closed at session-end of this session.
+
+(*FR:Aen*)
+
+---
+
 ## SESSION 33+ WRAP — 2026-05-19 → 2026-05-20 (Hopper Deployment Operator deployed; mvox-dev team registered + Pérotin promotion realized; cross-team substrate-knowledge handoff to apex unblocked S37 carry-over; agent-lifecycle no-autonomous-continuation pattern observed n=4 but framed as Windows-substrate friction per PO direction)
 
 **Spans:** Multi-day session 2026-05-19 → 2026-05-20 (PO-driven re-engagement after Aen crash mid-window 2026-05-19). Two distinct work surfaces in one continuous session: (A) Hopper Operator role design + deploy; (B) mvox-dev clone-and-refactor health audit + Pérotin promotion finalization.

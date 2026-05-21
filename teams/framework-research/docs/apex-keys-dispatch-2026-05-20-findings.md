@@ -1,9 +1,10 @@
 # Apex Keys Dispatch — Findings & Recommendations
 
-**Date:** 2026-05-20
-**Dispatch:** Hopper's first-ever (Phase 1 preparation, authorized_keys multi-key fix)
-**Outcome:** Aborted mid-execution per PO direction "stop and let me think."
-**No mutations occurred.** All probes were Tier R. Substrate is unchanged from pre-dispatch state.
+**Dates:** 2026-05-20 → 2026-05-21
+**Dispatch:** Hopper's first-ever (Phase 1 prep → Phase 2 recreate)
+**Final outcome:** **ORIGINAL PO ASK ACHIEVED 2026-05-21 09:18.** Aleksandr's SSH key now persists across apex container rebuilds. Multi-system credential failure prevented. See Phase 2 success update at end of memo.
+
+This memo was originally written 2026-05-20 when the Phase 1 dispatch aborted mid-execution per PO "stop and let me think" direction. The Phase 2 follow-up landed 2026-05-21 in apex team's maintenance window. The body of the memo below preserves the 2026-05-20 framing (degraded substrate, original-ask-unaddressed) as the diagnostic record; the Phase 2 success update at the bottom captures the resolution.
 
 (*FR:Aen*)
 
@@ -181,5 +182,38 @@ The operations-log entry from this dispatch will be a public artifact for future
 ---
 
 **Status when this memo was written:** Hopper closing out (ops-log + scratchpad write per close-out instructions). Brunel preparing scratchpad capture. Aen preparing this memo. No further substrate touches pending PO direction in a future engagement.
+
+(*FR:Aen*)
+
+---
+
+## Phase 2 Success Update — 2026-05-21
+
+PO clarified mid-session that apex team had voluntarily taken their AI agents offline specifically to enable our recreate without disrupting their work — the down-state IS the maintenance window. Phase-1-Redux (Tier M `.env` reconstruction) + Phase 2 (Tier D recreate) executed end-to-end against the apex production substrate in this window. **Original ask ACHIEVED 09:18 on 2026-05-21.**
+
+Final substrate state on apex-research container:
+- `authorized_keys`: 3 keys installed by entrypoint Step 7 (PO + Aleksandr + rc-connect)
+- Config.Env: all declared tokens propagated (SSH_PUBLIC_KEY×3, GITHUB_TOKEN, GH_TOKEN, ANTHROPIC_API_KEY, ATLASSIAN_*)
+- Named volumes preserved: `apex-claude-home`, `apex-research-repo`, `apex-source-data`
+- Future recreates reproduce the same state (canonical `.env` at `$COMPOSE_DIR` + amended operational compose-yml are the substrate baseline)
+
+PO direction during execution superseded the original "substrate-correction normalization" plan with explicit GH_TOKEN preservation ("if they have it right now, then why would we take away from them"). P4.05 Tier M compose-yml amendment added `- GH_TOKEN=${GH_TOKEN:-}` to apex-research's `environment:` block before P4.2 recreate.
+
+Execution amendments (substrate-truth-anchored, Hopper hard-gate caught):
+- P3.6 amendment-1: backup `.env` SLOT 3 unquoted breaks `source` under `set -e`; switched to grep-extract per token
+- P3.6 amendment-2: pass-criterion regex `[A-Z_]+` rejects digits; corrected to POSIX `[A-Z_][A-Z0-9_]*`
+- Phase 2 PO 19:35 reversal: GH_TOKEN preserved via P4.05 instead of "normalized out"
+- P4.05 amendment-2: PowerShell→bash→awk multi-layer escape chain failed at awk's string grammar; fixed via printf `%s%s` string-concatenation
+
+Pattern catalog filed for Cal-Protocol-A submission next session (Brunel + Hopper joint drafts in scratchpads):
+1. `wiki/patterns/discriminator-anchored-on-sub-canonical-source.md` — n=4 catalog with A.1 (identifier-grammar) and A.2 (multi-layer-transit) sub-distinctions
+2. `wiki/patterns/three-layer-substrate-truth-discipline.md` — joint architectural-and-operator-defense entry; sub-shape E as headline
+3. Hopper-Amendment-4 (three-layer Diagnostic Discipline prompt amendment) — Celes-routed for ratification
+
+Audit trail: 6 append-only entries in `teams/framework-research/docs/operations-log-2026-05.md` spanning the full dispatch arc (17:09 original abort → 18:05 first correction → 18:22 revert-correction → 18:46 P2 diff probe → 19:23 Phase 1 close → 09:18 Phase 2 close).
+
+Apex team came back online ~09:30 post-rebuild; substrate is canonical-recreate-safe; they should notice no disruption.
+
+The "Open questions for PO" section above is now mostly resolved: questions 2-5 were either answered in-execution (slot assignment, compose method, GH_TOKEN preservation, restoration approach) or remain as future FR-side work items (compose-yml design refresh, formalize three-layer cross-read discipline as Hopper-Amendment-4). Question 6 (formalize the three-layer discipline) is the one open item that flows to next-session Celes-routed work.
 
 (*FR:Aen*)

@@ -33,24 +33,33 @@ Recovery pattern for all: cheap Tier R probe of substrate-live state beats offli
 
 [STATUS] Idle pending Hopper close-out + Aen direction. Surgical scratchpad prune complete 17:48 (this rewrite).
 
-## SESSION 33+ CLOSING REPORT (2026-05-20 13:05) — compressed
+## SESSION 34 — P3 + P4 dispatch arc closure (2026-05-21 09:18)
 
-[STRONG-LEARN] **Read your own deployed artifacts before diagnosing failures against them.** Catalyzed by 2026-05-19 apex fs blocker: read-only-by-design source-data lockdown was MY OWN entrypoint code (`designs/deployed/apex-research/container/entrypoint-apex.sh:117-121`); misdiagnosed it before reading. Substrate design intent lives on disk; not opaque. S34 extended this: read your own deployed artifacts is necessary but not sufficient — also Layer 2 + Layer 3 (per three-layer model above).
+[LEARNED — STRONG] **Original PO ask ACHIEVED via Phase-1-Redux + Phase 2 pair-loop.** Three SSH keys (PO/Aleksandr/rc-connect) installed in apex-research container's `authorized_keys` post-recreate; backed by canonical `.env` + amended operational compose-yml. Multi-system credential failure prevented (original r3 Phase-2 against degraded substrate would have wiped SSH+GitHub+Atlassian+Cloudflare auth). Catalyzing-incident chain: `teams/framework-research/docs/operations-log-2026-05.md` (6 append-only entries, 2026-05-20T17:09 P1 abort through 2026-05-21T09:18 P4.8 close). GH_TOKEN preservation honored per PO 19:35 direction via P4.05 Tier M compose-yml amendment.
 
-[STRONG-LEARN] **Operator-role spec shipped + ratified; Hopper exists and operated S34.** Brunel-side amendments folded into prompt: read-deployed-artifacts discipline, no-operator-mode handoff pattern, Operator-pairing dispatch-package shape. Spec doc: `teams/framework-research/docs/operator-role-spec-2026-05-19.md`. Operator independence model: tasked-by-Brunel-OR-Aen; Tier R+M default-permitted; Tier D needs PO sanction (exact command + reason + expected outcome verbatim) via Aen/Brunel relay.
+[LEARNED — STRONG] **Sub-shape A catalog at n=4 self-instances with A.1/A.2 sub-sub-shape distinction.** All four self-instances in MY dispatch-authoring text, all caught by Hopper's hard-gate discipline:
+- A.1 (identifier-grammar mismatch, n=3): P1.1 michelek-regex template-stub / P1.2a label-key underscore-vs-canonical-dot / P3.6 `[A-Z_]+` digit-exclusion
+- A.2 (transit-chain mismatch, n=1): P4.05 awk runaway-string on `${GH_TOKEN:-}` in PowerShell→base64→bash→awk chain
+Shared lesson: verify-substrate-truth-anchored-grammar at innermost parser BEFORE relying on outer-layer pass-through. Recovery posture (A.1+A.2): surface-back-with-substrate-truth-evidence before silent re-attempt; substrate-truth diagnostic (JSON-dump / diff-vs-backup / alt-regex / byte-equality drift-check) surfaces actual grammar in one cheap Tier R round-trip.
 
-[DEFERRED — file with Cal next active session] Three wiki/Cal items from pre-S34:
-1. **Relay-flatten-self-cloaking-failure-mode** wiki entry (Celes-flagged; catalyzing incident = S33+ Schliemann-crash-surfaced-operator-mode-gap; silent-broadening-via-intermediary failure modes are only surfaceable when the intermediary fails).
-2. **S31 PoC 7-item Cal queue:** SF-1/SF-2/SF-3/SF-4 + read-flag-replication external-CLI discipline + TaskGet-before-classify-as-noise procedural pattern + decorative-polling-interval anti-pattern. Linux-substrate-validated PoC findings; deployment-relevant.
-3. **Multi-instance same-name agents discipline:** disk-state is the only ground truth; shutdown-protocol scratchpad-write should re-read existing scratchpad FIRST and append-with-reconciliation.
+[LEARNED — joint with Hopper, structural reframe] **Reference-example status attaches to dispatch-design + pair-as-unit-loop, NOT individual effort.** Hard-gate-discipline + Tier-D-no-execute-without-full-sanction + within-dispatch-agency-bounded-probes are the reusable patterns; pair-as-unit (diagnostic+execution+supervision) is what makes them work. Hopper's articulation; canonical for the joint Cal entry's catalyzing-incident citation.
 
-## HISTORICAL SHIPPED (compressed)
+[LEARNED] **Relay-fidelity-mid-conversation gap surfaced twice this dispatch.** (1) 17:43 PO wrong-host claim relayed without registry primary-artifact check (retracted 18:08 by PO). (2) 19:33 "substrate-correction normalization" framing relayed + Aen-ratified, reversed by PO 19:35 ("preserve their GH_TOKEN"). Same generalization: tasker/operator framing that contradicts prior dispatch premises requires primary-artifact check before propagating. Stage-2 extension of `relay-to-primary-artifact-fidelity-discipline.md` applied to in-session framing assertions. Cal-Protocol-A submission carries as supplementary discipline.
 
-- **S26-S27 Phase A+B Prism:** topology + container-posture + brilliant-mcp-fr-setup shipped via `mitselek/prism` PRs #1+#3. Cite-and-fold cadence + ~400w scope + ~1300w design body shape. Wiki entries: `relay-to-primary-artifact-fidelity-discipline.md`, `worktree-spawn-asymmetry-message-delivery.md`, `worktree-isolation-for-parallel-agents.md`.
-- **S29 wiki review + T06 stale-prose cleanup.** Worktree-spawn-asymmetry confirmed; Phase 2.0a stale references at L1135+L1182 fixed.
-- **S31 RFC #66 cross-host PoC:** `~/bin/ghost-chat.ps1.deprecated` + `~/bin/ghost-chat.py` (user-authored; my role = coordinator/analyst). SF-1 through SF-4 substrate findings + cross-implementation verification pattern validated.
-- **S33+ apex fs blocker + Operator-role spec:** apex's `git fetch` blocker = deliberate-read-only-by-design (my own entrypoint code); container restart = canonical refresh path. Operator-role spec catalyzed by PO surfacing operator-mode gap.
-- **PRE-S31 VEO-4 Roland-direct DM draft:** sibling-positioning + re-scope-acknowledgement comms-craft patterns. Load-bearing-structural vs tonal-tunable partition for downstream PO-editor.
+[CARRY-FORWARD — session-end Cal-Protocol-A submissions, FINALIZED]
+1. `wiki/patterns/discriminator-anchored-on-sub-canonical-source.md` — Brunel-phrasing + n=4 catalog with A.1/A.2 sub-sub-shapes. Joint cross-link to Hopper operator-defense recovery pattern.
+2. `wiki/patterns/three-layer-substrate-truth-discipline.md` — JOINT (Brunel architectural + Hopper operator-defense). Layer 1 FR-design / Layer 2 consumer-team-operational / Layer 3 runtime-container-state. P4 arc reinforces S20 P1.2c catalyzing incident.
+3. Hopper-Amendment-4 (three-layer Diagnostic Discipline for `hopper.md`) — Hopper-authored, joint cross-link to Brunel diagnostic-gap; surfaces to Celes when she's next online.
+
+[CROSS-LINK FINAL] ops-log 6 entries 17:09/18:05/18:22/18:46/19:23/09:18. Aen PO-facing memo: `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` (Phase 2 ACHIEVED status pending Aen amendment when he commits).
+
+[STATUS — S34 SHUTDOWN] Aen shutdown_request received 09:46 (request_id `shutdown-1779349562835@brunel`); reason "original PO ask achieved; all artifacts committed; transition to S35 prep". Per common-prompt Shutdown Protocol: scratchpad updated (this entry), closing message to Aen with [LEARNED]/[DEFERRED]/[WARNING]/[UNADDRESSED], approving shutdown.
+
+## HISTORY BOOKMARK (compressed)
+
+- **S33+ (2026-05-19/20)** — Operator-role spec ratified; Hopper exists (`teams/framework-research/docs/operator-role-spec-2026-05-19.md`). STRONG-LEARN: read your own deployed artifacts before diagnosing — `designs/deployed/<team>/container/*` is canonical for design lineage, not opaque. Three deferred Cal items still standing: (1) relay-flatten-self-cloaking-failure-mode wiki entry, Celes-flagged; (2) S31 PoC 7-item Cal queue (SF-1..4 + read-flag-replication + TaskGet-before-classify-as-noise + decorative-polling-interval); (3) multi-instance same-name agents discipline.
+- **S31 (2026-05-12)** — RFC #66 cross-host PoC; `~/bin/ghost-chat.py` (user-authored; my role = coordinator/analyst). SF-1..4 substrate findings + cross-implementation verification pattern validated.
+- **S29 + S26-S27 + PRE-S31** — wiki review + T06 cleanup (S29); Phase A+B Prism designs on `mitselek/prism` (S26-S27); VEO-4 Roland-direct comms-craft (sibling-positioning + re-scope-acknowledgement patterns).
 
 ## STANDING DECISIONS (carry forward)
 
@@ -67,8 +76,6 @@ Recovery pattern for all: cheap Tier R probe of substrate-live state beats offli
 [GOTCHA] SSH: useradd creates locked account. Fix: `usermod -p '*'` for pubkey auth.
 [GOTCHA] Container rebuild regenerates SSH host keys → `ssh-keygen -R "[host]:port"` after rebuild.
 [GOTCHA] CRLF from Windows git autocrlf breaks entrypoints. Fix: `sed -i 's/\r$//'` then rebuild.
-[GOTCHA] tmux inherits locale from starting process. Use `tmux -u` or bake LANG into Dockerfile.
-[GOTCHA] Root-owned /tmp files block ai-teams writes — create tmux sessions as target user.
 [GOTCHA] Inbox files created at agent registration time. Specialist → unregistered agent = message LOST. Spawn order: service-role agents BEFORE message senders.
 [GOTCHA] Base64-encode-via-SSH strips shell-escape backslashes. Use heredoc with single-quote delimiter for scripts with `\"` or `\s`.
 [GOTCHA] Consecutive `**Bold:**` lines collapse on GitHub. Use `- **Bold:**` bullet lists.

@@ -1,8 +1,1 @@
-[
-  {
-    "from": "team-lead",
-    "text": "{\"type\":\"shutdown_request\",\"requestId\":\"shutdown-1779282292195@celes\",\"from\":\"team-lead\",\"reason\":\"Session 33+ closing — PO signaled commit-and-close. Hopper deployed (commit 25094d1); mvox-dev pushed (16 commits including your Pérotin work). Write your closing report ([LEARNED]/[DEFERRED]/[WARNING]/[UNADDRESSED], 1 bullet each max) to your scratchpad, then approve shutdown.\",\"timestamp\":\"2026-05-20T13:04:52.195Z\"}",
-    "timestamp": "2026-05-20T13:04:52.195Z",
-    "read": true
-  }
-]
+[]
