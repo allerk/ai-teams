@@ -1,0 +1,5 @@
+ghost-bridge.config.json
+ghost-bridge.pid
+ghost-bridge.log
+__pycache__/
+*.pyc

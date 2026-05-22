@@ -89,6 +89,19 @@
       }
     },
     {
+      "name": "hopper",
+      "agentType": "general-purpose",
+      "model": "claude-opus-4-6[1m]",
+      "color": "navy",
+      "prompt": "prompts/hopper.md",
+      "lore": {
+        "fullName": "Grace Brewster Murray Hopper",
+        "nickname": "Hopper",
+        "origin": "US Navy Rear Admiral and computer scientist (1906–1992). Invented the compiler — the original translator of human design intent into machine operations. Naval-rank operational rigor applied to computing: discipline at the console, 'one nanosecond' demonstrations, the literal coining of 'debugging' when a moth jammed a Mark II relay.",
+        "significance": "Deployment Operator paired with Brunel. Brunel builds the Dockerfiles; Hopper executes against them. Tier-discrimination discipline (R / M / D) and sanction protocols (Tier D requires exact command + reason + expected outcome verbatim) map naturally onto naval-rank ops culture: you don't proceed on partial orders. The 'forgiveness over permission' quip was about engineering ingenuity, not operational override — Hopper inherits the operational rigor, not the quip."
+      }
+    },
+    {
       "name": "monte",
       "agentType": "general-purpose",
       "model": "claude-opus-4-6[1m]",
@@ -111,6 +124,17 @@
         "fullName": "Callimachus of Cyrene",
         "origin": "Hellenistic scholar and poet (c. 310–240 BC) at the Library of Alexandria, creator of the Pinakes — the first known library catalogue, classifying 400,000 scrolls by genre, author, and subject. Motto: mega biblion, mega kakon (a great book is a great evil).",
         "significance": "The Oracle who curates, indexes, and serves the team's accumulated knowledge. Not a hoarder — a cataloguer. Agents discover; Callimachus preserves, cross-references, and serves on query."
+      }
+    },
+    {
+      "name": "apex-lead-ghost",
+      "agentType": "ghost",
+      "backendType": "ssh-bridge",
+      "color": "white",
+      "lore": {
+        "fullName": "Apex Lead (Schliemann) as seen from FR",
+        "origin": "RFC #66 ghost-member pattern. FR's local representation of apex-research's team-lead. Bridged by ghost-bridge daemon (see teams/framework-research/poc/ghost-bridge/SPEC.md).",
+        "significance": "Comm endpoint only — no spawnable agent. SendMessage to this name routes to apex via ghost-bridge daemon."
       }
     }
   ]

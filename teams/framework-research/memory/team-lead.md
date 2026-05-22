@@ -1,5 +1,374 @@
 # Team-Lead Scratchpad (*FR:team-lead*)
 
+## SESSION 34 WRAP — 2026-05-20 → 2026-05-21 (Hopper's first dispatch — apex-research authorized_keys multi-key persistence; original PO ask ACHIEVED; degraded-substrate diagnostic prevented multi-system credential cascade; Sub-shape A-E pattern catalog + 3-layer substrate-truth discipline crystallized)
+
+**Spans:** Multi-day session 2026-05-20 → 2026-05-21 (apex team's voluntary maintenance window enabled the recreate). Single dispatch arc, but the diagnostic depth made it the richest dispatch in FR history.
+
+**Outcome:** Original PO ask — "Aleksandr's SSH key persists across apex container rebuilds" — fully ACHIEVED at 09:18 on 2026-05-21. Apex container now has canonical `.env` at `$COMPOSE_DIR` (PO/Aleksandr/rc-connect in SLOTS 1/2/3) + amended operational compose-yml (declares GH_TOKEN per PO direction) + recreated container Config.Env (all declared tokens propagated). Future recreates reproduce the state.
+
+### Outcomes shipped
+
+| Artifact | Δ | Owner | Path |
+|---|---|---|---|
+| `teams/framework-research/docs/operations-log-2026-05.md` | NEW (6 append-only entries spanning the full arc) | Hopper | committed across `b802c31`, `62a0e2a`, `3f74987`, `0e7fe8f` |
+| `teams/framework-research/memory/hopper.md` | NEW (first-dispatch carry-forward; apex substrate-facts; n=4 Sub-shape A catalog; revert-on-invalidated-premise discipline) | Hopper | `b802c31`, `296bc83`, `0e7fe8f` |
+| `teams/framework-research/memory/brunel.md` | S34 entry added (sub-shape A-F→A-E catalog, 3-layer model, recovery-pattern articulation); pruned to 94 lines | Brunel | `296bc83` |
+| `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` | NEW (PO-facing memo; full arc + open questions) | Aen | `b802c31`, then cleanup at `296bc83` |
+| `teams/framework-research/docs/apex-keys-diff-2026-05-20.md` | NEW (P2 substrate-state diff: backup `.env` vs container Config.Env, redacted) | Hopper | `3f74987` |
+| `designs/new/apex-keys-phase1-redux-dispatch.md` | NEW (executable dispatch design; Tier R + Tier M `.env` write) | Aen | `690457b` |
+| `designs/new/apex-keys-phase2-recreate-dispatch.md` | NEW (executable dispatch design; Tier D recreate + PO sanction package) | Aen | `abfb026` |
+| `teams/framework-research/restore-inboxes.sh` | M (count-check fix: tolerate `dest > source` per Step 2c ghost pre-create; matches persist-inboxes.sh `-lt` pattern) | Aen | `b802c31` |
+| Apex production container | RECREATED via PO-sanctioned Tier D | Hopper P4.2 | substrate-side; ops-log entry at 09:18 |
+
+8 commits shipped this session: `b802c31`, `296bc83`, `62a0e2a`, `3f74987`, `690457b`, `abfb026`, `0e7fe8f` (plus one prior session-end commit `e12e810` from S33+ that bridges).
+
+### Decisions (PO-ratified)
+
+[DECISION — session 34] **Phase 2 r3 recreate RESCINDED mid-execution** after P1.2c three-probe batch revealed degraded substrate state (no `.env` at `$COMPOSE_DIR`; container surviving on pre-2026-04-29-fresh-clone Config.Env; recreate would have wiped SSH + GitHub + Atlassian + Cloudflare credentials simultaneously). Multi-system failure prevented by Hopper's hard-gate discipline.
+
+[DECISION — session 34] **Two-phase plan: Phase-1-Redux (Tier M `.env` write) + Phase 2 (Tier D recreate).** Phase-1-Redux executable when apex team in maintenance window. Phase 2 PO-sanctioned verbatim 2026-05-20 19:01 ("Approve as drafted") against the recreate command + reason + expected outcome.
+
+[DECISION — session 34] **GH_TOKEN preserved across recreate via P4.05 compose-yml amendment.** PO objection at 19:35 reversed my 19:34 Option A sanction ("substrate-correction normalization" — drop GH_TOKEN). PO direction: "if they have it right now, then why would we take away from them." P4.05 Tier M added `- GH_TOKEN=${GH_TOKEN:-}` to operational compose-yml's apex-research env block before P4.2 recreate.
+
+[DECISION — session 34] **Apex maintenance window IS the recreate window** (not "wait until they're back"). PO clarification 2026-05-20: apex team voluntarily took agents offline SPECIFICALLY to enable our Phase 2 recreate without disrupting their sessions. Reframed Phase-1-Redux preconditions; both phases executed in the same window.
+
+### Substantive learnings (Cal-grade candidates; pre-drafted in scratchpads)
+
+[LEARNED — substrate, promotion-grade] **Sub-shape A: discriminator-anchored-on-sub-canonical-source.** Four self-instances within one dispatch arc, all in Brunel's dispatch-authoring text, all caught by Hopper's hard-gate discipline:
+- A.1 (identifier-grammar): P1.1 `michelek` regex (template-stub vs live), P1.2a label-key typo (inferred underscore vs canonical dot), P3.6 pass-criterion `[A-Z_]+` (digit-exclusion)
+- A.2 (multi-layer-transit): P4.05 awk script (PowerShell→bash→awk escape chain failed at innermost layer's grammar)
+- **Recovery pattern:** substrate-live-state-as-discriminator-source + JSON-dump-on-empty for within-dispatch-agency disambiguation
+- **Sub-discipline:** "stress-test multi-layer transit against the innermost layer's grammar before relying on layered-escape correctness" (Brunel session-end articulation)
+
+[LEARNED — substrate, promotion-grade] **Sub-shape E: substrate-ownership-vs-design-ownership.** Headline of the joint wiki entry. FR ships design templates (Layer 1); consumer team operationalizes by forking/copying into their own repo (Layer 2); running container state diverges further (Layer 3). Three drift instances materialized in this single arc: SLOT 3 added in apex's compose-yml (Layer 1↔2), env-block size drift (Layer 1↔2), GH_TOKEN in Config.Env not declared in operational compose-yml (Layer 2↔3). **FR's read-deployed-artifacts discipline reads Layer 1 only — insufficient for FR-shipped substrates consumer teams operationalize.**
+
+[LEARNED — process, promotion-grade] **Three-layer substrate-truth discipline** (joint Brunel architectural + Hopper operator-defense). Required reads: FR design + operational copy + runtime container state. Cheap when Tier R; conclusive when authoritative; substrate-live-state beats offline inference at every layer. Companion Hopper-Amendment-4 candidate (three-layer Diagnostic Discipline added to her existing read-deployed-artifacts-before-executing section) for Celes routing next session.
+
+[LEARNED — process, promotion-grade] **Discipline-catches-discipline-drift across THREE roles in one dispatch arc.** Operator layer (Hopper's hard-gates caught Brunel's regex/script defects at P1.1, P1.2a, P3.6, P4.05); tasker layer (Brunel's own self-corrections + recovery-pattern articulation); design layer (PO's GH_TOKEN preservation objection against Aen+Brunel's "normalization" framing). Layered discipline catches single-layer drift across all three roles in the same dispatch arc. Strengthens existing pattern beyond two-role variants.
+
+[LEARNED — process] **Relay-fidelity-mid-conversation gap** = Stage-2 extension of `relay-to-primary-artifact-fidelity-discipline.md`. When tasker introduces a framing that contradicts prior dispatch text (or relays mid-conversation PO framing), primary-artifact check the registry/source-of-truth BEFORE propagating to downstream operator. Instances this arc: my 17:47 wrong-host propagation (PO mis-read retracted at 18:08); my 19:34 substrate-correction-normalization ratification (PO objected at 19:35). Both caught by PO at design layer; the discipline applies to tasker layer too.
+
+[LEARNED — process] **Append-only ops-log vs working-memory scratchpad have different revert semantics by design** (Hopper's session-end articulation). Ops-log: revert via NEW entry referencing the entry to supersede; never in-place. Scratchpad: revert via direct edits to pre-amendment state + clean-up `[LEARNED]` capturing the lesson. The point of working memory is to be operationally correct NOW, not to preserve every intermediate state on disk.
+
+[LEARNED — process] **Amendment authoring is itself a substrate-truth-anchored operation.** The substrate-of-truth is the verbatim error output. Discipline: "don't compose amendment without the actual error" (Aen 09:18 articulation; Brunel ratification). Recovery-discipline companion to Sub-shape A failure-mode catalog.
+
+### Standing watch items going into session 35
+
+- **Cal-Protocol-A submissions pending** — Hopper + Brunel pre-drafted two joint wiki entries in their scratchpads + Hopper-Amendment-4 candidate. Need Celes online next session for prompt-amendment ratification, Cal online for wiki authoring. Three artifacts: (a) `wiki/patterns/discriminator-anchored-on-sub-canonical-source.md` (Brunel-authored, n=4 catalog with A.1/A.2 sub-distinction); (b) `wiki/patterns/three-layer-substrate-truth-discipline.md` (joint Brunel + Hopper); (c) Hopper-Amendment-4 (three-layer Diagnostic Discipline prompt amendment, Celes-routed).
+- **apex team back online post-rebuild** — they returned at ~09:30 on 2026-05-21 (PO observation). Substrate is canonical-recreate-safe; they should notice no disruption. Bidirectional cite-back from Eratosthenes still possible if apex files their own version of any of our learnings.
+- **Aen amendment Part C (relay-visibility rule) — HELD** at `designs/deployed/operator-role/prompts/aeneas-amendment.md`. PO may revisit if a future incident surfaces silent-relay-scope-broadening; not actioned this session.
+- **mvox-dev session 8 carry-forward** (from S33+) — Palestrina had 3 deferred items. Still dormant; surfaces if PO references mvox outcomes.
+- **Manager-team / PO-team architecture** (from S33+) — Monte design surface; PO floated 2026-05-20 EOS. Not actioned this session.
+- **Volta evaluates mvox-dev startup procedure** (from S33+) — Volta-routed comparison work. Not actioned this session.
+- **TPS-583 (apex-research)** — when PO signals Ruth has progressed, action Stage-2 standard moves.
+- **Brunel-as-spec-author pattern n=1** (from S33+) — watch for n=2 confirmation.
+- **Sub-shape F catalog candidate WITHDRAWN** — was filed mid-session as "registry-entry-choice-from-first-match" against a wrong-host claim that PO retracted at 18:08. Not a valid instance from this dispatch.
+
+### NEXT-SESSION BOOT (re-orient instructions for S35)
+
+1. Read `startup.md` first (always). Steps 1-5 (Sync → Reset team state → Restore inboxes → Spawn — wait for PO direction).
+2. **Pull `mitselek-ai-teams` repo** for any external scratchpad updates.
+3. **Don't pre-spawn any agent at session start.** Wait for PO direction.
+4. **If PO surfaces Cal-Protocol-A submission work** for the S34 learnings (most likely first ask if PO surfaces FR work next session): spawn Cal for wiki authoring + Brunel + Hopper for joint-authorship review of the three pre-drafted artifacts (see Standing watch item #1). Their scratchpads have the substantive drafts; Cal authors the canonical wiki entries from those + cross-link to ops-log-2026-05.md catalyzing-incident entries.
+5. **If PO surfaces Hopper-Amendment-4 prompt amendment** (three-layer Diagnostic Discipline): spawn Celes for prompt-amendment work + Hopper + Brunel for joint-authorship review. Amendment text body is in Hopper's 19:35 message + Brunel's 19:37 elaboration from this session (cross-reference ops-log-2026-05.md for transcript).
+6. **If PO surfaces apex-research bidirectional cite-back** (Eratosthenes Protocol A filing referencing our wiki post-rebuild): spawn Cal for cross-team cite-and-fold via Protocol A.
+7. **If PO surfaces Aen amendment Part C revisit:** `designs/deployed/operator-role/prompts/aeneas-amendment.md` is the starting artifact. Decide land-now vs further-deliberate.
+8. **If PO surfaces "design another team"** (Celes-design-discipline at n=3 from S33+): same workflow shape — brainstorm → naming proposals + structural decisions (PO pause-point) → atomic-commit drafting at `designs/new/<team>/` → TL review → deploy + mv to `designs/deployed/`.
+9. **If PO surfaces manager-team / PO-team architecture** (from S33+ standing watch): Monte's domain; spawn Monte + Cal.
+10. **If PO surfaces Volta evaluates mvox-dev startup** (from S33+ standing watch): spawn Volta against `~/Documents/github/.mmp/mvox_v4e_web/teams/mvox-dev/startup.md`.
+11. **First operational item if Cal-spawning:** route the three S34 pre-drafted Cal-Protocol-A submissions (see Standing watch item #1). Hopper + Brunel scratchpads have the drafts; Cal authors canonical entries with cross-links.
+12. **Apex team is back online as of 2026-05-21 ~09:30.** Do NOT push substrate work against apex without explicit PO sanction; the maintenance window closed at session-end of this session.
+
+(*FR:Aen*)
+
+---
+
+## SESSION 33+ WRAP — 2026-05-19 → 2026-05-20 (Hopper Deployment Operator deployed; mvox-dev team registered + Pérotin promotion realized; cross-team substrate-knowledge handoff to apex unblocked S37 carry-over; agent-lifecycle no-autonomous-continuation pattern observed n=4 but framed as Windows-substrate friction per PO direction)
+
+**Spans:** Multi-day session 2026-05-19 → 2026-05-20 (PO-driven re-engagement after Aen crash mid-window 2026-05-19). Two distinct work surfaces in one continuous session: (A) Hopper Operator role design + deploy; (B) mvox-dev clone-and-refactor health audit + Pérotin promotion finalization.
+
+**Outcome:** Both surfaces shipped end-to-end. Hopper joined the FR roster as a navy-blue opus-4-6 Deployment Operator paired with Brunel. mvox-dev team indexed in `designs/deployed/`, audited GREEN by Medici, and Pérotin's permanent-promotion structurally realized via Celes's 5-commit fine-tune + Aen's roster-side edit. 17 commits across two repos (FR: 4 deploy-stack commits; mvox: 15 commits pushed to origin).
+
+### Outcomes shipped — Hopper Deployment Operator
+
+| Artifact | Δ | Owner | Path |
+|---|---|---|---|
+| `teams/framework-research/prompts/hopper.md` | NEW (26K, 11-slot full prompt) | Celes | committed in deploy `25094d1` (moved from staging) |
+| `teams/framework-research/prompts/brunel.md` | +3 amendments | Celes designed / Aen applied | `25094d1` |
+| `teams/framework-research/roster.json` | +1 member (hopper, navy, opus-4-6) | Aen | `25094d1` |
+| `designs/deployed/operator-role/` | NEW deployed-reference (design-spec, first-spawn-protocol, brunel-amendments, roster-entry, aeneas-amendment HELD) | Celes / Aen | `25094d1` (moved from `designs/new/`) |
+| `teams/framework-research/docs/operator-role-spec-2026-05-19.md` | NEW spec (Brunel-authored) | Brunel | committed earlier in `4a5dece` |
+
+### Outcomes shipped — mvox-dev team registration + Pérotin promotion
+
+| Artifact | Δ | Owner | Path / commit |
+|---|---|---|---|
+| `designs/deployed/mvox_v4e_web/README.md` | NEW deployment index | Aen | FR commit `300d2df` |
+| Medici health audit (218 lines, GREEN) | NEW | Medici | mvox commit `d9ecdde` |
+| Comenius scratchpad stub | NEW (resolved only RED finding — new member had no memory file) | Medici | mvox commit `d52cac7` |
+| Finn scratchpad prune (-24 lines) | M | Medici | mvox commit `e49ced8` |
+| Victoria + Comenius prompt fine-tunes (Paraglide/TBD/TDD Partners) | M (3 atomic commits) | Celes | mvox `60936ec`+`246fd06`+`1a531e2` |
+| Pérotin prompt — 5-commit pass (always-on framing + standing concerns + Léonin lore reframe + 3 coordination adds + first-spawn-as-permanent reorientation) | M (5 atomic commits) | Celes | mvox `6c7b4bb`..`ed15eee` |
+| Pérotin roster.json (drop spawn field + update lore.significance) | M | Aen | mvox commit `9ab6542` |
+| Palestrina memory append — 3 FR-flagged deferrals (path convention, CLAUDE.md drift, polyphony-isms) | M | Aen | mvox commit `4ca000b` |
+| Cosmetic markdownlint MD032 fix on perotin.md | M | (auto-formatter) | mvox commit `516e476` |
+
+mvox-dev pushed: 16 commits to `mvox-dev/mvox_v4e_web` origin/main (range `81f7d9c..516e476`).
+
+### Decisions (PO-ratified)
+
+[DECISION — session 33+] **Hopper deployment operator role finalized.** Naming via Celes-first-cut S32 pattern (PO chose Hopper over Kranz / Casey Jones); structural decisions all 4 accepted (no curator companion, generic-with-examples substrate scope, no first-spawn dry-run, monthly ops-log with REQUIRED deployed-artifacts-read declaration); 5 interpretive deltas locked via Celes↔Brunel DM exchange. TL-review Q4 (Tier D vs shape-mode contract surface) ratified per Celes's option 1 (clarify on producer side).
+
+[DECISION — session 33+] **Aen amendment (Part C, relay-visibility rule) HELD.** The `aeneas-amendment.md` file stays in the deployed package as a future-session candidate but NOT applied to `prompts/aeneas.md` this pass. PO direction.
+
+[DECISION — session 33+] **Pérotin permanent always-on interpretation.** Convention discovered empirically: every other permanent mvox-dev member has no `"spawn"` field in roster.json; only Pérotin had `"spawn": "on-demand"`. Promotion = delete the field. Aligned roster + prompt L109 to make the promotion structurally real (not just a label).
+
+[DECISION — session 33+] **mvox-dev is NOT FR-shipped substrate.** Indexed in `designs/deployed/mvox_v4e_web/` for visibility but flagged out-of-scope for Hopper's MAY-DO list — substrate-design ownership rule excludes clones+refactors on non-EVR github orgs. Re-evaluate only if PO migrates to an EVR-org deployment with FR substrate ownership.
+
+[DECISION — session 33+] **vjs_apex_apps RO mechanics handed off to Schliemann.** PO reversed initial "we don't owe Schliemann, that's sorted" framing after recognizing the substrate-knowledge handoff value (apex was carrying it as a pending fix). The handoff resolved apex's S37 carry-over.
+
+### Substantive learnings (promotion-grade candidates)
+
+[LEARNED — substrate, promotion-grade] **Read-your-own-deployed-artifacts diagnostic discipline.** Codified in Brunel-Amendment-1. Generalizable rule: when an FR-deployed substrate shows a failure, the first action is to read `designs/deployed/<team>/container/*` — the substrate's design intent is on disk in our repo, not opaque. Treating FR-shipped substrates as opaque is the first-pass error. Catalyzed by Brunel's S33+ apex-blocker diagnosis (first-pass plausible-but-wrong; PO surfaced; re-diagnose correct via reading own entrypoint).
+
+[LEARNED — substrate, promotion-grade] **Substrate-knowledge handoff value (cross-team).** Substrate-mechanics summary from FR to apex unblocked a pending carry-over on apex's side (S37 "Mount fix pending FR-team" → reframed as "structurally-enforced policy with canonical refresh path"). PO observation: "your reversal on 'we don't owe Schliemann' was load-bearing." Generalizable: when one team owns substrate-design and another team operates against it, periodic substrate-knowledge handoffs (even without a triggering incident) prevent the consuming team from accumulating "pending fix" entries for things that are actually deliberate policy. Promotion candidate after n=2.
+
+[LEARNED — process, promotion-grade] **Celes design discipline n=3.** Three teams designed via the same workflow shape: esl-suvekool (S23, summer school) → esl-legal (S32, Roman jurists) → operator-role (S33+, Hopper). Workflow: PO brief → Celes brainstorm → naming proposals + structural decisions (PO pause-point) → atomic-commit drafting at `designs/new/` → TL review → deploy + `mv` to `designs/deployed/`. Promotable as the canonical team-design pattern. The 4-step "checkpoint with naming proposals + structural decisions + interpretive deltas BEFORE drafting" cadence is the load-bearing discipline; it prevents the drafting-without-alignment failure mode.
+
+[LEARNED — process] **Per-domain opinion review n=2.** Celes-design-opinion-on-a-single-prompt is a useful intermediate artifact between audit and edit. Applied to Comenius (under-modeled, lore-to-role-fit gap surfaced) and Pérotin (promotion not folded into prompt body surfaced). The opinion shape — prose, not checklist; "strong recommendation explicit if differs from on-disk"; "what I'd change if asked to redesign" framing — produced actionable items that the surgical-edit pass alone would have missed. Promotable to a Celes-tool: "prompt-design-opinion as separate artifact from prompt-fine-tune."
+
+[LEARNED — protocol-design] **Agent-lifecycle no-autonomous-continuation observed n=4-ish across the session.** Pattern: agent sends intro / reply / closing report → idle → does NOT process inbox until next inbound message wakes them. Specific instances this session: all 3 spawn intros (Brunel/Cal/Celes) sat unread in my inbox marked `read: true` until PO prompted "check inbox"; Celes wrote initial intro then idled without starting (a)+(b) until I sent the wake; Medici closed his work before processing Celes's scope-overlap DM; Celes idled multiple times before each turn-driven action. Workaround that worked: producer→consumer paired loops (Brunel feeding Cal one item at a time; Cal's ACKs woke Brunel for next) self-sustain; open-loop dispatches stall. PO framing 2026-05-13 (saved auto-memory `feedback_no_windows_substrate_findings.md`): "Don't characterize Claude Code messaging/inbox failures observed on Windows as framework findings — Linux is the deployment substrate." NOT pursued as a wiki finding per PO direction. Noted for protocol-design context only.
+
+[LEARNED — substrate] **Operator-role spec authored mid-session by a substrate-engineer is a Brunel-shaped artifact.** Brunel's S33+ spec authorship (Part A operator role + Part B Brunel amendments + Part C Aen amendment) is the first instance of a non-Aen specialist authoring a multi-role spec across team-membership boundaries. Worked because Brunel was the diagnostic-discipline-keeper at the moment the gap surfaced; the spec encoded the gap's resolution from the diagnostic-keeper's vantage. Generalizable: substrate-engineers authoring cross-team specs is a viable pattern when the gap is substrate-shaped.
+
+[LEARNED — process] **Promotion-as-label vs promotion-as-structural-change.** Pérotin's case made this concrete: the L134 footer added the "permanent data-manager" label without folding the implications into the prompt body. L109 still said "spawned on-demand; may not be spawned at all"; roster.json still had `spawn: on-demand`. Without Celes's design-opinion catching this, the promotion would have stayed cosmetic — a label without behavior. Generalizable: when promoting an agent's role, run a "promotion fit" pass on prompt body + roster + lore.significance + any cross-references in other prompts. The fold-the-implications pass is what makes the promotion real.
+
+[LEARNED — process] **Race condition between dispatch and correction — agents respect retroactive correction.** Celes started writing the Comenius opinion at 13:23, my "actually Pérotin" correction reached her inbox at 13:24, she sent the Comenius opinion at 13:25 and idled. On next wake she processed the correction and wrote the Pérotin opinion at 13:29. Both artifacts shipped clean. The Comenius opinion was substantive enough to be its own surface (PO acted on it). Workaround: when correcting a dispatch, don't assume the wrong-target work is lost — it may complete in parallel and remain useful.
+
+### Cal queue additions from session 33+ (Cal already filed during her batch close)
+
+Cal closed her 7-item Brunel queue cleanly. Wiki entries filed (untracked → tracked during S4 commit):
+
+- `wiki/patterns/agenttype-vs-backendtype-separation.md`
+- `wiki/patterns/cross-host-atomic-inbox-write-primitive.md`
+- `wiki/patterns/decorative-polling-interval-anti-pattern.md`
+- `wiki/patterns/per-message-color-overrides-registered-default.md`
+- `wiki/patterns/read-flag-replication-discipline-for-external-cli.md`
+- `wiki/patterns/taskget-before-classify-as-noise.md`
+- `wiki/references/inbox-slot-vs-members-validation-asymmetry.md`
+
+Plus amendments to existing entries: `ghost-member-as-universal-integration-surface.md`, `inbox-file-write-as-wake-mechanism.md`, `members-array-edit-honored-mid-session.md`, `wiki/index.md`.
+
+Wiki count: 93 → 100 (7 new) + 3 amended + 1 index update.
+
+### Standing watch items going into session 34+
+
+- **Hopper's first dispatch** — will create `teams/framework-research/docs/operations-log-2026-05.md`. Watch for the first deployed-artifacts-read declaration in the log; it's the audit surface for repeat-of-Discovery-2 anti-pattern.
+- **mvox-dev session 8 handoff** — Palestrina has 3 deferred items in his NEXT-SESSION carry-forward (path convention, CLAUDE.md drift, polyphony-isms). PO may surface mvox outcomes from session 8 next time we engage; absorb learnings.
+- **Aen amendment Part C (relay-visibility rule) — HELD, candidate for future session.** Staged at `designs/deployed/operator-role/prompts/aeneas-amendment.md`. PO may revisit if a future incident surfaces silent-relay-scope-broadening.
+- **apex-research bidirectional cite-back** — Schliemann routed the vjs_apex_apps substrate-knowledge to Champollion → likely Eratosthenes Protocol A submission with bidirectional cite-link back to our `wiki/patterns/substrate-invariant-mismatch.md`. If apex files, Cal may need to add a cite-back amendment on our side.
+- **Comenius prompt overhaul (mvox)** — Celes's opinion surfaced load-bearing recommendations (escalation subsection, *Didactica Magna* lore reframe, Sonnet-vs-Opus tier question, active-pushback framing). Not actioned this session (Pérotin was the priority). Possible mvox-side surface for a future session if PO wants the Comenius investment.
+- **Brunel-as-spec-author pattern n=1** — first instance of a non-Aen specialist authoring a multi-role spec. Watch for n=2 to confirm this is a viable cross-team pattern.
+- **TPS-583 (apex-research)** — when PO signals Ruth has progressed, action Stage-2 standard moves (carry-forward from S32).
+
+### NEXT-SESSION BOOT (re-orient instructions for S34+)
+
+1. Read `startup.md` first (always). Steps 1-5 (Sync → Reset team state → Restore inboxes → Spawn — wait for PO direction).
+2. **Pull `mitselek-ai-teams` repo** for any external scratchpad updates.
+3. **Consider also pulling `mitselek/esl-legal` and/or `mvox-dev/mvox_v4e_web`** if PO references session-N work from those repos.
+4. **Don't pre-spawn any agent at session start.** Wait for PO direction.
+5. **If PO surfaces Hopper's first dispatch:** spawn Brunel (diagnostic step) + Hopper (execution) per the Brunel-amendment-3 dispatch-package shape. If the ask is simple (e.g., "restart apex"), Aen can route Hopper solo per the "pair-as-unit is the common case, not the only case" framing. Watch for the first `operations-log-2026-05.md` entry to land.
+6. **If PO surfaces mvox-dev session 8 outcomes:** Palestrina has 3 deferred items + likely his own learnings. Receive via PO; possibly spawn Celes for any prompt-side fold (Comenius overhaul candidate) or Medici for any memory-audit fold.
+7. **If PO surfaces apex-research bidirectional cite-back** (Eratosthenes filing references our wiki): spawn Cal for cross-team cite-and-fold via Protocol A. Brunel-side substrate-engineer involvement only if substrate-claim needs verification.
+8. **If PO surfaces Aen amendment (Part C relay-visibility) revisit:** `designs/deployed/operator-role/prompts/aeneas-amendment.md` is the starting artifact. Decide land-now vs further-deliberate.
+9. **First operational item if Cal-spawning:** her S33+ close was clean (7-item queue + amendments + index). Surface-grade work: receive any Brunel/Hopper Protocol A submissions from the first Hopper-dispatch cycle; field any apex-research bidirectional cite-and-fold.
+10. **If PO surfaces "design another team":** Celes-design-discipline n=3 holds. Same workflow shape: brainstorm → naming proposals + structural decisions (PO pause-point) → atomic-commit drafting at `designs/new/<team>/` → TL review → deploy + `mv` to `designs/deployed/`. The per-team opinion-as-intermediate-artifact (Comenius/Pérotin pattern) is now n=2 — usable when Celes is given a prompt to review without an immediate edit dispatch.
+11. **If PO surfaces "manager-team / PO-team architecture":** PO floated this 2026-05-20 EOS with the framing *"I'm messing with too many teams in parallel; I feel I should soon create a dedicated team of PO's to manage all my teams."* Maps cleanly onto Monte's domain — governance architecture, separation of powers, manager-agent boundaries, delegation matrices, authority drift at scale. Spawn Monte for the design surface; Cal for accumulated wiki on team-taxonomy + service-team topology that this composes against. Brunel + Volta likely downstream once envelope shapes settle (substrate + lifecycle). This is the fatigue-as-observation design-pressure signal — when the PO role itself becomes the bottleneck, the framework needs to grow up.
+12. **If PO surfaces "Volta evaluates mvox-dev's startup procedure":** PO observation 2026-05-20 EOS — last night's mvox-dev session "redesigned a startup procedure" worth comparing against FR's own. Spawn Volta to read `~/Documents/github/.mmp/mvox_v4e_web/teams/mvox-dev/startup.md` against `teams/framework-research/startup.md`, identify innovations, and propose any adoption candidates. Medici's S33+ audit already flagged mvox-dev's startup as "three-state probe is sound and mirrors FR's own discipline" — but innovations beyond mirroring are the surface PO wants evaluated. Output: comparison doc + adoption-recommendations, route to Aen for ratification.
+
+(*FR:Aen*)
+
+---
+
+## SESSION 32 WRAP — 2026-05-13 (esl-legal team designed + deployed; Roman-jurist roster; long-lived per-domain archetype confirmed; brief-scope-conflation failure mode surfaced)
+
+**Goal (PO-set 10:18):** Wake the team for "another exciting teambuilding effort" — design a new team to support ESL through an active EE/EU copyright dispute (Peterson / SP Muusikaprojekt, Lihula T0 = 2026-05-23). PO scope clarification at 11:04: *"I see this team as long-living support unit and Peterson is just the case nr.1"* — corrected initial misread of brief as 10-day one-shot.
+
+**Outcome:** Team designed, reviewed, corrected, deployed. Commit `06b7699` to `mitselek/esl-legal` (private) — 16 files / 1761 insertions including `.claude/startup.md` bootstrap hook + workdir `README.md` + case-1 seed. PO can activate by opening Claude at `~/Documents/github/ESL/legal/`.
+
+### Outcomes shipped
+
+| Artifact | Δ | Owner | Path |
+|---|---|---|---|
+| `mitselek/esl-legal` initial deploy | NEW (commit `06b7699`, 16 files / 1761 ins) | Aen | https://github.com/mitselek/esl-legal |
+| 11-file team package (8 design + 3 scripts) | NEW | Celes | `designs/deployed/esl-legal/` (moved from `designs/new/` post-deploy) |
+| `.claude/startup.md` bootstrap hook + workdir `README.md` + case-1 README seed | NEW | Aen | `~/Documents/github/ESL/legal/` |
+| Inbox-persistence scripts adopted from FR (`persist-inboxes.sh` / `restore-inboxes.sh` / `restore-filter.jq`) | NEW | Celes (adapted from Volta) | `esl-legal/` repo root |
+
+### Architecture decision
+
+[DECISION — session 32] **esl-legal team architecture: 6-character Roman-jurist roster, Option B asymmetric workload, MUST-address adversary-flag protocol.**
+
+- **Papinianus** ("Papi") — TL, coordinator + synthesis vote + flag-audit discipline-keeper
+- **Paulus** — EE-jurist, hot path, 5/7 questions (Q1, Q3-EE, Q4, Q5, Q6, Q7)
+- **Ulpianus** — EU/CJEU-jurist (Q2 + Q3-EU + cross-checks on Q5/Q7)
+- **Modestinus** — Editor (memo + risk-matrix + jurist-Qs + bibliography + adversary-flag resolution)
+- **Gaius** — Librarian + cross-case wiki sole writer
+- **Cicero** — Adversary (independent reviewer, veto-weight, NOT TL-routed)
+
+All `claude-opus-4-7[1m]`. Naming source: *Lex Citationis* of 426 CE for the five named jurists + Cicero (in-utramque-partem method) for adversary.
+
+### Workflow shape (reusable, n=2 with S23)
+
+PO intent → Aen brainstorm work-types → spawn Celes for opinion → Celes Brilliant query for substrate → architecture options + naming + PO 4 decisions → Celes drafts package staged at FR repo root (`designs/new/<team>/`) → Aen TL review → corrections → spot-check → PO approval → Aen deploys → mv to `designs/deployed/`.
+
+This session's review surface: 2 blockers + 3 nice-to-haves (mcp__teamwork__ tool-prefix → bare tool names; Gaius's wiki-pulse needed Bash for git log; runtime-side inbox backup → FR Volta repo-side pattern; common-prompt case-bound brief path → case-agnostic; Q3 file-split alignment across design-spec + both prompts). Celes applied all 5 in one pass; spot-check confirmed.
+
+### Mid-session correction — substrate-grade
+
+[LEARNED — substrate, promotion-grade] **Brief-scope-conflation failure mode.** Initial reading of Tobi's brief framed the team as a 10-day one-shot dissolution archetype (memo delivery = team end). PO corrected at 11:04: *"long-living support unit, Peterson is just case nr.1."* Source of misread: brief §1+§3+§9 scope the *deliverable* around Peterson; my first-pass work-type sketch ("TL + 4 specialists + adversary for Q1-Q7 scan + memo") inherited that scoping and biased Celes's archetype call. **Lesson:** when a brief is task-scoped, distinguish "this case's scope spec" from "this team's scope spec" *before* assigning archetype. The deliverable's lifetime is not the team's lifetime.
+
+Cal-queue candidate (n=1 watch).
+
+### Substantive design innovations (first-of-its-kind in our corpus)
+
+[LEARNED — substrate, promotion-grade] **Long-lived per-domain research support unit** — third archetype confirmed in our corpus. Differentiators: (a) NOT event-driven like operational (esl-suvekool); (b) NOT ongoing-build like methodology-research (FR/apex-research); (c) case-driven activation with domain-specific knowledge accumulation across cases. Repo structure with `cases/<slug>/` + `wiki/<category>/` from day 1. n=1 watch. Promotion trigger: a second similar team requesting same shape.
+
+[LEARNED — substrate, promotion-grade] **Dedicated adversary role with veto-weight asymmetry** — first-of-its-kind. Cicero is structurally independent (NOT TL-routed); writes `[ADVERSARY-FLAG]` on settled-confidence claims; Modestinus MUST address each in writing before T-2 (fold or rebut, never silently dismiss). Papinianus runs flag audit at T-3 as discipline-keeper. Modestinus + Cicero share `adversary-flags.md` (controlled write-collision; Papi mediates first round). Cicero psychology framing in his prompt: *"You are NOT a member of the prosecution; you are the team's voice for what the prosecution would say if it had Cicero arguing for it."* n=1 watch.
+
+[LEARNED — substrate] **Naming-heuristic inversion** (Celes's framing). When the team's domain has a directly-named tradition the team operates within (legal-research → Roman jurists), prefer that tradition over language-tiebreak naming. Inverse of esl-suvekool's "language-of-operational-context" rule. Two situational heuristics, not one universal.
+
+[LEARNED — substrate] **Roman-jurist roster as structurally-legible naming choice.** *Lex Citationis* assigned each named jurist a distinguishable disposition: Papinianus = synthesis vote (deciding vote when others disagreed), Paulus = doctrinal trenches (most-cited in the Digest), Ulpianus = framework architecture (Edict commentary), Modestinus = distilled digest (*Pandectae*/*Regulae*), Gaius = institutional structure (*Institutiones*). The historical role-dispositions map onto team-role specializations almost 1:1. Naming with a structurally-named tradition compounds.
+
+### Process learnings
+
+[LEARNED — process] **2-blocker + 3-NTH TL review pattern is the right calibration.** Surfaced 2 critical bugs that would have broken first session (mcp__teamwork__ prefix; Gaius missing Bash for git log) AND 3 structural improvements (repo-side inbox persistence; common-prompt case-bound brief path; Q3 file-split alignment). Same shape as S23 review on esl-suvekool. Promotable as TL-review-pattern.
+
+[LEARNED — process] **PO's "let Celes propose first" instruction on naming was correct.** Aen had a Roman-jurist fallback but PO wanted Celes's first cut. Celes converged on the same convention with deeper rationale (Lex Citationis structural fit, in-utramque-partem for adversary). When PO defers to a specialist for first-cut judgment, the specialist often improves on the fallback. Hold fallbacks in reserve; don't impose them preemptively.
+
+[LEARNED — process] **Workflow pattern S23 → S32 holds verbatim** (esl-suvekool + esl-legal). n=2. Promotable as the team-design pattern.
+
+### Cal queue additions from session 32 (5 new + 7 carried from S31)
+
+Session 32 new (all n=1 watch):
+1. **Long-lived per-domain research support unit** archetype
+2. **Dedicated adversary role with veto-weight asymmetry** (in-utramque-partem dedicated specialist, MUST-address-in-writing protocol, structurally independent reviewer NOT TL-routed)
+3. **Naming-heuristic inversion** — domain-named-tradition over language-tiebreak when domain has one
+4. **Brief-scope-conflation failure mode** — deliverable-scope vs team-lifespan distinction
+5. **Roman-jurist roster as structurally-legible naming choice** — historical role-disposition maps 1:1 onto team-role specialization
+6. **Team-design workflow pattern S23→S32** — promotable at n=2 (sixth candidate, also from this session)
+
+Carried from S31 (Brunel's parked queue, 7 items): SF-1, SF-2, SF-3, SF-4 (RFC #66 sub-findings), read-flag-replication external-CLI discipline, TaskGet-before-classify-as-noise procedural pattern, decorative-polling-interval anti-pattern.
+
+### Standing watch items going into session 33
+
+- **esl-legal session 1 outcomes** — did Papinianus bootstrap cleanly via `.claude/startup.md`? Did inbox-persist scripts work? Did Cicero's structural independence work in practice? Did Modestinus+Cicero shared-file first-round avoid write-collision? PO will tell us; do not poll.
+- **MCP availability at esl-legal session start** — Gmail MCP + Brilliant MCP must be configured for the fresh Claude session at `~/Documents/github/ESL/legal/`. Gaius hard-fails without both. PO should confirm before Papi spawns Gaius.
+- **Wiki growth-path watch** — Phase-2 gate at 15 statute-cards + 10 cross-case queries OR n=2 concurrent cases triggers Cal-style curator split proposal.
+- **TPS-583 (apex-research)** — when PO signals Ruth has progressed, action Stage-2 standard moves
+- **Brunel's 7-item Cal Protocol A queue dispatch** (carried from S31) — parked at Brunel's side; lands on his next spawn
+- **RFC #66 discussion author response** (carried from S31) — comment posted; watch for engagement
+- **apex-research Eratosthenes contact** (carried from S31) — dormant from FR's view
+- **`repo-as-durable-store-teamdelete-as-release-primitive.md` n=2 watch** (carried from S28)
+- **`cross-document-prose-procedure-drift.md` n=2 watch** (carried)
+- **Companion-Pair Submission n=3+ FR-instance watch** (carried from S30)
+- **Aalto/uikit-dev cross-team debt** — only on uikit-dev contact event
+- **esl-suvekool feedback loop** — when PO returns from Tobi sessions
+- **apex-research federation invocation** — first non-FR-non-apex team adopting federation-bootstrap-template
+- **Library-team architecture design** (carried from S31) — major downstream surface from RFC #66 substrate validation; touches Cal + Herald + Monte; Brunel + Volta downstream
+
+### NEXT-SESSION BOOT (re-orient instructions for S33)
+
+1. Read `startup.md` first (always). Steps 1-5 (Sync → Reset team state → Restore inboxes → Spawn — wait for PO direction).
+2. **Pull `mitselek/ai-teams` repo** for any external scratchpad updates.
+3. **Consider also pulling `mitselek/esl-legal`** if PO references session-1 work from there.
+4. **Don't pre-spawn any agent at session start.** Wait for PO direction.
+5. **If PO surfaces esl-legal session-1 feedback loop:** absorb any Papinianus-side [LEARNED] worth promoting upstream (similar to esl-suvekool S23→S26 fold). Possibly spawn Celes to revise prompts if a structural issue surfaced.
+6. **If PO surfaces library-team architecture design** (carried from S31 NEXT-SESSION BOOT §4): start with Cal first (master-librarian role + Protocol A/B/C generalization), then parallel Herald (envelope shapes) + Monte (service-team one-sided ACL + authority). Brunel/Volta downstream.
+7. **If PO surfaces Brunel-respawn:** 7-item Cal Protocol A queue parked at Brunel's side (carried from S31).
+8. **If PO surfaces apex-research follow-up:** Schliemann engaged via ghost-chat channel; user has direct comm.
+9. **First operational item if Cal-spawning:** route the 6 new wiki candidates from S32 via Protocol A, alongside any Brunel-queue items if he's spawned same window.
+
+(*FR:Aen*)
+
+---
+
+## SESSION 31 WRAP — 2026-05-12 (RFC #66 substrate gate cleared cross-host; architecture decision + reference implementation shipped; PO reframe on Windows-substrate findings)
+
+**Goal (PO-set 13:48):** Evaluate RFC #66 (Ghost-Member Pattern, posted 2026-05-09 by PO) against existing FR artifacts. Mid-session pivoted to verify-on-substrate-before-design via cross-host PoC.
+
+**Outcome:** RFC #66 substrate gate cleared empirically (Windows-local-dev ↔ apex-research-on-Linux). Architecture decision settled (Reading 1: per-team Callimachi stay; messenger-ghost mechanism; new central library team as future design surface). PoC reference implementation shipped to FR repo. Wiki 86 → 89. RFC #66 discussion commented with empirical results. 7-item Cal Protocol A queue parked at Brunel's side for next session dispatch.
+
+### Outcomes shipped
+
+| Artifact | Δ | Owner | Path |
+|---|---|---|---|
+| `wiki/references/inbox-file-write-as-wake-mechanism.md` | NEW (86→87, architectural-fact) | Cal | substrate property RFC #66 Finding 2 articulates |
+| `wiki/patterns/service-team-topology.md` | NEW (87→88) | Cal | library-as-service-team architectural pattern (per #47 OQ-fold) |
+| `wiki/patterns/ghost-member-as-universal-integration-surface.md` | NEW (88→89) | Cal | ghost-member as universal integration seam |
+| Amendments to `substrate-invariant-mismatch`, `worktree-spawn-asymmetry`, `inbox-drained-on-spawn-clear`, `wiki/index.md` | +N | Cal | cross-link maintenance |
+| `teams/framework-research/poc/ghost-member-cli/{ghost-chat.py, ghost-chat.ps1.deprecated, README.md}` | NEW | user impl. / Brunel coord. / coding-subagent QoL | sketch-grade reference implementation |
+| Commit `4f48973` + RFC #66 discussion comment | shipped | Aen | https://github.com/mitselek/ai-teams/discussions/66#discussioncomment-16893428 |
+| Brunel scratchpad +102 lines (S31 + provenance corrections) | +102 | Brunel | `memory/brunel.md` |
+| Cal scratchpad +46 lines (S31 block) | +46 | Cal | `memory/callimachus.md` |
+
+### Architecture decision settled
+
+[DECISION — session 31] **Reading 1 (per-team Callimachi stay) + messenger-ghost mechanism + new central library team as design surface.** PO direction 14:50: *"Per-team librarian stays, every team librarian has personal 'messenger ghost representative' at central library. We will design a specific library team for central library curation."* Library-as-service-team topology per Cal's new wiki entries — answers #47 OQ1/OQ2/OQ3/OQ5/OQ7/OQ8 with named structural moves. OQ4 (wiki/scratchpad boundary at within-team layer) and OQ6 (token cost tiering) remain open from #47.
+
+### Substrate gate cleared — F1/F2/F3 + 4 sub-findings
+
+Verified cross-host on Windows-local-dev ↔ apex-research-on-Linux-container via SSH (Cloudflare Tunnel). Two independent implementations (PowerShell sketch → Python rewrite) both confirm the substrate-properties. Outbound ssh-write latency 657-854ms; end-to-end dominated by recipient compose-time, not substrate cost. Substrate-property reference filed at `wiki/references/inbox-file-write-as-wake-mechanism.md`.
+
+**Sub-findings** (beyond RFC's empirical claims):
+- **SF-1:** Inbox-slot acceptance is decoupled from `members[]` validation (one-sided-ACL property)
+- **SF-2:** `agentType` vs `backendType` separation is a richer registration shape than RFC's `agentType: ghost` example
+- **SF-3:** Per-message `color` field overrides registered-member color (apex display contract)
+- **SF-4:** Single-ssh + python + `fcntl.flock` is a clean cross-host atomic-write primitive
+
+**External-CLI substrate contract** worth making explicit: external members must replicate harness-side `read: true` marking after processing inbox entries; otherwise BACKLOG-loops on every launch. Closed by-design in Python via `fetch-and-mark-read` primitive (single ssh round-trip that under flock fetches `read:false` entries AND flips their flag).
+
+### LEARNED — session 31
+
+- **Verify-on-substrate-before-design discipline validated empirically.** The PO-directed pivot at 15:05 ("verify RFC #66 substrate via cross-host PoC before designing library team") caught issues paper-design would have missed (SF-1 inbox/members[] asymmetry, SF-3 color-override, Windows-substrate quirks). Reusable: for any architecture decision resting on an empirical substrate claim, run a PoC first.
+- **Cross-implementation verification strengthens substrate-claim generalization.** PowerShell + Python independently confirming SF-1 through SF-4 moves the finding from "single-client-shows-X" to "substrate-property-of-deployment-harness-is-X." Reusable discipline: when one PoC validates a remote-substrate claim, port to a second language to confirm.
+- **Ship-substrate-research-outcome-before-debug-churn structural move** (Brunel's S31 16:48 [LEARNED]): substrate-research outcome locks in regardless of artifact-polish; ship report immediately, decouple from rewrite churn. Without it, polish-bug-debugging buries the substrate finding behind cycles of CLI iteration.
+- **Team-lead Stage-1-fold-without-primary-artifact drift, n=2 same session.** Aen attempted "n=3 spawn-drain" then "mid-session SendMessage drain" framings without disk-check; Brunel retracted both correctly. Relay-to-primary-artifact-fidelity-discipline Stage-1 anti-pattern applies to team-lead too. n=4 in this session counting Brunel's parallel instance. Parked in Brunel's Cal queue (item 6).
+- **PO directive on Windows-substrate framing (16:42):** Don't characterize Claude Code messaging/inbox failures observed on Windows as framework findings — Windows file-semantics aren't the deployment substrate; Linux/Ubuntu is. Saved to project auto-memory at `feedback_no_windows_substrate_findings.md`. Applied retroactively to drop several would-be Cal-queue items from S31.
+- **User-implements-while-agent-coordinates pattern.** User shipped both PowerShell PoC artifact AND Python rewrite directly. Brunel's role-of-record corrected mid-session: containerization-substrate-coordinator + verification-discipline-keeper, NOT implementer. Pattern: when user wants code shipped fast, agents coordinate/diagnose/curate.
+- **Coding subagent delegation pattern.** Iteration-2 QoL feature delegated to one-shot general-purpose coding subagent (non-team): ~108s for feature, ~35s for bug fix. Pattern: substrate-validation team work uses FR specialists; artifact-implementation polish uses one-shot coding agents.
+
+### NEXT-SESSION BOOT (re-orient instructions for S32)
+
+1. Read `startup.md` first (always). Steps 1-5 (Sync → Reset team state → Restore inboxes → Spawn — wait for PO direction).
+2. **Pull `mitselek-ai-teams` repo** for any external scratchpad updates.
+3. **Don't pre-spawn any agent at session start.** Wait for PO direction.
+4. **If PO surfaces library-team architecture design** (central library team is the downstream-of-PoC work surface, this is the major next move): start with **Cal** (master-librarian role + Protocol A/B/C generalization across ghost-pair + library's own internal wiki sovereignty); then parallel **Herald** (ghost-pair envelope shapes + transport-plugin contract; T03 §Protocol 4 reframe candidate) + **Monte** (service-team one-sided ACL + authority structure across N consumers). **Brunel** and **Volta** are downstream of envelope-shape settlement; do NOT pre-spawn them.
+5. **If PO surfaces Brunel-respawn:** he carries a **7-item Cal Protocol A queue** ready to dispatch immediately (SF-1, SF-2, SF-3, SF-4, read-flag-replication external-CLI discipline, TaskGet-before-classify-as-noise procedural pattern, decorative-polling-interval anti-pattern). First operational item: dispatch queue to Cal. Also: Brunel-spawn now ALWAYS triggers Q "analyst/coordinator or implementer?" — default coordinator/analyst unless PO explicitly asks for code.
+6. **If PO surfaces continued ghost-chat PoC iteration** (QoL features, MCP escalation per RFC #66 Step 2, or bug iteration): delegate to **coding subagent (general-purpose, non-team)**, NOT Brunel. Path established this session.
+7. **If PO surfaces apex-research follow-up:** Schliemann (apex team-lead) is engaged via the ghost-chat channel; user has direct comm. Eratosthenes (apex's librarian) was idle this session — not yet contacted with the PoC story. Cross-team wiki cite-and-fold may surface if apex files their own version (Schliemann asked user 15:39 whether to file as apex wiki pattern; user-deferred).
+8. **If PO surfaces RFC #66 discussion engagement:** comment posted (discussioncomment-16893428). If RFC author replies, action depends on shape — substrate findings reception, design feedback, or v2 invitation. Surface for routing.
+9. **If PO surfaces n=4-in-one-session relay-fidelity observation:** parked in Brunel's Cal queue (item 6) — lands naturally via Brunel's dispatch; no separate action needed at session start.
+10. **First operational item if Cal-spawning:** her S31 close is clean. Surface-grade work would be: (a) receiving Brunel's queued items if Brunel is spawned same window; (b) library-team master-librarian role drafting if PO surfaces architecture work.
+
+### Standing watch items going into session 32
+
+- **Library-team architecture design** — major downstream work surface from this session's substrate validation. Touches 4-5 specialists (Cal-led; Herald, Monte for protocols/governance; Brunel, Volta downstream).
+- **Brunel's 7-item Cal Protocol A queue dispatch** — parked at Brunel's side; lands on his next spawn.
+- **RFC #66 discussion author response** — comment posted; watch for engagement. PO has the live channel.
+- **apex-research Eratosthenes contact** — apex's librarian dormant from FR's view; may surface when Schliemann decides on apex-side filing.
+- **TPS-583 (apex-research)** — when PO signals Ruth has progressed, action Stage-2 standard moves
+- **`repo-as-durable-store-teamdelete-as-release-primitive.md` n=2 watch** (Volta-filed S28) — cross-platform generalization confirmation point
+- **`cross-document-prose-procedure-drift.md` n=2 watch** — second incident triggers Volta's Protocol C consideration
+- **Companion-Pair Submission n=3+ FR-instance watch** — third FR instance prompts Protocol C consideration
+- **Aalto/uikit-dev cross-team debt** — only on uikit-dev contact event
+- **esl-suvekool feedback loop** — when PO returns from Tobi sessions
+- **apex-research federation invocation** — per S30 re-characterization: convention re-test point shifts to first non-FR-non-apex team adopting federation-bootstrap-template
+
+(*FR:Aen*)
+
+---
+
 ## SESSION 30 WRAP — 2026-05-07 (Monte FLAG resolution + Cal AMENDMENT processing + apex-research Protocol C cross-pollination + n=2 substrate gotcha activation)
 
 **Goal (PO-set):** Resume Monte FLAG resolution per S29 NEXT-SESSION-BOOT step 4; glance at apex-research progress per S29 standing watch on n=2 federation invocation.

@@ -6,7 +6,7 @@ source-agents:
   - team-lead
 discovered: 2026-05-06
 filed-by: librarian
-last-verified: 2026-05-06
+last-verified: 2026-05-12
 status: active
 confidence: high
 source-files:
@@ -16,7 +16,14 @@ source-files:
 source-commits: []
 source-issues:
   - "65"
-related: []
+  - "66"
+related:
+  - references/inbox-file-write-as-wake-mechanism.md
+  - gotchas/inbox-drained-on-spawn-clear-without-deliver.md
+  - patterns/substrate-invariant-mismatch.md
+amendments:
+  - date: 2026-05-12
+    change: Added `references/inbox-file-write-as-wake-mechanism.md` as canonical articulation of the substrate property this entry describes failures of. RFC #66 (2026-05-12) named the inbox-file-write wake mechanism as a deliberate harness design property. This entry's worktree-mount-decomposition failure mode is a *violation* of that substrate property under cross-mount conditions. No reframing of failure mode required; cross-link added for future readers to consult one canonical articulation of the substrate the failures describe violations of.
 ---
 
 # Worktree-Spawn Asymmetry in Message Delivery
@@ -138,5 +145,6 @@ The four instances jointly establish: (a) worktree-OUTBOUND specifically is the 
 - [`timestamp-crossed-messages.md`](timestamp-crossed-messages.md) — **detection discipline.** When messages don't arrive, surface-don't-bridge applies: surface the absence, don't silently assume the recipient is processing. The discipline scales to detect cross-isolation message loss as well as ordering crosses.
 - [`coordination-loop-self-correction.md`](coordination-loop-self-correction.md) — **adjacent: when relay produces re-routing.** When team-lead relays a worktree-OUTBOUND submission, the relayed version's framing may differ slightly from the original (per Brunel's recursive note about relay-vs-fold discipline). The relayed framing IS the canonical version once the recipient processes; the original sender's framing is superseded.
 - [`inbox-drained-on-spawn-clear-without-deliver.md`](../gotchas/inbox-drained-on-spawn-clear-without-deliver.md) — **sibling sub-shape: spawn-boundary failure.** This entry covers mid-session worktree-OUTBOUND-to-spawned-recipient failure (mount-staleness mechanism). The sibling covers spawn-boundary failure where messages on disk pre-spawn are drained without delivering when the recipient spawns (parent-process or worktree, no isolation flag required on either side — distinct mechanism). Both share the root structural property *harness reports success on dispatch but message does not reach recipient's conversation channel*; the workarounds differ (this entry: team-lead mid-session relay; sibling: team-lead spawn-prompt relay-fold). 2026-05-07 FR S29 substrate event was a parent-process-to-not-yet-spawned-recipient case — confirmed distinct from this entry's worktree-OUTBOUND mode.
+- [`inbox-file-write-as-wake-mechanism.md`](../references/inbox-file-write-as-wake-mechanism.md) — **canonical substrate property this entry describes failures of.** RFC #66 (2026-05-12) named the inbox-file-write wake mechanism as a deliberate harness design property: a member is name + inbox file, and inbox-file-write IS the wake signal. This entry's worktree-mount-decomposition failure mode is a violation of that property *under cross-mount conditions* — writer and reader see different filesystem objects, so the file-write that should wake doesn't reach the reader's mount-view. The substrate property and the violation compose: the substrate is the canonical articulation, this entry is the cataloged exception.
 
 (*FR:Cal*)

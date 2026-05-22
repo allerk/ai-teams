@@ -6,6 +6,209 @@
 
 ---
 
+## Session 33+ — Hopper design + mvox-dev prompt audit (2026-05-19 → 2026-05-20)
+
+### Hopper (Deployment Operator) — DEPLOYED 2026-05-20 commit `25094d1`
+
+[CHECKPOINT] Brunel spec (`docs/operator-role-spec-2026-05-19.md`) → my 7-file package at `designs/new/operator-role/` → TL review → PO sign-off (Hopper, navy, all 4 structural decisions accepted) → Q4 Tier D/shape-mode contract surface fix (`1e46d3a`) → Aen-deployed. 60+ agents across 13 teams now.
+
+[LEARNED — STRONG] **Cross-read producer/consumer Gate 2 of common-prompt structural-change discipline genuinely catches typed-contract surfaces.** Brunel-Amendment-3 said "exact command if known, or a shape if probe-dependent" for the dispatch package; Hopper's Tier D sanction rejected shape-mode ("not a paraphrase, not a shape"). Field-set divergence at the Tier D boundary; producer-side EXCEPT clause was the right fix per my option 1. Discipline pays.
+
+[LEARNED] **Naming via three-option presentation with strong recommendation works.** Hopper/Kranz/Casey Jones offered; PO took recommended (Hopper). Same shape that worked on Roman-jurists for esl-legal — present 2-3 options each with lore + persona + color + match-strength, name a recommendation. Don't over-Socratic the naming.
+
+[LEARNED] **Substrate-echo of self-routed task_assignment envelopes is a recurring harness pattern.** Saw it 8+ times this session for my own tasks (#9-#17, #20-#24). Each echo is harmless if you apply `TaskGet`-before-classify-as-noise discipline (Brunel's S31 wiki entry). Disk + inbox truth is authoritative when the task substrate purges entries.
+
+### mvox-dev prompt audit (2026-05-20)
+
+[CHECKPOINT] 9 prompts read at `~/Documents/github/.mmp/mvox_v4e_web/teams/mvox-dev/prompts/`. 3 atomic fine-tune commits landed (`60936ec` palestrina, `246fd06` victoria, `1a531e2` comenius). Then PO-requested Comenius opinion → corrected to Pérotin opinion → 5-commit pass on Pérotin per all 7 design-review items (`6c7b4bb`, `f136297`, `d2a78e9`, `4e50504`, `ed15eee`). All pushed by PO per Aen's 14:01 message.
+
+[LEARNED — STRONG] **"Promotion as label vs promotion as behavioral change" is a real design diagnostic.** Pérotin's on-demand→permanent promotion (2026-05-20 s7) added the label without folding into the prompt body: L109 still said "may not be spawned at all," no standing-concerns section. Tell-pattern reusable for future promotions: scan for contradictions with the prior status; scan for missing "between dispatched work" framing; only when both are clean does the promotion mean something behavioral.
+
+[LEARNED] **Lore-fit comes in two shapes: thematic (Comenius=multilingual education) vs structural (Pérotin=layered organum atop Léonin's chant).** Structural fit produces behavioral payoff (self-justifying MAY-NOT lists, clear pair-relationships). Thematic fit produces *competent prompts that work* but leave the role's actual energy unclaimed. The Comenius opinion identified this gap explicitly; Pérotin's lore reframe (commit `d2a78e9`) is the worked example of structural-fit-claimed.
+
+[LEARNED] **Sonnet-fit calibration: model-tier rightness is a function of (a) judgment-load shape and (b) escalation-path articulation.** Comenius is Sonnet-under-modeled because his judgment calls are open-ended AND his escalation path isn't explicit. Pérotin is Sonnet-right because his judgment calls are clear-criteria AND escalation paths are crystal. Pattern: if you downgrade to Sonnet, the prompt MUST carry explicit escalation criteria; otherwise the downgrade is paying its way only on Sonnet's worst dimension (self-recognition-of-own-limit).
+
+[LEARNED] **Cross-team author attribution edge case has a durable policy.** Medici caught CLAUDE.md L35: files originally authored by another team's member keep the original trailer (`(*FR:Celes*)`) unless substantially rewritten. My instinct to flag the trailers as needing PO ruling was over-cautious; the policy was already on disk. Cross-check the host project's CLAUDE.md before flagging attribution surfaces for ruling.
+
+### Closing tags
+
+[DEFERRED] Path-convention substrate question for mvox-dev (`~/projects/entu-research/`, `~/workspace/...`) held pending PO ruling on Medici's twin Flag. Mine and his prompt/memory-side edits both wait on same root cause.
+
+[DEFERRED] Comenius prompt design improvements (item 1: escalation subsection; items 2-6 from my 13:23 opinion) — not requested as edits this session, just opinion. PO may pick them up later.
+
+[DEFERRED] Brief-scope-conflation pattern (S32 Cal queue): my S32 entry "(2) NEW: brief-scope-conflation failure mode" remains in [DEFERRED — Cal queue, end-of-session]. Not submitted this session; carry into next.
+
+[WARNING] Pérotin's `~/workspace/...` startup paths (L127-130) NOT touched this session per Aen's explicit hold. When PO rules on the path convention, those 4 lines + 4 other prompts + 3 memory files + startup.md all move together.
+
+[CHECKPOINT — Hires Delivered cumulative] Hopper is hire group #13 (FR-team specialist). Cumulative total now **61 agents across 13 teams**. Previous: 60 across 12 teams (post-esl-legal). The mvox-dev prompts audit was *fine-tuning*, not hiring — no new agents from this session's mvox work.
+
+---
+
+## ESL-legal team design — S32 intake (2026-05-13)
+
+[CHECKPOINT] Aen briefed me 10:52 EEST. Sister-team to esl-suvekool (Tobi designed brief). Defensive legal scan, EE+EU copyright, 7 questions Q1-Q7, deliverable ~10-20p English markdown with verbatim Estonian source quotes. Lihula 2026-05-23 = T-10 days. PO locked 5 axes; 3 axes open for my judgment.
+
+[CHECKPOINT] PO-locked axes: (1) split EE-statute vs EU/CJEU researchers — NOT one jurist; (2) dedicated adversary agent (not rotated); (3) naming = my call; (4) English memo, Estonian quotes verbatim; (5) Editor merges F+G (memo assembly + risk matrix + jurist-question recommendations).
+
+[CHECKPOINT] Open for me to settle: (a) source-corpus ingestion (Gmail + Brilliant + local PDFs + esl-suvekool RO excerpts) — standalone librarian, fold into Editor, fold into TL, or shared duty? (b) citation hygiene / bibliography — separate or in Editor? (c) TL ↔ adversary interaction — direct report or independent reviewer with veto-weight?
+
+[CHECKPOINT] Hard constraints: AI-not-legal-advice disclaimer; confidence labeling (settled/probable/open); 10-day clock; Gmail+Brilliant+local FS tooling; Haapsalu-Suvekool repo READ-ONLY; ¡NI vs ESL liability split load-bearing on Q5.
+
+[DECISION — initial read] Archetype = **research team**, NOT operational team. esl-suvekool is operational (drafts-for-PO-to-send, persistent low-volume cadence). This team is research (multi-jurisdiction analysis with structured deliverable, fixed-deadline, dissolved on delivery). Closer to apex-research shape than esl-suvekool — but with adversarial review pair as a NEW pattern (not in any existing FR-corpus team).
+
+[PATTERN — new archetype tentative] **"Adversarial research team"** — research team with a built-in red-team specialist whose job is to STEAL the case against the team's defense, not collaborate on building it. Distinct from Cathedral-lite PURPLE (which audits the build); the adversary actively argues the opposing side. First-of-its-kind in our corpus IF this team works. Promote to wiki if it does (Aen's standing instruction on operational-team archetype already proven this pattern of escalation).
+
+[DECISION — preliminary] Source-corpus ingestion = STANDALONE LIBRARIAN role. Rationale: (1) Gmail thread is Estonian, dense, exceeded Tobi's context window on first pull (per brief §7.4 note); (2) Brilliant entries vary in format; (3) verbatim Estonian quote handling is a discipline (which lines stay Estonian, which get back-translated) that benefits from a single owner; (4) folding into TL = TL becomes router-plus-corpus-curator-plus-coordinator = Cathedral-lite bottleneck (Aen-flagged anti-pattern S23). Folding into Editor = Editor is end-of-pipeline; you can't read the whole corpus while assembling the final memo. Shared duty across researchers = inconsistent quote handling guaranteed. Conclusion: separate role.
+
+[DECISION — preliminary] Citation hygiene / bibliography appendix = EDITOR's job, with Librarian as upstream supplier. Editor owns the final memo; bibliography is the citation index OF the final memo; Editor is the only role with visibility on what made it into the memo vs got cut. Librarian feeds raw cites; Editor finalises and dedups. Two-role wouldn't add value (citation hygiene is consequence of memo composition, not a separate skill axis).
+
+[DECISION — preliminary] TL ↔ adversary = **adversary as INDEPENDENT REVIEWER with veto-weight on weak claims**, not as a normal specialist reporting to TL. Rationale: (1) the whole point of the adversary is to provide pressure that NOT-having-adversary would lack; if adversary is just another specialist TL routes around, dilutes the stress-test; (2) PO explicitly said adversary "argues Peterson + Kaie's strongest case to stress-test the defense" — that's a review function, not a build function; (3) Cathedral-lite PURPLE pattern is well-tested for "veto-weight reviewer at end of pipeline" — adversary slots into that structural role but with a different orientation (opposing-party rather than quality-assurance). TL still coordinates; but adversary has the right to write `[ADVERSARY-FLAG]` annotations against any claim with `settled` confidence label that the adversary thinks an EE-jurist would shred, and the Editor MUST fold or address those flags before delivery. Asymmetric: adversary doesn't have to be agreed-with, but the flag has to be addressed in writing.
+
+[DECISION — naming] Lead with **Roman-jurist convention**. Aen's fallback choice (Gaius/Ulpian/Papinian/Modestinus/Paul + Cicero for adversary) is actually domain-perfect: this team is doing classical Roman-tradition legal analysis (EE law inherits civil-law tradition rooted in Roman jurisprudence; the very confidence-labeling "settled/probable/open" is Romanist in spirit). The Roman jurists are the 5 named in the Digest's Law of Citations (426 CE) — Papinian, Paul, Ulpian, Modestinus, Gaius — Aen knew exactly which 5 to name. Cicero as adversary is the master orator who could argue either side; the "in utramque partem" framing is literally his. The match is too clean to override with an alternative just to demonstrate naming-judgment. **My judgment: adopt Aen's fallback as the primary proposal, not as a fallback.** Naming-convention selection criterion: when the domain has a directly-named tradition that the team is operating within, don't invent a fresh convention to demonstrate independence. The Estonian-musical-figures choice for esl-suvekool was language-match-driven; this team's working language is bilingual (English memo + Estonian quotes), and the domain (Roman-rooted civil-law legal analysis) outweighs the language tie-break.
+
+[DECISION — naming, alt offered] Three variants for PO if Roman-jurists feels too on-the-nose: (A) **Romans-as-primary** (5+1: Papinianus, Paulus, Ulpianus, Modestinus, Gaius, + Cicero) — recommended. (B) **EE-jurist mix** (Uluots, Anepaio, Maruste, Kalmo, Põld + Cicero or Demosthenes for adversary) — Estonian legal scholars; closer-to-home but harder to assign roles by recognisable specialization. (C) **Bilingual mix** (e.g., Roman first names rendered Estonian-friendly, or first-name-only) — feels like cosplay-avoidance overcorrection.
+
+[PATTERN — naming] When the team's *domain* has a named tradition the team operates within, prefer that tradition over language-tiebreak naming. Inverse of the esl-suvekool rule (language-tiebreak when domain match is incidental). Don't carry one heuristic across cases where the substrate differs.
+
+[DECISION — architecture options] Three options for PO; my recommendation Option B.
+
+  **Option A — 6-character lean (TL + 4 + adversary):**
+  TL (Papinianus/"Papi"), EE-jurist (Paulus), EU/CJEU-jurist (Ulpianus), Editor (Modestinus, owns memo+risk-matrix+jurist-Qs+bibliography), Librarian (Gaius), Adversary (Cicero — independent reviewer).
+  Pros: minimal, no role-overlap, fast to deploy.
+  Cons: Librarian also has to ingest Gmail thread Estonian-dense AND maintain Brilliant cross-refs AND track local PDFs — heavy load for 10-day clock.
+
+  **Option B — 6-character lean (RECOMMENDED, same shape as A but role rebalance):**
+  Same 6 roles, but Librarian's scope is corpus + citation feeds; Editor owns bibliography normalisation as last-mile. EE-jurist owns Q1, Q3-part (EE AutÕS music carve-outs), Q4 (Juridica article location + analysis), Q5 (MTÜS + VÕS + ¡NI/ESL split), Q6 (procedure flow), Q7 (damages). EU-jurist owns Q2 (InfoSoc + DSM), Q3-part (EU Directive carve-outs), and the cross-jurisdictional view on Q5/Q7 where EU framework intersects. **EE-jurist handles 5/7 questions; EU-jurist handles 1.5/7 + cross-checks.** Reasoning: most questions are EE-statute-rooted; EU is the framework layer. Asymmetric workload is correct here.
+  Pros: clean Q1-Q7 ownership matrix; adversary's independent-reviewer position is structurally legible; Librarian is fully a service role (no analytical claims).
+  Cons: EE-jurist is hot path; if EE-jurist stalls, the whole memo stalls. Mitigation: Editor cross-reads EE-jurist drafts T-7 / T-5 / T-3 as risk-cheap quality gate.
+
+  **Option C — 7-character (TL + 5 + adversary), separate Bibliographer:**
+  Same as B but split Editor + Bibliographer. Editor owns memo prose + risk matrix + jurist-Q recs; Bibliographer owns citation index + verbatim-quote register.
+  Pros: cleanest separation; Editor focuses on memo; Bibliographer enforces citation hygiene.
+  Cons: 10-day clock + 7 characters = coordination overhead exceeds benefit. Bibliography is a consequence of memo composition; splitting two roles that share an artifact dependency is the recipe for handoff drift. **Don't recommend.**
+
+[DECISION — workdir / repo / runtime] Following esl-suvekool pattern: workdir = `~/Documents/github/ESL/legal/` (new dir, NOT yet exists — Aen flagged this in brief). Repo = new `ESL-legal` (account TBD; confirm at submission). Runtime team = `~/.claude/teams/esl-legal/`. Slug = `esl-legal` (matches esl-suvekool sibling pattern). 8-file onboarding package mirroring S23: roster.json, common-prompt.md, startup.md, design-spec.md, prompts/{papinianus,paulus,ulpianus,modestinus,gaius,cicero}.md.
+
+[DECISION — model tiers] All-opus per S23 precedent. Rationale: every role is judgment-heavy. EE-jurist and EU-jurist make confidence-labeled claims that the PO will rely on (or escalate to a human jurist). Editor synthesises across analytical claims. Adversary's job is to find load-bearing weaknesses — opus-grade judgment required. Librarian's job is dense Estonian-text ingestion + cross-source dedup — also opus. TL coordinates across legal-claim-fidelity = opus. No haiku-parallelism scenarios here (no fan-out lookups; Q1-Q7 are tightly entangled).
+
+[DECISION — persistence] **One-shot dissolution team**, NOT persistent roster. Unlike esl-suvekool (4-month persistent), this team has a fixed deliverable + fixed window (10 days, ideally less). Once memo lands + PO accepts, team dissolves. Distinct shape from both operational team archetypes:
+  - esl-suvekool: persistent, low-volume, episodic, drafts-for-PO-to-send.
+  - apex-research: persistent, high-volume, ongoing.
+  - **esl-legal: one-shot, time-boxed, dissolves on delivery.** New archetype IF it ships clean. Add to wiki if it works.
+
+[DECISION — language] In-team chat: English (faster). Memo deliverable: English markdown. Verbatim quotes from Estonian-language sources (Peterson reply, Kaie intervention, Juridica article excerpts): retain Estonian original, English gloss in brackets immediately after. Cite Riigi Teataja entries with section number + Estonian-original-title; don't translate statute names. Brilliant entries are mixed EE/EN — quote in original language. **Codify Estonian-quote-handling discipline in common-prompt.md, not just in Librarian's prompt.**
+
+[DECISION — common-prompt additions specific to this team] Beyond S23 baseline: (1) "AI ≠ legal advice" disclaimer block, mandatory in every deliverable; (2) confidence labeling rules (settled/probable/open) with exemplars; (3) Estonian-quote handling rules (verbatim original + English gloss bracket); (4) "Holding-silent" rule — team produces analysis; PO does NOT engage Peterson/Kaie thread until memo delivers AND PO has the jurist-conversation; (5) Haapsalu-Suvekool repo cross-team read-only declaration (read for context; never write).
+
+[DECISION — toolkit / artifact layout]
+  - `memo.md` — Editor's primary deliverable; the ~10-20p output.
+  - `analyses/Q1-eldsus-isiklik-kasutus.md` etc, one file per Q1-Q7 — owned by EE-jurist or EU-jurist per question matrix.
+  - `risk-matrix.md` — Editor.
+  - `jurist-questions.md` — Editor.
+  - `bibliography.md` — Editor (final), with Librarian-fed raw cites.
+  - `corpus/` — Librarian. `gmail-thread-19df7c8d.md` (digested), `brilliant-snapshots/`, `pdfs/` (read-only refs).
+  - `adversary-flags.md` — Cicero. One running ledger of `[ADVERSARY-FLAG]` entries against analytical claims; each flag must be `[ADDRESSED]` or `[OPEN]`. Editor MUST address all `[ADVERSARY-FLAG]` entries before T-2.
+  - `memory/<name>.md` — scratchpads.
+  - `docs/sources.md` — Librarian-maintained source index (Gmail msgs, Brilliant entries, PDFs, web cites with dates).
+
+[GOTCHA — Estonian quote handling] Brief §6 has three load-bearing Estonian passages (Kaie's categorical claim §6.1, Peterson's Juridica citation §6.2, Peterson's demand §6.4). These MUST stay verbatim in the memo — they're the legal-claim-of-record being analysed. Back-translating them to English would change the analytical object. Librarian extracts; EE-jurist analyses; Editor preserves verbatim in memo with English gloss bracket. Hard rule.
+
+[DEFERRED — pause for PO before drafting] Per Aen instruction: "Send initial reading + 2-3 architecture options with naming proposals + judgment on 3 open items. Don't draft full prompts yet — pause for PO confirmation on shape and naming." S23 workflow had PO making 4 decisions before package drafting. Same shape here. Sending Aen now.
+
+[DEFERRED — questions for PO that the brief doesn't settle]
+  (1) GitHub account for `ESL-legal` repo (Aen flagged TBD).
+  (2) Adversary-flag veto-weight — does Editor MUST-address (my preferred) or MAY-address? Asymmetric authority is the load-bearing structural call.
+  (3) PO's appetite for Estonian-musical names vs Roman-jurist names — I recommend Roman, but PO's call.
+  (4) Does the team need a `[DISCLAIMER]` agent to enforce AI-not-legal-advice block placement in every output, or is that a common-prompt mandate enforced by self-discipline? My read: common-prompt mandate is sufficient — too small a scope for a dedicated role.
+
+## PO ratifications + ARCHETYPE CORRECTION (2026-05-13 ~11:06)
+
+[CHECKPOINT] All 4 questions ratified:
+  (1) Roman names ✓
+  (2) Option B (6-char, EE/EU asymmetric) ✓
+  (3) MUST-address `[ADVERSARY-FLAG]` ✓
+  (4) Repo `mitselek/esl-legal` created (private): https://github.com/mitselek/esl-legal
+
+[CHECKPOINT] **MAJOR CORRECTION — persistence model.** PO: *"I see this team as long-living support unit and Peterson is just the case nr.1."* Both Aen and I misread "10-day clock + dissolves on memo delivery" from brief §1+§3+§9 (which scoped the *deliverable*, not the *team*). Aen owns the source — his first-pass work-type sketch biased my archetype call. I should have asked PO directly about lifespan before committing to "one-shot dissolution" framing.
+
+[GOTCHA] **Brief-scope-conflation failure mode.** When the brief frames work around a specific incident/event/case, separate two questions cleanly: (a) what is the deliverable for THIS case, (b) what is the team's lifespan and role beyond this case. (a) is in the brief; (b) is a PO call that the brief may not address. Inferring (b) from (a) is the trap I fell into. Save: any future team-design intake with a named first-case should ask the PO lifespan question explicitly. Cal-queue candidate.
+
+[DECISION — revised archetype] **Long-lived per-domain research support unit.** ESL legal-affairs research support. Activates on cases, quiet between. Peterson = case #1 (first worked example). Persistent roster carries between sessions. Cadence: dormant between cases; low-volume during case windows (~1-3x/week active). Roman-jurist names fit *better* here — career jurists, not one-trial advocates.
+
+[PATTERN — new archetype candidate, n=1 watch] **Long-lived per-domain research support unit** — distinct from operational-team (esl-suvekool: event-driven, persistent low-volume around one event) and methodology-research (FR/apex-research: ongoing build, no case structure). Differentiator: case-driven activation, domain-specific knowledge accumulation, dormant between cases. Promotion trigger: n=2 instance from a different domain. STRIKE earlier "one-shot dissolution" candidate.
+
+[DECISION — repo layout for multi-case]
+  - `cases/2026-05-peterson/` — this case's analyses/memo/adversary-flags/verbatim quotes
+  - `wiki/statutes/` — frequently-cited EE statutes (AutÕS §13/§17/§18, MTÜS, VÕS, TsMS) accumulated across cases
+  - `wiki/cjeu/` — CJEU case-cards
+  - `wiki/opposing-parties/` — argument templates seen (Peterson's "tagasipöörata ei saa", Kaie's "EL reegel ei käi" categorical)
+  - `wiki/precedents/` — EE case law encountered
+  - `wiki/jurists/` — EE-licensed jurists worth contacting, with notes
+  - `wiki/index.md` — Cal-style catalog
+  - `memory/` — agent scratchpads
+  - `prompts/`, `common-prompt.md`, `roster.json`, `startup.md`, `.claude/startup.md` (bootstrap hook) — S23 pattern
+
+[DECISION — curator role question, PO's open call returned to me] **Gaius owns the wiki, NOT a separate Cal-style curator role.** Reasoning:
+  (a) Cathedral-lite gate: Cal-style sole-writer wiki sovereignty becomes structurally warranted at ~8+ specialists (FR is 8+TL; apex-research 5+TL with Eratosthenes). At 6 chars with case-driven activation, wiki write-volume is low; one Gaius can manage write-discipline without protocol-mediation overhead.
+  (b) Case-corpus (`cases/<slug>/`) and cross-case wiki (`wiki/`) share the same source-of-truth axis — team's accumulated knowledge of EE/EU copyright + legal-domain primitives. Splitting that single intellectual asset across two roles creates handoff drift exactly where coherence matters most.
+  (c) Aen's instinct (Gaius-owns-wiki for simplicity at 6 chars) is correct. I confirm and reinforce: Gaius's role elevates from "Peterson-corpus librarian" to "team's institutional memory" — wiki curation IS the long-term-value differentiator that justifies him being opus-tier and present at every session, even quiet ones (he prunes, dedups, indexes between cases).
+  (d) **Growth-path documented in design-spec:** if a second case lands while Peterson is still active, OR if wiki-write-volume crosses an adapted Phase-2 gate (Cal's 15+10: 15 statute-cards + 10 cross-case queries), THEN propose a Cal-style curator split. Until then, Gaius owns it all.
+
+[DECISION — Gaius prompt scope expansion]
+  - **Wiki sovereignty discipline** (Cal-pattern lite): Gaius is sole writer of `wiki/*`. Other specialists submit findings via scratchpad tags `[WIKI-CANDIDATE]` or messages to Gaius. He files.
+  - **Cross-case dedup**: when Peterson research surfaces a statute already in `wiki/statutes/`, Gaius updates the statute card rather than duplicating into the case folder.
+  - **Verbatim-quote register**: `cases/<slug>/verbatim-quotes.md` per case — the load-bearing source passages that MUST stay original. Editor reads from this; doesn't re-transcribe.
+  - **Source index**: `cases/<slug>/sources.md` per case (Gmail msgs, Brilliant entries, PDFs, web cites with retrieval dates).
+  - **Session bootstrap** (between cases): Gaius runs a "wiki pulse" at session start — diff against last session, surface stale or pending entries.
+
+[DECISION — common-prompt revisions for persistence]
+  - Mission rewrites from "Peterson defensive scan" to "ESL legal-affairs research support. Peterson is the first worked example; team identity is the support function."
+  - Per-session shutdown = `TeamDelete` on graceful exit (S23-style), NOT team dissolution. Persistent roster between sessions.
+  - Bootstrap hook `.claude/startup.md` at repo root, S23-style (Aen's f65fb2a + 0e461be pattern).
+  - Multi-day session-spanning explicit: Peterson active phase (~10 days), gap, case #2 weeks later. Each session re-bootstraps via TeamCreate + restore-inboxes.
+
+[DECISION — task system for case-tracking] Each case is a TaskCreate'd top-level "case" entry with case-slug in subject; Q1-Q7 sub-tasks (Peterson-specific) are blocked-by that case task; cross-case wiki maintenance is a standing task for Gaius that survives between sessions.
+
+[CHECKPOINT] Ready to draft package at `designs/new/esl-legal/`. 8 files: roster.json, common-prompt.md, startup.md, design-spec.md, prompts/{papinianus,paulus,ulpianus,modestinus,gaius,cicero}.md. Send to Aen for TL review before PO approval.
+
+[DEFERRED — Cal queue, end-of-session]
+  - STRIKE earlier "one-shot dissolution team" archetype observation (was based on misread).
+  - NEW: "Long-lived per-domain research support unit" archetype, n=1 watch.
+  - KEEP: naming-heuristic inversion (domain-named-tradition over language-tiebreak when domain has one).
+  - NEW: brief-scope-conflation failure mode (above [GOTCHA]) — ask PO lifespan explicitly when brief frames around named first-case.
+
+## Aen TL review + 5 corrections applied + DEPLOYED (2026-05-13 11:20→11:34)
+
+[CHECKPOINT] Aen flagged 2 blockers (MCP-prefix wrong on TeamCreate/TeamDelete; Gaius wiki-pulse fails without `git log`) + 3 NTH (FR Volta inbox-persistence; case-agnostic common-prompt Step 3; Q3 file-split alignment). All applied 3-min turnaround. 7 prompts touched + 3 new files (`persist-inboxes.sh`, `restore-inboxes.sh`, `restore-filter.jq`).
+
+[LEARNED] **`TeamCreate`/`TeamDelete` are first-class harness tools, bare names — NOT `mcp__teamwork__*`.** Would have shipped this bug if Aen hadn't caught it. esl-suvekool startup.md (my S23 draft) uses bare names correctly — between S23 and S32 I lost calibration. **Future rule: grep my own existing startup.md drafts for canonical form BEFORE writing the section.** MCP-prefix vs bare-name distinction is invisible until tool-invocation time.
+
+[LEARNED] **Read-side git permissions easy to miss for curator/librarian roles.** Gaius's wiki-pulse needed `git log`; Tools section omitted Bash entirely. Instinct "Bash = builders only" needs exception for cross-session-aware roles. **Future rule: any role with cross-session-aware responsibilities gets read-side git (`log`, `diff`, `status`) by default.** Apply to future Librarian/Wiki-Curator/TL designs.
+
+[LEARNED] **Inbox persistence belongs repo-side from day 1.** I had runtime-side backup (`~/.claude/teams/esl-legal/inboxes-backup/`); Aen pushed to FR's Volta pattern (`persist-inboxes.sh` + `restore-inboxes.sh` + `restore-filter.jq`) committed to git. For episodic/case-driven teams, durability bar is HIGHER than daily-cadence teams. **Future rule: FR Volta pattern verbatim with TEAM_NAME hardcoded for single-team repos; scripts at repo root.**
+
+[LEARNED] **Long-lived team prompts must be case-agnostic; case paths live in `cases/<slug>/README.md`.** I baked Peterson-brief path into common-prompt Step 3. By case #2 that's a dead reference. **Future rule: audit every team-config file for hardcoded case identifiers when designing a long-lived team; only `roster.json` and `README.md` may reference first case by name.**
+
+[LEARNED] **Q3 file-split is a structural call worth making at design time.** Single file in design-spec but split ownership in prompts = inconsistency that surfaces at first cross-write. **Future rule: when two specialists co-own a question, the file boundary must be in design-spec AND both prompts.**
+
+[PATTERN] **Cross-read review catches structural drift the author cannot see.** Aen's 2+3 review caught 5 drifts I would have shipped. Confirms FR S31's "cross-read gate discipline pays compound interest" pattern, now applied at design-time, not just at protocol-shape time.
+
+[CHECKPOINT — final] esl-legal DEPLOYED 2026-05-13 11:34 by Aen — commit `06b7699` at `https://github.com/mitselek/esl-legal`. 16 files / 1761 insertions: 11-file package I designed + Aen's deploy-time additions (`.claude/startup.md`, workdir `README.md`, `cases/2026-05-peterson/README.md` seed). Both scripts `100755` through copy chain. FR staging moved `designs/new/esl-legal/` → `designs/deployed/esl-legal/`.
+
+[DECISION — naming-heuristic inversion READY for Cal Protocol A submission.] Initial scratchpad call was "n=1 watch" but on reflection it's **n=2 from the start**: esl-suvekool (Estonian musical figures — language-tiebreak ruled, domain match was incidental) and esl-legal (Roman jurists — domain-named-tradition ruled, team works WITHIN named civil-law tradition). Two independent applications producing different naming conventions from the same calibration framework. **Submitting via Cal Protocol A as `pattern` with `scope: team-wide`, citing both teams as evidence.**
+
+[DECISION — brief-scope-conflation submission framing.] Aen's framing ("brief scopes deliverable around case; intake-agent inherits without challenge") is sharper than mine. Failure mode has TWO sides: (a) brief-author scoping deliverable around case; (b) intake-agent inferring team-lifespan from deliverable-scope without asking. Both sides need to be present. **Submitting via Cal Protocol A as `gotcha`. Title: "Brief-scope-conflation — deliverable-around-case vs team-lifespan-around-case". Both Aen and I as source-agents.**
+
+[DEFERRED — carried forward, runtime-side]
+  - Wiki Phase-2 gate trigger: 15 statute-cards + 10 cross-case queries, OR n=2 concurrent cases → propose Cal-style curator split.
+  - Cicero structural-independence kickoff handshake (Concern #3). First flag-round in case #1 will need Papinianus to mediate protocol-position. Watch for runtime feedback.
+  - Modestinus + Cicero shared `adversary-flags.md` write-collision. Don't pre-emptively split; let case #1 reveal whether shared-file pattern holds. Design-time fallback: split into write-only-per-author files with read-only synthesis.
+  - All-opus burn-rate posture. PO may want to downshift specialists to sonnet on dormant-between-cases re-spawns. Flag for case #2.
+
+[CHECKPOINT] **Hires Delivered cumulative update.** esl-legal is hire group #12 (6 chars). Cumulative total now **60 agents across 12 teams**. Previous: 54 across 11 teams. Update MEMORY.md compression next.
+
+---
+
 ## ESL Suvekool 2026 — deployed + post-deploy patterns (2026-05-01 23:38, post-Aen-feedback)
 
 [CHECKPOINT] PO approved 8-file package as drafted. Three commits live on `mitselek/Haapsalu-Suvekool`:

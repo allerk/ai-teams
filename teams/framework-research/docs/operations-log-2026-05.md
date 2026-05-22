@@ -1,0 +1,441 @@
+# Operations Log — 2026-05 (*FR:Hopper*)
+
+Append-only operations log per `teams/framework-research/prompts/hopper.md` (Provenance — Role-of-Record section). Each entry has all 8 required fields. No edits to prior entries; corrections go as new entries referencing the original by timestamp.
+
+---
+
+## 2026-05-20T17:09+03:00 — apex-research authorized_keys Phase 1 prep (ABORTED MID-EXECUTION)
+
+**timestamp** — 2026-05-20T17:09+03:00 (dispatch landed), through 2026-05-20T17:41+03:00 (HALT per PO direction), close-out written 2026-05-20T17:43+03:00.
+
+**tasker** — Brunel (pair-loop with Aen for major escalation gates; PO direction relayed via Aen at 17:37).
+
+**dispatch summary** — apex-research authorized_keys Phase 1 prep — staged SSH_PUBLIC_KEY_2 in host `.env`. ABORTED MID-EXECUTION after substrate-truth probes revealed degraded substrate state (no operational `.env`; container is a 2026-04-29 fresh-clone survivor; recreate today = full SSH lockout). PO direction: stop and re-evaluate.
+
+**tier classification + sanction status** — by step:
+
+- **P1.1** = Tier R (default-permitted)
+  - First attempt FAILED at hard-gate: dispatched filter regex `michelek\s*$` matched neither key in live `/home/ai-teams/.ssh/authorized_keys` (both keys had different comment shapes from the `.env.example:13` template the regex anchored on). Surfaced to Brunel at 17:12.
+  - Brunel **amendment-1** at 17:13 — replaced filter with positive-select: `$_ -match 'aleksandr' -and $_ -notmatch 'mihkel' -and $_.Trim() -ne ''`. Quoted verbatim:
+    > "Positive-select on `aleksandr` token captures exactly LINE 2. Belt-and-suspenders `-notmatch 'mihkel'` defends against a hypothetical future where PO's comment ever contains `aleksandr`."
+  - Second attempt PASSED. $alekKey captured (length 114).
+- **P1.2a** (substrate locate) = Tier R (default-permitted)
+  - `find` probe returned 2 candidate compose-dirs. Surfaced to Brunel at 17:16 per dispatch's "2+ matches → surface; do not guess."
+  - Brunel **amendment-2** at 17:18 → 17:19 — Option B (docker inspect compose-project-working-dir label). Original key had underscore typo; corrected to dot-form `com.docker.compose.project.working_dir` at 17:19.
+  - Within-dispatch-agency JSON-labels dump (Tier R, allowed scope) disambiguated authoritatively: $COMPOSE_DIR = `/home/dev/github/apex-migration-research`. P1.2a CLEARED.
+- **P1.2b** (.env writability) = Tier R (default-permitted)
+  - Probe revealed `.env` does NOT exist at $COMPOSE_DIR. Substrate disagrees with dispatch's fix-premise. Surfaced to Brunel at 17:23.
+- **P1.2c** (3-probe diagnostic batch) = Tier R (Aen-sanctioned via Brunel **amendment-3** at 17:27)
+  - Three probes via base64-transit: container Config.Env grep, docker compose config rendered output, filesystem env-file search.
+  - Revealed degraded substrate state. **H5 hypothesis** (stable-state container survivor from pre-2026-04-29 fresh-clone) confirmed.
+- **P1.2d** (backup .env read) = Tier R (Aen-sanctioned with verbatim hard-gate at 17:34)
+  - Aen sanction verbatim: *"The backup `.env` is information, not destiny — we don't restore from it without PO direction."*
+  - Pure `cat` read, no mutations. Secret-redaction discipline applied: mask all-but-first-4 chars for credential lines, verbatim for SSH_PUBLIC_KEY* (public-by-definition).
+  - Brunel retroactively rescinded the P1.2d sanction at 17:41 along with the rest of Phase 1, but execution was clean and audit-logged before rescission. No undo needed.
+
+**No Tier M or D ever executed.** Phase 2 sanction package (r3) formally rescinded by Aen at 17:34 pending re-architecture.
+
+**deployed-artifacts-read declaration** — paths read at session start (pre-execution discipline, FR-design layer):
+
+- `designs/deployed/apex-research/container/entrypoint-apex.sh:166-196` (Step 7 SSH keys block — env-var enumeration loop + install for both `michelek` and `ai-teams` users + sshd start on port 2222 + else-warning branch)
+- `designs/deployed/apex-research/container/docker-compose.yml:47-60` (environment block, includes SSH_PUBLIC_KEY and SSH_PUBLIC_KEY_2 — but NOT SLOT 3, which the operational substrate has; design-vs-operational drift)
+- `designs/deployed/apex-research/container/.env.example:13` (template stub `SSH_PUBLIC_KEY="ssh-ed25519 AAAA... michelek"` — load-bearing for P1.1's amended-filter analysis; the `michelek` token in the template did not survive into operational PO key comment)
+
+In-execution substrate-truth reads (Layer 2 + Layer 3, surfaced via Tier R probes):
+
+- Container Config.Env via `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}' | grep '^SSH_PUBLIC_KEY'` (Layer 3)
+- Container labels JSON dump via `docker inspect apex-research --format '{{json .Config.Labels}}'` (Layer 3)
+- Operational compose-yml rendered via `docker compose config 2>&1 | grep -E 'env_file|SSH_PUBLIC_KEY' -A 1` (Layer 2)
+- Filesystem env-file search via `ls -la` + `find -maxdepth 4` (Layer 2)
+- Backup `.env` content via `cat '/home/dev/github/apex-migration-research.pre-fresh-clone-2026-04-29/.env'` (Layer 2 archival)
+
+**commands executed** — verbatim, all Tier R:
+
+- P1.1 (first attempt, FAILED at hard-gate):
+  - `ssh -i $env:USERPROFILE\.ssh\id_ed25519_apex -p 2222 -o StrictHostKeyChecking=accept-new -o BatchMode=yes ai-teams@100.96.54.170 "cat /home/ai-teams/.ssh/authorized_keys"`
+- P1.1 (second attempt with Brunel amendment-1, PASSED):
+  - same ssh invocation; filter changed to `Where-Object { $_ -match 'aleksandr' -and $_ -notmatch 'mihkel' -and $_.Trim() -ne '' }`
+- P1.2 locate-probe:
+  - `ssh -T -o StrictHostKeyChecking=accept-new -o BatchMode=yes dev@100.96.54.170 'ls -la ~/apex-research/ 2>/dev/null || ls -la ~/docker/apex-research/ 2>/dev/null || ls -la ~/ai-teams/apex-research/ 2>/dev/null; echo "---FIND---"; find ~/ -maxdepth 4 -name docker-compose.yml -path "*apex*" 2>/dev/null'`
+- P1.2a label probe (with Brunel amendment-2 dot-form key, via base64-transit):
+  - remote literal: `docker inspect apex-research --format '{{ index .Config.Labels "com.docker.compose.project.working_dir" }}' 2>/dev/null`
+  - transport: `ssh -T dev@100.96.54.170 "echo '<b64>' | base64 -d | bash"`
+- P1.2a within-dispatch-agency JSON-labels dump:
+  - remote literal: `docker inspect apex-research --format "{{json .Config.Labels}}" 2>&1`
+- P1.2b .env writability probe:
+  - `ssh -T dev@100.96.54.170 "ls -la '/home/dev/github/apex-migration-research/.env' 2>&1; echo WHOAMI; whoami; id"`
+- P1.2c Probe 1 (container Config.Env):
+  - remote literal: `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}' | grep '^SSH_PUBLIC_KEY'`
+- P1.2c Probe 2 (docker compose config):
+  - remote literal: `cd /home/dev/github/apex-migration-research && docker compose config 2>&1 | grep -E 'env_file|SSH_PUBLIC_KEY' -A 1`
+- P1.2c Probe 3 (filesystem env-file search):
+  - remote literal: `ls -la /home/dev/github/apex-migration-research/.env* /home/dev/github/apex-migration-research/*.env 2>/dev/null; echo '---LSDONE---'; find /home/dev/github/apex-migration-research -maxdepth 2 -name '.env*' 2>/dev/null; echo '---FIND1DONE---'; find ~/ -maxdepth 3 -name '.env' -path '*apex*' 2>/dev/null`
+- P1.2d backup .env read (Aen-sanctioned):
+  - remote literal: `cat '/home/dev/github/apex-migration-research.pre-fresh-clone-2026-04-29/.env'`
+
+All ssh exit codes 0. No mutations to RC bare-metal host or apex-research container at any point in the dispatch.
+
+**outputs** — relevant excerpts (full output in surface-back chain to Brunel):
+
+- **P1.1 (second attempt):** $alekKey captured = `ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBPYh4HpFbc/ftGYS6NndGaFk9Oc3C+IO8+cuv1i4GOb ghost-bridge@aleksandr-2026-05-15` (length 114). Belt-and-suspenders both passed (`-match aleksandr`=True, `-notmatch mihkel`=True). Tempfile round-trip verified byte-equal.
+- **P1.2 locate:** 2 hits — `/home/dev/github/apex-migration-research/docker-compose.yml` (operational) and `/home/dev/github/apex-migration-research.pre-fresh-clone-2026-04-29/docker-compose.yml` (pre-fresh-clone backup). Surface-back at 17:16.
+- **P1.2a label probe (corrected key):** `/home/dev/github/apex-migration-research` — matches operational hit. **$COMPOSE_DIR = `/home/dev/github/apex-migration-research`** canonical.
+- **P1.2a JSON-labels dump:** confirmed `com.docker.compose.project.working_dir` = `/home/dev/github/apex-migration-research` and `com.docker.compose.project.config_files` = `/home/dev/github/apex-migration-research/docker-compose.yml`. Compose version label `5.1.0` (v2 dot-form label namespace).
+- **P1.2b .env writability:** `ls: cannot access '/home/dev/github/apex-migration-research/.env': No such file or directory`. Host user = `dev` (uid 1000, in `docker` + `sudo` groups). Substrate-access shape correct; the file just doesn't exist where the dispatch assumed.
+- **P1.2c Probe 1:** `SSH_PUBLIC_KEY_2=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKR5R4Ob4zeW4H1p8rhjYajOa+mzqyjITzB6RmY4iBp/ mihkel.putrinsh@evr.ee apex-research` (PO's key in SLOT 2) and `SSH_PUBLIC_KEY=` (slot 1 empty). Aleksandr's key absent — confirms it was injected via docker exec onto the ephemeral container layer.
+- **P1.2c Probe 2:** All three slots resolve empty: `SSH_PUBLIC_KEY: ""`, `SSH_PUBLIC_KEY_2: ""`, `SSH_PUBLIC_KEY_3: ""`. No `env_file:` directive. Operational compose-yml exposes a SLOT 3 not present in FR-design `docker-compose.yml:53-54`.
+- **P1.2c Probe 3:** Only `.env.example` (template) at $COMPOSE_DIR; no `.env`. Backup `.env` at sibling `.pre-fresh-clone-2026-04-29/.env` (frozen 2026-04-29). Unrelated `.env` at `vjs_apex_apps/.env` (separate repo).
+- **P1.2d backup .env content** (secrets first-4-chars masked; pubkeys verbatim):
+
+  ```
+  GITHUB_TOKEN=gho_<REDACTED 36 chars>
+  ANTHROPIC_API_KEY=
+  SSH_PUBLIC_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKR5R4Ob4zeW4H1p8rhjYajOa+mzqyjITzB6RmY4iBp/ mihkel.putrinsh@evr.ee apex-research"
+  ATLASSIAN_EMAIL="mihkel.putrinsh@evr.ee"
+  ATLASSIAN_API_TOKEN="ATAT<REDACTED 188 chars>"
+  ATLASSIAN_BASE_URL="https://eestiraudtee.atlassian.net"
+  TUNNEL_TOKEN=eyJh<REDACTED 213 chars>
+  SSH_PUBLIC_KEY_3=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO2fgnCIWJjcNpgo/rjGmF5e0fr35qupLHAFk57qU6tB rc-connect
+  ```
+
+**Key cross-walk contradictions across the substrate-truth layers:**
+
+- Backup `.env` has PO's key in **SLOT 1** (value-quoted); running container has PO's key in **SLOT 2** (Config.Env). Slot-migration happened between backup-creation (≤2026-04-29) and current container-create. PO via Aen 17:37 said "I don't remember" for Q1 (fresh-clone without `.env` restore) — likely oversight. Q3' (when/why the slot migration happened) was NOT pursued; PO directed halt before re-engaging.
+- Operational `docker-compose.yml` has SLOT 3; FR-design `docker-compose.yml:47-60` has only SLOTS 1+2. PO via Aen 17:37 said SLOT 3 is "reserved for future key, never populated." Backup `.env` (frozen 2026-04-29) shows `SSH_PUBLIC_KEY_3=...rc-connect` — apparent contradiction with PO's recollection. Possibly the rc-connect entry was experimental and abandoned, or PO doesn't recall it. **Documented per Brunel close-out instruction; not adjudicating.**
+- Multi-system failure surface: backup `.env` has GITHUB_TOKEN, ATLASSIAN_API_TOKEN, TUNNEL_TOKEN. These are absent from current operational state. A `docker compose up --force-recreate` today would wipe all three alongside the SSH keys — incident surface is broader than SSH-lockout, encompasses GitHub auth + Atlassian auth + Cloudflare tunnel auth.
+
+**outcome** — **aborted-mid-execution** (canonical enum value per `hopper.md` prompt `outcome` field). Reason: PO direction (via Aen 17:37) after substrate-truth probes surfaced dispatch-premise-disagreement + degraded substrate state. No state mutations attempted at any point in the dispatch. Container substrate unchanged from pre-dispatch state (degraded-but-stable).
+
+---
+
+### Tasker-confirmed prevention framing
+
+Per Brunel 17:33 + 17:39 and Aen-confirmed: this dispatch's hard-gate discipline prevented a **multi-system failure incident** (not just SSH-lockout). The r3 Phase-2 recreate plan, if executed against current substrate state, would have:
+
+- Wiped all SSH_PUBLIC_KEY* slots in container Config.Env (compose config resolves them empty) → no `authorized_keys` written by entrypoint Step 7 → sshd refuses all logins → full SSH lockout for both PO and Aleksandr.
+- Wiped GITHUB_TOKEN, ANTHROPIC_API_KEY, ATLASSIAN_API_TOKEN, ATLASSIAN_BASE_URL, ATLASSIAN_EMAIL, TUNNEL_TOKEN → broke GitHub clone-via-token, Anthropic CLI auth, Atlassian/Jira-MCP integration, Cloudflare tunnel.
+
+**Credit attribution per Hopper-self-flag adopted by Brunel** (17:35): the prevention is structural, not personal — the dispatch design (sequential hard-gates between every step with explicit pass criteria + surface-back templates) and Tier-D-no-execute-without-full-sanction discipline did the work; Hopper's role was enforcement. The dispatch shape itself is the reusable pattern for other substrates.
+
+### Sub-shape E manifestation — three-layer substrate-truth divergence
+
+Per joint Brunel + Hopper synthesis (Brunel architectural framing, Hopper operator-defense pattern, Cal-Protocol-A submission planned for session wrap):
+
+- **Layer 1 — FR design-as-shipped** (`designs/deployed/<team>/container/*` in this repo): canonical for design lineage.
+- **Layer 2 — Consumer team operational copy** (e.g., `/home/dev/github/apex-migration-research/` on the substrate host): canonical for what compose actually reads at next `docker compose up`.
+- **Layer 3 — Running container state** (Config.Env, mounted volumes, in-process state): canonical for what's serving traffic right now.
+
+This dispatch concretely materialized BOTH drift surfaces simultaneously:
+
+- **Layer-1-vs-Layer-2 drift:** FR design has 2 SSH_PUBLIC_KEY slots; operational compose-yml has 3 slots. Consumer team (apex) amended their copy without FR-side visibility.
+- **Layer-2-vs-Layer-3 drift:** Current operational compose-yml resolves all 3 slots to empty; running container has SLOT 2 populated. Runtime carries state from before whatever event emptied the operational copy.
+
+**Operator-defense pattern (Hopper-authored, joint cross-link to Brunel architectural framing):** when first-dispatching against any substrate, run a Tier R probe-suite that surfaces all three layers and reconcile before committing to a fix-shape. Single-layer reads (FR-design-only, as my current `hopper.md` Diagnostic Discipline prescribes) catch single-layer drift but miss cross-layer drift. **Surface as Hopper-Amendment-4 candidate to Celes at session wrap.**
+
+### Cross-in-transit count (session artifact)
+
+Final count: **n=11 instances** of tasker↔operator message-crossings in transit through this session. Framing per Brunel 17:33 acknowledged by Hopper 17:35: candidate is **cadence-driven** (high-frequency tasker↔operator pair-loop on async inbox transport) vs **substrate-driven** (Windows-session-local per `feedback_no_windows_substrate_findings.md`). Disambiguation requires Linux-substrate replication at similar cadence; pending until that observation lands. Filed as parallel candidate to the discriminator-anchoring pattern.
+
+### Cal-Protocol-A submission planning (session-wrap)
+
+Two joint-authorship submissions planned per S33+ discipline:
+
+1. **`wiki/patterns/discriminator-anchored-on-sub-canonical-source.md`** — Brunel-attributed phrasing "discriminator anchored on a sub-canonical source." Two instances surfaced in this single dispatch:
+   - P1.1 regex anchored on `.env.example:13` template stub (`michelek`), not on substrate-live state.
+   - P1.2a probe label-key anchored on inferred underscore-form (`com.docker.compose.project_working_dir`), not on substrate-truth dot-form (`com.docker.compose.project.working_dir`).
+   - Recovery pattern: substrate-live state is the canonical discriminator source; templates/inferences are stub-grade, not selector-grade. JSON-dump-when-single-probe-empty is the cheap Tier R diagnostic that recovers the truth in one round-trip.
+2. **`wiki/patterns/three-layer-substrate-truth-discipline.md`** — joint authorship (Brunel architectural distinction + Hopper operator-defense pattern). Catalyzing incident: this ops-log entry, full surface-back chain (P1.1 amendment → P1.2a JSON-dump diagnostic → P1.2b premise-drift → P1.2c three-probe synthesis → P1.2d backup-read).
+
+---
+
+### Audit-trail surface (for future Hopper reference)
+
+The full surface-back chain through this dispatch is a textbook example of the hard-gate discipline absorbing a series of substrate disagreements without any mutation reaching the substrate. Use this entry as a reference when sanction-completeness is questioned in future dispatches.
+
+1. **P1.1 first-attempt FAIL** (regex anchored on template stub) → surface-back to Brunel + CC Aen → **amendment-1** (positive-select aleksandr) → P1.1 PASS
+2. **P1.2a 2-candidate ambiguity** → surface-back with three re-dispatch options enumerated → **amendment-2** (docker inspect label probe) → 17:18 key had underscore typo → 17:19 correction to dot-form → within-dispatch-agency JSON-dump diagnostic resolved both the typo AND the candidate ambiguity in one Tier R probe → P1.2a PASS
+3. **P1.2b premise-drift** (`.env` does not exist at $COMPOSE_DIR) → surface-back with three re-dispatch options → Brunel escalates to Aen at 17:25 → **amendment-3** (P1.2c three-probe diagnostic batch) sanctioned
+4. **P1.2c three-probe execution** → revealed degraded substrate; H5 hypothesis (stable-state pre-fresh-clone container survivor) confirmed → multi-system failure surface acknowledged
+5. **P1.2d Aen-sanctioned backup-read** with verbatim "information not destiny" hard-gate → executed clean; revealed slot-migration timeline + SLOT 3 rc-connect entry + full credential cluster in backup
+6. **PO direction "stop and re-evaluate"** via Aen 17:37 → Brunel HALT close-out at 17:41 → ops-log + scratchpad written, this entry → idle
+
+(*FR:Hopper*)
+
+---
+
+## 2026-05-20T18:05+03:00 — CORRECTION ENTRY (substrate-scope qualifier for 2026-05-20T17:09 entry)
+
+**Format note:** per Provenance discipline ("The log is append-only; you may not edit prior entries — corrections go as new entries that reference the original by timestamp"), this is a NEW entry referencing the 17:09 entry by timestamp. The 17:09 entry stands unedited; this entry adds the host-scope qualifier and the substrate-selection-error attribution.
+
+**timestamp** — 2026-05-20T18:05+03:00 (correction written).
+
+**tasker** — Brunel (substrate-selection error attribution by self) and Aen (informational amendment relay at 17:58, post-PO surface).
+
+**dispatch summary** — Correction to the 2026-05-20T17:09 entry's substrate-scope. The diagnostic operated against `dev@100.96.54.170:22` (host) + `ai-teams@100.96.54.170:2222` (container) per `~/bin/rc-deployments.json` entries `num:"1"` and `num:"2"`. **Post-execution attribution (Aen 17:58, Brunel 17:59): these registry entries refer to RC-server, a non-production host that happens to host an `apex-research`-named container. The canonical production apex deployment is `~/bin/rc-deployments.json` entry `num:"9"` — PROD-LLM at `michelek@10.100.136.162:22`, key `id_ed25519_apex`. Production apex was NOT touched in the 2026-05-20 dispatch and its state remains unknown.**
+
+**tier classification + sanction status** — N/A (this is a documentation correction, not an operational dispatch; no substrate touches). Original 17:09 entry's tier classifications and Aen 17:34 Phase-2-r3 rescission stand unmodified.
+
+**deployed-artifacts-read declaration** — None for this correction entry. The 17:09 entry's declarations stand: those reads applied to FR's `designs/deployed/apex-research/container/*` (which is the design lineage; the consumer team that operationally uses these may be either RC-server or PROD-LLM or both — FR-design is host-agnostic).
+
+**commands executed** — None. Pure documentation correction.
+
+**outputs** — Implications of the substrate-scope correction:
+
+1. **All "degraded substrate" findings in the 17:09 entry apply to RC-server (100.96.54.170), NOT to PROD-LLM.** RC-server's apex container Config.Env has PO key in SLOT 2, has no `.env` at `$COMPOSE_DIR`, has multi-system credential dependency on baked-in env from before 2026-04-29 fresh-clone. **None of these statements have been verified for PROD-LLM.** PROD-LLM apex state remains unknown.
+2. **The original PO ask (Aleksandr's key persistence on the apex PO actually uses) is unaddressed.** The diagnostic ran against the wrong host; the production substrate has not been examined.
+3. **Findings retain audit value at host-scope.** The discipline lessons (hard-gate culture caught the substrate-degradation; multi-system failure prevented on the substrate where the recreate would have occurred) are host-agnostic. The substrate-truth findings are RC-server-scoped.
+
+**Attribution of the substrate-selection error** — Per Brunel 17:59 verbatim: *"The error is mine. I picked registry entries that looked like the apex pattern by inspection (num:2 even has `name: 'apex-research'`) without verifying canonical production. Your discipline correctly followed the dispatch text; the substrate-selection failure is upstream of your execution."* Per Aen 17:58: the correction is upstream of Hopper's execution; the audit trail of the 17:09 entry stays as written.
+
+**Sub-shape F catalogued** — Aen-named *registry-entry-choice-from-first-match*: picking the first registry entry matching the target substrate name without confirming canonical-production status. Joins the Cal-Protocol-A submission catalog (Sub-shapes A-F per Brunel's session-scratchpad). Cross-references the 17:09 entry's "Audit-trail surface" section as catalyzing incident.
+
+**outcome** — **documentation-correction-applied** (not an operational outcome). The 17:09 entry's `aborted-mid-execution` outcome stands unchanged; this correction adds substrate-scope qualifier without altering the operational record.
+
+**Cross-references:**
+- `teams/framework-research/memory/hopper.md` was updated at 18:02 per Aen's 17:58 informational amendment: 6 entries relabeled from `apex-research` to `RC-server (100.96.54.170)`; 2 new entries added (`[LEARNED — substrate, apex-PROD-LLM]` placeholder + `[LEARNED — discipline, substrate-selection]` Sub-shape F).
+- `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` (Aen's PO-facing memo) has the wrong-host correction prominently at the top.
+
+(*FR:Hopper*)
+
+---
+
+## 2026-05-20T18:22+03:00 — REVERT-CORRECTION ENTRY (supersedes 2026-05-20T18:05; restores 17:09 substrate-target as correct)
+
+**Format note:** per Provenance discipline (append-only; corrections go as new entries referencing the original by timestamp). This entry references **both** the 2026-05-20T17:09 original entry and the 2026-05-20T18:05 first-correction entry by timestamp. Neither is edited in place; the chronological order on disk preserves the full confusion-and-resolution audit trail.
+
+**timestamp** — 2026-05-20T18:22+03:00 (revert-correction written).
+
+**tasker** — Aen (revert instruction at 18:19, post-PO 18:08 registry re-check).
+
+**dispatch summary** — Revert-correction supersedes the 2026-05-20T18:05 substrate-scope correction entry. PO re-checked `~/bin/rc-deployments.json` himself at 18:08 and confirmed the 17:09 entry's substrate-target was correct the entire time. The 18:05 correction was itself based on a transient PO mis-read of the registry, not a real substrate-selection error. Apex production runs at `100.96.54.170` (registry entry `num:"1"` for host SSH + `num:"2"` for container SSH on port 2222) — exactly what the 17:09 dispatch operated against. The registry entry `num:"9" PROD-LLM` is a separate system, **NOT** the apex production deployment. The 17:09 entry stands as the canonical record of dispatch-as-executed; the 18:05 entry stands as documented confusion-and-resolution audit trail; this 18:22 entry supersedes both with the resolved state.
+
+**PO's verbatim 18:08 registry confirmation** (relayed via Aen 18:19):
+
+> - `num:1 RC-server 100.96.54.170 22 (default)` — host SSH ✓ exactly what your dispatch cited
+> - `num:2 apex-research 100.96.54.170 2222 id_ed25519_apex` — container SSH ✓ exactly what your dispatch cited
+> - `num:9 PROD-LLM` is a SEPARATE system, NOT the apex production. PO's earlier surfacing of `num:9` was a transient mis-read on his side; he corrected after re-checking.
+
+**tier classification + sanction status** — N/A (documentation revert-correction; no substrate touches). Original 17:09 entry's tier classifications and Aen 17:34 Phase-2-r3 rescission stand unmodified.
+
+**deployed-artifacts-read declaration** — None for this revert-correction entry.
+
+**commands executed** — None. Pure documentation revert-correction.
+
+**outputs** — Implications of the revert-correction:
+
+1. **The 17:09 entry's substrate-truth findings ARE operationally real for the apex production substrate.** Degraded state at $COMPOSE_DIR (no operational `.env`), container surviving on Config.Env baked pre-2026-04-29 fresh-clone, multi-system credential dependency on baked-in env — all of these statements describe the actual production apex substrate. Not a parallel non-production substrate.
+2. **The original PO ask (Aleksandr's key persistence on the apex container) IS addressable on this substrate**, legitimately deferred to apex team's post-maintenance window per Aen 17:34 Phase-2-r3 rescission pending re-architecture.
+3. **Sub-shape F (registry-entry-choice-from-first-match) is WITHDRAWN from the Cal-Protocol-A catalog candidate list.** No valid instance from this dispatch. Catalog reverts to Sub-shapes A-E.
+4. **Phase 2 sanction package r3 remains formally rescinded by Aen 17:34** — that rescission was based on the substrate-truth probes from P1.2c (which are now confirmed operationally real for production), not on the spurious substrate-selection error. Future Phase 2 against apex-research still requires `.env` reconstruction prerequisite + new sanction package; the rescission stands.
+
+**Attribution of the documentation confusion** — Per Aen 18:19: PO's 18:08 self-correction supersedes his earlier 17:47 surfacing of `num:9`. Brunel's 17:59 attribution ("The error is mine") and Aen's 17:58 informational amendment were both downstream consequences of the same upstream PO transient mis-read. No tasker-side or operator-side process failure; the discipline-honoring artifact updates I executed at 18:02 (scratchpad) and 18:05 (ops-log) were correct enforcement of the instructions-as-given-at-the-time. They've been reverted because the premise was invalidated, not because the discipline was wrong.
+
+**Lesson (folded into scratchpad)** — Even after discipline-honoring artifact updates (append-only ops-log corrections + scratchpad amendments), be willing to revert when the original premise is invalidated. **Discipline serves accuracy, not consistency-with-prior-correction.** The append-only ops-log chain (17:09 → 18:05 → 18:22) preserves the full confusion-and-resolution audit trail for future readers; scratchpad reverts to pre-amendment state because scratchpad is working-memory, not append-only audit log.
+
+**outcome** — **documentation-revert-correction-applied**. The 17:09 entry's `aborted-mid-execution` operational outcome stands unchanged and is now confirmed as the canonical record. The 18:05 entry's `documentation-correction-applied` outcome stands but is superseded by this entry. No operational outcome changes for any tier-classified step.
+
+**Cross-references:**
+- `teams/framework-research/memory/hopper.md` reverted at 18:21 per Aen 18:19: 6 substrate entries restored from `RC-server (100.96.54.170)` back to `apex-research` (with section-header revert); `[LEARNED — substrate, apex-PROD-LLM]` placeholder deleted; `[LEARNED — discipline, substrate-selection]` (Sub-shape F) deleted; new `[LEARNED — discipline, revert-on-invalidated-premise]` added capturing the lesson.
+- `teams/framework-research/docs/apex-keys-dispatch-2026-05-20-findings.md` (Aen's PO-facing memo) — Aen may update independently to reflect the revert; not my MAY-WRITE path.
+
+(*FR:Hopper*)
+
+---
+
+## 2026-05-20T18:46+03:00 — P2 apex-research diff probe (Aen-direct, Tier R only)
+
+**timestamp** — 2026-05-20T18:46+03:00. **tasker** — Aen (direct, not paired with Brunel; PO-directed probe-only, no design composition). **dispatch summary** — Two Tier R probes against apex-research substrate (host SSH `dev@100.96.54.170:22`) to build raw diff artifact for PO's later review: (P2.1) `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}'` for running-container Config.Env; (P2.2) `cat /home/dev/github/apex-migration-research.pre-fresh-clone-2026-04-29/.env` for fresh-verbatim backup re-read. Both via base64-transit; both ssh exit 0; zero substrate mutations.
+
+**tier classification + sanction status** — P2.1=R, P2.2=R (both default-permitted). No Tier M/D. Phase-2 r3 rescission of 17:34 stands.
+
+**deployed-artifacts-read declaration** — per Aen 18:40 instruction: scratchpad's substrate-facts section at `teams/framework-research/memory/hopper.md:5-17` serves as the per-dispatch substrate-read for apex-research. No additional FR-design artifact reads needed; substrate facts current from earlier in-session probing.
+
+**commands executed** — `ssh -T dev@100.96.54.170 "echo '<b64>' | base64 -d | bash"` with two base64-encoded remote literals: `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}'` (P2.1) and `cat '/home/dev/github/apex-migration-research.pre-fresh-clone-2026-04-29/.env'` (P2.2).
+
+**outputs** — Diff artifact written to `teams/framework-research/docs/apex-keys-diff-2026-05-20.md` with side-by-side table per key (backup LEFT, Config.Env RIGHT), redaction policy (token values first-4-chars + length; SSH_PUBLIC_KEY* verbatim as public-by-definition), and 6 descriptive observations. Hard-gate check passed: Config.Env `SSH_PUBLIC_KEY_2` value equals byte-for-byte the P1.1-captured PO pubkey from 17:14 → P1.2c-confirmed at 17:28 → still equal at 18:42. Substrate state unchanged across the dispatch arc.
+
+**outcome** — **success** — diff artifact at `teams/framework-research/docs/apex-keys-diff-2026-05-20.md`; no anomalies to surface beyond what the diff itself documents (one filter-adjacent `GH_TOKEN` observation noted in artifact footnote).
+
+(*FR:Hopper*)
+
+---
+
+## 2026-05-20T19:23+03:00 — Phase-1-Redux P3 apex-research .env reconstruction (Tier R + Tier M)
+
+**timestamp** — 2026-05-20T19:04+03:00 (dispatch landed) through 2026-05-20T19:23+03:00 (close-out).
+
+**tasker** — Brunel (Phase-1-Redux dispatch authored, inlined from `designs/new/apex-keys-phase1-redux-dispatch.md` abfb026 outside Hopper's MAY-READ scope; relay = primary per `relay-to-primary-artifact-fidelity-discipline.md`). PO sanction verbatim "Approve as drafted" at 19:01 captured the maintenance window (apex AI agents voluntarily offline = down-state IS the window). Phase 2 Tier D recreate dispatch queued by Brunel for immediate relay on P3.8 success.
+
+**dispatch summary** — Reconstruct `.env` at `$COMPOSE_DIR=/home/dev/github/apex-migration-research` to stage Phase-2 recreate without lockout. PO slot assignment: SLOT 1 = PO pubkey, SLOT 2 = Aleksandr pubkey, SLOT 3 = rc-connect pubkey. Tokens sourced from 2026-04-29 backup `.env` at sibling `$BACKUP_DIR`; GH_TOKEN sourced from running container Config.Env (post-fresh-clone addition). Supersedes the rescinded r3 Phase-1 dispatch from 17:09. Operation completed successfully with two tasker amendments (regex + pass-criterion corrections).
+
+**tier classification + sanction status** — by step:
+
+- **P3.1** = Tier R (substrate-state-unchanged check) — default-permitted. PASS: Config.Env SSH_PUBLIC_KEY_2 byte-equal to documented PO pubkey from 18:46 P2 diff entry. No substrate drift since dispatch arc start.
+- **P3.2** = Tier R (Aleksandr pubkey re-extraction) — default-permitted. PASS: $alekKey 114 chars, matches P1.1 17:14 capture byte-for-byte.
+- **P3.3** = Tier R (PO pubkey extraction from Config.Env) — default-permitted. PASS: $poKey 117 chars.
+- **P3.4** = Tier R (rc-connect pubkey extraction from backup `.env`) — default-permitted. PASS: $rcKey 91 chars, ends `rc-connect`.
+- **P3.5** = Tier R (GH_TOKEN extraction from Config.Env) — default-permitted. PASS: $ghToken 40 chars, starts `gho_`. Held in session-local `%TEMP%` only; never persisted to repo artifact.
+- **P3.6** = Tier M (`.env` write at `$COMPOSE_DIR/.env`). Brunel single-line ack quoted verbatim:
+  > "I sanction this Tier M op. The substrate's docker-compose.yml is designed for `.env` at `$COMPOSE_DIR/.env`; writing this file is the canonical lifecycle path. Backup `.env` at `$BACKUP_DIR/.env` remains untouched as rollback. Operation is reversible by `rm $COMPOSE_DIR/.env` (returns substrate to pre-write state). — Brunel"
+
+  **P3.6 amendment chain:**
+  - P3.6 original (dispatch 19:04): used `set -a; source $BACKUP_DIR/.env; set +a` to load token vars. **FAILED at 19:12** — backup `.env` line 11 contains `SSH_PUBLIC_KEY_3=ssh-ed25519 AAAA... rc-connect` UNQUOTED (other backup .env SSH lines are double-quoted; SLOT 3 is not). With `set -e` enabled, bash `source` parsed `SSH_PUBLIC_KEY_3=ssh-ed25519` as the assignment then tried to exec the rest as a command, exit 127. The `cat > .env <<EOF` never ran. Tier R post-fail substrate check (19:13) confirmed no `.env` written (substrate in pre-P3 state). Surfaced to Brunel with 4 re-dispatch options.
+  - P3.6 amendment-1 (Brunel 19:14): Option B adopted — drop `source`; replace with explicit `grep+cut+strip-quotes` per token (same shape as P3.3/P3.4/P3.5 for pubkeys). More substrate-truthful (no dependency on backup .env being syntactically valid bash). Execution succeeded; `.env` written at 19:17 (1270 bytes, dev:dev). But pass-criterion `grep -c '^[A-Z_]\+=' .env == 10` returned 8 — surfaced as substrate-correct-but-criterion-wrong.
+  - P3.6 amendment-2 (Brunel 19:21): pass-criterion regex corrected from `[A-Z_]+=` to POSIX-envvar canonical `[A-Z_][A-Z0-9_]*=`. Root cause acknowledged by Brunel as Sub-shape A in his own criterion (`[A-Z_]+` rejects digits; SSH_PUBLIC_KEY_2/_3 didn't match). Re-verify at 19:22: 3 SSH_PUBLIC_KEY lines + 10 envvar lines. PASS.
+
+  **Three Sub-shape A instances surfaced in this single dispatch arc (P1.1 michelek-regex, P1.2a label-key-typo, P3.6-amendment-1 character-class-too-narrow).** Brunel filing for session-end Cal entry as n=3 within-dispatch reinforcement.
+
+- **P3.7** = Tier R (`docker compose config` parse verify) — default-permitted. PASS at 19:22: rendered output shows all 3 SSH_PUBLIC_KEY* slots populated with the captured pubkeys (PO/Aleksandr/rc-connect), GITHUB_TOKEN resolved, ATLASSIAN_EMAIL/API_TOKEN/BASE_URL resolved, ANTHROPIC_API_KEY empty (same shape as backup; not a defect). ssh exit 0, no stderr. Read-only; did NOT touch running container.
+
+  **One observation surfaced (not a hard-gate failure):** `GH_TOKEN` and `TUNNEL_TOKEN` are in `.env` but do NOT appear in `docker compose config` rendered output. The compose-yml's `environment:` block at `designs/deployed/apex-research/container/docker-compose.yml:47-60` declares explicit keys (SSH_PUBLIC_KEY*, GITHUB_TOKEN, ATLASSIAN_*, etc.) but does NOT include `GH_TOKEN` or `TUNNEL_TOKEN`. The compose config render shows only the keys it knows about. These vars are still IN the `.env` and will be read by anything that sources the file (e.g., entrypoint scripts via env-file mechanism), but they're not propagated into the container's `Config.Env` unless explicitly declared in compose-yml. Documented; Brunel may decide whether to amend the operational compose-yml in a separate dispatch (apex-team's domain).
+
+- **P3.8** = Tier R + log + scratchpad write to MAY-WRITE paths. **THIS ENTRY.**
+
+**No Tier D in P3.** Phase 2 Tier D recreate is a SEPARATE FUTURE DISPATCH (queued by Brunel for relay on this P3.8 success).
+
+**deployed-artifacts-read declaration** — per Brunel dispatch's audit declaration + my Diagnostic Discipline three-layer reading (candidate Hopper-Amendment-4):
+
+- **Layer 1 (FR design-as-shipped):** `designs/deployed/apex-research/container/entrypoint-apex.sh:166-196` (Step 7 multi-key enumeration loop) + `designs/deployed/apex-research/container/docker-compose.yml:47-60` (environment block, FR-design has SLOTS 1+2 only — operational has SLOT 3; documented Layer-1-vs-Layer-2 drift)
+- **Layer 2 (consumer team operational, substrate host):** operational compose-yml on $COMPOSE_DIR confirmed to have SSH_PUBLIC_KEY_3 slot exposed (per P1.2c Probe 2 + P3.7 rendered compose config). $BACKUP_DIR `.env` line-11 substrate-truth: `SSH_PUBLIC_KEY_3=...` UNQUOTED (vs other SSH lines double-quoted) — this is what broke P3.6 first-attempt `source`.
+- **Layer 3 (running container Config.Env):** PO pubkey in SLOT 2 (not SLOT 1) confirmed P3.1; same value as P1.1/P1.2c/P2.1 captures — substrate stable across dispatch arc. GH_TOKEN present in Config.Env (post-fresh-clone addition, P3.5 captured).
+- **Audit-trail artifacts (this repo):** `teams/framework-research/docs/operations-log-2026-05.md` (Hopper-authored; current — five entries inc. this one), `teams/framework-research/docs/apex-keys-diff-2026-05-20.md` (Hopper at 18:44), `teams/framework-research/memory/hopper.md` (current).
+
+**commands executed** — verbatim, all via base64-transit pattern through `ssh -T -o StrictHostKeyChecking=accept-new -o BatchMode=yes dev@100.96.54.170 "echo '<b64>' | base64 -d | bash"` (host-user) or `ssh -i ~/.ssh/id_ed25519_apex -p 2222 ai-teams@100.96.54.170 "<cmd>"` (container-user, P3.2 only):
+
+- P3.1: `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}' | grep '^SSH_PUBLIC_KEY_2='`
+- P3.2 [container-user, port 2222]: `cat /home/ai-teams/.ssh/authorized_keys`; local filter `Where-Object { $_ -match 'aleksandr' -and $_ -notmatch 'mihkel' }`
+- P3.3: `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}' | grep '^SSH_PUBLIC_KEY_2=' | cut -d= -f2-`
+- P3.4: `grep '^SSH_PUBLIC_KEY_3=' '/home/dev/github/apex-migration-research.pre-fresh-clone-2026-04-29/.env' | cut -d= -f2- | tr -d '"'`
+- P3.5: `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}' | grep '^GH_TOKEN=' | cut -d= -f2-`
+- P3.6 amendment-1: remote multi-line bash script with `cd $COMPOSE_DIR`; `set -euo pipefail`; decode 4 base64 pubkey+token vars; define `strip_quotes()`; grep-extract 6 tokens from `$BACKUP/.env` with explicit unquoting; sanity-check GITHUB_TOKEN and TUNNEL_TOKEN non-empty; `cat > .env <<EOF` with 3 SSH_PUBLIC_KEY slots + 7 token vars; `ls -la .env`; count grep checks.
+- P3.6 amendment-2 (verify only): `cd '$COMPOSE_DIR' && grep -c '^SSH_PUBLIC_KEY' .env; grep -c '^[A-Z_][A-Z0-9_]*=' .env`
+- P3.7: `cd '$COMPOSE_DIR' && docker compose config 2>&1 | grep -E '^(\s+)?(SSH_PUBLIC_KEY|GITHUB_TOKEN|GH_TOKEN|ATLASSIAN|TUNNEL|ANTHROPIC)'`
+- P3.8: this ops-log write + scratchpad update + SendMessage report.
+
+**outputs** — relevant excerpts (full execution detail in surface-back chain to Brunel; secret-redaction discipline applied — pubkeys verbatim, tokens first-4 + length-suffix only in surface-backs; SHA-256 fingerprints in this ops-log entry):
+
+- **Composed `.env` at `$COMPOSE_DIR/.env`** — 1270 bytes, dev:dev ownership, mtime 2026-05-20T19:17:27+03:00, LF line endings (confirmed via `cat -A`). Contains 3 SSH_PUBLIC_KEY slots + 7 token vars (GITHUB_TOKEN, GH_TOKEN, ATLASSIAN_EMAIL, ATLASSIAN_API_TOKEN, ATLASSIAN_BASE_URL, TUNNEL_TOKEN, ANTHROPIC_API_KEY) + a header comment block documenting generation timestamp + PO slot assignment.
+
+- **SHA-256 fingerprints of the three composed pubkeys** (full plaintext in $COMPOSE_DIR/.env, not duplicated here):
+  - PO (SLOT 1): `8272813305f6057811e342a7c449517766fe052279ea729c92ad7db489f98c32`
+  - Aleksandr (SLOT 2): `9646444b45e085e055ef3b287ecd39d95ea637e2bf73ac089e6b0b452c623879`
+  - rc-connect (SLOT 3): `a71278256c095c63e525fe2101db5577d846c4316c1b977a577cd2945a263f41`
+
+- **Token first-4-chars + length** (per secret-redaction discipline; full plaintext in $COMPOSE_DIR/.env):
+  - GITHUB_TOKEN: `gho_...` (40 chars)
+  - GH_TOKEN: `gho_...` (40 chars)
+  - ATLASSIAN_API_TOKEN: `ATAT...` (192 chars including trailing checksum-shape `=80E79C65`)
+  - TUNNEL_TOKEN: `eyJh...` (217 chars)
+  - ATLASSIAN_EMAIL: `mihkel.putrinsh@evr.ee` (non-secret config)
+  - ATLASSIAN_BASE_URL: `https://eestiraudtee.atlassian.net` (non-secret config)
+  - ANTHROPIC_API_KEY: empty quoted (same shape as backup; Claude Code uses subscription auth)
+
+- **P3.7 docker compose config rendered output** — all 3 SSH_PUBLIC_KEY* slots populated, GITHUB_TOKEN + ATLASSIAN_API_TOKEN + ATLASSIAN_BASE_URL + ATLASSIAN_EMAIL resolved; ANTHROPIC_API_KEY rendered as empty. GH_TOKEN and TUNNEL_TOKEN NOT in rendered output (operational compose-yml `environment:` block doesn't declare them; they exist in `.env` only; flagged for separate dispatch if apex team wants compose-yml amended).
+
+**outcome** — **success** — Phase 1 fix-staged. `.env` at $COMPOSE_DIR is complete with PO's slot assignment (PO/Aleksandr/rc-connect), all credentials present, parses cleanly under `docker compose config`. Substrate ready for Phase 2 Tier D recreate (queued by Brunel for immediate relay). Original PO ask (Aleksandr's key persistence across container rebuilds) is now addressable on next compose-up. Backup `.env` at $BACKUP_DIR/.env remains untouched as further rollback artifact.
+
+**Multi-system failure prevention reaffirmed:** Phase-2 recreate against current `.env` (vs the pre-P3 empty-env state) installs SSH for all three slots + restores full credential cluster. The hard-gate culture that caught the pre-P3 degraded state at 17:23 still stands as the prevention catalyst; this P3 dispatch resolves it.
+
+**Three Sub-shape A instances in this single dispatch arc** (P1.1 michelek-regex on template stub, P1.2a label-key underscore-vs-dot typo on inferred convention, P3.6-amendment-1 `[A-Z_]+` character-class missing digits): filing for session-end Cal-Protocol-A submission per joint authorship discipline (Brunel architectural framing + Hopper operator-defense pattern).
+
+(*FR:Hopper*)
+
+---
+
+## 2026-05-21T09:18+03:00 — Phase 2 apex-research recreate (Tier R + Tier M + Tier D)
+
+**timestamp** — 2026-05-20T19:04+03:00 (Phase 2 originally dispatched) → 2026-05-20T19:35-19:38 (Option-A/Option-B reversal + amendment-1) → 2026-05-20T19:37-19:40 (Aen HALT + session pause) → 2026-05-21T09:07+03:00 (Aen resume signal) → 2026-05-21T09:18+03:00 (close-out written; original ask achieved).
+
+**tasker** — Brunel (Phase 2 amendment-1 dispatch authored, inlined from `designs/new/apex-keys-phase2-recreate-dispatch.md` outside Hopper's MAY-READ scope; relay = primary per `relay-to-primary-artifact-fidelity-discipline.md`). PO Tier D sanction verbatim "Approve as drafted" at 2026-05-20 19:01 (predates the Option-B reversal but still governed the Tier D recreate command which was unchanged). Aen ratified Option B at 2026-05-20 19:34, ratified P4.1 substrate-state-checks at 2026-05-21 09:07 resume.
+
+**dispatch summary** — Apex-research container recreate via `docker compose up -d --force-recreate apex-research` to apply Phase-1-Redux .env, install all 3 SSH keys (PO + Aleksandr + rc-connect), and preserve GH_TOKEN via P4.05 Tier M compose-yml amendment. Original PO ask ("make Aleksandr's key persist apex rebuilds") ACHIEVED.
+
+**tier classification + sanction status** — by step:
+
+- **P4.1** = Tier R (substrate-state capture + Aen-09:07-added drift check + apex-offline check + Brunel-09:11-sanctioned indentation probe). PASS at 09:13: container Up 42h, 3 volumes present, both .env files present, Config.Env SSH_PUBLIC_KEY_2 byte-equal to S20-19:23 documented value (no drift), 0 ESTABLISHED on :2222 + NO_ESTABLISHED_SESSIONS marker (apex offline as expected), docker logs last activity 2026-05-19T12:31, indentation probe (after width-adjustment within-dispatch-agency) confirmed 2-space service-key indent in compose-yml.
+
+- **P4.05** = Tier M (Brunel single-line ack from 2026-05-20 19:38, quoted verbatim):
+  > "I sanction this Tier M op. Operational compose-yml's apex-research env block adds one line `- GH_TOKEN=${GH_TOKEN:-}`, the `:-` default-fallback pattern matching existing token entries. Backup `.bak` is the rollback artifact. Reversible by `cp .bak docker-compose.yml`. Operation preserves apex team's existing GH_TOKEN credential through the Phase 2 recreate per PO direction. — Brunel"
+
+  **P4.05 amendment chain (Sub-shape A n=4):**
+  - P4.05 first-attempt 09:13: backup created at `docker-compose.yml.bak.20260521-091347` (3903 bytes, identical to original); awk script then FAILED with `runaway string constant "      - GH ...` — the awk parser interpreted the `}` in the literal string `${GH_TOKEN:-}` as block-terminator. `set -e` halted before `mv`; original docker-compose.yml UNCHANGED (verified via `diff -q` returning no output). Substrate clean; 0-byte `.new` leftover.
+  - Brunel amendment-2 at 09:16: replaced `print "      - GH_TOKEN=\${GH_TOKEN:-}"` with `printf "      - GH_TOKEN=%s%s\n", "$", "{GH_TOKEN:-}"` (awk-canonical string concatenation; the `{GH_TOKEN:-}` chunk has no leading `$` so awk doesn't parse it specially). Sanctioned reuse of 09:13 backup (no double-backup) + `.new` cleanup at script start.
+  - P4.05 second-attempt 09:18: PASS. ssh exit 0; `docker compose config` rendered output shows `GH_TOKEN: gho_2xo5...` resolved from .env; context-grep confirms insertion in apex-research env block (surrounded by SOURCE_REPO_URL/GITHUB_TOKEN/ANTHROPIC_API_KEY siblings; not in cloudflared block).
+
+  **Sub-shape A self-instance in tasker amendment text:** caught by Hopper's hard-gate culture at P4.05 first-attempt fail; root cause (awk grammar's `}` interpretation in nested-quoting layer-chain PowerShell→base64→bash→awk) diagnosed and surfaced; Brunel amendment-2 resolved via string-concat workaround.
+
+- **P4.2** = **Tier D** (PO sanction verbatim "Approve as drafted" at 2026-05-20 19:01 against the full Phase 2 dispatch text including (a) exact command + (b) stated reason + (c) expected outcome — three-component sanction validated complete at Hopper 09:08 ack against canonical amendment-1 dispatch text). Exact command executed verbatim:
+  > `ssh -T dev@100.96.54.170 "cd '/home/dev/github/apex-migration-research' && docker compose up -d --force-recreate apex-research"`
+
+  PASS at 09:18: ssh exit 0; docker output shows lifecycle progression `Container apex-research Recreate → Recreated → Starting → Started`. Container destroyed and re-created cleanly.
+
+- **P4.3** = Tier R. PASS at 09:18: container status `Up 46 seconds` (not Restarting/Exited). New container running.
+
+- **P4.4** = Tier R (preservation framing per amendment-1 wording rescission). PASS at 09:18: Config.Env contains all 3 SSH_PUBLIC_KEY slots populated with the captured pubkey values; GH_TOKEN present with `gho_2xo5...` value (P4.05 preservation succeeded); GITHUB_TOKEN, ATLASSIAN_EMAIL, ATLASSIAN_API_TOKEN, ATLASSIAN_BASE_URL all present with matching values; ANTHROPIC_API_KEY empty (matches `.env` shape, not a defect). TUNNEL_TOKEN intentionally absent (cloudflared-service domain).
+
+- **P4.5** = Tier R (container-user SSH port 2222). PASS at 09:18: `cat /home/ai-teams/.ssh/authorized_keys` returns 3 lines — Aleksandr (`ghost-bridge@aleksandr-2026-05-15`) + rc-connect + PO (`mihkel.putrinsh@evr.ee apex-research`). All 3 keys installed by entrypoint Step 7 from new .env.
+
+- **P4.6** = Tier R. PASS at 09:18: entrypoint logs show `[entrypoint] 3 SSH public key(s) installed for michelek + ai-teams.` (KEY_COUNT=3 confirmed), `sshd started on port 2222`, `All gates passed. Starting...`. ZERO ERROR lines.
+
+- **P4.7** = Tier R. PASS at 09:18: all 3 named volumes (`apex-research_apex-claude-home`, `apex-research_apex-research-repo`, `apex-research_apex-source-data`) preserved across recreate; none lost.
+
+- **P4.8** = Tier R + log + scratchpad write. **THIS ENTRY.**
+
+**deployed-artifacts-read declaration** — per Brunel dispatch's audit declaration + Hopper Diagnostic Discipline three-layer reading (Hopper-Amendment-4 candidate):
+
+- **Layer 1 (FR design-as-shipped):** session-start reads at `designs/deployed/apex-research/container/entrypoint-apex.sh:166-196` + `docker-compose.yml:47-60` + `.env.example:13` still current.
+- **Layer 2 (consumer team operational on substrate host):** P4.0 + P4.0 amendment-1 substrate reads at 2026-05-20 19:30-19:33 (compose-yml env block has 14 vars, no GH_TOKEN at Layer 2 pre-amendment; Dockerfile.apex has no ENV directives). P4.05 amendment ADDED `- GH_TOKEN=${GH_TOKEN:-}` to apex-research env block (Layer 2 now declares GH_TOKEN). P4.1 indentation probe at 09:13 confirmed 2-space service-key indent.
+- **Layer 3 (running container Config.Env):** P3.5 + P3.1 + P4.1(b) substrate-static checks all confirmed PO key in SLOT 2 byte-equal to documented value pre-recreate. Post-recreate P4.4 shows new Config.Env with all 3 SSH slots + GH_TOKEN populated per the amended Layer 2 declaration + .env values.
+- **Audit-trail artifacts (this repo):** operations-log-2026-05.md (Hopper-authored; current — 6 entries including this one), apex-keys-diff-2026-05-20.md (Hopper at 2026-05-20 18:44), hopper.md scratchpad (current).
+
+**commands executed** — verbatim (via base64-transit pattern through `ssh -T -o StrictHostKeyChecking=accept-new -o BatchMode=yes dev@100.96.54.170 "echo '<b64>' | base64 -d | bash"` for host-user, or `ssh -i ~/.ssh/id_ed25519_apex -p 2222 ai-teams@100.96.54.170 "<cmd>"` for container-user):
+
+- P4.1 multi-probe: `docker ps --filter name=apex-research --format ...`; `docker volume ls | grep apex-research`; `ls -la $COMPOSE_DIR/.env $BACKUP_DIR/.env`; `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}' | grep '^SSH_PUBLIC_KEY_2='`; `docker exec apex-research sh -c "netstat -tan 2>/dev/null | grep ':2222.*ESTABLISHED' || echo NO_ESTABLISHED_SESSIONS"`; `docker logs apex-research --tail 20 --timestamps`. Then `head -10 docker-compose.yml | grep -nE ...` (indentation probe, empty output → width-adjusted to `cat -n docker-compose.yml | head -30` per within-dispatch-agency).
+- P4.05 amendment-2 (the second-attempt + successful) remote bash: `set -euo pipefail`; `rm -f docker-compose.yml.new`; `test -f docker-compose.yml.bak.20260521-091347`; awk with `printf "      - GH_TOKEN=%s%s\n", "$", "{GH_TOKEN:-}"` insertion logic + apex-vs-cloudflared block boundaries; `test -s docker-compose.yml.new`; `mv docker-compose.yml.new docker-compose.yml`; `docker compose config 2>&1 | grep -E '^(\s+)?GH_TOKEN'`; `grep -B2 -A1 'GH_TOKEN' docker-compose.yml | head -10`.
+- **P4.2 (Tier D):** `cd '/home/dev/github/apex-migration-research' && docker compose up -d --force-recreate apex-research 2>&1` — exact command per PO sanction.
+- P4.3: `sleep 10 && docker ps --filter name=apex-research --format '{{.Names}} STATUS={{.Status}}'`
+- P4.4: `docker inspect apex-research --format '{{range .Config.Env}}{{println .}}{{end}}' | grep -E '^(SSH_PUBLIC_KEY|GITHUB_TOKEN|GH_TOKEN|ATLASSIAN|TUNNEL|ANTHROPIC)'`
+- P4.5: `cat /home/ai-teams/.ssh/authorized_keys` (via container-user SSH)
+- P4.6: `docker logs apex-research --tail 100 2>&1 | grep -E 'SSH public key|entrypoint|ERROR'`
+- P4.7: `docker volume ls | grep apex-research`
+- P4.8: this ops-log entry + scratchpad update + report SendMessages.
+
+**outputs** — relevant excerpts (secret-redaction discipline applied; SHA-256 fingerprints from P3.8 entry are the audit anchors for the 3 pubkeys; full plaintext lives in $COMPOSE_DIR/.env and now also in container's Config.Env):
+
+- **P4.05 success:** docker-compose.yml updated with `      - GH_TOKEN=${GH_TOKEN:-}` line in apex-research env block at line after `- GITHUB_TOKEN=${GITHUB_TOKEN}`. Backup `docker-compose.yml.bak.20260521-091347` preserved as rollback artifact. Compose config render shows `GH_TOKEN: gho_2xo5<REDACTED>` resolved from .env.
+- **P4.2 recreate sequence:** `Container apex-research Recreate → Recreated → Starting → Started` — clean Docker lifecycle.
+- **P4.3 container status:** `apex-research STATUS=Up 46 seconds` (immediately post-recreate; clean start, no crash-loop).
+- **P4.4 Config.Env post-recreate (all DECLARED tokens populated; SHA-256 fingerprints for pubkeys per P3.8):**
+  - `SSH_PUBLIC_KEY=ssh-ed25519 ...` (PO, SHA256 `8272813305...`)
+  - `SSH_PUBLIC_KEY_2=ssh-ed25519 ...` (Aleksandr, SHA256 `9646444b45...`)
+  - `SSH_PUBLIC_KEY_3=ssh-ed25519 ...` (rc-connect, SHA256 `a71278256c...`)
+  - `GITHUB_TOKEN=gho_2xo5<REDACTED>` (40 chars; same value as backup .env)
+  - `GH_TOKEN=gho_2xo5<REDACTED>` (40 chars; preservation succeeded per P4.05 amendment + PO Option B direction)
+  - `ATLASSIAN_EMAIL=mihkel.putrinsh@evr.ee`
+  - `ATLASSIAN_API_TOKEN=ATATT3xF<REDACTED>` (192 chars)
+  - `ATLASSIAN_BASE_URL=https://eestiraudtee.atlassian.net`
+  - `ANTHROPIC_API_KEY=` (empty, matches .env shape; Claude Code uses subscription auth)
+- **P4.5 authorized_keys post-recreate:** 3 lines installed by entrypoint Step 7, one each for PO + Aleksandr + rc-connect (all comments match captured pubkeys).
+- **P4.6 entrypoint logs:** `[entrypoint] 3 SSH public key(s) installed for michelek + ai-teams.` + `sshd started on port 2222` + `All gates passed. Starting...`. Zero errors. KEY_COUNT=3 confirmed.
+- **P4.7 volume integrity:** all 3 named volumes preserved across recreate.
+
+**outcome** — **success — original task ACHIEVED.** Aleksandr's SSH key persists in apex-research container's authorized_keys, baked into Config.Env from the canonical .env at $COMPOSE_DIR. Container will retain all 3 keys (PO + Aleksandr + rc-connect) across any future rebuild. GH_TOKEN preserved per PO Option B direction (P4.05 compose-yml amendment). All declared tokens propagated. All 3 named volumes preserved. Backup `.env` at $BACKUP_DIR untouched as further rollback artifact (and the 09:13 compose-yml backup also retained for compose-yml rollback if ever needed).
+
+**Multi-system failure prevention (substantively confirmed):** had we executed the original r3 Phase-2 recreate against the pre-Phase-1-Redux degraded state (no .env, container Config.Env stale from 2026-04-29-fresh-clone era), the recreate would have produced a container with all SSH slots empty + no credentials. Full SSH lockout + GitHub auth loss + Atlassian auth loss + Cloudflare tunnel auth loss. The hard-gate-surface-back chain through this dispatch arc prevented that incident.
+
+**Audit-trail surface for this Phase 2 close** documents the full reversal-and-redirect sequence as load-bearing dispatch events:
+- 2026-05-20 19:04: Phase 2 first dispatch (Option A "substrate-correction normalization" framing for GH_TOKEN; PO sanctioned at 19:01)
+- 2026-05-20 19:35: PO objected to Option A → "preserve their GH_TOKEN, too"
+- 2026-05-20 19:35: Aen direct intercept → reversed to Option B, instructed P4.05 Tier M compose-yml amendment to preserve GH_TOKEN
+- 2026-05-20 19:37: Aen HALT to Hopper (intercepted cross-in-transit on the now-rescinded Option A dispatch)
+- 2026-05-20 19:38: Brunel amendment-1 dispatch (canonical Phase 2 text with P4.05 inserted, wording rescissions on P4.4 + P4.8)
+- 2026-05-20 19:40-end: session paused
+- 2026-05-21 09:07: Aen resume signal with 2 P4.1 substrate-state-checks added (drift check + apex-offline check)
+- 2026-05-21 09:11: Brunel green-light + indentation probe sanctioned
+- 2026-05-21 09:13: P4.1 PASS + P4.05 first-attempt FAIL (awk runaway-string; Sub-shape A n=4 catalogued)
+- 2026-05-21 09:16: Brunel amendment-2 (awk printf string-concat fix)
+- 2026-05-21 09:18: P4.05 second-attempt PASS + P4.2 Tier D recreate executed + P4.3-P4.7 all PASS + this P4.8 close-out
+
+**Four Sub-shape A instances in the full dispatch arc** (P1.1 michelek-regex, P1.2a label-key typo, P3.6-amendment-1 character-class, P4.05-first-attempt awk runaway-string): cataloging confirmed for session-end Cal-Protocol-A submission. The shape is hardening; substrate-truth-anchored discriminators/literals reliably outperform inferred/template-anchored ones.
+
+(*FR:Hopper*)
